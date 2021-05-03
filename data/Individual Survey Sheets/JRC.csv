@@ -1,0 +1,265 @@
+﻿Items,Materials
+bottle,plastic
+sheet,plastic
+bag,plastic
+caps/lids,plastic
+fishing line (monofilament),plastic
+fishing line (entangled),plastic
+synthetic rope,plastic
+fishing net,plastic
+cable ties,plastic
+strapping band,plastic
+crates and containers,plastic
+plastic diapers,plastic
+sanitary towel/tampon,plastic
+other,plastic
+cans (food),metals
+cans (beverage),metals
+fishing related,metals
+drums,metals
+appliances ,metals
+car parts,metals
+cables,metals
+other,metals
+boots,rubber
+balloons,rubber
+bobbins (fishing),rubber
+tyre,rubber
+other,rubber
+jar,glass/ceramics
+bottle,glass/ceramics
+piece,glass/ceramics
+other,glass/ceramics
+clothing/rags,natural products/clothes
+shoes,natural products/clothes
+other,natural products/clothes
+wood (processed),miscellaneous
+rope,miscellaneous
+paper/cardboard,miscellaneous
+pallets,miscellaneous
+other,miscellaneous
+bags,plastic
+bottles,plastic
+food wrappers,plastic
+sheets,plastic
+other plastic objects,plastic
+fishing nets,plastic
+fishing lines,plastic
+other fishing related,plastic
+ropes/strapping bands,plastic
+"sanitaries (diapers, etc)",plastic
+tyres,rubber
+"other (gloves, shoes, etc.)",rubber
+beverage cans,metals
+other food cans/wrappers,metals
+middle size containers,metals
+large metallic objects ,metals
+cables,metals
+fishing related,metals
+bottles,glass/ceramics
+pieces of glass,glass/ceramics
+ceramic jars,glass/ceramics
+large objects (specify),glass/ceramics
+"clothing (clothes, shoes)",textiles/natural fibers
+"large pieces (carpets, etc)",textiles/natural fibers
+natural ropes,textiles/natural fibers
+"4/6-pack yokes, six-pack rings",artificial polymer materials
+shopping bags incl. pieces,artificial polymer materials
+"small plastic bags, e.g. freezer bags incl. pieces",artificial polymer materials
+plastic bag collective role; what remains from rip-off plastic bags,artificial polymer materials
+drink bottles <=0.5l,artificial polymer materials
+drink bottles >0.5l,artificial polymer materials
+cleaner bottles & containers,artificial polymer materials
+food containers incl. fast food containers,artificial polymer materials
+"beach use related cosmetic bottles and. Containers, e.g. sunblock",artificial polymer materials
+other cosmetic bottles & containers ,artificial polymer materials
+other bottles & containers (drums),artificial polymer materials
+engine oil bottles & containers <50 cm,artificial polymer materials
+engine oil bottles & containers >50 cm,artificial polymer materials
+jerry cans (square plastic containers with handle),artificial polymer materials
+injection gun containers,artificial polymer materials
+crates and containers/baskets,artificial polymer materials
+car parts,artificial polymer materials
+plastic caps and lids,artificial polymer materials
+plastic caps/lids drinks,artificial polymer materials
+"plastic caps/lids chemicals, detergents",artificial polymer materials
+plastic caps/lids unidentified,artificial polymer materials
+plastic rings from bottle caps/lids,artificial polymer materials
+tobacco pouches/plastic cigarette box packaging,artificial polymer materials
+cigarette lighters,artificial polymer materials
+cigarette butts and filters,artificial polymer materials
+pens and pen lids,artificial polymer materials
+combs/hair brushes/sunglasses,artificial polymer materials
+crisp packets/sweets wrappers,artificial polymer materials
+lolly sticks,artificial polymer materials
+toys and party poppers,artificial polymer materials
+cups and cup lids,artificial polymer materials
+cutlery and trays,artificial polymer materials
+straws and stirrers,artificial polymer materials
+fertiliser/animal feed bags,artificial polymer materials
+mesh vegetable bags,artificial polymer materials
+cover/packaging,artificial polymer materials
+gloves,artificial polymer materials
+gloves (washing up),artificial polymer materials
+gloves (industrial/professional rubber gloves),artificial polymer materials
+crab/lobster pots and tops,artificial polymer materials
+tags (fishing and industry),artificial polymer materials
+octopus tops,artificial polymer materials
+"nussels nets, oyster nets",artificial polymer materials
+oyster trays (round from oyster cultures),artificial polymer materials
+plastic sheeting from mussel culture (Tahitians),artificial polymer materials
+synthetic rope,artificial polymer materials
+rope (diameter more than 1cm),artificial polymer materials
+string and cord (diameter less than 1cm),artificial polymer materials
+fishing net,artificial polymer materials
+nets and pieces of net,artificial polymer materials
+nets and pieces of net < 50 cm,artificial polymer materials
+nets and pieces of net > 50 cm,artificial polymer materials
+fishing line (entangled),artificial polymer materials
+tangled nets/cord,artificial polymer materials
+fish boxes - plastic,artificial polymer materials
+fish boxes - expanded polystyrene,artificial polymer materials
+fishing line/monofilament (angling),artificial polymer materials
+light sticks (tubes with fluid) incl. packaging,artificial polymer materials
+other fishing related,artificial polymer materials
+floats for fishing nets,artificial polymer materials
+buoys,artificial polymer materials
+fenders,artificial polymer materials
+buckets,artificial polymer materials
+strapping bands,artificial polymer materials
+"sheets, industrial packaging, plastic sheeting",artificial polymer materials
+fibre glass/fragments,artificial polymer materials
+hard hats/helmets,artificial polymer materials
+shotgun cartridges,artificial polymer materials
+shoes/sandals,artificial polymer materials
+traffic cones,artificial polymer materials
+foam sponge,artificial polymer materials
+foam packaging/insulation/polyurethane,artificial polymer materials
+plastic/polystyrene pieces 0 - 2.5 cm,artificial polymer materials
+plastic/polystyrene pieces 2.5 cm > < 50cm,artificial polymer materials
+plastic/polystyrene pieces > 50 cm,artificial polymer materials
+plastic pieces 0 - 2.5 cm,artificial polymer materials
+plastic pieces 2.5 cm > < 50cm,artificial polymer materials
+plastic pieces > 50 cm,artificial polymer materials
+"CD, CD-box",artificial polymer materials
+salt packaging,artificial polymer materials
+fin trees (from fins for scuba diving),artificial polymer materials
+masking tape,artificial polymer materials
+telephone (incl. parts),artificial polymer materials
+plastic construction waste,artificial polymer materials
+plastic flower pots,artificial polymer materials
+biomass holder from sewage tratment plants,artificial polymer materials
+bait containers/packaging,artificial polymer materials
+cotton bud sticks,artificial polymer materials
+sanitary towels/panty liners/backing strips,artificial polymer materials
+toilet fresheners,artificial polymer materials
+diapers/nappies,artificial polymer materials
+syringes/needles,artificial polymer materials
+medical/pharmeciducal containers/tubes,artificial polymer materials
+dog faeces bag,artificial polymer materials
+flip-flops,artificial polymer materials
+plastic fragments rounded <5mm,artificial polymer materials
+plastic fragments subrounded <5mm,artificial polymer materials
+plastic fragments subangular <5mm,artificial polymer materials
+plastic fragments angular <5mm,artificial polymer materials
+cylindrical pellets <5mm,artificial polymer materials
+disks pellets <5mm,artificial polymer materials
+flat pellets <5mm,artificial polymer materials
+ovoid pellets <5mm,artificial polymer materials
+spheruloids pellets <5mm,artificial polymer materials
+industrial pellets,artificial polymer materials
+filament <5mm,artificial polymer materials
+films <5mm,artificial polymer materials
+foamed plastic <5mm,artificial polymer materials
+granules <5mm,artificial polymer materials
+styrofoam <5mm,artificial polymer materials
+small industrial spheres (<5mm),artificial polymer materials
+sheet like user plastic (>1mm),artificial polymer materials
+threadlike user plastic (>1mm),artificial polymer materials
+foamed user plastic (>1mm),artificial polymer materials
+plastic fragments (>1mm),artificial polymer materials
+polyurethane granules <5mm,artificial polymer materials
+other plastic/polystyrene items (identifiable),artificial polymer materials
+balloons and balloon sticks,rubber
+balls,rubber
+rubber boots,rubber
+tyres and belts,rubber
+inner-tubes and rubber sheet,rubber
+wheels,rubber
+"rubber bands (small, for kitchen/household/pot use)",rubber
+condoms (incl. packaging),rubber
+other rubber pieces,rubber
+"clothing/rags (clothing, hats, towels)",cloth/textile
+"shoes and sandals (e.g. leather, cloth)",cloth/textile
+backpacks & bags,cloth/textile
+sacking (hessian),cloth/textile
+carpet & furnishing,cloth/textile
+"rope, string and nets",cloth/textile
+"sails, canvas",cloth/textile
+tampons and tampon applicators,cloth/textile
+othe textiles (incl. rags),cloth/textile
+paper/cardboard,paper/cardboard
+paper bags,paper/cardboard
+cardboard (boxes & fragments),paper/cardboard
+paper packaging,paper/cardboard
+cartons/tetrapack (others),paper/cardboard
+cigarette packets,paper/cardboard
+"cups, food trays, wrappers, drink containers",paper/cardboard
+newspapers & magazines,paper/cardboard
+tubes for fireworks,paper/cardboard
+paper fragments,paper/cardboard
+paper,paper/cardboard
+other paper items,paper/cardboard
+corks,processed/worked wood
+processed timber,processed/worked wood
+crates,processed/worked wood
+crab/lobster pots,processed/worked wood
+fish boxes,processed/worked wood
+"ice-cream sticks, chip forks, chopsticks, toothpicks",processed/worked wood
+paint brushes,processed/worked wood
+matches & fireworks,processed/worked wood
+wood boards,processed/worked wood
+beams/dunnage,processed/worked wood
+wood (processed),processed/worked wood
+other wood < 50cm,processed/worked wood
+other wood > 50cm,processed/worked wood
+other (specify),processed/worked wood
+aerosol/speay cans industry,metal
+"foil wrapper, aluminium foil",metal
+"bottle caps, lids & pull tabs",metal
+disposable BBQ's,metal
+"appliances (refrigerators, washers, etc.)",metal
+"tableware (plates, cups & cutlery)",metal
+"fishing related (weights, sinkers, lures,hooks) ",metal
+fish hook remains,metal
+lobster/crab pots,metal
+industrial scrap,metal
+"drums, e.g. oil",metal
+other cans (<4L),metal
+"gas bottles, drums & buckets",metal
+paint tins,metal
+"wire, wire mesh, barbed wire",metal
+barrels,metal
+car parts/batteries,metal
+household batteries,metal
+other (metal),metal
+other metal pieces < 50 cm,metal
+other metal pieces > 50 cm,metal
+bottles incl. pieces,glass/ceramics
+jars incl. pieces,glass/ceramics
+light bulbs,glass/ceramics
+tableware (plates & cups),glass/ceramics
+"construction material (brick, cement, pipes)",glass/ceramics
+fluorescent light tubes,glass/ceramics
+glass buoys,glass/ceramics
+octopus pots,glass/ceramics
+glass or ceramic fragments >2.5cm,glass/ceramics
+large glass objects (specify),glass/ceramics
+other glass items,glass/ceramics
+"other medical items (swabs, bandaging, adhesive plaster etc.)",unidentified
+slack/coal,unidentified
+paraffin/wax,unidentified
+oil/tar,unidentified
+food waste (galley waste),unidentified
+"various rubbish (worked wood, metal parts)",unidentified
+"other (glass, metal, tar)<5mm",unidentified

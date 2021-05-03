@@ -1,0 +1,18 @@
+X1,X2,X3,X4
+glass/ceramic,glass,fibreglass,NA
+glass/ceramic,ceramic,NA,NA
+plastic,foam,NA,NA
+plastic,rubber,NA,NA
+plastic,soft plastics,NA,NA
+plastic,hard plastics,NA,NA
+plastic,vinyl,NA,NA
+biohazard,sanitary waste,NA,NA
+biohazard,faeces,NA,NA
+organic,leather,NA,NA
+organic,food,NA,NA
+organic,wood and paper,wood,processed wood
+organic,wood and paper,paper/cardboard,paper
+organic,cloth,NA,NA
+metal,NA,NA,NA
+other,NA,NA,NA
+concrete/asphalt,NA,NA,NA

@@ -1,0 +1,2971 @@
+material,items,organization
+soft plastics,,Cordeiro
+styrofoam,,Cordeiro
+hard plastics,,Cordeiro
+wood,wood shreds,Cordeiro
+plastic,,Fernandino
+foam,,Fernandino
+fabric,,Fernandino
+glass/ceramic,,Fernandino
+metal,,Fernandino
+paper,,Fernandino
+rubber,,Fernandino
+wood,,Fernandino
+others,,Fernandino
+woody debris,,Gracia
+plastic,,Gracia
+polystyrene,,Gracia
+rubber,,Gracia
+glass,,Gracia
+processed wood,,Gracia
+organic items,,Gracia
+paper,,Gracia
+textiles,,Gracia
+fish apparel,,Gracia
+metal,metal pieces,Gracia
+biohazard,,Gracia
+plastic,bottle,JRC
+plastic,sheet,JRC
+plastic,bag,JRC
+plastic,caps/lids,JRC
+plastic,fishing line (monofilament),JRC
+plastic,fishing line (entangled),JRC
+plastic,synthetic rope,JRC
+plastic,fishing net,JRC
+plastic,cable ties,JRC
+plastic,strapping band,JRC
+plastic,crates and containers,JRC
+plastic,plastic diapers,JRC
+plastic,sanitary towel/tampon,JRC
+plastic,other,JRC
+metals,cans (food),JRC
+metals,cans (beverage),JRC
+metals,fishing related,JRC
+metals,drums,JRC
+metals,appliances ,JRC
+metals,car parts,JRC
+metals,cables,JRC
+metals,other,JRC
+rubber,boots,JRC
+rubber,balloons,JRC
+rubber,bobbins (fishing),JRC
+rubber,tyre,JRC
+rubber,other,JRC
+glass/ceramics,jar,JRC
+glass/ceramics,bottle,JRC
+glass/ceramics,piece,JRC
+glass/ceramics,other,JRC
+natural products/clothes,clothing/rags,JRC
+natural products/clothes,shoes,JRC
+natural products/clothes,other,JRC
+miscellaneous,wood (processed),JRC
+miscellaneous,rope,JRC
+miscellaneous,paper/cardboard,JRC
+miscellaneous,pallets,JRC
+miscellaneous,other,JRC
+plastic,bags,JRC
+plastic,bottles,JRC
+plastic,food wrappers,JRC
+plastic,sheets,JRC
+plastic,other plastic objects,JRC
+plastic,fishing nets,JRC
+plastic,fishing lines,JRC
+plastic,other fishing related,JRC
+plastic,ropes/strapping bands,JRC
+plastic,"sanitaries (diapers, etc)",JRC
+rubber,tyres,JRC
+rubber,"other (gloves, shoes, etc.)",JRC
+metals,beverage cans,JRC
+metals,other food cans/wrappers,JRC
+metals,middle size containers,JRC
+metals,large metallic objects ,JRC
+metals,cables,JRC
+metals,fishing related,JRC
+glass/ceramics,bottles,JRC
+glass/ceramics,pieces of glass,JRC
+glass/ceramics,ceramic jars,JRC
+glass/ceramics,large objects (specify),JRC
+textiles/natural fibers,"clothing (clothes, shoes)",JRC
+textiles/natural fibers,"large pieces (carpets, etc)",JRC
+textiles/natural fibers,natural ropes,JRC
+artificial polymer materials,"4/6-pack yokes, six-pack rings",JRC
+artificial polymer materials,shopping bags incl. pieces,JRC
+artificial polymer materials,"small plastic bags, e.g. freezer bags incl. pieces",JRC
+artificial polymer materials,plastic bag collective role; what remains from rip-off plastic bags,JRC
+artificial polymer materials,drink bottles <=0.5l,JRC
+artificial polymer materials,drink bottles >0.5l,JRC
+artificial polymer materials,cleaner bottles & containers,JRC
+artificial polymer materials,food containers incl. fast food containers,JRC
+artificial polymer materials,"beach use related cosmetic bottles and. Containers, e.g. sunblock",JRC
+artificial polymer materials,other cosmetic bottles & containers ,JRC
+artificial polymer materials,other bottles & containers (drums),JRC
+artificial polymer materials,engine oil bottles & containers <50 cm,JRC
+artificial polymer materials,engine oil bottles & containers >50 cm,JRC
+artificial polymer materials,jerry cans (square plastic containers with handle),JRC
+artificial polymer materials,injection gun containers,JRC
+artificial polymer materials,crates and containers/baskets,JRC
+artificial polymer materials,car parts,JRC
+artificial polymer materials,plastic caps and lids,JRC
+artificial polymer materials,plastic caps/lids drinks,JRC
+artificial polymer materials,"plastic caps/lids chemicals, detergents",JRC
+artificial polymer materials,plastic caps/lids unidentified,JRC
+artificial polymer materials,plastic rings from bottle caps/lids,JRC
+artificial polymer materials,tobacco pouches/plastic cigarette box packaging,JRC
+artificial polymer materials,cigarette lighters,JRC
+artificial polymer materials,cigarette butts and filters,JRC
+artificial polymer materials,pens and pen lids,JRC
+artificial polymer materials,combs/hair brushes/sunglasses,JRC
+artificial polymer materials,crisp packets/sweets wrappers,JRC
+artificial polymer materials,lolly sticks,JRC
+artificial polymer materials,toys and party poppers,JRC
+artificial polymer materials,cups and cup lids,JRC
+artificial polymer materials,cutlery and trays,JRC
+artificial polymer materials,straws and stirrers,JRC
+artificial polymer materials,fertiliser/animal feed bags,JRC
+artificial polymer materials,mesh vegetable bags,JRC
+artificial polymer materials,cover/packaging,JRC
+artificial polymer materials,gloves,JRC
+artificial polymer materials,gloves (washing up),JRC
+artificial polymer materials,gloves (industrial/professional rubber gloves),JRC
+artificial polymer materials,crab/lobster pots and tops,JRC
+artificial polymer materials,tags (fishing and industry),JRC
+artificial polymer materials,octopus tops,JRC
+artificial polymer materials,"nussels nets, oyster nets",JRC
+artificial polymer materials,oyster trays (round from oyster cultures),JRC
+artificial polymer materials,plastic sheeting from mussel culture (Tahitians),JRC
+artificial polymer materials,synthetic rope,JRC
+artificial polymer materials,rope (diameter more than 1cm),JRC
+artificial polymer materials,string and cord (diameter less than 1cm),JRC
+artificial polymer materials,fishing net,JRC
+artificial polymer materials,nets and pieces of net,JRC
+artificial polymer materials,nets and pieces of net < 50 cm,JRC
+artificial polymer materials,nets and pieces of net > 50 cm,JRC
+artificial polymer materials,fishing line (entangled),JRC
+artificial polymer materials,tangled nets/cord,JRC
+artificial polymer materials,fish boxes - plastic,JRC
+artificial polymer materials,fish boxes - expanded polystyrene,JRC
+artificial polymer materials,fishing line/monofilament (angling),JRC
+artificial polymer materials,light sticks (tubes with fluid) incl. packaging,JRC
+artificial polymer materials,other fishing related,JRC
+artificial polymer materials,floats for fishing nets,JRC
+artificial polymer materials,buoys,JRC
+artificial polymer materials,fenders,JRC
+artificial polymer materials,buckets,JRC
+artificial polymer materials,strapping bands,JRC
+artificial polymer materials,"sheets, industrial packaging, plastic sheeting",JRC
+artificial polymer materials,fibre glass/fragments,JRC
+artificial polymer materials,hard hats/helmets,JRC
+artificial polymer materials,shotgun cartridges,JRC
+artificial polymer materials,shoes/sandals,JRC
+artificial polymer materials,traffic cones,JRC
+artificial polymer materials,foam sponge,JRC
+artificial polymer materials,foam packaging/insulation/polyurethane,JRC
+artificial polymer materials,plastic/polystyrene pieces 0 - 2.5 cm,JRC
+artificial polymer materials,plastic/polystyrene pieces 2.5 cm > < 50cm,JRC
+artificial polymer materials,plastic/polystyrene pieces > 50 cm,JRC
+artificial polymer materials,plastic pieces 0 - 2.5 cm,JRC
+artificial polymer materials,plastic pieces 2.5 cm > < 50cm,JRC
+artificial polymer materials,plastic pieces > 50 cm,JRC
+artificial polymer materials,"CD, CD-box",JRC
+artificial polymer materials,salt packaging,JRC
+artificial polymer materials,fin trees (from fins for scuba diving),JRC
+artificial polymer materials,masking tape,JRC
+artificial polymer materials,telephone (incl. parts),JRC
+artificial polymer materials,plastic construction waste,JRC
+artificial polymer materials,plastic flower pots,JRC
+artificial polymer materials,biomass holder from sewage tratment plants,JRC
+artificial polymer materials,bait containers/packaging,JRC
+artificial polymer materials,cotton bud sticks,JRC
+artificial polymer materials,sanitary towels/panty liners/backing strips,JRC
+artificial polymer materials,toilet fresheners,JRC
+artificial polymer materials,diapers/nappies,JRC
+artificial polymer materials,syringes/needles,JRC
+artificial polymer materials,medical/pharmeciducal containers/tubes,JRC
+artificial polymer materials,dog faeces bag,JRC
+artificial polymer materials,flip-flops,JRC
+artificial polymer materials,plastic fragments rounded <5mm,JRC
+artificial polymer materials,plastic fragments subrounded <5mm,JRC
+artificial polymer materials,plastic fragments subangular <5mm,JRC
+artificial polymer materials,plastic fragments angular <5mm,JRC
+artificial polymer materials,cylindrical pellets <5mm,JRC
+artificial polymer materials,disks pellets <5mm,JRC
+artificial polymer materials,flat pellets <5mm,JRC
+artificial polymer materials,ovoid pellets <5mm,JRC
+artificial polymer materials,spheruloids pellets <5mm,JRC
+artificial polymer materials,industrial pellets,JRC
+artificial polymer materials,filament <5mm,JRC
+artificial polymer materials,films <5mm,JRC
+artificial polymer materials,foamed plastic <5mm,JRC
+artificial polymer materials,granules <5mm,JRC
+artificial polymer materials,styrofoam <5mm,JRC
+artificial polymer materials,small industrial spheres (<5mm),JRC
+artificial polymer materials,sheet like user plastic (>1mm),JRC
+artificial polymer materials,threadlike user plastic (>1mm),JRC
+artificial polymer materials,foamed user plastic (>1mm),JRC
+artificial polymer materials,plastic fragments (>1mm),JRC
+artificial polymer materials,polyurethane granules <5mm,JRC
+artificial polymer materials,other plastic/polystyrene items (identifiable),JRC
+rubber,balloons and balloon sticks,JRC
+rubber,balls,JRC
+rubber,rubber boots,JRC
+rubber,tyres and belts,JRC
+rubber,inner-tubes and rubber sheet,JRC
+rubber,wheels,JRC
+rubber,"rubber bands (small, for kitchen/household/pot use)",JRC
+rubber,condoms (incl. packaging),JRC
+rubber,other rubber pieces,JRC
+cloth/textile,"clothing/rags (clothing, hats, towels)",JRC
+cloth/textile,"shoes and sandals (e.g. leather, cloth)",JRC
+cloth/textile,backpacks & bags,JRC
+cloth/textile,sacking (hessian),JRC
+cloth/textile,carpet & furnishing,JRC
+cloth/textile,"rope, string and nets",JRC
+cloth/textile,"sails, canvas",JRC
+cloth/textile,tampons and tampon applicators,JRC
+cloth/textile,othe textiles (incl. rags),JRC
+paper/cardboard,paper/cardboard,JRC
+paper/cardboard,paper bags,JRC
+paper/cardboard,cardboard (boxes & fragments),JRC
+paper/cardboard,paper packaging,JRC
+paper/cardboard,cartons/tetrapack (others),JRC
+paper/cardboard,cigarette packets,JRC
+paper/cardboard,"cups, food trays, wrappers, drink containers",JRC
+paper/cardboard,newspapers & magazines,JRC
+paper/cardboard,tubes for fireworks,JRC
+paper/cardboard,paper fragments,JRC
+paper/cardboard,paper,JRC
+paper/cardboard,other paper items,JRC
+processed/worked wood,corks,JRC
+processed/worked wood,processed timber,JRC
+processed/worked wood,crates,JRC
+processed/worked wood,crab/lobster pots,JRC
+processed/worked wood,fish boxes,JRC
+processed/worked wood,"ice-cream sticks, chip forks, chopsticks, toothpicks",JRC
+processed/worked wood,paint brushes,JRC
+processed/worked wood,matches & fireworks,JRC
+processed/worked wood,wood boards,JRC
+processed/worked wood,beams/dunnage,JRC
+processed/worked wood,wood (processed),JRC
+processed/worked wood,other wood < 50cm,JRC
+processed/worked wood,other wood > 50cm,JRC
+processed/worked wood,other (specify),JRC
+metal,aerosol/speay cans industry,JRC
+metal,"foil wrapper, aluminium foil",JRC
+metal,"bottle caps, lids & pull tabs",JRC
+metal,disposable BBQ's,JRC
+metal,"appliances (refrigerators, washers, etc.)",JRC
+metal,"tableware (plates, cups & cutlery)",JRC
+metal,"fishing related (weights, sinkers, lures,hooks) ",JRC
+metal,fish hook remains,JRC
+metal,lobster/crab pots,JRC
+metal,industrial scrap,JRC
+metal,"drums, e.g. oil",JRC
+metal,other cans (<4L),JRC
+metal,"gas bottles, drums & buckets",JRC
+metal,paint tins,JRC
+metal,"wire, wire mesh, barbed wire",JRC
+metal,barrels,JRC
+metal,car parts/batteries,JRC
+metal,household batteries,JRC
+metal,other (metal),JRC
+metal,other metal pieces < 50 cm,JRC
+metal,other metal pieces > 50 cm,JRC
+glass/ceramics,bottles incl. pieces,JRC
+glass/ceramics,jars incl. pieces,JRC
+glass/ceramics,light bulbs,JRC
+glass/ceramics,tableware (plates & cups),JRC
+glass/ceramics,"construction material (brick, cement, pipes)",JRC
+glass/ceramics,fluorescent light tubes,JRC
+glass/ceramics,glass buoys,JRC
+glass/ceramics,octopus pots,JRC
+glass/ceramics,glass or ceramic fragments >2.5cm,JRC
+glass/ceramics,large glass objects (specify),JRC
+glass/ceramics,other glass items,JRC
+unidentified,"other medical items (swabs, bandaging, adhesive plaster etc.)",JRC
+unidentified,slack/coal,JRC
+unidentified,paraffin/wax,JRC
+unidentified,oil/tar,JRC
+unidentified,food waste (galley waste),JRC
+unidentified,"various rubbish (worked wood, metal parts)",JRC
+unidentified,"other (glass, metal, tar)<5mm",JRC
+other,construction debris,Keep America Beautiful
+other,tobacco producs,Keep America Beautiful
+paper,,Keep America Beautiful
+plastic,,Keep America Beautiful
+glass,,Keep America Beautiful
+metal,vehicle debris,Keep America Beautiful
+organic,,Keep America Beautiful
+rubber,,Lee
+cloth,,Lee
+wood,,Lee
+vinyl,,Lee
+metal,,Lee
+plastic,,Lee
+others,,Lee
+,fish pot,Lee
+,net,Lee
+,octopus jar,Lee
+,fishing line,Lee
+,rope,Lee
+,drum,Lee
+,glass bottle,Lee
+,fish pot (eel),Lee
+,fish pot (net),Lee
+plastic,4/6 pack yokes,Marine Conservation Society
+plastic,bags (including supermarket),Marine Conservation Society
+plastic,"bottles, container and drums",Marine Conservation Society
+plastic,drinks,Marine Conservation Society
+plastic,"food (e.g. pots, tubs, sachets)",Marine Conservation Society
+plastic,foreign,Marine Conservation Society
+plastic,oil,Marine Conservation Society
+plastic,toiletries,Marine Conservation Society
+plastic,caps/lids,Marine Conservation Society
+plastic,cigarette lighters/tobacco pouches,Marine Conservation Society
+plastic,combs/hairbrushes/sunglasses,Marine Conservation Society
+plastic,crisp/sweet/lolly/sandwich wrappers,Marine Conservation Society
+plastic,cutlery/trays/straws/cups,Marine Conservation Society
+plastic,fish boxes,Marine Conservation Society
+plastic,fishing line (anglers),Marine Conservation Society
+plastic,fishing net and net pieces <50 cm,Marine Conservation Society
+plastic,fishing net and net pieces >50 cm,Marine Conservation Society
+plastic,floats (fishing buoys)/reels,Marine Conservation Society
+plastic,industrial packaging/crates/sheeting,Marine Conservation Society
+plastic,lobster/crab pots & tops,Marine Conservation Society
+plastic,mesh bags (e.g. vegetable),Marine Conservation Society
+plastic,pens,Marine Conservation Society
+plastic,rope diameter >1 cm,Marine Conservation Society
+plastic,string and cord diameter <1cm,Marine Conservation Society
+plastic,shoes/sandals,Marine Conservation Society
+plastic,shotgun cartridges,Marine Conservation Society
+plastic,strapping bands,Marine Conservation Society
+plastic,toys/party poppers/ fireworks/dummies,Marine Conservation Society
+plastic,traffic cones,Marine Conservation Society
+plastic,plastic pieces <2.5 cm,Marine Conservation Society
+plastic,plastic pieces >2.5 cm,Marine Conservation Society
+plastic,other (specify),Marine Conservation Society
+polystyrene,buoys,Marine Conservation Society
+polystyrene,fast food containers/cups,Marine Conservation Society
+polystyrene,foam/sponge/insulation,Marine Conservation Society
+polystyrene,packaging,Marine Conservation Society
+polystyrene,polystyrene pieces <50 cm,Marine Conservation Society
+polystyrene,other (specify),Marine Conservation Society
+rubber,balloons/balloon string,Marine Conservation Society
+rubber,boots,Marine Conservation Society
+rubber,gloves (heavy duty),Marine Conservation Society
+rubber,gloves (light weight),Marine Conservation Society
+rubber,rubber pieces <50 cm,Marine Conservation Society
+rubber,tyres without holes/wheels,Marine Conservation Society
+rubber,tyres with holes,Marine Conservation Society
+rubber,other (specify),Marine Conservation Society
+cloth,cloth pieces,Marine Conservation Society
+cloth,clothing/shoes/beach towels,Marine Conservation Society
+cloth,furnishings,Marine Conservation Society
+cloth,sacking,Marine Conservation Society
+cloth,other (specify),Marine Conservation Society
+metal,aerosol cans,Marine Conservation Society
+metal,BBQ's (disposable),Marine Conservation Society
+metal,bottle caps,Marine Conservation Society
+metal,car parts/car batteries,Marine Conservation Society
+metal,drink cans,Marine Conservation Society
+metal,fishing weights/hooks/lures,Marine Conservation Society
+metal,foil wrappers,Marine Conservation Society
+metal,food cans,Marine Conservation Society
+metal,lobster/crab pots &tops,Marine Conservation Society
+metal,oil drums,Marine Conservation Society
+metal,scrap/metal appliances/paint tins,Marine Conservation Society
+metal,household batteries,Marine Conservation Society
+metal,wire/wire mesh/metal pieces,Marine Conservation Society
+metal,other (specify),Marine Conservation Society
+medical,inhaler,Marine Conservation Society
+medical,plasters,Marine Conservation Society
+medical,syringes,Marine Conservation Society
+medical,other (specify),Marine Conservation Society
+sanitary,condoms,Marine Conservation Society
+sanitary,cotton bud sticks,Marine Conservation Society
+sanitary,nappies,Marine Conservation Society
+sanitary,tampon applicators/tampons,Marine Conservation Society
+sanitary,toilet fresheners,Marine Conservation Society
+sanitary,towels/panty liners/backing strips,Marine Conservation Society
+sanitary,wet wipes,Marine Conservation Society
+sanitary,other (specify),Marine Conservation Society
+animal faeces,in bags,Marine Conservation Society
+animal faeces,not in bags,Marine Conservation Society
+paper,bags,Marine Conservation Society
+paper,cardboard,Marine Conservation Society
+paper,carton/purepack (e.g. milk),Marine Conservation Society
+paper,carton/tetrapack. (e.g. fruit juice),Marine Conservation Society
+paper,cigarette packets,Marine Conservation Society
+paper,cigarette stubs,Marine Conservation Society
+paper,cups,Marine Conservation Society
+paper,newspapers/magazines,Marine Conservation Society
+paper,other (specify),Marine Conservation Society
+wood,corks,Marine Conservation Society
+wood,lobster/crab pots & tops,Marine Conservation Society
+wood,pallets/crates,Marine Conservation Society
+wood,ice lolly sticks/chip forks,Marine Conservation Society
+wood,paint brushes,Marine Conservation Society
+wood,wood pieces (not twigs etc.),Marine Conservation Society
+wood,other (specify),Marine Conservation Society
+glass,"bottles, container and drums",Marine Conservation Society
+glass,light bulbs/tubes,Marine Conservation Society
+glass,glass pieces,Marine Conservation Society
+pottery/ceramic,any pottery or ceramic,Marine Conservation Society
+,plastic bags,Maryland Department of the Environment
+,soft drink cans,Maryland Department of the Environment
+,juice bottles,Maryland Department of the Environment
+,food wrappers,Maryland Department of the Environment
+,beverage containers,Maryland Department of the Environment
+,"toys, balls",Maryland Department of the Environment
+,home food packaging,Maryland Department of the Environment
+,"styrofoam chunks, large",Maryland Department of the Environment
+,clothing,Maryland Department of the Environment
+,liquor bottles,Maryland Department of the Environment
+,water bottles,Maryland Department of the Environment
+,styrofoam cups,Maryland Department of the Environment
+,take-out packaging,Maryland Department of the Environment
+,toiletries,Maryland Department of the Environment
+,misc. recreation,Maryland Department of the Environment
+,"cups, lids, straws",Maryland Department of the Environment
+,"styrofoam chunks, small",Maryland Department of the Environment
+,other fabric,Maryland Department of the Environment
+,beer cans,Maryland Department of the Environment
+,sport drink bottles,Maryland Department of the Environment
+,plastic cups,Maryland Department of the Environment
+,cigarette materials,Maryland Department of the Environment
+,drugs,Maryland Department of the Environment
+,"newspaper, books",Maryland Department of the Environment
+,styrofoam plates,Maryland Department of the Environment
+,"misc. jugs, cartons",Maryland Department of the Environment
+,auto products,Maryland Department of the Environment
+,soft drink bottles,Maryland Department of the Environment
+,juices cans,Maryland Department of the Environment
+,paper cups,Maryland Department of the Environment
+,napkins,Maryland Department of the Environment
+,CDs,Maryland Department of the Environment
+,"advertisements, signs",Maryland Department of the Environment
+,styrofoam packaging,Maryland Department of the Environment
+,"other metal, foil",Maryland Department of the Environment
+,"vehicle debris, large",Maryland Department of the Environment
+,"vehicle debris, small",Maryland Department of the Environment
+,"construction material, large",Maryland Department of the Environment
+,"construction material, small",Maryland Department of the Environment
+,"appliances, bikes, carts",Maryland Department of the Environment
+,carpet,Maryland Department of the Environment
+,misc. large debris,Maryland Department of the Environment
+,misc plastic,Maryland Department of the Environment
+plastic,,McCormick
+rubber,,McCormick
+metal,,McCormick
+ceramic,,McCormick
+styro.,,McCormick
+,plastic fragments (large; >2.5 cm),Nelms
+,plastic fragments (small; <2.5cm),Nelms
+,plastic caps,Nelms
+polystyrene foam,polystyrene (small; <50 cm),Nelms
+,crisp packets,Nelms
+,fishing net (small; <50 cm),Nelms
+,plastic string,Nelms
+,cotton buds,Nelms
+,fishing line,Nelms
+,cigarette stubs,Nelms
+,plastic cutlery,Nelms
+,glass fragments,Nelms
+,cloth pieces,Nelms
+,plastic bags,Nelms
+,metal drinks can,Nelms
+,plastic rope,Nelms
+,fishing net (large; >50 cm),Nelms
+,wood pieces,Nelms
+plastic,plastic fragments,NOAA
+plastic,food wrappers,NOAA
+plastic,beverage bottles,NOAA
+plastic,other jugs or containers,NOAA
+plastic,bottle or container caps,NOAA
+plastic,cigar tips,NOAA
+plastic,cigarettes,NOAA
+plastic,disposable cigarette lighters,NOAA
+plastic,6-pack rings,NOAA
+plastic,bags,NOAA
+plastic,plastic rope/small net pieces,NOAA
+plastic,buoys & floats,NOAA
+plastic,fishing lures & line,NOAA
+plastic,cups (including polystyrene/foamed plastic),NOAA
+plastic,plastic utensils,NOAA
+plastic,straws,NOAA
+plastic,balloons,NOAA
+plastic,personal care products,NOAA
+plastic,other:,NOAA
+metal,aluminum/tin cans,NOAA
+metal,aerosol cans,NOAA
+metal,metal fragments,NOAA
+metal,other:,NOAA
+glass,beverage bottles,NOAA
+glass,jars,NOAA
+glass,glass fragments,NOAA
+glass,other:,NOAA
+rubber,flip-flops,NOAA
+rubber,gloves,NOAA
+rubber,tires,NOAA
+rubber,rubber fragments,NOAA
+rubber,other:,NOAA
+processed lumber,cardboard cartons,NOAA
+processed lumber,paper and cardboard,NOAA
+processed lumber,paper bags,NOAA
+processed lumber,lumber/building material,NOAA
+processed lumber,other:,NOAA
+cloth/fabric,clothing & shoes,NOAA
+cloth/fabric,gloves (non-rubber),NOAA
+cloth/fabric,towels/rags,NOAA
+cloth/fabric,rope/net pieces (non-nylon),NOAA
+cloth/fabric,fabric pieces,NOAA
+cloth/fabric,other:,NOAA
+,cigarette butts,Ocean Conservancy
+,"food wrappers (candy, chips, etc.)",Ocean Conservancy
+,take out/away containers (plastic),Ocean Conservancy
+,take out/away containers (foam),Ocean Conservancy
+,bottle caps (plastic),Ocean Conservancy
+,bottle caps (metal),Ocean Conservancy
+,lids (plastic),Ocean Conservancy
+,straws/stirrers,Ocean Conservancy
+,"forks, knives, spoons",Ocean Conservancy
+,beverage bottles (plastic),Ocean Conservancy
+,beverage bottles (glass),Ocean Conservancy
+,beverage cans,Ocean Conservancy
+,grocery bags (plastic),Ocean Conservancy
+,other plastic bags,Ocean Conservancy
+,paper bags,Ocean Conservancy
+,cups & plates (paper),Ocean Conservancy
+,cups & plates (plastic),Ocean Conservancy
+,cups & plates (foam),Ocean Conservancy
+,"fishing buoys, pots & traps",Ocean Conservancy
+,fishing net & pieces,Ocean Conservancy
+,fishing line,Ocean Conservancy
+,rope,Ocean Conservancy
+,6-pack holders,Ocean Conservancy
+,other plastic/foam packaging,Ocean Conservancy
+,"other plastic bottles (oil, bleach, etc.)",Ocean Conservancy
+,strapping bands,Ocean Conservancy
+,tobacco packaging/wrap,Ocean Conservancy
+,"appliances (refrigerators, washers, etc.)",Ocean Conservancy
+,balloons,Ocean Conservancy
+,cigar tips,Ocean Conservancy
+,cigarette lighters,Ocean Conservancy
+,construction materials,Ocean Conservancy
+,fireworks,Ocean Conservancy
+,tires,Ocean Conservancy
+,condoms,Ocean Conservancy
+,diapers,Ocean Conservancy
+,syringes,Ocean Conservancy
+,tampons/tampon applicators,Ocean Conservancy
+,foam pieces,Ocean Conservancy
+,glass pieces,Ocean Conservancy
+,plastic pieces,Ocean Conservancy
+plastic,,Oigman
+paper,,Oigman
+glass,,Oigman
+others,,Oigman
+wood,,Oigman
+metal,,Oigman
+,construction material,Oigman
+,cigarette butts,Open Litter Map
+,lighters,Open Litter Map
+,cigarette box,Open Litter Map
+,tobacco pouch,Open Litter Map
+,papers filters,Open Litter Map
+,plastic smoking pk,Open Litter Map
+,filters,Open Litter Map
+,filter box,Open Litter Map
+,smoking other,Open Litter Map
+,sweet wrappers,Open Litter Map
+,cardboard food packaging,Open Litter Map
+,paper food packaging,Open Litter Map
+,plastic food packaging,Open Litter Map
+,plastic cutlery,Open Litter Map
+,crisp small,Open Litter Map
+,crisp large,Open Litter Map
+,styrofoam plate,Open Litter Map
+,napkins,Open Litter Map
+,sauce packet,Open Litter Map
+,glass jar,Open Litter Map
+,glass jar lid,Open Litter Map
+,food other,Open Litter Map
+,coffee cups,Open Litter Map
+,coffee lids,Open Litter Map
+,coffee other,Open Litter Map
+,beer can,Open Litter Map
+,beer bottle,Open Litter Map
+,spirit bottle,Open Litter Map
+,wine bottle,Open Litter Map
+,broken glass,Open Litter Map
+,paper card alcohol packaging,Open Litter Map
+,paper alcohol packaging,Open Litter Map
+,bottle tops,Open Litter Map
+,alcohol other,Open Litter Map
+,plastic water bottle,Open Litter Map
+,fizzy drink bottle,Open Litter Map
+,bottle lid,Open Litter Map
+,bottle label,Open Litter Map
+,tin can,Open Litter Map
+,sports drink,Open Litter Map
+,staws,Open Litter Map
+,plastic cups,Open Litter Map
+,plastic cup tops,Open Litter Map
+,milk bottle,Open Litter Map
+,milk carton,Open Litter Map
+,paper cups,Open Litter Map
+,juice cartons,Open Litter Map
+,juice bottles,Open Litter Map
+,juice packet,Open Litter Map
+,ice tea bottles,Open Litter Map
+,ice tea can,Open Litter Map
+,energy can,Open Litter Map
+,soft drink other,Open Litter Map
+,condoms,Open Litter Map
+,mental,Open Litter Map
+,deoderant,Open Litter Map
+,ear swabs,Open Litter Map
+,tooth pick,Open Litter Map
+,tooth brush,Open Litter Map
+,sanitary other,Open Litter Map
+,dog shit,Open Litter Map
+,random dump,Open Litter Map
+,no id plastic,Open Litter Map
+,metal object,Open Litter Map
+,plastic bags,Open Litter Map
+,election posters,Open Litter Map
+,forsale posters,Open Litter Map
+,books,Open Litter Map
+,magazines,Open Litter Map
+,paper,Open Litter Map
+,stationary,Open Litter Map
+,washing up,Open Litter Map
+,hair tie,Open Litter Map
+,ear plugs,Open Litter Map
+,batteries,Open Litter Map
+,elec small,Open Litter Map
+,elec large,Open Litter Map
+,other unknown,Open Litter Map
+,microplastic,Open Litter Map
+,medium plastics,Open Litter Map
+,macroplastics,Open Litter Map
+,rope small,Open Litter Map
+,rope medium,Open Litter Map
+,rope large,Open Litter Map
+,fishing gear nets,Open Litter Map
+,buoys,Open Litter Map
+,degraded plastic bottle,Open Litter Map
+,degraded plastic bag,Open Litter Map
+,degraded straws,Open Litter Map
+,degraded lighters,Open Litter Map
+,balloons,Open Litter Map
+,shotgun cartridges,Open Litter Map
+plastic/polystyrene,4/6-pack yokes,OSPAR
+plastic/polystyrene,bags (e.g. shopping),OSPAR
+plastic/polystyrene,"small plastic bags, e.g. freezer bags",OSPAR
+plastic/polystyrene,plastic bag ends,OSPAR
+plastic/polystyrene,"drinks (bottles, containers and drums)",OSPAR
+plastic/polystyrene,"cleaner (bottles, containers and drums)",OSPAR
+plastic/polystyrene,food containers incl. fast food containers,OSPAR
+plastic/polystyrene,"cosmetics (bottles & containers e.g. sun lotion,
+shampoo, shower gel, deodorant)",OSPAR
+plastic/polystyrene,engine oil containers and drums <50 cm,OSPAR
+plastic/polystyrene,engine oil containers and drums > 50 cm,OSPAR
+plastic/polystyrene,jerry cans (square plastic containers with handle),OSPAR
+plastic/polystyrene,injection gun containers,OSPAR
+plastic/polystyrene,"other bottles, containers and drums",OSPAR
+plastic/polystyrene,crates,OSPAR
+plastic/polystyrene,car parts,OSPAR
+plastic/polystyrene,caps/lids,OSPAR
+plastic/polystyrene,cigarette lighters,OSPAR
+plastic/polystyrene,pens,OSPAR
+plastic/polystyrene,combs/hair brushes,OSPAR
+plastic/polystyrene,crisp/sweet packets and lolly sticks,OSPAR
+plastic/polystyrene,toys & party poppers,OSPAR
+plastic/polystyrene,cups,OSPAR
+plastic/polystyrene,cutlery/trays/straws,OSPAR
+plastic/polystyrene,fertiliser/anima; deef bags,OSPAR
+plastic/polystyrene,mesh vegetable bags,OSPAR
+plastic/polystyrene,gloves (typical washing up gloves),OSPAR
+plastic/polystyrene,gloves (indutrial/professional gloves),OSPAR
+plastic/polystyrene,crab/lobster pots,OSPAR
+plastic/polystyrene,lobster and fish tags,OSPAR
+plastic/polystyrene,octopus pots,OSPAR
+plastic/polystyrene,oyster netsor mussel bags including plastic stoppers,OSPAR
+plastic/polystyrene,oyster trays (round from oyster cultures),OSPAR
+plastic/polystyrene,plastic sheeting from mussel culture (Tahitians),OSPAR
+plastic/polystyrene,rope (diameter more than 1 cm),OSPAR
+plastic/polystyrene,string and cord (diameter less than 1 cm),OSPAR
+plastic/polystyrene,nets and pieces of net < 50 cm,OSPAR
+plastic/polystyrene,nets and pieces of net > 50 cm,OSPAR
+plastic/polystyrene,tangled nets/cord/rope and string,OSPAR
+plastic/polystyrene,fish boxes,OSPAR
+plastic/polystyrene,fishing line (angling),OSPAR
+plastic/polystyrene,light sticks (tubes with fluid),OSPAR
+plastic/polystyrene,floats/buoys,OSPAR
+plastic/polystyrene,buckets,OSPAR
+plastic/polystyrene,strapping bands,OSPAR
+plastic/polystyrene,"industrial packaging, plastic sheeting",OSPAR
+plastic/polystyrene,fibre glass,OSPAR
+plastic/polystyrene,hard hats,OSPAR
+plastic/polystyrene,shotgun cartridges,OSPAR
+plastic/polystyrene,shoes/sandals,OSPAR
+plastic/polystyrene,foam sponge,OSPAR
+plastic/polystyrene,"plastic/polystyrene pieces 0-2,5cm",OSPAR
+plastic/polystyrene,"plastic/polystyrene pieces 2,5 cm > < 50 cm",OSPAR
+plastic/polystyrene,plastic/polystyrene pieces > 50 cm,OSPAR
+plastic/polystyrene,other plastic/polystyrene items (please specify in other item box*),OSPAR
+rubber,"balloons, including plastic valves, ribbons, strings etc.",OSPAR
+rubber,boots,OSPAR
+rubber,tyres and belts,OSPAR
+rubber,other rubber pieces (please specify in other item box*),OSPAR
+cloth,clothing,OSPAR
+cloth,furnishing,OSPAR
+cloth,sacking,OSPAR
+cloth,shoes (leather),OSPAR
+cloth,other textiles (please specify in other item box*),OSPAR
+paper/cardboard,bags,OSPAR
+paper/cardboard,cardboard,OSPAR
+paper/cardboard,cartons e.g. tetrapak (milk),OSPAR
+paper/cardboard,cartons e.g. tetrapak (other),OSPAR
+paper/cardboard,cigarette packets,OSPAR
+paper/cardboard,cigarette butts,OSPAR
+paper/cardboard,cups,OSPAR
+paper/cardboard,newspapers & magazines,OSPAR
+paper/cardboard,other paper items (please specify in other item box*),OSPAR
+wood (machined),corks,OSPAR
+wood (machined),pallets,OSPAR
+wood (machined),crates,OSPAR
+wood (machined),ice lolly sticks/chip forks,OSPAR
+wood (machined),paint brushes,OSPAR
+wood (machined),other wood < 50 cm (please specify in other item box*),OSPAR
+wood (machined),other wood > 50 cm (please specify in other item box*),OSPAR
+metal,aerosol/spray cans,OSPAR
+metal,bottle caps,OSPAR
+metal,drink cans,OSPAR
+metal,disposable BBQ's,OSPAR
+metal,electric appliances,OSPAR
+metal,fishing weights,OSPAR
+metal,foil wrappers,OSPAR
+metal,food cans,OSPAR
+metal,industrial scrap,OSPAR
+metal,oil drums,OSPAR
+metal,paint tins,OSPAR
+metal,lobster/crab pots and tops,OSPAR
+metal,"wire, wire mesh, barbed wire",OSPAR
+metal,other metal pieces < 50 cm (please specify in other item box*),OSPAR
+metal,other metal pieces > 50 cm (please specify in other item box*),OSPAR
+glass,bottles,OSPAR
+glass,light bulbs/tubes,OSPAR
+glass,other glass items (please specify in other item box*),OSPAR
+pottery/ceramics,construction materials e.g. tiles,OSPAR
+pottery/ceramics,octopus pots,OSPAR
+pottery/ceramics,other ceramic/pottery items (please specify in other item box*),OSPAR
+sanitary waste,condoms,OSPAR
+sanitary waste,cotton bud sticks,OSPAR
+sanitary waste,sanitary towels/panty liners/backing strips,OSPAR
+sanitary waste,tampons and tampon applicators,OSPAR
+sanitary waste,toilet fresheners,OSPAR
+sanitary waste,other sanitary items (please specify in other item box*),OSPAR
+medical waste,containers/tubes,OSPAR
+medical waste,syringes,OSPAR
+medical waste,"other medical items (swabs, bandaging etc.)
+(please specify in other item box*)",OSPAR
+faeces,bagged dog faeces,OSPAR
+plastic materials,bags: grocery/retail (plastic),Project AWARE
+plastic materials,bags:trash (plastic),Project AWARE
+plastic materials,bait containers/packaging,Project AWARE
+plastic materials,balloons,Project AWARE
+plastic materials,balls,Project AWARE
+plastic materials,"baskets, crates",Project AWARE
+plastic materials,beverage bottles: less than 2 litres (plastic),Project AWARE
+plastic materials,beverage bottles: 2 litres or more (plastic),Project AWARE
+plastic materials,"bottles: bleach, cleaner",Project AWARE
+plastic materials,bottles: oil/lube,Project AWARE
+plastic materials,"buckets, drums & jerry cans: 2 litres or more",Project AWARE
+plastic materials,buoys & floats (plastic & foamed),Project AWARE
+plastic materials,caps & lids (plastic),Project AWARE
+plastic materials,carpet (synthetic),Project AWARE
+plastic materials,cigarette filters,Project AWARE
+plastic materials,cigarette lighters,Project AWARE
+plastic materials,cigar tips,Project AWARE
+plastic materials,containers: fast food,Project AWARE
+plastic materials,cotton bud sticks,Project AWARE
+plastic materials,"cups, plates, forks, knives, spoons (plastic)",Project AWARE
+plastic materials,diapers/nappies,Project AWARE
+plastic materials,fishing: line,Project AWARE
+plastic materials,"fishing: lures, rods/poles",Project AWARE
+plastic materials,fishing: nets & pieces of nets,Project AWARE
+plastic materials,fishing: traps & pots,Project AWARE
+plastic materials,foam insulation & packaging,Project AWARE
+plastic materials,food wrappers (plastic),Project AWARE
+plastic materials,furnishings (plastic),Project AWARE
+plastic materials,gloves (latex),Project AWARE
+plastic materials,light sticks/cyalumes,Project AWARE
+plastic materials,"mesh bags: fruit, vegetable, shellfish",Project AWARE
+plastic materials,pipes (plastic/PVC),Project AWARE
+plastic materials,rope (plastic/nylon),Project AWARE
+plastic materials,"scuba & snorkel gear, masks, snorkels, fins",Project AWARE
+plastic materials,"sheeting: tarpaulin, plastic sheets, palette wrap",Project AWARE
+plastic materials,"six-pack rings, ring carriers",Project AWARE
+plastic materials,strapping bands (plastic),Project AWARE
+plastic materials,"straws, stirrers",Project AWARE
+plastic materials,syringes (plastic),Project AWARE
+plastic materials,tampon applicators,Project AWARE
+plastic materials,tobacco packaging & wrappers,Project AWARE
+plastic materials,toothbrushes,Project AWARE
+plastic materials,plastic fragments,Project AWARE
+glass & ceramic materials,beverage bottles (glass),Project AWARE
+glass & ceramic materials,buoys (glass),Project AWARE
+glass & ceramic materials,"cups, plates, tableware, dishes (glass & ceramic)",Project AWARE
+glass & ceramic materials,fluorescent light tubes,Project AWARE
+glass & ceramic materials,jars: food (glass),Project AWARE
+glass & ceramic materials,"light globes: bulbs, etc",Project AWARE
+glass & ceramic materials,syringes (glass),Project AWARE
+glass & ceramic materials,glass & ceramic fragments,Project AWARE
+metal materials,aerosol/spray cans,Project AWARE
+metal materials,appliances: household,Project AWARE
+metal materials,"batteries: AA, AAA, C & D, 6V, 9V, etc",Project AWARE
+metal materials,batteries: car or boat,Project AWARE
+metal materials,beverage cans (aluminium),Project AWARE
+metal materials,"cans: food, juice, other (tin)",Project AWARE
+metal materials,caps & lids (metal),Project AWARE
+metal materials,cars & car parts,Project AWARE
+metal materials,"cups, plates, tableware, dishes (metal)",Project AWARE
+metal materials,drums: 55 gallon,Project AWARE
+metal materials,"fishing: sinkers, lures, hooks",Project AWARE
+metal materials,fishing: traps & pots,Project AWARE
+metal materials,"forks, knives, spoons (cutlery)",Project AWARE
+metal materials,"gas bottles/cylinder, drums: more than 4 litres",Project AWARE
+metal materials,pipes & rebar,Project AWARE
+metal materials,pull tabs: beverages,Project AWARE
+metal materials,scuba weights,Project AWARE
+metal materials,strapping bands (metal),Project AWARE
+metal materials,"wire, wire mesh, barbed wire",Project AWARE
+metal materials,wrappers (foil/metal),Project AWARE
+metal materials,metal fragments,Project AWARE
+rubber materials,condoms,Project AWARE
+rubber materials,gloves (rubber),Project AWARE
+rubber materials,inner-tubes & rubber sheets,Project AWARE
+rubber materials,rubber bands,Project AWARE
+rubber materials,tires/tyres,Project AWARE
+rubber materials,rubber fragments,Project AWARE
+wood materials,fishing: traps & pots,Project AWARE
+wood materials,furnishings (wood),Project AWARE
+wood materials,lumber (processed or cut/milled wood),Project AWARE
+wood materials,pallets,Project AWARE
+wood materials,wood fragments,Project AWARE
+cloth materials,bags (burlap/hessian),Project AWARE
+cloth materials,bags (cloth),Project AWARE
+cloth materials,gloves (cloth),Project AWARE
+cloth materials,rope & string (cloth),Project AWARE
+cloth materials,"towels, rags",Project AWARE
+cloth materials,cloth fragments,Project AWARE
+paper/cardboard materials,bags (paper),Project AWARE
+paper/cardboard materials,cardboard: packaging & cartons,Project AWARE
+paper/cardboard materials,"paper: books, newspapers, magazines, etc",Project AWARE
+paper/cardboard materials,paper/cardboard fragments,Project AWARE
+mixed materials,"bricks, cinderblocks, chunks of cement",Project AWARE
+mixed materials,clothing,Project AWARE
+mixed materials,computer equipment & other electronic devices,Project AWARE
+mixed materials,fireworks,Project AWARE
+mixed materials,"shoes, flip flops, sandals, tennis, etc",Project AWARE
+mixed materials,tampons,Project AWARE
+mixed materials,toys,Project AWARE
+plastic,,Rapid Trash Assessment
+fabric/cloth,,Rapid Trash Assessment
+glass,,Rapid Trash Assessment
+biodegradable,,Rapid Trash Assessment
+toxic,,Rapid Trash Assessment
+metal,,Rapid Trash Assessment
+miscellaneous,,Rapid Trash Assessment
+construction,,Rapid Trash Assessment
+biohazard,,Rapid Trash Assessment
+,large,Rapid Trash Assessment
+plastics,,Rech
+polystyrene,,Rech
+man. wood,,Rech
+paper/ carton,,Rech
+textile,,Rech
+rubber,,Rech
+other,,Rech
+concrete/pottery,,Rech
+metal,,Rech
+glass,,Rech
+,cigarette stubs,Rech
+plastic,bag,SCCWRP
+plastic,baloon(mylar/latex)/ribbon,SCCWRP
+plastic,bandaid,SCCWRP
+glass,beer bottle,SCCWRP
+misc. items/pieces,boat/ship/engine part,SCCWRP
+plastic,bottle,SCCWRP
+plastic,buoy,SCCWRP
+metal,can-other,SCCWRP
+plastic,cap/lid,SCCWRP
+plastic,cigarette box/wrapper,SCCWRP
+misc. items/pieces,clothing,SCCWRP
+misc. items/pieces,concrete/asphalt,SCCWRP
+plastic,cup,SCCWRP
+metal,drink can,SCCWRP
+misc. items/pieces,fibreglass,SCCWRP
+plastic,filmstrip (movie),SCCWRP
+metal,fishing gear,SCCWRP
+plastic,fishing line/net,SCCWRP
+misc. items/pieces,food,SCCWRP
+plastic,foodbag/wrapper,SCCWRP
+glass,glass bottle/jar-other,SCCWRP
+glass,glass piece (unid.),SCCWRP
+misc. items/pieces,leather,SCCWRP
+misc. items/pieces,lumber,SCCWRP
+metal,metal piece (unid.),SCCWRP
+glass,other glass (comment req.),SCCWRP
+misc. items/pieces,other misc. (comment req.),SCCWRP
+plastic,other plastic (comment req.),SCCWRP
+plastic,plastic piece (unid.),SCCWRP
+misc. items/pieces,paper,SCCWRP
+plastic,polypropylene rope,SCCWRP
+misc. items/pieces,rag/cloth,SCCWRP
+misc. items/pieces,rubber,SCCWRP
+misc. items/pieces,shoe,SCCWRP
+plastic,single use food container,SCCWRP
+misc. items/pieces,tape,SCCWRP
+misc. items/pieces,tire,SCCWRP
+plastic,toy,SCCWRP
+plastic,utensil,SCCWRP
+metal,wire,SCCWRP
+,plastic - recyclable beverage containers (CRV-labeled),Tracking California's Trash
+,glass - recyclable beverage containers (CRV labeled),Tracking California's Trash
+,single use plastic carryout bags,Tracking California's Trash
+,expanded polystyrene (EPS) disposable food & beverage ware,Tracking California's Trash
+,rigid plastic disposable food and beverage ware,Tracking California's Trash
+,mylar (non-recyclable) film food wrappers,Tracking California's Trash
+,other plastic items,Tracking California's Trash
+,paper food/beverage ware,Tracking California's Trash
+,bulk paper and cardboard,Tracking California's Trash
+,cigarette butts,Tracking California's Trash
+,other glass items,Tracking California's Trash
+,metal items,Tracking California's Trash
+,miscellaneous items,Tracking California's Trash
+plastic,hard plastic,van der Velde
+plastic,plasric bags,van der Velde
+plastic,film-like plastics (glad wrap and chip bags),van der Velde
+plastic,other soft plastics,van der Velde
+plastic,plastic packaging straps,van der Velde
+plastic,net (estimate size),van der Velde
+plastic,fishing line,van der Velde
+plastic,"plastic (string, twine, rope)",van der Velde
+cloth,"non-plastic (string, twine, rope)",van der Velde
+glass,glass,van der Velde
+metal,fish hook,van der Velde
+metal,metal (hard),van der Velde
+metal,"metal (soft, tinfoil)",van der Velde
+rubber,balloon,van der Velde
+rubber,other rubber items,van der Velde
+foam,"polystyrene (foam, from esky's. buoys etc.)",van der Velde
+foam,other foam,van der Velde
+timber,"wood (posts, beams, ship hulls)",van der Velde
+paper,cigarette butts,van der Velde
+paper,paper,van der Velde
+,smoking-related,Vincent
+,food-related,Vincent
+,tiny trash,Vincent
+,waterway,Vincent
+,medical/hygiene,Vincent
+,dumping,Vincent
+miscellaneous,,Vincent
+,sanitary towels,Williams
+,panty liners,Williams
+,tampon/applic.,Williams
+,toilet paper,Williams
+,cotton buds,Williams
+,other/unidentified,Williams
+,fencing,Williams
+,hardboard/wood,Williams
+,brick/rubble,Williams
+,floor cover,Williams
+,furniture,Williams
+,mattress/foam,Williams
+,cans/tins,Williams
+,conatiner drums,Williams
+,sheeting,Williams
+,polystyrene,Williams
+,sheeting <30cm,Williams
+,sheeting 30-60 cm,Williams
+,sheeting >60 cm,Williams
+,plastic bags,Williams
+,sweet papers,Williams
+,bottles,Williams
+,carts/parts,Williams
+,motorbikes/parts,Williams
+,signs/cones,Williams
+,cloth/shoes,Williams
+,rope/fishing line,Williams
+plastic,,Willis
+glass,,Willis
+foam,,Willis
+metal,,Willis
+paper,,Willis
+wood,,Willis
+rubber,,Willis
+other,,Willis
+,baloons,Zylstra
+,plastic,Zylstra
+,Other Plastic Items,5 Gyres Plastic Beach Microplastics Protocol
+,Beach Name,5 Gyres Plastic Beach Microplastics Protocol
+,Quadrat #,5 Gyres Plastic Beach Microplastics Protocol
+,Location on the Beach,5 Gyres Plastic Beach Microplastics Protocol
+,Human use of beach,5 Gyres Plastic Beach Microplastics Protocol
+,Beach type,5 Gyres Plastic Beach Microplastics Protocol
+,Volunteer names (optional),5 Gyres Plastic Beach Microplastics Protocol
+,Other notes,5 Gyres Plastic Beach Microplastics Protocol
+,Nearest city/town,5 Gyres Plastic Beach Microplastics Protocol
+,State/province/county,5 Gyres Plastic Beach Microplastics Protocol
+,Recent rain/storms,5 Gyres Plastic Beach Microplastics Protocol
+,Date of Sampling,5 Gyres Plastic Beach Microplastics Protocol
+,Time of day,5 Gyres Plastic Beach Microplastics Protocol
+,Organization/group name,5 Gyres Plastic Beach Microplastics Protocol
+,Pellet,5 Gyres Plastic Beach Microplastics Protocol
+,Test,5 Gyres Plastic Beach Microplastics Protocol
+,Non-Plastic Items,5 Gyres Plastic Beach Microplastics Protocol
+,Fragment,5 Gyres Plastic Beach Microplastics Protocol
+,Line,5 Gyres Plastic Beach Microplastics Protocol
+,Thin Film,5 Gyres Plastic Beach Microplastics Protocol
+,Foam,5 Gyres Plastic Beach Microplastics Protocol
+,Other Plastic Jugs or Containers,AAAS Water Diplomacy Symposium List
+,Non-food related plastic packaging,AAAS Water Diplomacy Symposium List
+,Fishing nets,AAAS Water Diplomacy Symposium List
+,Paper Cups,AAAS Water Diplomacy Symposium List
+,Fireworks,AAAS Water Diplomacy Symposium List
+,Styrofoam packaging,AAAS Water Diplomacy Symposium List
+,Chemicals and chemical containers,AAAS Water Diplomacy Symposium List
+,Toys (plastic),AAAS Water Diplomacy Symposium List
+,Batteries (acidic and alkaline),AAAS Water Diplomacy Symposium List
+,Crab/Lobster/Fish trap parts,AAAS Water Diplomacy Symposium List
+,Test Item,AAAS Water Diplomacy Symposium List
+,Other,AAAS Water Diplomacy Symposium List
+,Rope or Net Pieces (non-nylon),AAAS Water Diplomacy Symposium List
+,Plastic rope / Small Net Pieces,AAAS Water Diplomacy Symposium List
+,Fishing lures and lines,AAAS Water Diplomacy Symposium List
+,Buoys and floats,AAAS Water Diplomacy Symposium List
+,Pallets,AAAS Water Diplomacy Symposium List
+,Paper and Cardboard,AAAS Water Diplomacy Symposium List
+,Food wrappers (paper),AAAS Water Diplomacy Symposium List
+,Lumber/Building Materials,AAAS Water Diplomacy Symposium List
+,Paper Bags,AAAS Water Diplomacy Symposium List
+,Towels or rags,AAAS Water Diplomacy Symposium List
+,Gloves (non-rubber),AAAS Water Diplomacy Symposium List
+,Fabric pieces,AAAS Water Diplomacy Symposium List
+,Clothing and Shoes,AAAS Water Diplomacy Symposium List
+,Tires,AAAS Water Diplomacy Symposium List
+,Flip-flops,AAAS Water Diplomacy Symposium List
+,Glass Jars,AAAS Water Diplomacy Symposium List
+,Glass Bottle,AAAS Water Diplomacy Symposium List
+,Metal Bottle Caps,AAAS Water Diplomacy Symposium List
+,Aluminum or tin cans,AAAS Water Diplomacy Symposium List
+,Aerosol cans,AAAS Water Diplomacy Symposium List
+,Straws,AAAS Water Diplomacy Symposium List
+,Six-pack rings,AAAS Water Diplomacy Symposium List
+,Plastic Utensils,AAAS Water Diplomacy Symposium List
+,Plastic or Foam Fragments,AAAS Water Diplomacy Symposium List
+,Personal care products,AAAS Water Diplomacy Symposium List
+,Rubber Gloves,AAAS Water Diplomacy Symposium List
+,Plastic Food Wrappers,AAAS Water Diplomacy Symposium List
+,Foam or Plastic Cups,AAAS Water Diplomacy Symposium List
+,Cigarettes,AAAS Water Diplomacy Symposium List
+,Cigarette lighters/tobacco packaging,AAAS Water Diplomacy Symposium List
+,Cigarette or tobacco packaging,AAAS Water Diplomacy Symposium List
+,Plastic Bottle or Container Caps,AAAS Water Diplomacy Symposium List
+,Plastic Bottle,AAAS Water Diplomacy Symposium List
+,Balloons and/or string,AAAS Water Diplomacy Symposium List
+,Plastic Bags,AAAS Water Diplomacy Symposium List
+,1. Vessel Name,Abandoned and Derelict Vessels
+,2. State Vessel ID,Abandoned and Derelict Vessels
+,3. Length,Abandoned and Derelict Vessels
+,4. Hull Type,Abandoned and Derelict Vessels
+,5. Vessel Type,Abandoned and Derelict Vessels
+,6. Your Proximity to Vessel,Abandoned and Derelict Vessels
+,7. Habitat the Vessel is in?,Abandoned and Derelict Vessels
+,8. Vessel Status,Abandoned and Derelict Vessels
+,9. Vessel Color,Abandoned and Derelict Vessels
+,10. Vessel a hazard to navigation?,Abandoned and Derelict Vessels
+,11. Chemical or fuel leakage?,Abandoned and Derelict Vessels
+,12. Other debris near the vessel?,Abandoned and Derelict Vessels
+,13. Vessel occupied?,Abandoned and Derelict Vessels
+,14. Take a photo and submit,Abandoned and Derelict Vessels
+,Other Plastic Jugs or Containers,Bald Head Island Conservancy
+,Non-food related plastic packaging,Bald Head Island Conservancy
+,Fishing nets,Bald Head Island Conservancy
+,Paper Cups,Bald Head Island Conservancy
+,Fireworks,Bald Head Island Conservancy
+,Styrofoam packaging,Bald Head Island Conservancy
+,Chemicals and chemical containers,Bald Head Island Conservancy
+,Toys (plastic),Bald Head Island Conservancy
+,Batteries (acidic and alkaline),Bald Head Island Conservancy
+,Crab/Lobster/Fish trap parts,Bald Head Island Conservancy
+,Test Item,Bald Head Island Conservancy
+,Other,Bald Head Island Conservancy
+,Rope or Net Pieces (non-nylon),Bald Head Island Conservancy
+,Plastic rope / Small Net Pieces,Bald Head Island Conservancy
+,Fishing lures and lines,Bald Head Island Conservancy
+,Buoys and floats,Bald Head Island Conservancy
+,Pallets,Bald Head Island Conservancy
+,Paper and Cardboard,Bald Head Island Conservancy
+,Food wrappers (paper),Bald Head Island Conservancy
+,Lumber/Building Materials,Bald Head Island Conservancy
+,Paper Bags,Bald Head Island Conservancy
+,Towels or rags,Bald Head Island Conservancy
+,Gloves (non-rubber),Bald Head Island Conservancy
+,Fabric pieces,Bald Head Island Conservancy
+,Clothing and Shoes,Bald Head Island Conservancy
+,Tires,Bald Head Island Conservancy
+,Flip-flops,Bald Head Island Conservancy
+,Glass Jars,Bald Head Island Conservancy
+,Glass Bottle,Bald Head Island Conservancy
+,Metal Bottle Caps,Bald Head Island Conservancy
+,Aluminum or tin cans,Bald Head Island Conservancy
+,Aerosol cans,Bald Head Island Conservancy
+,Straws,Bald Head Island Conservancy
+,Six-pack rings,Bald Head Island Conservancy
+,Plastic Utensils,Bald Head Island Conservancy
+,Plastic or Foam Fragments,Bald Head Island Conservancy
+,Personal care products,Bald Head Island Conservancy
+,Rubber Gloves,Bald Head Island Conservancy
+,Plastic Food Wrappers,Bald Head Island Conservancy
+,Foam or Plastic Cups,Bald Head Island Conservancy
+,Cigarettes,Bald Head Island Conservancy
+,Cigarette lighters/tobacco packaging,Bald Head Island Conservancy
+,Cigarette or tobacco packaging,Bald Head Island Conservancy
+,Plastic Bottle or Container Caps,Bald Head Island Conservancy
+,Plastic Bottle,Bald Head Island Conservancy
+,Balloons and/or string,Bald Head Island Conservancy
+,Plastic Bags,Bald Head Island Conservancy
+,Hooksett disks,Blue Ocean Society for Marine Conservation
+,Non-beverage containers/bottles,Blue Ocean Society for Marine Conservation
+,Other unk. plastic (larger than 10 cm),Blue Ocean Society for Marine Conservation
+,Glass pieces (5mm or less),Blue Ocean Society for Marine Conservation
+,Glass pieces (5mm-2.5cm),Blue Ocean Society for Marine Conservation
+,Glass pieces (2.5cm-10cm),Blue Ocean Society for Marine Conservation
+,Other metal,Blue Ocean Society for Marine Conservation
+,Dog Poop (Bagged),Blue Ocean Society for Marine Conservation
+,Dog Poop (Un-Bagged),Blue Ocean Society for Marine Conservation
+,Name,Blue Ocean Society for Marine Conservation
+,Cleanup Date,Blue Ocean Society for Marine Conservation
+,Cleaanup Site,Blue Ocean Society for Marine Conservation
+,Cleanup Start Time,Blue Ocean Society for Marine Conservation
+,Cleanup End Time,Blue Ocean Society for Marine Conservation
+,Weather,Blue Ocean Society for Marine Conservation
+,Other remarks:,Blue Ocean Society for Marine Conservation
+,Number of Adults,Blue Ocean Society for Marine Conservation
+,Number of Children,Blue Ocean Society for Marine Conservation
+,Nets (incl. bait bags),Blue Ocean Society for Marine Conservation
+,Other glass,Blue Ocean Society for Marine Conservation
+,Film (thin/flexible e.g. straw wrapper),Blue Ocean Society for Marine Conservation
+,Lobster bands,Blue Ocean Society for Marine Conservation
+,Packing material,Blue Ocean Society for Marine Conservation
+,Strapping bands (open),Blue Ocean Society for Marine Conservation
+,Strapping bands (closed),Blue Ocean Society for Marine Conservation
+,Zip ties (cable ties),Blue Ocean Society for Marine Conservation
+,Syringes,Blue Ocean Society for Marine Conservation
+,Flood containers,Blue Ocean Society for Marine Conservation
+,Food containers,Blue Ocean Society for Marine Conservation
+,Traps/pot pieces (do NOT remove),Blue Ocean Society for Marine Conservation
+,Total # of Bags of Trash,Blue Ocean Society for Marine Conservation
+,Total lbs. of Trash,Blue Ocean Society for Marine Conservation
+,Other,Blue Ocean Society for Marine Conservation
+,Rope (larger than 1 meter/yard),Blue Ocean Society for Marine Conservation
+,Rope scraps (smaller than 1 m/yd.),Blue Ocean Society for Marine Conservation
+,Fishing line,Blue Ocean Society for Marine Conservation
+,Floats/Buoys,Blue Ocean Society for Marine Conservation
+,Beverage cans,Blue Ocean Society for Marine Conservation
+,Straws,Blue Ocean Society for Marine Conservation
+,Foam pieces (5mm or less),Blue Ocean Society for Marine Conservation
+,Foam pieces (5mm-2.5cm),Blue Ocean Society for Marine Conservation
+,Foam pieces (2.5cm-10cm),Blue Ocean Society for Marine Conservation
+,Plastic pieces (5mm or less),Blue Ocean Society for Marine Conservation
+,Plastic pieces (5mm-2.5cm),Blue Ocean Society for Marine Conservation
+,Plastic pieces (2.5cm-10cm),Blue Ocean Society for Marine Conservation
+,Personal hygiene items,Blue Ocean Society for Marine Conservation
+,Wrappers,Blue Ocean Society for Marine Conservation
+,Cups,Blue Ocean Society for Marine Conservation
+,Cigarette butts/filters,Blue Ocean Society for Marine Conservation
+,Bottle caps,Blue Ocean Society for Marine Conservation
+,Bottle caps,Blue Ocean Society for Marine Conservation
+,Beverage bottles,Blue Ocean Society for Marine Conservation
+,Beverage bottles,Blue Ocean Society for Marine Conservation
+,Balloons (Mylar),Blue Ocean Society for Marine Conservation
+,Balloons (Latex),Blue Ocean Society for Marine Conservation
+,Bag (Grocery),Blue Ocean Society for Marine Conservation
+,Bag (Trash),Blue Ocean Society for Marine Conservation
+,"Bag (zip-lock, produce, other)",Blue Ocean Society for Marine Conservation
+,Gun Shells,Clean Ocean Access
+,Light Bulbs/Tubes,Clean Ocean Access
+,Fishing Net,Clean Ocean Access
+,Crates,Clean Ocean Access
+,Appliances,Clean Ocean Access
+,Misc. Plastic,Clean Ocean Access
+,Strap Bands,Clean Ocean Access
+,Plastic Sheets/ Tarps,Clean Ocean Access
+,Tampons,Clean Ocean Access
+,Syringes,Clean Ocean Access
+,Diapers,Clean Ocean Access
+,Condoms,Clean Ocean Access
+,55-Gallon Drums,Clean Ocean Access
+,Beach & Clean Bottles,Clean Ocean Access
+,Oil/Lube Bottles,Clean Ocean Access
+,Bait Containers,Clean Ocean Access
+,Toys,Clean Ocean Access
+,Battery,Clean Ocean Access
+,Car Parts,Clean Ocean Access
+,Crab/ Lobster/ Fish Traps,Clean Ocean Access
+,Other Items of Conern/ Peculiar Items/ Animals,Clean Ocean Access
+,Other Count,Clean Ocean Access
+,Rope,Clean Ocean Access
+,Fishing Line,Clean Ocean Access
+,Fishing Lures/ Light Sticks,Clean Ocean Access
+,Buoys & Floats,Clean Ocean Access
+,Pallets,Clean Ocean Access
+,Misc. Paper,Clean Ocean Access
+,Build Materials,Clean Ocean Access
+,Bags (paper),Clean Ocean Access
+,Clothes & Shoes,Clean Ocean Access
+,Tires,Clean Ocean Access
+,Bev. Bottles (glass),Clean Ocean Access
+,Pull Tabs,Clean Ocean Access
+,Bev. Cans,Clean Ocean Access
+,Straws & Stirs,Clean Ocean Access
+,6-Pack Holder,Clean Ocean Access
+,"Cups, Plates, Utensils",Clean Ocean Access
+,Misc. Foam,Clean Ocean Access
+,Food Wrappers/ Containers,Clean Ocean Access
+,Cigs & Cig Filters,Clean Ocean Access
+,Cigar Tips,Clean Ocean Access
+,Cig Lghtrs,Clean Ocean Access
+,Tobacco Pkging,Clean Ocean Access
+,Caps & Lids,Clean Ocean Access
+,Bev. Bottles (plastic),Clean Ocean Access
+,Balloons,Clean Ocean Access
+,Dog Waste Bags,Clean Ocean Access
+,Bags (plastic),Clean Ocean Access
+,Other Plastic Jugs or Containers,Corpus Christi Storm Water Runoff
+,Non-food related plastic packaging,Corpus Christi Storm Water Runoff
+,Fishing nets,Corpus Christi Storm Water Runoff
+,Paper Cups,Corpus Christi Storm Water Runoff
+,Fireworks,Corpus Christi Storm Water Runoff
+,Styrofoam packaging,Corpus Christi Storm Water Runoff
+,Chemicals and chemical containers,Corpus Christi Storm Water Runoff
+,Toys (plastic),Corpus Christi Storm Water Runoff
+,Batteries (acidic and alkaline),Corpus Christi Storm Water Runoff
+,Crab/Lobster/Fish trap parts,Corpus Christi Storm Water Runoff
+,Test Item,Corpus Christi Storm Water Runoff
+,Other,Corpus Christi Storm Water Runoff
+,Rope or Net Pieces (non-nylon),Corpus Christi Storm Water Runoff
+,Plastic rope / Small Net Pieces,Corpus Christi Storm Water Runoff
+,Fishing lures and lines,Corpus Christi Storm Water Runoff
+,Buoys and floats,Corpus Christi Storm Water Runoff
+,Pallets,Corpus Christi Storm Water Runoff
+,Paper and Cardboard,Corpus Christi Storm Water Runoff
+,Food wrappers (paper),Corpus Christi Storm Water Runoff
+,Lumber/Building Materials,Corpus Christi Storm Water Runoff
+,Paper Bags,Corpus Christi Storm Water Runoff
+,Towels or rags,Corpus Christi Storm Water Runoff
+,Gloves (non-rubber),Corpus Christi Storm Water Runoff
+,Fabric pieces,Corpus Christi Storm Water Runoff
+,Clothing and Shoes,Corpus Christi Storm Water Runoff
+,Tires,Corpus Christi Storm Water Runoff
+,Flip-flops,Corpus Christi Storm Water Runoff
+,Glass Jars,Corpus Christi Storm Water Runoff
+,Glass Bottle,Corpus Christi Storm Water Runoff
+,Metal Bottle Caps,Corpus Christi Storm Water Runoff
+,Aluminum or tin cans,Corpus Christi Storm Water Runoff
+,Aerosol cans,Corpus Christi Storm Water Runoff
+,Straws,Corpus Christi Storm Water Runoff
+,Six-pack rings,Corpus Christi Storm Water Runoff
+,Plastic Utensils,Corpus Christi Storm Water Runoff
+,Plastic or Foam Fragments,Corpus Christi Storm Water Runoff
+,Personal care products,Corpus Christi Storm Water Runoff
+,Rubber Gloves,Corpus Christi Storm Water Runoff
+,Plastic Food Wrappers,Corpus Christi Storm Water Runoff
+,Foam or Plastic Cups,Corpus Christi Storm Water Runoff
+,Cigarettes,Corpus Christi Storm Water Runoff
+,Cigarette lighters/tobacco packaging,Corpus Christi Storm Water Runoff
+,Cigarette or tobacco packaging,Corpus Christi Storm Water Runoff
+,Plastic Bottle or Container Caps,Corpus Christi Storm Water Runoff
+,Plastic Bottle,Corpus Christi Storm Water Runoff
+,Balloons and/or string,Corpus Christi Storm Water Runoff
+,Plastic Bags,Corpus Christi Storm Water Runoff
+,Plastikë (të gjitha llojet),CRESSIDA List - Albanian
+,Metale (të gjitha llojet),CRESSIDA List - Albanian
+,Alumin (të gjitha llojet),CRESSIDA List - Albanian
+,Organike dhe mikse,CRESSIDA List - Albanian
+,Gjendja e pikës: legale / ilegale,CRESSIDA List - Albanian
+,Lloji i mbetjes në pikë,CRESSIDA List - Albanian
+,Afërsia me trupat ujore,CRESSIDA List - Albanian
+,Afërsia me zonat e banuara,CRESSIDA List - Albanian
+,Sipërfaqja,CRESSIDA List - Albanian
+,Shkalla e rrezikut,CRESSIDA List - Albanian
+,Masat,CRESSIDA List - Albanian
+,Elektronike dhe elektrike,CRESSIDA List - Albanian
+,Bateri,CRESSIDA List - Albanian
+,Makina,CRESSIDA List - Albanian
+,Të tjera,CRESSIDA List - Albanian
+,Kartona dhe letër,CRESSIDA List - Albanian
+,Mbetje ndërtimore,CRESSIDA List - Albanian
+,Mbetje voluminoze dhe fibra,CRESSIDA List - Albanian
+,Qelq (të gjitha llojet),CRESSIDA List - Albanian
+,Plastics (all kinds),CRESSIDA List - English
+,Metals (all kinds),CRESSIDA List - English
+,Aluminum (all kinds),CRESSIDA List - English
+,Organic and mixed waste,CRESSIDA List - English
+,Type of site: Legal / Illegal,CRESSIDA List - English
+,Type of waste on site,CRESSIDA List - English
+,Vicinity to water bodies,CRESSIDA List - English
+,Vicinity with settlements,CRESSIDA List - English
+,Size,CRESSIDA List - English
+,Risk,CRESSIDA List - English
+,Remediation Measure,CRESSIDA List - English
+,Electronic and electric waste,CRESSIDA List - English
+,Batteries,CRESSIDA List - English
+,End of life vehicles,CRESSIDA List - English
+,Other waste,CRESSIDA List - English
+,Cardboard and paper,CRESSIDA List - English
+,Construction waste,CRESSIDA List - English
+,Bulky waste and fabrics,CRESSIDA List - English
+,"Glass (bottle, jar)",CRESSIDA List - English
+,Other,Debris Items of Local Concern
+,Southern Sugar Maple,Deciduous Trees
+,Japanese Hornbeam,Deciduous Trees
+,Yellowwood,Deciduous Trees
+,Dogwood,Deciduous Trees
+,Weeping Purpleleaf European Beech,Deciduous Trees
+,Crab Trap in Need of Removal,Derelict Crab Trap List
+,Crab Trap that has Been Removed,Derelict Crab Trap List
+,Test Item,Derelict Crab Trap List
+,Other Plastic Jugs or Containers,Derwent Estuary List
+,Oil or Petrol Can,Derwent Estuary List
+,Test Item,Derwent Estuary List
+,Shopping Trolleys,Derwent Estuary List
+,Other,Derwent Estuary List
+,Rope or Net Pieces (non-nylon),Derwent Estuary List
+,Plastic Rope / Small Net Pieces,Derwent Estuary List
+,Fishing Lures and Lines,Derwent Estuary List
+,Buoys and Floats,Derwent Estuary List
+,Palletts,Derwent Estuary List
+,Paper and cardboard,Derwent Estuary List
+,Lumber/Building Materials,Derwent Estuary List
+,Paper Bags,Derwent Estuary List
+,Towels or rags,Derwent Estuary List
+,Gloves (non-rubber/cloth),Derwent Estuary List
+,Fabric Pieces,Derwent Estuary List
+,Clothing and Shoes,Derwent Estuary List
+,Tires,Derwent Estuary List
+,Thongs,Derwent Estuary List
+,Glass Jars,Derwent Estuary List
+,Glass Bottle,Derwent Estuary List
+,Metal Bottle Caps,Derwent Estuary List
+,Aluminum or Tin Cans,Derwent Estuary List
+,Aerosol Cans,Derwent Estuary List
+,Straws,Derwent Estuary List
+,Six-pack rings,Derwent Estuary List
+,Plastic Utensils,Derwent Estuary List
+,Plastic or Foam Fragments,Derwent Estuary List
+,Personal Care Products,Derwent Estuary List
+,Rubber Gloves,Derwent Estuary List
+,Food Wrappers,Derwent Estuary List
+,Plastic Food Wrappers,Derwent Estuary List
+,Coffee Cup,Derwent Estuary List
+,Foam or Plastic Cups,Derwent Estuary List
+,"Cigaretts, Butts, Lighters, Packaging",Derwent Estuary List
+,Plastic Bottle or Container Caps,Derwent Estuary List
+,Coffee Cup Lid,Derwent Estuary List
+,Plastic Bottle,Derwent Estuary List
+,Balloons and/or String,Derwent Estuary List
+,Plastic Bags,Derwent Estuary List
+,Appliances (refigerators or wasters etc),Dumping Activities
+,55-Gal Drums,Dumping Activities
+,Batteries,Dumping Activities
+,Cars or Car Parts,Dumping Activities
+,Building Materials,Dumping Activities
+,Tires,Dumping Activities
+,Other Plastic Jugs or Containers,eXXpedition
+,Marine Mammal (please describe),eXXpedition
+,Test Item,eXXpedition
+,Other,eXXpedition
+,Rope or Net Pieces (non-nylon),eXXpedition
+,Plastic rope / Net Pieces,eXXpedition
+,Fishing lures and lines,eXXpedition
+,Buoys and floats,eXXpedition
+,Pallets,eXXpedition
+,Paper and Cardboard,eXXpedition
+,Food wrappers (paper),eXXpedition
+,Lumber/Building Materials,eXXpedition
+,Paper Bags,eXXpedition
+,Towels or rags,eXXpedition
+,Gloves (non-rubber),eXXpedition
+,Fabric pieces,eXXpedition
+,Clothing and Shoes,eXXpedition
+,Tires,eXXpedition
+,Flip-flops,eXXpedition
+,Glass Jars,eXXpedition
+,Glass Bottle,eXXpedition
+,Metal Bottle Caps,eXXpedition
+,Aluminum or tin cans,eXXpedition
+,Aerosol cans,eXXpedition
+,Straws,eXXpedition
+,Six-pack rings,eXXpedition
+,Plastic Utensils,eXXpedition
+,Plastic or Foam Fragments,eXXpedition
+,Personal care products,eXXpedition
+,Rubber Gloves,eXXpedition
+,Plastic Food Wrappers,eXXpedition
+,Foam or Plastic Cups,eXXpedition
+,Cigarettes,eXXpedition
+,Cigarette lighters/tobacco packaging,eXXpedition
+,Plastic Bottle or Container Caps,eXXpedition
+,Plastic Bottle,eXXpedition
+,Balloons and/or string,eXXpedition
+,Plastic Bags,eXXpedition
+,Test Item,Fish Aggregating Devices
+,Fish Aggregating Devices,Fish Aggregating Devices
+,Plastic Container or Jug,Fullbright Vietnam Project
+,Hard Plastic Packaging,Fullbright Vietnam Project
+,"Metal Bar, Pipe, or Wire",Fullbright Vietnam Project
+,Wire Piece,Fullbright Vietnam Project
+,Metal Debris,Fullbright Vietnam Project
+,Glass Pieces,Fullbright Vietnam Project
+,Rubber Band,Fullbright Vietnam Project
+,Plastic Pipe or Tube,Fullbright Vietnam Project
+,"Plastic Film, Wrapper or Tape",Fullbright Vietnam Project
+,Rubber Debris,Fullbright Vietnam Project
+,Blister Pack,Fullbright Vietnam Project
+,Syringe,Fullbright Vietnam Project
+,Diaper/Nappy,Fullbright Vietnam Project
+,Glass Container,Fullbright Vietnam Project
+,Burlap Sack,Fullbright Vietnam Project
+,Foam Cup or Container,Fullbright Vietnam Project
+,Cafe/Coffee Shop,Fullbright Vietnam Project
+,Bubble Tea Shop,Fullbright Vietnam Project
+,Street Market,Fullbright Vietnam Project
+,Super Market,Fullbright Vietnam Project
+,Street Food Vendor,Fullbright Vietnam Project
+,Restaurant,Fullbright Vietnam Project
+,Motorbike or Car Repair Shop,Fullbright Vietnam Project
+,Junk Shop,Fullbright Vietnam Project
+,Recycling Bin,Fullbright Vietnam Project
+,Trash Bin,Fullbright Vietnam Project
+,Large Trash Accumulation Site,Fullbright Vietnam Project
+,Group of Empty Waste Carts,Fullbright Vietnam Project
+,Group of Full Waste Carts,Fullbright Vietnam Project
+,Sidewalk Tree with Surrounding Trash,Fullbright Vietnam Project
+,Non-plastic Rope and Netting,Fullbright Vietnam Project
+,Plastic Rope and Netting,Fullbright Vietnam Project
+,Fishing Lures and Lines,Fullbright Vietnam Project
+,Buoys and Floats,Fullbright Vietnam Project
+,Cardboard,Fullbright Vietnam Project
+,Paper Debris,Fullbright Vietnam Project
+,Lumber,Fullbright Vietnam Project
+,Metal Piping,Fullbright Vietnam Project
+,Paper Bag,Fullbright Vietnam Project
+,Towel or Rag,Fullbright Vietnam Project
+,Rubber Boot or Shoe,Fullbright Vietnam Project
+,Articles of Clothing,Fullbright Vietnam Project
+,Shoe,Fullbright Vietnam Project
+,Rubber Tire,Fullbright Vietnam Project
+,Flip Flop,Fullbright Vietnam Project
+,Glass Bottle,Fullbright Vietnam Project
+,Metal Bottle Cap,Fullbright Vietnam Project
+,Aluminum Can,Fullbright Vietnam Project
+,Tin Can,Fullbright Vietnam Project
+,Aerosol Can,Fullbright Vietnam Project
+,Plastic Straw,Fullbright Vietnam Project
+,Plastic Utensil,Fullbright Vietnam Project
+,Plastic or Foam Pieces,Fullbright Vietnam Project
+,Miscellaneous Plastic Debris,Fullbright Vietnam Project
+,Face Mask,Fullbright Vietnam Project
+,Personal Care Product,Fullbright Vietnam Project
+,Rubber Glove,Fullbright Vietnam Project
+,Plastic Cup,Fullbright Vietnam Project
+,Cigarette Butt,Fullbright Vietnam Project
+,Cigarette Box,Fullbright Vietnam Project
+,Cigarette Lighter,Fullbright Vietnam Project
+,Plastic Bottle Cap,Fullbright Vietnam Project
+,Plastic Lid,Fullbright Vietnam Project
+,Plastic Bottle,Fullbright Vietnam Project
+,Plastic Bag,Fullbright Vietnam Project
+,Other Plastic Jugs or Containers,GA Sea Turtle Center
+,Nonfood related packaging,GA Sea Turtle Center
+,Non-food related plastic packaging,GA Sea Turtle Center
+,Glass pieces,GA Sea Turtle Center
+,Fishing nets,GA Sea Turtle Center
+,Paper Cups,GA Sea Turtle Center
+,Paper Cups/Plates,GA Sea Turtle Center
+,Napkins/Wipes,GA Sea Turtle Center
+,Fireworks,GA Sea Turtle Center
+,Fireworks,GA Sea Turtle Center
+,Styrofoam packaging,GA Sea Turtle Center
+,Bandages,GA Sea Turtle Center
+,Chemicals and chemical containers,GA Sea Turtle Center
+,Take Out/Away Containers,GA Sea Turtle Center
+,Toys (plastic),GA Sea Turtle Center
+,Batteries (acidic and alkaline),GA Sea Turtle Center
+,Crab/Lobster/Fish trap parts,GA Sea Turtle Center
+,Test Item,GA Sea Turtle Center
+,Other,GA Sea Turtle Center
+,Rope or Net Pieces (non-nylon),GA Sea Turtle Center
+,Plastic rope / Small Net Pieces,GA Sea Turtle Center
+,Fishing lures and lines,GA Sea Turtle Center
+,Buoys and floats,GA Sea Turtle Center
+,Pallets,GA Sea Turtle Center
+,Paper and Cardboard,GA Sea Turtle Center
+,Food wrappers (paper),GA Sea Turtle Center
+,Lumber/Building Materials,GA Sea Turtle Center
+,Paper Bags,GA Sea Turtle Center
+,Towels or rags,GA Sea Turtle Center
+,Gloves (non-rubber),GA Sea Turtle Center
+,Fabric pieces,GA Sea Turtle Center
+,Clothing and Shoes,GA Sea Turtle Center
+,Tires,GA Sea Turtle Center
+,Flip-flops,GA Sea Turtle Center
+,Glass Jars,GA Sea Turtle Center
+,Glass Bottle,GA Sea Turtle Center
+,Metal Bottle Caps,GA Sea Turtle Center
+,Aluminum or tin cans,GA Sea Turtle Center
+,Aerosol cans,GA Sea Turtle Center
+,Straws,GA Sea Turtle Center
+,Six-pack rings,GA Sea Turtle Center
+,Plastic Utensils,GA Sea Turtle Center
+,Plastic or Foam Fragments,GA Sea Turtle Center
+,Personal care products,GA Sea Turtle Center
+,Rubber Gloves,GA Sea Turtle Center
+,Plastic Food Wrappers,GA Sea Turtle Center
+,Foam or Plastic Cups and Plates,GA Sea Turtle Center
+,Cigarettes,GA Sea Turtle Center
+,Cigar Tips,GA Sea Turtle Center
+,Cigarette lighters/tobacco packaging,GA Sea Turtle Center
+,Cigarette or tobacco packaging,GA Sea Turtle Center
+,Plastic Bottle or Container Caps,GA Sea Turtle Center
+,Plastic Lids,GA Sea Turtle Center
+,Plastic Bottle,GA Sea Turtle Center
+,Balloons and/or string,GA Sea Turtle Center
+,Plastic Bags,GA Sea Turtle Center
+,সিমেন্টের থলে,Ganga Prahari
+,ঔষধের প্যাকেট,Ganga Prahari
+,তামাকের ছোট প্যাকেট,Ganga Prahari
+,ব্যক্তিগত ব্যবহার্য পন্যের ছোট প্যাকেট,Ganga Prahari
+,প্লাস্টিকের দড়ি,Ganga Prahari
+,ই-বর্জ্য টুকরা,Ganga Prahari
+,কাগজের বাক্স,Ganga Prahari
+,আ্যলুমিনামের মোড়ক,Ganga Prahari
+,রাস্তার খাবারের বাটি,Ganga Prahari
+,নিয়ে যাওয়ার খাবারের প্যাকেট,Ganga Prahari
+,জুসের মোড়ক,Ganga Prahari
+,কাঁচের টুকরা,Ganga Prahari
+,প্লাস্টিকের জাল/ জালের টুকরা,Ganga Prahari
+,রাবার ব্যান্ড,Ganga Prahari
+,"শোলার বাটি, থালা, পাত্র",Ganga Prahari
+,ব্যাটারি,Ganga Prahari
+,ঢেউতোলা পিচবোর্ড,Ganga Prahari
+,কাগজ,Ganga Prahari
+,পরীক্ষার দ্রব্যাদি,Ganga Prahari
+,অন্যান্য,Ganga Prahari
+,তার,Ganga Prahari
+,প্লাস্টিকের দড়ি,Ganga Prahari
+,বয়া,Ganga Prahari
+,কাপড়ের টুকরা,Ganga Prahari
+,জামাকাপড়,Ganga Prahari
+,টায়ার,Ganga Prahari
+,প্লাস্টিকের জুতা এবং স্যান্ডেল,Ganga Prahari
+,কাঁচের বোতল,Ganga Prahari
+,বোতলের ধাতব ঢাকনা,Ganga Prahari
+,আ্যলুমিনামের/ টিনের কৌটা,Ganga Prahari
+,প্লাস্টিক ব্যাগের টুকরা,Ganga Prahari
+,ফোমের টুকরা,Ganga Prahari
+,শক্ত প্লাস্টিকের টুকরা,Ganga Prahari
+,প্লাস্টিকের নল,Ganga Prahari
+,প্লাস্টিকের মোড়ক (খাবারের),Ganga Prahari
+,ফোম/ প্লাস্টিকের পেয়ালা/ ঢাকনা,Ganga Prahari
+,সিগারেট,Ganga Prahari
+,সিগারেটের প্যকেট,Ganga Prahari
+,প্লাস্টিকের বোতলের ঢাকনা,Ganga Prahari
+,প্লাস্টিকের বোতল,Ganga Prahari
+,প্লাস্টিকের থলে,Ganga Prahari
+,Other Fishing Gear,Goal- Clean Seas Florida Keys
+,Other Plastic Jugs or Containers,Goal- Clean Seas Florida Keys
+,Non-food related plastic packaging,Goal- Clean Seas Florida Keys
+,Other Plastic,Goal- Clean Seas Florida Keys
+,Metal Fragments,Goal- Clean Seas Florida Keys
+,Glass Fragments,Goal- Clean Seas Florida Keys
+,Other Metal,Goal- Clean Seas Florida Keys
+,GPS Coordinates,Goal- Clean Seas Florida Keys
+,Name of site,Goal- Clean Seas Florida Keys
+,Survey duration,Goal- Clean Seas Florida Keys
+,Date of survey,Goal- Clean Seas Florida Keys
+,Total weight of debris removed,Goal- Clean Seas Florida Keys
+,Plastic net,Goal- Clean Seas Florida Keys
+,Paper Cups,Goal- Clean Seas Florida Keys
+,Fireworks,Goal- Clean Seas Florida Keys
+,Other Glass,Goal- Clean Seas Florida Keys
+,Other Rubber,Goal- Clean Seas Florida Keys
+,Rubber Fragments,Goal- Clean Seas Florida Keys
+,Styrofoam packaging,Goal- Clean Seas Florida Keys
+,Chemicals and chemical containers,Goal- Clean Seas Florida Keys
+,Toys (plastic),Goal- Clean Seas Florida Keys
+,Batteries (acidic and alkaline),Goal- Clean Seas Florida Keys
+,Anchor,Goal- Clean Seas Florida Keys
+,Crab/Lobster/Fish trap parts,Goal- Clean Seas Florida Keys
+,Metal Trap,Goal- Clean Seas Florida Keys
+,Plastic Trap,Goal- Clean Seas Florida Keys
+,Test Item,Goal- Clean Seas Florida Keys
+,Other,Goal- Clean Seas Florida Keys
+,Non-nylon rope,Goal- Clean Seas Florida Keys
+,Non-nylon net,Goal- Clean Seas Florida Keys
+,Other Plastic Rope,Goal- Clean Seas Florida Keys
+,Plastic Trap Rope,Goal- Clean Seas Florida Keys
+,Fishing line,Goal- Clean Seas Florida Keys
+,Fishing hook,Goal- Clean Seas Florida Keys
+,Fishing Hook,Goal- Clean Seas Florida Keys
+,Buoys and floats,Goal- Clean Seas Florida Keys
+,Pallets,Goal- Clean Seas Florida Keys
+,Paper and Cardboard,Goal- Clean Seas Florida Keys
+,Food wrappers (paper),Goal- Clean Seas Florida Keys
+,Lumber/Building Materials,Goal- Clean Seas Florida Keys
+,Other Paper or Lumber,Goal- Clean Seas Florida Keys
+,Wooden Trap,Goal- Clean Seas Florida Keys
+,Paper Bags,Goal- Clean Seas Florida Keys
+,Towels or rags,Goal- Clean Seas Florida Keys
+,Gloves (non-rubber),Goal- Clean Seas Florida Keys
+,Fabric pieces,Goal- Clean Seas Florida Keys
+,Other Cloth,Goal- Clean Seas Florida Keys
+,Clothing,Goal- Clean Seas Florida Keys
+,Shoes,Goal- Clean Seas Florida Keys
+,Tires,Goal- Clean Seas Florida Keys
+,Flip-flops,Goal- Clean Seas Florida Keys
+,Glass Jars,Goal- Clean Seas Florida Keys
+,Glass Bottle,Goal- Clean Seas Florida Keys
+,Metal Bottle Caps,Goal- Clean Seas Florida Keys
+,Aluminum or tin cans,Goal- Clean Seas Florida Keys
+,Aerosol cans,Goal- Clean Seas Florida Keys
+,Straws,Goal- Clean Seas Florida Keys
+,Six-pack rings,Goal- Clean Seas Florida Keys
+,Plastic Utensils,Goal- Clean Seas Florida Keys
+,Plastic or Foam Fragments,Goal- Clean Seas Florida Keys
+,Personal care products,Goal- Clean Seas Florida Keys
+,Rubber Gloves,Goal- Clean Seas Florida Keys
+,Plastic Food Wrappers,Goal- Clean Seas Florida Keys
+,Foam or Plastic Cups,Goal- Clean Seas Florida Keys
+,Cigarettes,Goal- Clean Seas Florida Keys
+,Cigarette lighters/tobacco packaging,Goal- Clean Seas Florida Keys
+,Cigarette or tobacco packaging,Goal- Clean Seas Florida Keys
+,Plastic Bottle or Container Caps,Goal- Clean Seas Florida Keys
+,Plastic Bottle,Goal- Clean Seas Florida Keys
+,Balloons and/or string,Goal- Clean Seas Florida Keys
+,Plastic Grocery Bags,Goal- Clean Seas Florida Keys
+,Other Plastic Bags,Goal- Clean Seas Florida Keys
+,Shotgun Shells or Wadding,ICC Data Card
+,Light Bulbs orTubes,ICC Data Card
+,Fishing Nets,ICC Data Card
+,Crates,ICC Data Card
+,Appliances (refigerators or washers etc),ICC Data Card
+,Strapping Bands,ICC Data Card
+,Plastic Sheeting orTarps,ICC Data Card
+,Tampons or Tampon Applicators,ICC Data Card
+,Syringes,ICC Data Card
+,Diapers,ICC Data Card
+,Condoms,ICC Data Card
+,Bleach or Cleaner Bottles,ICC Data Card
+,Oil or Lube Bottles,ICC Data Card
+,55-Gal Drums,ICC Data Card
+,Bait Containers or Packaging,ICC Data Card
+,Toys,ICC Data Card
+,Batteries,ICC Data Card
+,Cars Car Parts,ICC Data Card
+,Crab or Lobster or Fish Traps,ICC Data Card
+,Other,ICC Data Card
+,Rope,ICC Data Card
+,Fishing Line,ICC Data Card
+,Fishing Lures or Light Sticks,ICC Data Card
+,Buoys or Floats,ICC Data Card
+,Pallets,ICC Data Card
+,Building Materials,ICC Data Card
+,Clothing Shoes,ICC Data Card
+,Tires,ICC Data Card
+,Beverage Bottles (glass),ICC Data Card
+,Pull Tabs,ICC Data Card
+,Beverage Cans,ICC Data Card
+,Straws or Stirrers,ICC Data Card
+,6-Pack Holders,ICC Data Card
+,Food Wrappers or Containers,ICC Data Card
+,Cups or Plates or Forks or Knives or Spoons,ICC Data Card
+,Cigarettes or Cigarette filters,ICC Data Card
+,Cigar Tips,ICC Data Card
+,Cigarette Lighters,ICC Data Card
+,Tobacco Packaging or Wrappers,ICC Data Card
+,Caps Lids,ICC Data Card
+,Beverage Bottles (plastic) 2 liters or less,ICC Data Card
+,Balloons,ICC Data Card
+,Bags,ICC Data Card
+,Pisau cukur dan silet,Indonesian Waste Platform
+,Paku / sekrup,Indonesian Waste Platform
+,Peniti,Indonesian Waste Platform
+,Spanduk,Indonesian Waste Platform
+,Terpal,Indonesian Waste Platform
+,Pita Karet,Indonesian Waste Platform
+,Alat suntik /jarum medis,Indonesian Waste Platform
+,Popok bayi,Indonesian Waste Platform
+,Kondom,Indonesian Waste Platform
+,Mainan anak-anak,Indonesian Waste Platform
+,Bahan Uji,Indonesian Waste Platform
+,Lainnya,Indonesian Waste Platform
+,Tali atau Potongan Jaring (bukan nilon),Indonesian Waste Platform
+,Tali Plastik / Potongan potongan kecil dari jaring,Indonesian Waste Platform
+,Umpan dan Tali Pancing,Indonesian Waste Platform
+,Pelampung dan Benda yang mengapung,Indonesian Waste Platform
+,Palet,Indonesian Waste Platform
+,Kertas dan Karton,Indonesian Waste Platform
+,Pembungkus Makanan (kertas),Indonesian Waste Platform
+,Kayu/ Bahan bahan Bangunan,Indonesian Waste Platform
+,Tas Kertas,Indonesian Waste Platform
+,Handuk atau Keset Kaki,Indonesian Waste Platform
+,Sarung Tangan (bukan karet / kain),Indonesian Waste Platform
+,Potongan Kain,Indonesian Waste Platform
+,Pakaian dan Sepatu,Indonesian Waste Platform
+,Ban,Indonesian Waste Platform
+,Sandal Jepit,Indonesian Waste Platform
+,Toples Kaca,Indonesian Waste Platform
+,Botol Kaca,Indonesian Waste Platform
+,Tutup Botol Logam,Indonesian Waste Platform
+,Kaleng Aluminium atau Kaleng Timah,Indonesian Waste Platform
+,Kaleng Aerosol,Indonesian Waste Platform
+,Sedotan,Indonesian Waste Platform
+,Ring pengikat kemasan enam kaleng dari plastik,Indonesian Waste Platform
+,Peralatan Plastik,Indonesian Waste Platform
+,Potongan potongan Plastik atau Styrofoam,Indonesian Waste Platform
+,Produk Perawatan Pribadi,Indonesian Waste Platform
+,Pembungkus / Kemasan untuk perlengkapan mandi hotel,Indonesian Waste Platform
+,Korek kuping kapas,Indonesian Waste Platform
+,Tempat Minum Plastik Lainnya atau Wadah,Indonesian Waste Platform
+,Sarung Tangan Karet,Indonesian Waste Platform
+,Pembungkus Makanan Plastik,Indonesian Waste Platform
+,Wadah gelas dari Styrofoam atau Plastik,Indonesian Waste Platform
+,Rokok,Indonesian Waste Platform
+,Kemasan Rokok,Indonesian Waste Platform
+,Tutup Botol Plastik atau Tutup Botol,Indonesian Waste Platform
+,Botol Plastik,Indonesian Waste Platform
+,Balon dan/atau Tali,Indonesian Waste Platform
+,Tas Plastik,Indonesian Waste Platform
+,Plastik Pembungkus Es,Indonesian Waste Platform
+,Contenedores Desechables (Plástico),Internacional Coastal Cleanup Lista en espanol
+,Contenedores Desechables (poliestireno),Internacional Coastal Cleanup Lista en espanol
+,Otros Empaques de Plástico / poliestireno,Internacional Coastal Cleanup Lista en espanol
+,Tazas y platos (Papel),Internacional Coastal Cleanup Lista en espanol
+,Bandas para sujetar,Internacional Coastal Cleanup Lista en espanol
+,Tampones / Aplicadores de Tampon,Internacional Coastal Cleanup Lista en espanol
+,Condones,Internacional Coastal Cleanup Lista en espanol
+,Animal muerto o herido,Internacional Coastal Cleanup Lista en espanol
+,Materiales de construcción,Internacional Coastal Cleanup Lista en espanol
+,Bolsas de papel,Internacional Coastal Cleanup Lista en espanol
+,Botellas de bebidas (Glass),Internacional Coastal Cleanup Lista en espanol
+,Tapas de botella (metal),Internacional Coastal Cleanup Lista en espanol
+,Latas de bebidas,Internacional Coastal Cleanup Lista en espanol
+,Anillos de plastico para bebidas en lata,Internacional Coastal Cleanup Lista en espanol
+,"Tenedores, cuchillos, cucharas",Internacional Coastal Cleanup Lista en espanol
+,Piezas de plástico,Internacional Coastal Cleanup Lista en espanol
+,Envoltorios de comida,Internacional Coastal Cleanup Lista en espanol
+,Tazas y platos (plástico),Internacional Coastal Cleanup Lista en espanol
+,Tazas y platos (espuma),Internacional Coastal Cleanup Lista en espanol
+,Colillas de cigarrilos,Internacional Coastal Cleanup Lista en espanol
+,Puntas de Cigarros,Internacional Coastal Cleanup Lista en espanol
+,Empaque/Envoltorio de tabaco,Internacional Coastal Cleanup Lista en espanol
+,Tapas de botella (plástico),Internacional Coastal Cleanup Lista en espanol
+,Tapas (plástico),Internacional Coastal Cleanup Lista en espanol
+,Botellas de bebidas (Plástico),Internacional Coastal Cleanup Lista en espanol
+,Otras Botellas plásticas,Internacional Coastal Cleanup Lista en espanol
+,Globos,Internacional Coastal Cleanup Lista en espanol
+,Bolsas de mercado (Plástico),Internacional Coastal Cleanup Lista en espanol
+,Otras bolsas de plástico,Internacional Coastal Cleanup Lista en espanol
+,Llantas,Internacional Coastal Cleanup Lista en espanol
+,Pedazos de cristal,Internacional Coastal Cleanup Lista en espanol
+,Pajilla / Agitadores,Internacional Coastal Cleanup Lista en espanol
+,Pañales,Internacional Coastal Cleanup Lista en espanol
+,Jeringas,Internacional Coastal Cleanup Lista en espanol
+,Encendedores,Internacional Coastal Cleanup Lista en espanol
+,Fuegos artificiales,Internacional Coastal Cleanup Lista en espanol
+,Piezas de poliestireno,Internacional Coastal Cleanup Lista en espanol
+,"Boyas de pesca, Ollas y Trampas",Internacional Coastal Cleanup Lista en espanol
+,Red de pesca y Piezas,Internacional Coastal Cleanup Lista en espanol
+,Cuerda,Internacional Coastal Cleanup Lista en espanol
+,Sedal,Internacional Coastal Cleanup Lista en espanol
+,Electrodomésticos,Internacional Coastal Cleanup Lista en espanol
+,Otros,Internacional Coastal Cleanup Lista en espanol
+,Elemento de prueba,Internacional Coastal Cleanup Lista en espanol
+,أدوات فحص,Jordan Royal Marine Conservation Society
+,أخرى,Jordan Royal Marine Conservation Society
+,حبال أو قطع شباك صيد ليست نايلون,Jordan Royal Marine Conservation Society
+,حبل بلاستيك / قطع شباك صيد صغيرة,Jordan Royal Marine Conservation Society
+,خيوط وطعم صيد أسماك,Jordan Royal Marine Conservation Society
+,عوامات وطوافات,Jordan Royal Marine Conservation Society
+,ألواح,Jordan Royal Marine Conservation Society
+,ورق وكرتون,Jordan Royal Marine Conservation Society
+,أغلفة أطعمة (ورق),Jordan Royal Marine Conservation Society
+,خشب / مواد بناء,Jordan Royal Marine Conservation Society
+,حقائب ورقية,Jordan Royal Marine Conservation Society
+,مناشف أو بشاكير,Jordan Royal Marine Conservation Society
+,كفوف قماش أو صوف,Jordan Royal Marine Conservation Society
+,قطع قماش,Jordan Royal Marine Conservation Society
+,ملابس وأحذية,Jordan Royal Marine Conservation Society
+,إطارات,Jordan Royal Marine Conservation Society
+,أحذية بحر,Jordan Royal Marine Conservation Society
+,صحن زجاجي,Jordan Royal Marine Conservation Society
+,قارورة زجاجية,Jordan Royal Marine Conservation Society
+,أغطية علب معدنية,Jordan Royal Marine Conservation Society
+,علب ألومنيوم أو قصدير,Jordan Royal Marine Conservation Society
+,علب بخاخ,Jordan Royal Marine Conservation Society
+,قشة / ماصة,Jordan Royal Marine Conservation Society
+,حلقات حاملة للأكواب,Jordan Royal Marine Conservation Society
+,أواني بلاستيكية,Jordan Royal Marine Conservation Society
+,قطع بلاستيكية أو فلينية,Jordan Royal Marine Conservation Society
+,منتجات العناية الشخصية,Jordan Royal Marine Conservation Society
+,أباريق أو حاويات بلاستيكية,Jordan Royal Marine Conservation Society
+,كفوف مطاطية,Jordan Royal Marine Conservation Society
+,أغلفة طعام بلاستيكية,Jordan Royal Marine Conservation Society
+,أكواب فلين او بلاستيك,Jordan Royal Marine Conservation Society
+,اعقاب سجائر,Jordan Royal Marine Conservation Society
+,بكيت سجائر,Jordan Royal Marine Conservation Society
+,علب بلاستيكية أو أغطية بلاستيكية,Jordan Royal Marine Conservation Society
+,علب بلاستيكية,Jordan Royal Marine Conservation Society
+,بالونات و/أو خيوط,Jordan Royal Marine Conservation Society
+,أكياس بلاستيكية,Jordan Royal Marine Conservation Society
+,Containers (Plastic),Keep Tampa Bay Beautiful
+,Furniture,Keep Tampa Bay Beautiful
+,Gasparilla Beads,Keep Tampa Bay Beautiful
+,Storm Drain Marker(s),Keep Tampa Bay Beautiful
+,Pens/Pencils,Keep Tampa Bay Beautiful
+,Fishing Nets,Keep Tampa Bay Beautiful
+,Cups/Plates (Paper),Keep Tampa Bay Beautiful
+,Fireworks,Keep Tampa Bay Beautiful
+,Appliances,Keep Tampa Bay Beautiful
+,Small Electronic Items,Keep Tampa Bay Beautiful
+,Feminine Hygene Items,Keep Tampa Bay Beautiful
+,Drug Paraphanalia/Syringes,Keep Tampa Bay Beautiful
+,Diapers,Keep Tampa Bay Beautiful
+,Toys,Keep Tampa Bay Beautiful
+,Batteries,Keep Tampa Bay Beautiful
+,Recycle Receptacle(s),Keep Tampa Bay Beautiful
+,Trash Receptacle(s),Keep Tampa Bay Beautiful
+,Test Item,Keep Tampa Bay Beautiful
+,Miscellaneous Items,Keep Tampa Bay Beautiful
+,Rope,Keep Tampa Bay Beautiful
+,Monofilament Tube(s),Keep Tampa Bay Beautiful
+,Fishing Hooks,Keep Tampa Bay Beautiful
+,Fishing Rubbertail Baits & Weights,Keep Tampa Bay Beautiful
+,Fishing Line,Keep Tampa Bay Beautiful
+,"Buoys, Crab Pots & Traps",Keep Tampa Bay Beautiful
+,Cardboard,Keep Tampa Bay Beautiful
+,Construction Materials,Keep Tampa Bay Beautiful
+,Wood Fragments,Keep Tampa Bay Beautiful
+,Bags (Paper),Keep Tampa Bay Beautiful
+,Clothes/Shoes,Keep Tampa Bay Beautiful
+,Tires,Keep Tampa Bay Beautiful
+,Bottle/Jars (Glass),Keep Tampa Bay Beautiful
+,Bottle Caps (Metal),Keep Tampa Bay Beautiful
+,Aluminum Cans,Keep Tampa Bay Beautiful
+,Straws/Stirrers,Keep Tampa Bay Beautiful
+,6-Pack Holders,Keep Tampa Bay Beautiful
+,Utensils (Plastic),Keep Tampa Bay Beautiful
+,Dental Flossers,Keep Tampa Bay Beautiful
+,Contraceptives,Keep Tampa Bay Beautiful
+,Food Wrappers/Packaging,Keep Tampa Bay Beautiful
+,Cups/Plates (Plastic),Keep Tampa Bay Beautiful
+,Styrofoam Cups/Plates/Packaging,Keep Tampa Bay Beautiful
+,Cigar Tips,Keep Tampa Bay Beautiful
+,Cigarette Butts,Keep Tampa Bay Beautiful
+,Lighters,Keep Tampa Bay Beautiful
+,Cigaerette Receptacle(s),Keep Tampa Bay Beautiful
+,Bottle Caps (Plastic),Keep Tampa Bay Beautiful
+,Lids (Plastic),Keep Tampa Bay Beautiful
+,Bottles (Plastic),Keep Tampa Bay Beautiful
+,Balloons,Keep Tampa Bay Beautiful
+,Bags (Plastic),Keep Tampa Bay Beautiful
+,Other Plastic,Lets Do It World
+,"Wire, Wire Mesh, Barbed Wire",Lets Do It World
+,Metal Fragments,Lets Do It World
+,Glass & Ceramic Fragments,Lets Do It World
+,Fluorescent Light Tubes,Lets Do It World
+,"Light Globes: Bulbs, etc.",Lets Do It World
+,Light Sticks/Cyalumes,Lets Do It World
+,Furnishings (wood),Lets Do It World
+,Carpet (synthetic),Lets Do It World
+,Furnishings (plastic),Lets Do It World
+,Other Metal,Lets Do It World
+,Fishing: Nets & Pieces of Nets,Lets Do It World
+,Fishing: Nets & Pieces of Nets,Lets Do It World
+,Fireworkds,Lets Do It World
+,"Baskets, Crates",Lets Do It World
+,Computer Equipment & Other Electronic Devices,Lets Do It World
+,Appliances: Household,Lets Do It World
+,"Cups, Plates, Tableware, Dishes",Lets Do It World
+,Other Glass,Lets Do It World
+,Rubber Bands,Lets Do It World
+,Pipes & Rebar,Lets Do It World
+,Pipes (plastic/PVC),Lets Do It World
+,Inner-Tubes & Rubber Sheets,Lets Do It World
+,Other Rubber,Lets Do It World
+,Rubber Fragments,Lets Do It World
+,Foam Insulation & Packaging,Lets Do It World
+,Strapping Bands (metal),Lets Do It World
+,Strapping Bands (plastic),Lets Do It World
+,Sheeting,Lets Do It World
+,Tampons,Lets Do It World
+,Tampon Applicators,Lets Do It World
+,Syringes (glass),Lets Do It World
+,Syringes (plastic),Lets Do It World
+,Diapers/Nappies,Lets Do It World
+,Condoms,Lets Do It World
+,"Cups, Plates, Tableware, Dishes (metal)",Lets Do It World
+,"Forks, Knives, Spoons (cutlery)",Lets Do It World
+,Bags (burlap/hessian),Lets Do It World
+,Bags (cloth),Lets Do It World
+,Drums: 55 gallon,Lets Do It World
+,"Gas Bottles/Cylinder, Drums",Lets Do It World
+,"Bottles: Bleach, Cleaner",Lets Do It World
+,Bottles: Oil/Lube,Lets Do It World
+,"Buckets, Drums, & Jerry Cans",Lets Do It World
+,Bait Containers/Packaging,Lets Do It World
+,"Containers: Fast Food, Lunch Boxes",Lets Do It World
+,Wrappers (foil/metal),Lets Do It World
+,Toys,Lets Do It World
+,Scuba Weights,Lets Do It World
+,Balls,Lets Do It World
+,Scuba & Snorkel Gear,Lets Do It World
+,"Batteries: AA, AAA, etc.",Lets Do It World
+,Batteries: Car or boat,Lets Do It World
+,Cars & Car Parts,Lets Do It World
+,Fishing: traps & pots,Lets Do It World
+,Fishing: Traps & Pots,Lets Do It World
+,Fishing: Traps & Pots,Lets Do It World
+,Fising: Traps & Pots,Lets Do It World
+,Other Mixed,Lets Do It World
+,Rope & String (cloth),Lets Do It World
+,Rope (plastic/nylon),Lets Do It World
+,"Fishing: Sinkers, Lures, Hooks",Lets Do It World
+,Fishing: Line,Lets Do It World
+,"Fishing: Lures, Rods/Poles",Lets Do It World
+,Buoys (glass),Lets Do It World
+,Buoys & Floats (plastic & foamed),Lets Do It World
+,Pallets,Lets Do It World
+,Cardboard: Packaging & Cartons,Lets Do It World
+,"Paper: Books, Newspapers, Magazines, etc.",Lets Do It World
+,Paper/Cardboard Fragments,Lets Do It World
+,Other Paper,Lets Do It World
+,"Bricks, Cinderblocks, Chunks of Cement",Lets Do It World
+,Lumber (processed or cut/milled wood),Lets Do It World
+,Wood Fragments,Lets Do It World
+,Other wood,Lets Do It World
+,Bags (paper),Lets Do It World
+,"Towels, Rags",Lets Do It World
+,Gloves (cloth),Lets Do It World
+,Cloth Fragments,Lets Do It World
+,Other Cloth,Lets Do It World
+,Clothing,Lets Do It World
+,"Shoes, Flip Flops, Sandals, Tennis, etc.",Lets Do It World
+,Tires/Tyres,Lets Do It World
+,Jars: Food (glass),Lets Do It World
+,Beverage Bottles (glass),Lets Do It World
+,Caps & Lids (metal),Lets Do It World
+,Pull Tabs: Beverages,Lets Do It World
+,Beverage Cans (aluminum),Lets Do It World
+,"Cans: Food, Juice, Other (tin)",Lets Do It World
+,Aerosol/Spray Cans,Lets Do It World
+,"Straws, Stirrers",Lets Do It World
+,"Six-Pack Rings, Ring Carriers",Lets Do It World
+,Plastic Fragments,Lets Do It World
+,Cotton Bud Sticks,Lets Do It World
+,Toothbrushes,Lets Do It World
+,Gloves (rubber),Lets Do It World
+,Gloves (latex),Lets Do It World
+,Food Wrappers (plastic),Lets Do It World
+,"Cups, Plastes, Forks, Knives, Spoons",Lets Do It World
+,Cigarette Filters,Lets Do It World
+,Cigar Tips,Lets Do It World
+,Cigarette Lighters,Lets Do It World
+,Tobacco Packaging & Wrappers,Lets Do It World
+,Caps & Lids (plastic),Lets Do It World
+,Beverage Bottles: Less than 2 litres,Lets Do It World
+,Beverage Bottles: 2 Litres or more,Lets Do It World
+,Balloons,Lets Do It World
+,Bags: Grocery/Retail (plastic),Lets Do It World
+,Bags: Trash (plastic),Lets Do It World
+,Mesh Bags,Lets Do It World
+,Other Jugs or Containers,Marine Debris Items
+,Non-food related plastic packaging,Marine Debris Items
+,Metal fragments,Marine Debris Items
+,Glass fragments,Marine Debris Items
+,Fishing nets,Marine Debris Items
+,Paper Cups,Marine Debris Items
+,Fireworks,Marine Debris Items
+,Rubber fragments,Marine Debris Items
+,Styrofoam packaging,Marine Debris Items
+,Plastic or Foam Fragments,Marine Debris Items
+,Chemicals and chemical containers,Marine Debris Items
+,Toys (plastic),Marine Debris Items
+,Batteries (acidic and alkaline),Marine Debris Items
+,Crab/Lobster/Fish trap parts,Marine Debris Items
+,Test Item,Marine Debris Items
+,Other,Marine Debris Items
+,Rope or Net Pieces (non-nylon),Marine Debris Items
+,Plastic rope / Small Net Pieces,Marine Debris Items
+,Fishing lures and lines,Marine Debris Items
+,Buoys and floats,Marine Debris Items
+,Pallets,Marine Debris Items
+,Paper and Cardboard,Marine Debris Items
+,Food wrappers (paper),Marine Debris Items
+,Lumber/Building Materials,Marine Debris Items
+,Paper Bags,Marine Debris Items
+,Towels or rags,Marine Debris Items
+,Gloves (non-rubber),Marine Debris Items
+,Fabric pieces,Marine Debris Items
+,Clothing and Shoes,Marine Debris Items
+,Tires,Marine Debris Items
+,Flip-flops,Marine Debris Items
+,Glass Jars,Marine Debris Items
+,Glass Bottle,Marine Debris Items
+,Metal Bottle Caps,Marine Debris Items
+,Aluminum or tin cans,Marine Debris Items
+,Aerosol cans,Marine Debris Items
+,Straws,Marine Debris Items
+,Six-pack rings,Marine Debris Items
+,Plastic Utensils,Marine Debris Items
+,Hard plastic fragments,Marine Debris Items
+,Foam fragments,Marine Debris Items
+,Film fragments,Marine Debris Items
+,Personal care products,Marine Debris Items
+,Rubber Gloves,Marine Debris Items
+,Food Wrappers,Marine Debris Items
+,Foam or Plastic Cups,Marine Debris Items
+,Cigarettes,Marine Debris Items
+,Cigar Tips,Marine Debris Items
+,Disposable cigarette lighters,Marine Debris Items
+,Cigarette or tobacco packaging,Marine Debris Items
+,Bottle or Container Caps,Marine Debris Items
+,Beverage Bottles,Marine Debris Items
+,Latex balloons,Marine Debris Items
+,Balloons - Mylar,Marine Debris Items
+,Plastic Bags,Marine Debris Items
+,Bait ContainersPackaging (plastic),Marine Debris List
+,Bait ContainersPackaging (styrofoam),Marine Debris List
+,CrabLobsterFish Traps(metal),Marine Debris List
+,CrabLobsterFish Traps(plastic),Marine Debris List
+,temp,Marine Debris List
+,temp,Marine Debris List
+,temp,Marine Debris List
+,Rope < 1 meter,Marine Debris List
+,Rope > 1 meter,Marine Debris List
+,FloatsBuoys (plastic),Marine Debris List
+,FloatsBuoys (styrofoam),Marine Debris List
+,FloatsBuoys (metal),Marine Debris List
+,Gloves (textile),Marine Debris List
+,Gloves (plastic),Marine Debris List
+,Tampons or Tampon Applicators,Medical and Personal Hygiene
+,Syringes,Medical and Personal Hygiene
+,Diapers,Medical and Personal Hygiene
+,Condoms,Medical and Personal Hygiene
+,End of Micoplastic Sampling,Microplastics
+,Start Microplastic Sampling,Microplastics
+,Microplastic Sampling Track,Microplastics
+,Test Item,Microplastics
+,0 Microplastic Pieces,Microplastics
+,Less than 100 Microplastic Pieces,Microplastics
+,"Less than 1,000 Microplastic Pieces",Microplastics
+,"Less than 5,000 Microplastic Pieces",Microplastics
+,"Less than 10,000 Microplastic Pieces",Microplastics
+,"Less than 20,000 Microplastic Pieces",Microplastics
+,"Less than 50,000 Microplastic Pieces",Microplastics
+,"Less than 100,000 Microplastic Pieces",Microplastics
+,"Less than 150,000 Microplastic Pieces",Microplastics
+,"Less than 200,000 Microplastic Pieces",Microplastics
+,"200,000 or more Microplastic Pieces",Microplastics
+,Unknown number of Microplastic Pieces,Microplastics
+,Waste Pile,Nat Geo Source to Sea Expedition List
+,Ash Pile,Nat Geo Source to Sea Expedition List
+,Waste Accumulation Zone,Nat Geo Source to Sea Expedition List
+,Canal,Nat Geo Source to Sea Expedition List
+,Stormdrain,Nat Geo Source to Sea Expedition List
+,Junk Shop,Nat Geo Source to Sea Expedition List
+,Recyclables Sorting Space,Nat Geo Source to Sea Expedition List
+,Informal Collection Space,Nat Geo Source to Sea Expedition List
+,Informal Sorting Space,Nat Geo Source to Sea Expedition List
+,Other,Nat Geo Source to Sea Expedition List
+,Trash,Nat Geo Source to Sea Expedition List
+,Trash Overflowing,Nat Geo Source to Sea Expedition List
+,Trash for Store/Kiosk,Nat Geo Source to Sea Expedition List
+,Trash for Store/Kiosk Overflowing,Nat Geo Source to Sea Expedition List
+,General Recycling,Nat Geo Source to Sea Expedition List
+,General Recycling Overflowing,Nat Geo Source to Sea Expedition List
+,Plastic Recycling,Nat Geo Source to Sea Expedition List
+,Plastic Recycling Overflowing,Nat Geo Source to Sea Expedition List
+,Paper Recycling,Nat Geo Source to Sea Expedition List
+,Paper Recycling Overflowing,Nat Geo Source to Sea Expedition List
+,Metal Recycling,Nat Geo Source to Sea Expedition List
+,Metal Recycling Overflowing,Nat Geo Source to Sea Expedition List
+,Glass Recycling,Nat Geo Source to Sea Expedition List
+,Glass Recycling Overflowing,Nat Geo Source to Sea Expedition List
+,Compost,Nat Geo Source to Sea Expedition List
+,Compost Overflowing,Nat Geo Source to Sea Expedition List
+,Dumpster,Nat Geo Source to Sea Expedition List
+,Dumpster Overflowing,Nat Geo Source to Sea Expedition List
+,Other,Nat Geo Source to Sea Expedition List
+,Convenience,Nat Geo Source to Sea Expedition List
+,Grocery,Nat Geo Source to Sea Expedition List
+,Street Vendor,Nat Geo Source to Sea Expedition List
+,Non-Food Retail,Nat Geo Source to Sea Expedition List
+,Other Store,Nat Geo Source to Sea Expedition List
+,Street Food Stands,Nat Geo Source to Sea Expedition List
+,Coffee/Tea Shop,Nat Geo Source to Sea Expedition List
+,Fast Food,Nat Geo Source to Sea Expedition List
+,Sit-Down Restuarant,Nat Geo Source to Sea Expedition List
+,Other Restaurant,Nat Geo Source to Sea Expedition List
+,Bulk Bags,Nat Geo Source to Sea Expedition List
+,Blister pack,Nat Geo Source to Sea Expedition List
+,Tobacco Sachets,Nat Geo Source to Sea Expedition List
+,Personal Care Product Sachets,Nat Geo Source to Sea Expedition List
+,Plastic String,Nat Geo Source to Sea Expedition List
+,E-Waste Fragments,Nat Geo Source to Sea Expedition List
+,Other C&D,Nat Geo Source to Sea Expedition List
+,"Bolts, Nails, and Screws",Nat Geo Source to Sea Expedition List
+,Aggregate & Brick,Nat Geo Source to Sea Expedition List
+,Other Paper,Nat Geo Source to Sea Expedition List
+,Receipts,Nat Geo Source to Sea Expedition List
+,Paper Food Box,Nat Geo Source to Sea Expedition List
+,Other Cloth,Nat Geo Source to Sea Expedition List
+,Alumninum Foil,Nat Geo Source to Sea Expedition List
+,Street Food Bowl,Nat Geo Source to Sea Expedition List
+,To Go Ware (Multimaterial),Nat Geo Source to Sea Expedition List
+,Juicebox/Coated Paperboard,Nat Geo Source to Sea Expedition List
+,Other Fishing Gear,Nat Geo Source to Sea Expedition List
+,Other Plastic,Nat Geo Source to Sea Expedition List
+,Other Tobacco Product,Nat Geo Source to Sea Expedition List
+,Other Personal Care Product,Nat Geo Source to Sea Expedition List
+,Other Food Plastic,Nat Geo Source to Sea Expedition List
+,Glass Fragments,Nat Geo Source to Sea Expedition List
+,Other Metal,Nat Geo Source to Sea Expedition List
+,Food Waste,Nat Geo Source to Sea Expedition List
+,Other Organic Waste,Nat Geo Source to Sea Expedition List
+,Plastic Net or Net Pieces,Nat Geo Source to Sea Expedition List
+,Other E-Waste,Nat Geo Source to Sea Expedition List
+,Other Glass,Nat Geo Source to Sea Expedition List
+,Rubber Bands,Nat Geo Source to Sea Expedition List
+,Styrofoam Container,Nat Geo Source to Sea Expedition List
+,Batteries,Nat Geo Source to Sea Expedition List
+,Land-Based Drift Card Drop Point,Nat Geo Source to Sea Expedition List
+,Water-Based Drift Card Drop Point,Nat Geo Source to Sea Expedition List
+,Quadrat Sample,Nat Geo Source to Sea Expedition List
+,Schools,Nat Geo Source to Sea Expedition List
+,Parks/Green Space,Nat Geo Source to Sea Expedition List
+,Bus Stop,Nat Geo Source to Sea Expedition List
+,Park Benches,Nat Geo Source to Sea Expedition List
+,Religious Practice Site,Nat Geo Source to Sea Expedition List
+,Air Sample Location,Nat Geo Source to Sea Expedition List
+,Other Litter Item,Nat Geo Source to Sea Expedition List
+,Test Item,Nat Geo Source to Sea Expedition List
+,Popsicle Stick,Nat Geo Source to Sea Expedition List
+,Plastic Rope,Nat Geo Source to Sea Expedition List
+,Fishing Lures,Nat Geo Source to Sea Expedition List
+,Fishing Line,Nat Geo Source to Sea Expedition List
+,Buoys and Floats,Nat Geo Source to Sea Expedition List
+,Corregated Cardboard,Nat Geo Source to Sea Expedition List
+,Paper,Nat Geo Source to Sea Expedition List
+,Lumber,Nat Geo Source to Sea Expedition List
+,Building Materials,Nat Geo Source to Sea Expedition List
+,Paper Bags,Nat Geo Source to Sea Expedition List
+,Towels or Rags,Nat Geo Source to Sea Expedition List
+,Fabric Pieces,Nat Geo Source to Sea Expedition List
+,Clothing,Nat Geo Source to Sea Expedition List
+,Tires,Nat Geo Source to Sea Expedition List
+,Plastic Shoes & Flip Flops,Nat Geo Source to Sea Expedition List
+,Glass Bottle,Nat Geo Source to Sea Expedition List
+,Metal Bottle Caps,Nat Geo Source to Sea Expedition List
+,Alumnium or Tin Cans,Nat Geo Source to Sea Expedition List
+,Straws,Nat Geo Source to Sea Expedition List
+,Industrial Plastic Pellets,Nat Geo Source to Sea Expedition List
+,Sheetlike User Plastics,Nat Geo Source to Sea Expedition List
+,Threadlike User Plastics,Nat Geo Source to Sea Expedition List
+,Foamed User Plastics,Nat Geo Source to Sea Expedition List
+,Hard Plastic Fragments,Nat Geo Source to Sea Expedition List
+,Other Fragments,Nat Geo Source to Sea Expedition List
+,Cotton Buds,Nat Geo Source to Sea Expedition List
+,Toothbrushes,Nat Geo Source to Sea Expedition List
+,Personal Care Product Tube,Nat Geo Source to Sea Expedition List
+,"HDPE Container (Shampoo bottles, Milk Jugs, etc.)",Nat Geo Source to Sea Expedition List
+,Plastic Food Wrapper,Nat Geo Source to Sea Expedition List
+,Foam or Plastic Cups/Lids,Nat Geo Source to Sea Expedition List
+,Cigaerettes,Nat Geo Source to Sea Expedition List
+,Cigarette Lighters & Packaging,Nat Geo Source to Sea Expedition List
+,Plastic Bottle Cap,Nat Geo Source to Sea Expedition List
+,Plastic Bottle,Nat Geo Source to Sea Expedition List
+,Retail Bag,Nat Geo Source to Sea Expedition List
+,Take-Out Food Bag,Nat Geo Source to Sea Expedition List
+,Light bulbs or Tubes,Ocean and Waterway Activities
+,Fishing Nets,Ocean and Waterway Activities
+,Crates,Ocean and Waterway Activities
+,Strapping Bands,Ocean and Waterway Activities
+,Plastic sheeting or Tarps,Ocean and Waterway Activities
+,Bleach or Cleaner Bottles,Ocean and Waterway Activities
+,Oil or Lube Bottles,Ocean and Waterway Activities
+,Bair containers or Packaging,Ocean and Waterway Activities
+,Crab or Lobster or Fish Traps,Ocean and Waterway Activities
+,Rope,Ocean and Waterway Activities
+,Fishing Line,Ocean and Waterway Activities
+,Fishing Lures or Light Sticks,Ocean and Waterway Activities
+,Buoys or Floats,Ocean and Waterway Activities
+,Pallets,Ocean and Waterway Activities
+,Other Plastic/Foam Packaging,Ocean Conservancy ICC List
+,Other Plastic Bottles,Ocean Conservancy ICC List
+,Glass Pieces,Ocean Conservancy ICC List
+,Glass Pieces,Ocean Conservancy ICC List
+,Appliances,Ocean Conservancy ICC List
+,Fishing Net & Pieces,Ocean Conservancy ICC List
+,Cups & Plates (Paper),Ocean Conservancy ICC List
+,Fireworks,Ocean Conservancy ICC List
+,Strapping Bands,Ocean Conservancy ICC List
+,Tampons/Tampon Applicators,Ocean Conservancy ICC List
+,Syringes,Ocean Conservancy ICC List
+,Diapers,Ocean Conservancy ICC List
+,Condoms,Ocean Conservancy ICC List
+,Take Out/Away Containers (Plastic),Ocean Conservancy ICC List
+,Take Out/Away Containers (Foam),Ocean Conservancy ICC List
+,Dead or Injured Animal,Ocean Conservancy ICC List
+,Toys,Ocean Conservancy ICC List
+,Test Item,Ocean Conservancy ICC List
+,Other,Ocean Conservancy ICC List
+,Rope,Ocean Conservancy ICC List
+,Fishing Line,Ocean Conservancy ICC List
+,"Fishing Buoys, Pots & Traps",Ocean Conservancy ICC List
+,Construction Materials,Ocean Conservancy ICC List
+,Paper Bags,Ocean Conservancy ICC List
+,Towels,Ocean Conservancy ICC List
+,Clothing,Ocean Conservancy ICC List
+,Shoes,Ocean Conservancy ICC List
+,Tires,Ocean Conservancy ICC List
+,Beverage Bottles (Glass),Ocean Conservancy ICC List
+,Bottle Caps (Metal),Ocean Conservancy ICC List
+,Beverage Cans,Ocean Conservancy ICC List
+,Straws/Stirrers,Ocean Conservancy ICC List
+,6-Pack Holders,Ocean Conservancy ICC List
+,"Forks, Knives, Spoons",Ocean Conservancy ICC List
+,Foam Pieces,Ocean Conservancy ICC List
+,Plastic Pieces,Ocean Conservancy ICC List
+,Foam Pieces,Ocean Conservancy ICC List
+,Plastic Pieces,Ocean Conservancy ICC List
+,Food Wrappers,Ocean Conservancy ICC List
+,Cups & Plates (Plastic),Ocean Conservancy ICC List
+,Cups & Plates (Foam),Ocean Conservancy ICC List
+,Cigar Tips,Ocean Conservancy ICC List
+,Cigarrette Butts,Ocean Conservancy ICC List
+,Cigarette Lighters,Ocean Conservancy ICC List
+,Tobacco Packaging/Wrap,Ocean Conservancy ICC List
+,Bottle Caps (Plastic),Ocean Conservancy ICC List
+,Lids (Plastic),Ocean Conservancy ICC List
+,Beverage Bottles (Plastic),Ocean Conservancy ICC List
+,Balloons,Ocean Conservancy ICC List
+,Grocery Bags (Plastic),Ocean Conservancy ICC List
+,Other Plastic Bags,Ocean Conservancy ICC List
+,Time,Open Ocean Hourly Observations
+,Ship Speed,Open Ocean Hourly Observations
+,Ship Heading,Open Ocean Hourly Observations
+,Wind Speed,Open Ocean Hourly Observations
+,Wind Direction,Open Ocean Hourly Observations
+,Visability,Open Ocean Hourly Observations
+,Marine Debris,Open Ocean Hourly Observations
+,Your Inititals,Open Ocean Hourly Observations
+,Fish,Open Ocean Hourly Observations
+,Turtle,Open Ocean Hourly Observations
+,Mammals,Open Ocean Hourly Observations
+,Sea Birds,Open Ocean Hourly Observations
+,Sargassum Clump,Open Ocean Hourly Observations
+,Sargassum Fragment,Open Ocean Hourly Observations
+,Sargassum Windrow,Open Ocean Hourly Observations
+,Sewage related debris,Our Ocean Youth Summit
+,Agricultural tarpaulin and packaging,Our Ocean Youth Summit
+,Test item,Our Ocean Youth Summit
+,common household items,Our Ocean Youth Summit
+,Other identifiable items,Our Ocean Youth Summit
+,Unknown items,Our Ocean Youth Summit
+,Fisheries and mariculture tackles,Our Ocean Youth Summit
+,Recreational fishing and hunting,Our Ocean Youth Summit
+,Industrial packaging and construction debris,Our Ocean Youth Summit
+,Food and beverage packaging,Our Ocean Youth Summit
+,Smoking-related items,Our Ocean Youth Summit
+,Metal pieces,Rozalia Project Long List
+,Shotgun shells/wadding,Rozalia Project Long List
+,Glass pieces,Rozalia Project Long List
+,Type of cleanup,Rozalia Project Long List
+,Location cleaned,Rozalia Project Long List
+,Type of shoreline,Rozalia Project Long List
+,Distance cleaned,Rozalia Project Long List
+,Weather,Rozalia Project Long List
+,Start time,Rozalia Project Long List
+,End time,Rozalia Project Long List
+,Recent weather or human events,Rozalia Project Long List
+,Most unusual item,Rozalia Project Long List
+,Your name,Rozalia Project Long List
+,"Office supplies, pens, etc.",Rozalia Project Long List
+,Fishing nets,Rozalia Project Long List
+,Monofilament net/fiber up to 5mm,Rozalia Project Long List
+,Monofilament net/fiber 5-30mm,Rozalia Project Long List
+,Monofilament net larger than 30mm,Rozalia Project Long List
+,Paper/tissue/napkin,Rozalia Project Long List
+,Home and garden items,Rozalia Project Long List
+,Microplastic: resin pellets,Rozalia Project Long List
+,Lobster claw bands,Rozalia Project Long List
+,Rubber pieces,Rozalia Project Long List
+,Shipping/packaging,Rozalia Project Long List
+,Shipping/packaging,Rozalia Project Long List
+,Strapping bands/zip ties,Rozalia Project Long List
+,Plastic sheeting/tape,Rozalia Project Long List
+,Tampons/applicators,Rozalia Project Long List
+,Diapers,Rozalia Project Long List
+,Condoms,Rozalia Project Long List
+,Bleach/cleaner bottles,Rozalia Project Long List
+,Oil/lube bottles,Rozalia Project Long List
+,Bait containers/crates,Rozalia Project Long List
+,Plastic take-away containers,Rozalia Project Long List
+,Foam take-away containers,Rozalia Project Long List
+,Toys,Rozalia Project Long List
+,Cans,Rozalia Project Long List
+,Batteries,Rozalia Project Long List
+,Car/boat parts,Rozalia Project Long List
+,Derelict traps/trap pieces,Rozalia Project Long List
+,Test item,Rozalia Project Long List
+,Other,Rozalia Project Long List
+,Rope,Rozalia Project Long List
+,Fishing lures/light sticks,Rozalia Project Long List
+,Buoys/floats,Rozalia Project Long List
+,Paper cups/plates,Rozalia Project Long List
+,Paper bags,Rozalia Project Long List
+,Fabric pieces,Rozalia Project Long List
+,Shoes,Rozalia Project Long List
+,Clothing/towel/gloves,Rozalia Project Long List
+,Sunglasses,Rozalia Project Long List
+,Tires,Rozalia Project Long List
+,Glass bottles,Rozalia Project Long List
+,Metal caps/lids,Rozalia Project Long List
+,Straws/stirrers,Rozalia Project Long List
+,Utensils,Rozalia Project Long List
+,Microplastic up to 5mm,Rozalia Project Long List
+,Micro-foam up to 5mm,Rozalia Project Long List
+,Small plastic 5-30mm,Rozalia Project Long List
+,Small foam 5-30mm,Rozalia Project Long List
+,Large plastic larger than 30mm,Rozalia Project Long List
+,Large foam larger than 30mm,Rozalia Project Long List
+,Microplastic: exfoliant beads,Rozalia Project Long List
+,Personal hygiene,Rozalia Project Long List
+,Wipes/oil sorbs,Rozalia Project Long List
+,Food wrappers,Rozalia Project Long List
+,Plastic cups/plates,Rozalia Project Long List
+,Foam cups/plates,Rozalia Project Long List
+,Cigarrettes,Rozalia Project Long List
+,Cigar tips,Rozalia Project Long List
+,Lighters,Rozalia Project Long List
+,Plastic bottle caps,Rozalia Project Long List
+,"Plastic lids: coffee, jars, etc.",Rozalia Project Long List
+,Plastic drink bottles,Rozalia Project Long List
+,Balloons,Rozalia Project Long List
+,Plastic bags,Rozalia Project Long List
+,Metal pieces,Rozalia Project Short List
+,Shotgun shells/wadding,Rozalia Project Short List
+,Glass pieces,Rozalia Project Short List
+,Type of cleanup,Rozalia Project Short List
+,Name of location cleaned,Rozalia Project Short List
+,Type of shoreline,Rozalia Project Short List
+,Distance cleaned,Rozalia Project Short List
+,Weather,Rozalia Project Short List
+,Start time,Rozalia Project Short List
+,End time,Rozalia Project Short List
+,State of the tide,Rozalia Project Short List
+,Recent weather or human events,Rozalia Project Short List
+,Most unusual item,Rozalia Project Short List
+,Your name,Rozalia Project Short List
+,Other notes,Rozalia Project Short List
+,"Office supplies, pens, etc.",Rozalia Project Short List
+,Fishing nets,Rozalia Project Short List
+,Paper cups/plates/containers,Rozalia Project Short List
+,Paper/napkins/tissues,Rozalia Project Short List
+,Home and garden items,Rozalia Project Short List
+,Rubber pieces,Rozalia Project Short List
+,Shipping/packaging,Rozalia Project Short List
+,Shipping/packaging,Rozalia Project Short List
+,Plastic sheeting/tape,Rozalia Project Short List
+,Strapping bands/zip-ties,Rozalia Project Short List
+,Bleach/cleaner/oil bottles,Rozalia Project Short List
+,Bait containers/crates/lures,Rozalia Project Short List
+,Plastic cups/plastes/containers,Rozalia Project Short List
+,Foam cups/plates/containers,Rozalia Project Short List
+,Toys,Rozalia Project Short List
+,Cans,Rozalia Project Short List
+,Car/boat parts,Rozalia Project Short List
+,Derelict traps/trap pieces,Rozalia Project Short List
+,Test item,Rozalia Project Short List
+,Other,Rozalia Project Short List
+,Rope,Rozalia Project Short List
+,Monofilament/fishing line,Rozalia Project Short List
+,Buoys/floats,Rozalia Project Short List
+,Paper bags,Rozalia Project Short List
+,Fabric pieces,Rozalia Project Short List
+,Clothing/towels/gloves/shoes,Rozalia Project Short List
+,Glass bottles,Rozalia Project Short List
+,Metal caps/lids,Rozalia Project Short List
+,Straws/stirrers,Rozalia Project Short List
+,Utensils,Rozalia Project Short List
+,Plastic pieces,Rozalia Project Short List
+,Foam pieces,Rozalia Project Short List
+,Personal hygiene,Rozalia Project Short List
+,Wipes/oil sorbs,Rozalia Project Short List
+,Food wrappers,Rozalia Project Short List
+,Cigarettes/cigar tips,Rozalia Project Short List
+,Plastic bottle caps,Rozalia Project Short List
+,"Plastic lids (coffee, jars +)",Rozalia Project Short List
+,Plastic drink bottles,Rozalia Project Short List
+,Balloons,Rozalia Project Short List
+,Plastic bags,Rozalia Project Short List
+,Прозрачная пищевая пленка,Russian Waste Hub
+,Упаковка из фольгированного пластика,Russian Waste Hub
+,Другое,Russian Waste Hub
+,Веревки или куски сетей (не нейлон),Russian Waste Hub
+,Нейлоновые веревки/Мелкие куски сетей (нейлон),Russian Waste Hub
+,Рыболовные приманки и лески,Russian Waste Hub
+,Буи и поплавки,Russian Waste Hub
+,Паллеты,Russian Waste Hub
+,Бумага и картон,Russian Waste Hub
+,Бумажная пищевая упаковка,Russian Waste Hub
+,Древесина/Строительные материалы,Russian Waste Hub
+,Бумажные пакеты с пластиковым слоем,Russian Waste Hub
+,Бумажные пакеты,Russian Waste Hub
+,Полотенца или ветошь,Russian Waste Hub
+,Перчатки (нерезиновые/нетканые),Russian Waste Hub
+,Куски ткани,Russian Waste Hub
+,Одежда и обувь,Russian Waste Hub
+,Шины,Russian Waste Hub
+,Шлепки,Russian Waste Hub
+,Стеклянные банки,Russian Waste Hub
+,Стеклянные бутылки,Russian Waste Hub
+,Металлические крышки от бутылок,Russian Waste Hub
+,Алюминиевые или жестяные банки,Russian Waste Hub
+,Аэрозольные баллончики,Russian Waste Hub
+,Трубочки,Russian Waste Hub
+,Упаковки-кольца от блока банок,Russian Waste Hub
+,Одноразовые пластиковые приборы,Russian Waste Hub
+,Куски пластика/вспененного пластика,Russian Waste Hub
+,Средства личной гигиены и тара от них,Russian Waste Hub
+,Пластиковые канистры и другая тара,Russian Waste Hub
+,Резиновые перчатки,Russian Waste Hub
+,Пластиковая пищевая упаковка,Russian Waste Hub
+,Пластиковые стаканы,Russian Waste Hub
+,Стаканы и посуда из вспененного пластика,Russian Waste Hub
+,Пластиковая посуда,Russian Waste Hub
+,Сигареты,Russian Waste Hub
+,Упаковки от сигарет,Russian Waste Hub
+,Зажигалки,Russian Waste Hub
+,Пластиковые крышки от бутылок или контейнеров,Russian Waste Hub
+,Пластиковые крышки от стаканов,Russian Waste Hub
+,Пластиковые бутылки от напитков,Russian Waste Hub
+,Воздушные шарики и/или лента от них,Russian Waste Hub
+,Пластиковые пакеты,Russian Waste Hub
+,Other Plastic Jugs or Containers,Sarasota Dolphin Research Program Debris Team
+,Non-food related plastic packaging,Sarasota Dolphin Research Program Debris Team
+,Fishing nets,Sarasota Dolphin Research Program Debris Team
+,Paper Cups,Sarasota Dolphin Research Program Debris Team
+,Fireworks,Sarasota Dolphin Research Program Debris Team
+,Styrofoam packaging,Sarasota Dolphin Research Program Debris Team
+,Chemicals and chemical containers,Sarasota Dolphin Research Program Debris Team
+,Toys (plastic),Sarasota Dolphin Research Program Debris Team
+,Batteries (acidic and alkaline),Sarasota Dolphin Research Program Debris Team
+,Crab/Lobster/Fish trap parts,Sarasota Dolphin Research Program Debris Team
+,Test Item,Sarasota Dolphin Research Program Debris Team
+,Other,Sarasota Dolphin Research Program Debris Team
+,Rope or Net Pieces (non-nylon),Sarasota Dolphin Research Program Debris Team
+,Plastic rope / Small Net Pieces,Sarasota Dolphin Research Program Debris Team
+,Fishing lures and lines,Sarasota Dolphin Research Program Debris Team
+,Buoys and floats,Sarasota Dolphin Research Program Debris Team
+,Pallets,Sarasota Dolphin Research Program Debris Team
+,Paper and Cardboard,Sarasota Dolphin Research Program Debris Team
+,Food wrappers (paper),Sarasota Dolphin Research Program Debris Team
+,Lumber/Building Materials,Sarasota Dolphin Research Program Debris Team
+,Paper Bags,Sarasota Dolphin Research Program Debris Team
+,Towels or rags,Sarasota Dolphin Research Program Debris Team
+,Gloves (non-rubber),Sarasota Dolphin Research Program Debris Team
+,Fabric pieces,Sarasota Dolphin Research Program Debris Team
+,Clothing and Shoes,Sarasota Dolphin Research Program Debris Team
+,Tires,Sarasota Dolphin Research Program Debris Team
+,Flip-flops,Sarasota Dolphin Research Program Debris Team
+,Glass Jars,Sarasota Dolphin Research Program Debris Team
+,Glass Bottle,Sarasota Dolphin Research Program Debris Team
+,Metal Bottle Caps,Sarasota Dolphin Research Program Debris Team
+,Aluminum or tin cans,Sarasota Dolphin Research Program Debris Team
+,Aerosol cans,Sarasota Dolphin Research Program Debris Team
+,Straws,Sarasota Dolphin Research Program Debris Team
+,Six-pack rings,Sarasota Dolphin Research Program Debris Team
+,Plastic Utensils,Sarasota Dolphin Research Program Debris Team
+,Plastic or Foam Fragments,Sarasota Dolphin Research Program Debris Team
+,Personal care products,Sarasota Dolphin Research Program Debris Team
+,Rubber Gloves,Sarasota Dolphin Research Program Debris Team
+,Plastic Food Wrappers,Sarasota Dolphin Research Program Debris Team
+,Foam or Plastic Cups,Sarasota Dolphin Research Program Debris Team
+,Cigarettes,Sarasota Dolphin Research Program Debris Team
+,Cigarette lighters/tobacco packaging,Sarasota Dolphin Research Program Debris Team
+,Cigarette or tobacco packaging,Sarasota Dolphin Research Program Debris Team
+,Plastic Bottle or Container Caps,Sarasota Dolphin Research Program Debris Team
+,Plastic Bottle,Sarasota Dolphin Research Program Debris Team
+,Balloons and/or string,Sarasota Dolphin Research Program Debris Team
+,Plastic Bags,Sarasota Dolphin Research Program Debris Team
+,Other Plastic Jugs or Containers,Sea Education Association
+,Non-food related plastic packaging,Sea Education Association
+,Fishing nets,Sea Education Association
+,Paper Cups,Sea Education Association
+,Fireworks,Sea Education Association
+,Styrofoam packaging,Sea Education Association
+,Chemicals and chemical containers,Sea Education Association
+,Toys (plastic),Sea Education Association
+,Batteries (acidic and alkaline),Sea Education Association
+,Crab/Lobster/Fish trap parts,Sea Education Association
+,Test Item,Sea Education Association
+,Other,Sea Education Association
+,Rope or Net Pieces (non-nylon),Sea Education Association
+,Plastic rope / Small Net Pieces,Sea Education Association
+,Fishing lures and lines,Sea Education Association
+,Buoys and floats,Sea Education Association
+,Pallets,Sea Education Association
+,Paper and Cardboard,Sea Education Association
+,Food wrappers (paper),Sea Education Association
+,Lumber/Building Materials,Sea Education Association
+,Paper Bags,Sea Education Association
+,Towels or rags,Sea Education Association
+,Gloves (non-rubber),Sea Education Association
+,Fabric pieces,Sea Education Association
+,Clothing and Shoes,Sea Education Association
+,Tires,Sea Education Association
+,Flip-flops,Sea Education Association
+,Glass Jars,Sea Education Association
+,Glass Bottle,Sea Education Association
+,Metal Bottle Caps,Sea Education Association
+,Aluminum or tin cans,Sea Education Association
+,Aerosol cans,Sea Education Association
+,Straws,Sea Education Association
+,Six-pack rings,Sea Education Association
+,Plastic Utensils,Sea Education Association
+,Plastic or Foam Fragments,Sea Education Association
+,Personal care products,Sea Education Association
+,Rubber Gloves,Sea Education Association
+,Plastic Food Wrappers,Sea Education Association
+,Foam or Plastic Cups,Sea Education Association
+,Cigarettes,Sea Education Association
+,Cigarette lighters/tobacco packaging,Sea Education Association
+,Cigarette or tobacco packaging,Sea Education Association
+,Plastic Bottle or Container Caps,Sea Education Association
+,Plastic Bottle,Sea Education Association
+,Balloons and/or string,Sea Education Association
+,Plastic Bags,Sea Education Association
+,Operator Name,SeaBin Data Collection
+,Hours in Operation,SeaBin Data Collection
+,Rain (Yes or No),SeaBin Data Collection
+,Wind (Yes or No),SeaBin Data Collection
+,Currents (Yes or No),SeaBin Data Collection
+,SeaBin ID,SeaBin Data Collection
+,Cans,SeaBin Data Collection
+,Straws/Stirrers,SeaBin Data Collection
+,Cutlery,SeaBin Data Collection
+,Plastic Pieces,SeaBin Data Collection
+,Foam Pieces,SeaBin Data Collection
+,Food Wrappers/Containers,SeaBin Data Collection
+,Cigarette Butts,SeaBin Data Collection
+,Bottle Caps,SeaBin Data Collection
+,Bottles,SeaBin Data Collection
+,Bags,SeaBin Data Collection
+,Shotgun Shells or Wadding,Shoreline and Recreational Activities
+,Toys,Shoreline and Recreational Activities
+,Clothing shoes,Shoreline and Recreational Activities
+,Beverage Bottles (glass),Shoreline and Recreational Activities
+,Pull Tabs,Shoreline and Recreational Activities
+,Beverage Cans,Shoreline and Recreational Activities
+,Straws or Stirrers,Shoreline and Recreational Activities
+,6-Pack Holders,Shoreline and Recreational Activities
+,Food Wrappers or Containers,Shoreline and Recreational Activities
+,Cups or Plates or Forks or Knives or Spoons,Shoreline and Recreational Activities
+,Caps Lids,Shoreline and Recreational Activities
+,Beverage Bottles (plastic) 2 liters or less,Shoreline and Recreational Activities
+,Balloons,Shoreline and Recreational Activities
+,Bags,Shoreline and Recreational Activities
+,Junk Shop,Site Assessment
+,Recyclables Sorting Space,Site Assessment
+,Informal Collection Space,Site Assessment
+,Informal Sorting Space,Site Assessment
+,Other,Site Assessment
+,Grocery,Site Assessment
+,Convenience,Site Assessment
+,Non-Food Retail,Site Assessment
+,Take-Away/Food Stand,Site Assessment
+,Coffee/Tea Shop,Site Assessment
+,Trash,Site Assessment
+,Trash Overflowing,Site Assessment
+,General Recycling,Site Assessment
+,General Recycling Overflowing,Site Assessment
+,Plastic Recycling,Site Assessment
+,Plastic Recycling Overflowing,Site Assessment
+,Paper Recycling,Site Assessment
+,Paper Recycling Overflowing,Site Assessment
+,Metal/Can Recycling,Site Assessment
+,Metal/Can Recycling Overflowing,Site Assessment
+,Glass Recycling,Site Assessment
+,Glass Recycling Overflowing,Site Assessment
+,Compost,Site Assessment
+,Compost Overflowing,Site Assessment
+,Cigarette Waste,Site Assessment
+,Cigarette Waste Overflowing,Site Assessment
+,Other,Site Assessment
+,Other Overflowing,Site Assessment
+,Other,Site Assessment
+,Other,Site Assessment
+,Sit-Down Restaurant,Site Assessment
+,Cigarettes or Cigarette Filters,Smoking Related Activities
+,Cigar Tips,Smoking Related Activities
+,Cigarette Lighters,Smoking Related Activities
+,Pêche amateur et chasse,Surfrider Foundation Europe - Wastes Quantificatio
+,Déchets agricoles,Surfrider Foundation Europe - Wastes Quantificatio
+,Rive droite ou gauche?,Surfrider Foundation Europe - Wastes Quantificatio
+,Autres déchets,Surfrider Foundation Europe - Wastes Quantificatio
+,Objets de la vie courante,Surfrider Foundation Europe - Wastes Quantificatio
+,Déchets industriels et de construction,Surfrider Foundation Europe - Wastes Quantificatio
+,Emballages de nourriture et de boissons,Surfrider Foundation Europe - Wastes Quantificatio
+,Autres déchets +10,Surfrider Foundation Europe - Wastes Quantificatio
+,Other Plastic Jugs or Containers,Sustainable Seas Trust
+,Non-food related plastic packaging,Sustainable Seas Trust
+,Fishing nets,Sustainable Seas Trust
+,Paper Cups,Sustainable Seas Trust
+,Fireworks,Sustainable Seas Trust
+,Styrofoam packaging,Sustainable Seas Trust
+,Chemicals and chemical containers,Sustainable Seas Trust
+,Toys (plastic),Sustainable Seas Trust
+,Batteries (acidic and alkaline),Sustainable Seas Trust
+,Crab/Lobster/Fish trap parts,Sustainable Seas Trust
+,Test Item,Sustainable Seas Trust
+,Other,Sustainable Seas Trust
+,Rope or Net Pieces (non-nylon),Sustainable Seas Trust
+,Plastic rope / Small Net Pieces,Sustainable Seas Trust
+,Fishing lures and lines,Sustainable Seas Trust
+,Buoys and floats,Sustainable Seas Trust
+,Pallets,Sustainable Seas Trust
+,Paper and Cardboard,Sustainable Seas Trust
+,Food wrappers (paper),Sustainable Seas Trust
+,Lumber/Building Materials,Sustainable Seas Trust
+,Paper Bags,Sustainable Seas Trust
+,Towels or rags,Sustainable Seas Trust
+,Gloves (non-rubber),Sustainable Seas Trust
+,Fabric pieces,Sustainable Seas Trust
+,Clothing and Shoes,Sustainable Seas Trust
+,Tires,Sustainable Seas Trust
+,Flip-flops,Sustainable Seas Trust
+,Glass Jars,Sustainable Seas Trust
+,Glass Bottle,Sustainable Seas Trust
+,Metal Bottle Caps,Sustainable Seas Trust
+,Aluminum or tin cans,Sustainable Seas Trust
+,Aerosol cans,Sustainable Seas Trust
+,Straws,Sustainable Seas Trust
+,Six-pack rings,Sustainable Seas Trust
+,Plastic Utensils,Sustainable Seas Trust
+,Plastic or Foam Fragments,Sustainable Seas Trust
+,Personal care products,Sustainable Seas Trust
+,Rubber Gloves,Sustainable Seas Trust
+,Plastic Food Wrappers,Sustainable Seas Trust
+,Foam or Plastic Cups,Sustainable Seas Trust
+,Cigarettes,Sustainable Seas Trust
+,Cigarette lighters/tobacco packaging,Sustainable Seas Trust
+,Cigarette or tobacco packaging,Sustainable Seas Trust
+,Plastic Bottle or Container Caps,Sustainable Seas Trust
+,Plastic Bottle,Sustainable Seas Trust
+,Balloons and/or string,Sustainable Seas Trust
+,Plastic Bags,Sustainable Seas Trust
+,"Wire, wire mesh & barbed wire",Te Tai Tokerau Debris Monitoring Project
+,Metal fragments (unidentified),Te Tai Tokerau Debris Monitoring Project
+,Shotgun wadding & shells,Te Tai Tokerau Debris Monitoring Project
+,Glass or ceramic fragments,Te Tai Tokerau Debris Monitoring Project
+,Fluorescent light tubes,Te Tai Tokerau Debris Monitoring Project
+,Light globes/bulbs,Te Tai Tokerau Debris Monitoring Project
+,Carpet & furnishing,Te Tai Tokerau Debris Monitoring Project
+,Pegs and clips,Te Tai Tokerau Debris Monitoring Project
+,Pens,Te Tai Tokerau Debris Monitoring Project
+,Fishing net,Te Tai Tokerau Debris Monitoring Project
+,Matches (& fireworks),Te Tai Tokerau Debris Monitoring Project
+,Fireworks,Te Tai Tokerau Debris Monitoring Project
+,Gardening & farming related,Te Tai Tokerau Debris Monitoring Project
+,Processed timber & pallet crates,Te Tai Tokerau Debris Monitoring Project
+,"Baskets, crates & trays",Te Tai Tokerau Debris Monitoring Project
+,Other (please specify or take photo),Te Tai Tokerau Debris Monitoring Project
+,Appliances & electronics,Te Tai Tokerau Debris Monitoring Project
+,Rubber bands,Te Tai Tokerau Debris Monitoring Project
+,Plastic film,Te Tai Tokerau Debris Monitoring Project
+,Inner-tubes and rubber sheet,Te Tai Tokerau Debris Monitoring Project
+,Resin pellets,Te Tai Tokerau Debris Monitoring Project
+,Rubber fragments,Te Tai Tokerau Debris Monitoring Project
+,Polystyrene insulation or packaging,Te Tai Tokerau Debris Monitoring Project
+,Cable ties & zip ties,Te Tai Tokerau Debris Monitoring Project
+,Strapping bands,Te Tai Tokerau Debris Monitoring Project
+,Plastic sheeting,Te Tai Tokerau Debris Monitoring Project
+,Medical waste (except syringes),Te Tai Tokerau Debris Monitoring Project
+,"Sharp needles, lancets, metal catheters",Te Tai Tokerau Debris Monitoring Project
+,Syringes (Caution if picking up!),Te Tai Tokerau Debris Monitoring Project
+,Condoms (Caution if picking up!),Te Tai Tokerau Debris Monitoring Project
+,Backpacks & bags,Te Tai Tokerau Debris Monitoring Project
+,"Gas bottles, drums & buckets (> 4 L)",Te Tai Tokerau Debris Monitoring Project
+,Food containers,Te Tai Tokerau Debris Monitoring Project
+,Foil wrappers,Te Tai Tokerau Debris Monitoring Project
+,"Balloon, tennis ball, football, dog toy",Te Tai Tokerau Debris Monitoring Project
+,"Toys, balls, party poppers",Te Tai Tokerau Debris Monitoring Project
+,Batteries,Te Tai Tokerau Debris Monitoring Project
+,Plastic vehicle parts,Te Tai Tokerau Debris Monitoring Project
+,Metal vehicle parts,Te Tai Tokerau Debris Monitoring Project
+,Boat parts,Te Tai Tokerau Debris Monitoring Project
+,Fishing traps and pots,Te Tai Tokerau Debris Monitoring Project
+,Other (please specify or take a photo),Te Tai Tokerau Debris Monitoring Project
+,Other (please specify or take photo),Te Tai Tokerau Debris Monitoring Project
+,Other (please specify or take photo),Te Tai Tokerau Debris Monitoring Project
+,Other (please specify or take a photo),Te Tai Tokerau Debris Monitoring Project
+,Other (please specify or take photo),Te Tai Tokerau Debris Monitoring Project
+,Other (please specify or take a photo),Te Tai Tokerau Debris Monitoring Project
+,Fibreglass fragments,Te Tai Tokerau Debris Monitoring Project
+,Safety related,Te Tai Tokerau Debris Monitoring Project
+,Other (please specify or take a photo),Te Tai Tokerau Debris Monitoring Project
+,Paraffin or wax,Te Tai Tokerau Debris Monitoring Project
+,Other (please specify or take photo),Te Tai Tokerau Debris Monitoring Project
+,"Rope, line or string (natural)",Te Tai Tokerau Debris Monitoring Project
+,Rope,Te Tai Tokerau Debris Monitoring Project
+,Corks,Te Tai Tokerau Debris Monitoring Project
+,"Fishing gear (floats, lures, traps, pots)",Te Tai Tokerau Debris Monitoring Project
+,Fishing line,Te Tai Tokerau Debris Monitoring Project
+,"Fishing related (sinkers, lures, hooks, etc.)",Te Tai Tokerau Debris Monitoring Project
+,Foam buoys,Te Tai Tokerau Debris Monitoring Project
+,Glass buoys,Te Tai Tokerau Debris Monitoring Project
+,Plastic buoys & floats,Te Tai Tokerau Debris Monitoring Project
+,Cardboard boxes & fragments,Te Tai Tokerau Debris Monitoring Project
+,Paper,Te Tai Tokerau Debris Monitoring Project
+,Parking tickets & receipts,Te Tai Tokerau Debris Monitoring Project
+,Lumber/building material,Te Tai Tokerau Debris Monitoring Project
+,Wooden utensils,Te Tai Tokerau Debris Monitoring Project
+,"Construction material (brick, pipes, etc)",Te Tai Tokerau Debris Monitoring Project
+,Paper bags,Te Tai Tokerau Debris Monitoring Project
+,Towels/rags,Te Tai Tokerau Debris Monitoring Project
+,Gloves (non-rubber),Te Tai Tokerau Debris Monitoring Project
+,Gloves (non-rubber),Te Tai Tokerau Debris Monitoring Project
+,"Canvas, sailcloth & sacking",Te Tai Tokerau Debris Monitoring Project
+,Fabric pieces,Te Tai Tokerau Debris Monitoring Project
+,Rubber footwear (sandals only),Te Tai Tokerau Debris Monitoring Project
+,"Clothing, hats, gloves & towels",Te Tai Tokerau Debris Monitoring Project
+,Footwear & shoes,Te Tai Tokerau Debris Monitoring Project
+,Jars,Te Tai Tokerau Debris Monitoring Project
+,Other cans (< 4 L),Te Tai Tokerau Debris Monitoring Project
+,Aluminum/tin drink cans,Te Tai Tokerau Debris Monitoring Project
+,Aerosol cans,Te Tai Tokerau Debris Monitoring Project
+,Straws,Te Tai Tokerau Debris Monitoring Project
+,Drink package rings,Te Tai Tokerau Debris Monitoring Project
+,Tableware,Te Tai Tokerau Debris Monitoring Project
+,Plastic utensils,Te Tai Tokerau Debris Monitoring Project
+,Tableware,Te Tai Tokerau Debris Monitoring Project
+,Foamed plastic fragments,Te Tai Tokerau Debris Monitoring Project
+,Fragments of hard plastic,Te Tai Tokerau Debris Monitoring Project
+,Fragments of soft plastic,Te Tai Tokerau Debris Monitoring Project
+,Ear plugs,Te Tai Tokerau Debris Monitoring Project
+,Foam sponge,Te Tai Tokerau Debris Monitoring Project
+,Lollipop sticks & cotton buds,Te Tai Tokerau Debris Monitoring Project
+,Personal hygiene,Te Tai Tokerau Debris Monitoring Project
+,Sanitary items,Te Tai Tokerau Debris Monitoring Project
+,Gloves,Te Tai Tokerau Debris Monitoring Project
+,Plastic food wrappers,Te Tai Tokerau Debris Monitoring Project
+,Polystyrene cups or food packs,Te Tai Tokerau Debris Monitoring Project
+,"Cups, food trays & wrappers",Te Tai Tokerau Debris Monitoring Project
+,Cigarette butts,Te Tai Tokerau Debris Monitoring Project
+,Cigarette lighters,Te Tai Tokerau Debris Monitoring Project
+,Foam bottle seals & tabs,Te Tai Tokerau Debris Monitoring Project
+,Bottle caps & lids,Te Tai Tokerau Debris Monitoring Project
+,Bottle neck rings,Te Tai Tokerau Debris Monitoring Project
+,"Bottle caps, lids & pull tabs",Te Tai Tokerau Debris Monitoring Project
+,Bottles & jars,Te Tai Tokerau Debris Monitoring Project
+,Bottles < 2 L,Te Tai Tokerau Debris Monitoring Project
+,"Bottles, etc. > 2 L",Te Tai Tokerau Debris Monitoring Project
+,Balloons - Latex,Te Tai Tokerau Debris Monitoring Project
+,Balloons - Mylar,Te Tai Tokerau Debris Monitoring Project
+,Mesh bags,Te Tai Tokerau Debris Monitoring Project
+,Plastic bags,Te Tai Tokerau Debris Monitoring Project
+,Paper Receipt,The Ocean Race
+,Plastic-Coated Receipt,The Ocean Race
+,Other Metal,The Ocean Race
+,Juicebox/Coated Paperboard,The Ocean Race
+,Glass Fragments,The Ocean Race
+,Rubber Band,The Ocean Race
+,Plastic/Styrofoam Takeaway Container,The Ocean Race
+,Plastic Packaging,The Ocean Race
+,Plastic Food Container,The Ocean Race
+,Golf Ball,The Ocean Race
+,Football,The Ocean Race
+,Plastic Toy,The Ocean Race
+,Other,The Ocean Race
+,Plastic Rope,The Ocean Race
+,Net,The Ocean Race
+,Net Pieces,The Ocean Race
+,Fishing Lure,The Ocean Race
+,Fishing Line,The Ocean Race
+,Buoy or Float,The Ocean Race
+,Paper,The Ocean Race
+,Cardboard,The Ocean Race
+,Towel,The Ocean Race
+,Fabric Pieces,The Ocean Race
+,Clothing,The Ocean Race
+,Tyre or Tyre Pieces,The Ocean Race
+,Glass Jar,The Ocean Race
+,Glass Beverage Bottle,The Ocean Race
+,Metal Bottle Cap,The Ocean Race
+,Beverage Can,The Ocean Race
+,Other Aluminum or Tin Can,The Ocean Race
+,Plastic Straw,The Ocean Race
+,Plastic Takeaway Cutlery or Stirrer,The Ocean Race
+,Plastic fragments,The Ocean Race
+,Microplastics,The Ocean Race
+,Plastic Nurdles,The Ocean Race
+,Toothbrush,The Ocean Race
+,Personal Care Product or Tube,The Ocean Race
+,Sanitary Product,The Ocean Race
+,Wet Wipe,The Ocean Race
+,Cotton Bud,The Ocean Race
+,Plastic Food Wrapper,The Ocean Race
+,Takeaway Cup,The Ocean Race
+,Cigarette Butt,The Ocean Race
+,Cigarette Lighter,The Ocean Race
+,Plastic Cap or Container Lid,The Ocean Race
+,Plastic Bottle,The Ocean Race
+,Balloon and/or String,The Ocean Race
+,Plastic Bag,The Ocean Race
+,Other Plastic Jugs or Containers,USVI Marine Debris for NOAA
+,Non-food related plastic packaging,USVI Marine Debris for NOAA
+,Fishing nets,USVI Marine Debris for NOAA
+,Paper Cups,USVI Marine Debris for NOAA
+,Fireworks,USVI Marine Debris for NOAA
+,Styrofoam packaging,USVI Marine Debris for NOAA
+,Chemicals and chemical containers,USVI Marine Debris for NOAA
+,Toys (plastic),USVI Marine Debris for NOAA
+,Batteries (acidic and alkaline),USVI Marine Debris for NOAA
+,Crab/Lobster/Fish trap parts,USVI Marine Debris for NOAA
+,Test Item,USVI Marine Debris for NOAA
+,Other,USVI Marine Debris for NOAA
+,Rope or Net Pieces (non-nylon),USVI Marine Debris for NOAA
+,Plastic rope / Small Net Pieces,USVI Marine Debris for NOAA
+,Fishing lures and lines,USVI Marine Debris for NOAA
+,Buoys and floats,USVI Marine Debris for NOAA
+,Pallets,USVI Marine Debris for NOAA
+,Paper and Cardboard,USVI Marine Debris for NOAA
+,Food wrappers (paper),USVI Marine Debris for NOAA
+,Lumber/Building Materials,USVI Marine Debris for NOAA
+,Paper Bags,USVI Marine Debris for NOAA
+,Towels or rags,USVI Marine Debris for NOAA
+,Gloves (non-rubber),USVI Marine Debris for NOAA
+,Fabric pieces,USVI Marine Debris for NOAA
+,Clothing and Shoes,USVI Marine Debris for NOAA
+,Tires,USVI Marine Debris for NOAA
+,Flip-flops,USVI Marine Debris for NOAA
+,Glass Jars,USVI Marine Debris for NOAA
+,Glass Bottle,USVI Marine Debris for NOAA
+,Metal Bottle Caps,USVI Marine Debris for NOAA
+,Aluminum or tin cans,USVI Marine Debris for NOAA
+,Aerosol cans,USVI Marine Debris for NOAA
+,Straws,USVI Marine Debris for NOAA
+,Six-pack rings,USVI Marine Debris for NOAA
+,Plastic Utensils,USVI Marine Debris for NOAA
+,Plastic or Foam Fragments,USVI Marine Debris for NOAA
+,Personal care products,USVI Marine Debris for NOAA
+,Rubber Gloves,USVI Marine Debris for NOAA
+,Plastic Food Wrappers,USVI Marine Debris for NOAA
+,Foam or Plastic Cups,USVI Marine Debris for NOAA
+,Cigarettes,USVI Marine Debris for NOAA
+,Cigarette lighters/tobacco packaging,USVI Marine Debris for NOAA
+,Cigarette or tobacco packaging,USVI Marine Debris for NOAA
+,Plastic Bottle or Container Caps,USVI Marine Debris for NOAA
+,Plastic Bottle,USVI Marine Debris for NOAA
+,Balloons and/or string,USVI Marine Debris for NOAA
+,Plastic Bags,USVI Marine Debris for NOAA
+,Trash Can - Permanent,Waste Receptacles
+,Trash Can - Mobile,Waste Receptacles
+,Recycle Bin - Containers,Waste Receptacles
+,Recycle bin - ContainersPaper,Waste Receptacles
+,Other Plastic Jugs or Containers,Weisboydlund Expedition 2018
+,Marine Mammal (please describe),Weisboydlund Expedition 2019
+,Test Item,Weisboydlund Expedition 2020
+,Other,Weisboydlund Expedition 2021
+,Rope or Net Pieces (non-nylon),Weisboydlund Expedition 2022
+,Plastic rope / Net Pieces,Weisboydlund Expedition 2023
+,Fishing lures and lines,Weisboydlund Expedition 2024
+,Buoys and floats,Weisboydlund Expedition 2025
+,Pallets,Weisboydlund Expedition 2026
+,Paper and Cardboard,Weisboydlund Expedition 2027
+,Food wrappers (paper),Weisboydlund Expedition 2028
+,Lumber/Building Materials,Weisboydlund Expedition 2029
+,Paper Bags,Weisboydlund Expedition 2030
+,Towels or rags,Weisboydlund Expedition 2031
+,Gloves (non-rubber),Weisboydlund Expedition 2032
+,Fabric pieces,Weisboydlund Expedition 2033
+,Clothing and Shoes,Weisboydlund Expedition 2034
+,Tires,Weisboydlund Expedition 2035
+,Flip-flops,Weisboydlund Expedition 2036
+,Glass Jars,Weisboydlund Expedition 2037
+,Glass Bottle,Weisboydlund Expedition 2038
+,Metal Bottle Caps,Weisboydlund Expedition 2039
+,Aluminum or tin cans,Weisboydlund Expedition 2040
+,Aerosol cans,Weisboydlund Expedition 2041
+,Straws,Weisboydlund Expedition 2042
+,Six-pack rings,Weisboydlund Expedition 2043
+,Plastic Utensils,Weisboydlund Expedition 2044
+,Plastic or Foam Fragments,Weisboydlund Expedition 2045
+,Personal care products,Weisboydlund Expedition 2046
+,Rubber Gloves,Weisboydlund Expedition 2047
+,Plastic Food Wrappers,Weisboydlund Expedition 2048
+,Foam or Plastic Cups,Weisboydlund Expedition 2049
+,Cigarettes,Weisboydlund Expedition 2050
+,Cigarette lighters/tobacco packaging,Weisboydlund Expedition 2051
+,Plastic Bottle or Container Caps,Weisboydlund Expedition 2052
+,Plastic Bottle,Weisboydlund Expedition 2053
+,Balloons and/or string,Weisboydlund Expedition 2054
+,Plastic Bags,Weisboydlund Expedition 2055
+,সিমেন্টের থলে,WildTeam Bangladesh
+,ঔষধের প্যাকেট,WildTeam Bangladesh
+,তামাকের ছোট প্যাকেট,WildTeam Bangladesh
+,ব্যক্তিগত ব্যবহার্য পন্যের ছোট প্যাকেট,WildTeam Bangladesh
+,প্লাস্টিকের দড়ি,WildTeam Bangladesh
+,ই-বর্জ্য টুকরা,WildTeam Bangladesh
+,কাগজের বাক্স,WildTeam Bangladesh
+,আ্যলুমিনামের মোড়ক,WildTeam Bangladesh
+,রাস্তার খাবারের বাটি,WildTeam Bangladesh
+,নিয়ে যাওয়ার খাবারের প্যাকেট,WildTeam Bangladesh
+,জুসের মোড়ক,WildTeam Bangladesh
+,কাঁচের টুকরা,WildTeam Bangladesh
+,প্লাস্টিকের জাল/ জালের টুকরা,WildTeam Bangladesh
+,রাবার ব্যান্ড,WildTeam Bangladesh
+,"শোলার বাটি, থালা, পাত্র",WildTeam Bangladesh
+,ব্যাটারি,WildTeam Bangladesh
+,ঢেউতোলা পিচবোর্ড,WildTeam Bangladesh
+,কাগজ,WildTeam Bangladesh
+,পরীক্ষার দ্রব্যাদি,WildTeam Bangladesh
+,অন্যান্য,WildTeam Bangladesh
+,তার,WildTeam Bangladesh
+,প্লাস্টিকের দড়ি,WildTeam Bangladesh
+,বয়া,WildTeam Bangladesh
+,কাপড়ের টুকরা,WildTeam Bangladesh
+,জামাকাপড়,WildTeam Bangladesh
+,টায়ার,WildTeam Bangladesh
+,প্লাস্টিকের জুতা এবং স্যান্ডেল,WildTeam Bangladesh
+,কাঁচের বোতল,WildTeam Bangladesh
+,বোতলের ধাতব ঢাকনা,WildTeam Bangladesh
+,আ্যলুমিনামের/ টিনের কৌটা,WildTeam Bangladesh
+,প্লাস্টিক ব্যাগের টুকরা,WildTeam Bangladesh
+,ফোমের টুকরা,WildTeam Bangladesh
+,শক্ত প্লাস্টিকের টুকরা,WildTeam Bangladesh
+,প্লাস্টিকের নল,WildTeam Bangladesh
+,প্লাস্টিকের মোড়ক (খাবারের),WildTeam Bangladesh
+,ফোম/ প্লাস্টিকের পেয়ালা/ ঢাকনা,WildTeam Bangladesh
+,সিগারেট,WildTeam Bangladesh
+,সিগারেটের প্যকেট,WildTeam Bangladesh
+,প্লাস্টিকের বোতলের ঢাকনা,WildTeam Bangladesh
+,প্লাস্টিকের বোতল,WildTeam Bangladesh
+,প্লাস্টিকের থলে,WildTeam Bangladesh
