@@ -334,9 +334,9 @@ res.MCA<-MCA(onehotitems,ncp=13,quali.sup=c(418, 419,420),graph=FALSE)
 res.HCPC<-HCPC(res.MCA,nb.clust=10,consol=FALSE,graph=FALSE)
 
 #MCA plots for item types. ----
-d <- plotellipses(res.MCA,keepvar=418, label = "none") + theme_pubr() + labs(title = NULL) + labs_pubr() + coord_cartesian(xlim = c(-1, 3.5))
-e <- plotellipses(res.MCA,keepvar=419, label = "none") + theme_pubr() + labs(title = NULL) + labs_pubr()+ coord_cartesian(xlim = c(-1, 3.5))
-f <- plotellipses(res.MCA,keepvar=420, label = "none") + theme_pubr() + labs(title = NULL) + labs_pubr()+ coord_cartesian(xlim = c(-1, 3.5))
+d <- plotellipses(res.MCA,keepvar=418, label = "none") + theme_pubr()+ theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr() + coord_cartesian(xlim = c(-1, 3.5))
+e <- plotellipses(res.MCA,keepvar=419, label = "none") + theme_pubr()+ theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr()+ coord_cartesian(xlim = c(-1, 3.5))
+f <- plotellipses(res.MCA,keepvar=420, label = "none") + theme_pubr()+ theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr()+ coord_cartesian(xlim = c(-1, 3.5))
 ggarrange(d,e,f, labels = c("A", "B", "C"), ncol = 3, nrow = 1)
 
 
