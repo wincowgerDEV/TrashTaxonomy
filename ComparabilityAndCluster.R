@@ -96,18 +96,13 @@ theme_gray<- function (base_size = 11, base_family = "Arial")
     complete = TRUE)
 }
 
-
-
-#Working directory ----
-setwd("G:/My Drive/GrayLab/Projects/Plastics/ActiveProjects/TrashTaxonomy/WinTrashTaxonomy/Data/Raw Data")
-
 #Datasets ----
-MaterialsAlias <- read.csv("PrimeMaterials.csv")
-ItemsAlias <- read.csv("PrimeItems.csv")
-GroupRelationships <- read.csv("RawMaterialItem.csv")
-SurveySheetInfo <- read.csv("SurveySheetInformation.csv")
-ItemsHierarchy <- read.csv("ITEMSHierarchyLower.csv")
-MaterialsHierarchy <- read.csv("MaterialsHierarchyLower.csv")
+MaterialsAlias <- read.csv("data/PrimeMaterials.csv")
+ItemsAlias <- read.csv("data/PrimeItems.csv")
+GroupRelationships <- read.csv("data/RawMaterialItem.csv")
+SurveySheetInfo <- read.csv("data/SurveySheetInformation.csv")
+ItemsHierarchy <- read.csv("data/ITEMSHierarchyLower.csv")
+MaterialsHierarchy <- read.csv("data/MaterialsHierarchyLower.csv")
 
 #Analysis ----
 #*Data cleanup ----
@@ -124,7 +119,7 @@ MaterialsAliasClean <- MaterialsAlias %>%
 
 ItemsHierarchyClean <- mutate_all(ItemsHierarchy, cleantext)
   
-MaterialHierarchyClean <- mutate_all(MaterialHierarchy, cleantext)
+MaterialHierarchyClean <- mutate_all(MaterialsHierarchy, cleantext)
 
 SurveySheetInfoClean <- mutate_all(SurveySheetInfo, cleantext) %>%
   rename(organization = Survey.Sheet.Name)
@@ -323,9 +318,9 @@ res.MCA<-MCA(onehotmaterials,quali.sup=c(26,27,28),graph=FALSE)
 plot.MCA(res.MCA, choix='var', label = c("quali.sup"), autoLab = "y")
 
 #MCA Plots for material types ----
-a <- plotellipses(res.MCA,keepvar=26, label = "none") + theme_pubr() + labs(title = NULL) + labs_pubr()#+ theme_gray() #+ scale_color_viridis_d(option = "A")+ scale_fill_viridis_d(option = "A")
-b <- plotellipses(res.MCA,keepvar=27, label = "none") + theme_pubr() + labs(title = NULL) + labs_pubr()#+ scale_color_viridis_d(option = "B")
-c <- plotellipses(res.MCA,keepvar=28, label = "none") + theme_pubr() + labs(title = NULL) + labs_pubr()#+ scale_color_viridis_d(option = "C")
+a <- plotellipses(res.MCA,keepvar=26, label = "none") + theme_pubr() + theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr()  + coord_cartesian(ylim = c(-1, 2.5))#+ theme_gray() #+ scale_color_viridis_d(option = "A")+ scale_fill_viridis_d(option = "A")
+b <- plotellipses(res.MCA,keepvar=27, label = "none") + theme_pubr() + theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr() + coord_cartesian(ylim = c(-1, 2.5))#+ scale_color_viridis_d(option = "B")
+c <- plotellipses(res.MCA,keepvar=28, label = "none") + theme_pubr() + theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr() + coord_cartesian(ylim = c(-1, 2.5))#+ scale_color_viridis_d(option = "C")
 
 ggarrange(a,b,c, labels = c("A", "B", "C"), ncol = 3, nrow = 1)
 
