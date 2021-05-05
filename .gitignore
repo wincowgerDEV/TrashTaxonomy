@@ -5,3 +5,6 @@
 
 #Desktop files
 *desktop.ini
+
+#rsconnect folder for shinyapps
+*rsconnect/
