@@ -9,6 +9,8 @@ library(listviewer)
 library(treemap)
 library(data.tree)
 library(igraph)
+library(collapsibleTree)
+
 
 #setwd("/Users/hannahhapich/desktop/Trash_Taxonomy/TrashTaxonomy")
 
@@ -283,11 +285,16 @@ server <- function(input,output,session) {
       write.csv(Materials_Hierarchy, file, row.names=FALSE)
     }
   )
+
+  output$material_tree <- renderCollapsibleTree(collapsibleTree(Materials_Hierarchy,
+                                                                hierarchy = names(Materials_Hierarchy), 
+                                                                #width = 800,
+                                                                fontSize = 12))
   
-  output$materialhierarchy <- renderTree(
-    Materials
-  )
-  
+  output$item_tree <- renderCollapsibleTree(collapsibleTree(Items_Hierarchy,
+                                                                hierarchy = names(Items_Hierarchy), 
+                                                                #width = 800,
+                                                                fontSize = 12))
   
   output$downloadData3 <- downloadHandler(    
     filename = function() {

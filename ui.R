@@ -11,12 +11,21 @@ library(igraph)
 library(listviewer)
 library(treemap)
 library(data.tree)
-
-#setwd("/Users/hannahhapich/desktop/Trash_Taxonomy/TrashTaxonomy")
+library(collapsibleTree)
 
 ui <- fluidPage(
   theme=shinytheme("cyborg"),
   titlePanel("Trash Taxonomy"),
+  tags$head(
+    # Note the wrapping of the string in HTML()
+    tags$style(HTML("
+      body {
+        background-color: black;
+        color: white;
+      }
+                    "))
+  ),
+  #About ----
   tabsetPanel(
     tabPanel("About",
              fluidRow(
@@ -46,7 +55,8 @@ ui <- fluidPage(
                column(6,
                       shiny::HTML("<br><br><center> <h1>About the Relational Tables</h1> </center><br>"),
                       align = "center",
-                      img(src="RelationalStructure.png", width = "100%"),
+                      img(width = "100%", src = "db_diagram.JPG"),
+                      #HTML('<iframe width="560" height="315" src='https://dbdiagram.io/embed/5f3d9342cf48a141ff557dfe'> </iframe>'),
                       shiny::HTML("<h5>These relational tables describe alias relationships (words that mean the same thing) and hierarchical relationships (words that are nested groups within one another). You can view or download these tables using the relational table tab above!</h5>")
                ),
                column(3)
@@ -79,9 +89,7 @@ ui <- fluidPage(
                       
                       shiny::HTML("<br><br><center> <h1>How To Use</h1> </center><br>"),
                       shiny::HTML("<h5>In order to assist your navigation through both the relational tables and query tool functions of this app, please refer to the video tutorial below.</h5>"),
-                      shiny::actionButton(inputId='ab1', label="Tutorial", 
-                                          icon = icon("th"), 
-                                          onclick ="window.open('https://youtu.be/BXy8oFJZAnMx', '_blank')")
+                      shiny::HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/BXy8oFJZAnM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
                       
                ),
                column(3)
@@ -157,7 +165,7 @@ ui <- fluidPage(
              #end of about panel
              ),
     
-    
+    #Relational Tables ----
     tabPanel("Relational Tables",
              titlePanel(tags$h4("View and Download Relational Tables")),
              
@@ -212,15 +220,18 @@ ui <- fluidPage(
              tags$hr(),
              
              fluidRow(
-               column(3),
-               column(6,
+               column(1),
+               column(10,
                       shiny::HTML("<br><br><center> <h1>Materials Hierarchy Table</h1> </center><br>"),
                       shiny::HTML("<h5>This table describes how the unique material types relate to one another in a hierarchical structure (ex: foam and rubber are a subset of plastic).</h5>"),
-                      shinyTree(outputId = "materialhierarchy"),
+                      #shinyTree(outputId = "materialhierarchy"),
+                      div(style = "background-color: white;",
+                        collapsibleTreeOutput(outputId = "material_tree", width = "100%", height = "500px")
+                      ),
                       checkboxInput("show2", "Show Table", width = '50%')
                       
                ),
-               column(3)
+               column(1)
              ),
              
              # PAGE BREAK
@@ -300,15 +311,18 @@ ui <- fluidPage(
              tags$hr(),
              
              fluidRow(
-               column(3),
-               column(6,
+               column(1),
+               column(10,
                       shiny::HTML("<br><br><center> <h1>Items Hierarchy Table</h1> </center><br>"),
                       shiny::HTML("<h5>This table describes how the unique items relate to one another in a hierarchical structure (ex: forks, knives, and spoons all fall under utensils).</h5>"),
-                      shinyTree(outputId = "itemhierarchy"),
+                      #shinyTree(outputId = "itemhierarchy"),
+                      div(style = "background-color: white;",
+                          collapsibleTreeOutput(outputId = "item_tree", width = "100%", height = "500px")
+                      ),
                       checkboxInput("show4", "Show Table", width = '50%')
                       
                ),
-               column(3)
+               column(1)
              ),
              
              # PAGE BREAK
@@ -524,7 +538,7 @@ ui <- fluidPage(
              
              ),
     
-    
+    #Tool ----
     tabPanel("Query Tool",
              titlePanel(tags$h4("Query the Relational Tables with Trash Survey Sheets")),
              fluidRow(
