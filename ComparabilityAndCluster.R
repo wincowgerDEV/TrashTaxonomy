@@ -260,6 +260,13 @@ AverageForOrganizationsTotal %>%
 AverageForOrganizationsTotal %>%
   filter(ComparabilityItemsEncompassingOthers > 0.4 & ComparabilityMaterialsEncompassingOthers > 0.4)
 
+ggplot() + 
+  stat_ecdf(data = AverageForOrganizations, aes(x = ComparabilityItemsEncompassingOthers), color = "red") +
+  stat_ecdf(data = AverageForOrganizations, aes(x = ComparabilityMaterialsEncompassingOthers), color = "black") + 
+  stat_ecdf(data = AverageForOrganizationsTotal, aes(x = ComparabilityItemsEncompassingOthers), color = "blue") +
+  stat_ecdf(data = AverageForOrganizationsTotal, aes(x = ComparabilityMaterialsEncompassingOthers), color = "green") 
+  
+  
 
 ##Stats of surveys----
 unique(GroupRelationshipsClean$Material) #Total number of Material types
@@ -318,7 +325,7 @@ res.MCA<-MCA(onehotmaterials,quali.sup=c(26,27,28),graph=FALSE)
 plot.MCA(res.MCA, choix='var', label = c("quali.sup"), autoLab = "y")
 
 #MCA Plots for material types ----
-a <- plotellipses(res.MCA,keepvar=26, label = "none") + theme_pubr() + theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr()  + coord_cartesian(ylim = c(-1, 2.5))#+ theme_gray() #+ scale_color_viridis_d(option = "A")+ scale_fill_viridis_d(option = "A")
+a <- plotellipses(res.MCA,keepvar=26, label = "none") + theme_pubr() + theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr()  + coord_cartesian(ylim = c(-1, 2.5))+ scale_color_viridis_d(option = "C")+ scale_fill_viridis_d(option = "C")#+ theme_gray() #+ scale_fill_viridis_d(option = "A")
 b <- plotellipses(res.MCA,keepvar=27, label = "none") + theme_pubr() + theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr() + coord_cartesian(ylim = c(-1, 2.5))#+ scale_color_viridis_d(option = "B")
 c <- plotellipses(res.MCA,keepvar=28, label = "none") + theme_pubr() + theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr() + coord_cartesian(ylim = c(-1, 2.5))#+ scale_color_viridis_d(option = "C")
 
