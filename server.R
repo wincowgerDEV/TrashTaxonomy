@@ -287,11 +287,13 @@ server <- function(input,output,session) {
   )
 
   output$material_tree <- renderCollapsibleTree(collapsibleTree(Materials_Hierarchy,
+                                                                root = "Materials Hierarchy",
                                                                 hierarchy = names(Materials_Hierarchy), 
                                                                 #width = 800,
-                                                                fontSize = 12))
+                                                                fontSize = 14))
   
   output$item_tree <- renderCollapsibleTree(collapsibleTree(Items_Hierarchy,
+                                                                root = "Items Hierarchy",
                                                                 hierarchy = names(Items_Hierarchy), 
                                                                 #width = 800,
                                                                 fontSize = 12))
@@ -314,8 +316,6 @@ server <- function(input,output,session) {
     }
   )
   
-  output$itemhierarchy <- renderTree(
-    Items)
   
   output$downloadData5 <- downloadHandler(    
     filename = function() {
