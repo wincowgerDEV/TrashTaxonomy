@@ -3,6 +3,12 @@
 ## [data](data)
 all trash taxonomy relational tables.
 
+## [figures](figures)
+figures in the publication created using analysis codes.
+
+## [www](www)
+figures in the shiny application.
+
 ## [server.R](server.R) and [ui.R](ui.R)
 code for the shiny application hosted at https://wincowger.shinyapps.io/TrashTaxonomy/
 
