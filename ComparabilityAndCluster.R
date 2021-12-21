@@ -327,8 +327,11 @@ onehotitems <- onehotitems %>%
 res.MCA<-MCA(onehotmaterials,quali.sup=c(26,27,28),graph=FALSE)
 plot.MCA(res.MCA, choix='var', label = c("quali.sup"), autoLab = "y")
 
+materials_vtest <- res.MCA$quali.sup$v.test
+write.csv(materials_vtest, "materials_vtest.csv")
+
 #MCA Plots for material types ----
-a <- plotellipses(res.MCA,keepvar=26, label = "none") + theme_pubr() + theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr()  + coord_cartesian(ylim = c(-1, 2.5))+ scale_color_viridis_d(option = "C")+ scale_fill_viridis_d(option = "C")#+ theme_gray() #+ scale_fill_viridis_d(option = "A")
+a <- plotellipses(res.MCA,keepvar=26, label = "none") + theme_pubr() + theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr()  + coord_cartesian(ylim = c(-1, 2.5))#+ scale_color_viridis_d(option = "C")+ scale_fill_viridis_d(option = "C")#+ theme_gray() #+ scale_fill_viridis_d(option = "A")
 b <- plotellipses(res.MCA,keepvar=27, label = "none") + theme_pubr() + theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr() + coord_cartesian(ylim = c(-1, 2.5))#+ scale_color_viridis_d(option = "B")
 c <- plotellipses(res.MCA,keepvar=28, label = "none") + theme_pubr() + theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr() + coord_cartesian(ylim = c(-1, 2.5))#+ scale_color_viridis_d(option = "C")
 
@@ -342,6 +345,9 @@ materialstats <- as.data.frame(summary(onehotmaterials)) #Here are the stats for
 #result <- Factoshiny(onehotitems)
 res.MCA<-MCA(onehotitems,ncp=13,quali.sup=c(418, 419,420),graph=FALSE)
 res.HCPC<-HCPC(res.MCA,nb.clust=10,consol=FALSE,graph=FALSE)
+
+items_vtest <- res.MCA$quali.sup$v.test
+write.csv(items_vtest, "items_vtest.csv")
 
 #MCA plots for item types. ----
 d <- plotellipses(res.MCA,keepvar=418, label = "none") + theme_pubr()+ theme(legend.position = c(0.5,0.5)) + labs(title = NULL) + labs_pubr() + coord_cartesian(xlim = c(-1, 3.5))
