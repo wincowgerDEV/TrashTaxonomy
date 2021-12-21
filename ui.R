@@ -6,7 +6,7 @@ library(shinyjs)
 library(shinythemes)
 library(DT)
 library(shinyhelper)
-#library(shinyTree)
+library(shinyTree)
 #library(igraph)
 #library(listviewer)
 #library(treemap)
@@ -215,7 +215,7 @@ ui <- fluidPage(
                       
                         #collapsibleTreeOutput(outputId = "material_tree", width = "100%", height = "500px")
                       checkboxInput("show2", "Show Table", width = '50%'),
-                      shinyTree(outputId = "materialhierarchy", dragAndDrop=F, sort = F, wholerow = T, theme = "default-dark", themeIcons = F, search = F)
+                      shinyTree::shinyTree(outputId = "materialhierarchy", dragAndDrop=F, sort = F, wholerow = T, theme = "default-dark", themeIcons = F, search = F)
                         
                ),
                column(1)
@@ -307,7 +307,7 @@ ui <- fluidPage(
                       #    collapsibleTreeOutput(outputId = "item_tree", width = "100%", height = "500px")
                       #),
                       checkboxInput("show4", "Show Table", width = '50%'),
-                      shinyTree(outputId = "itemshierarchy", dragAndDrop=F, sort = F, wholerow = T, theme = "default-dark", themeIcons = F, search = F)
+                      shinyTree::shinyTree(outputId = "itemshierarchy", dragAndDrop=F, sort = F, wholerow = T, theme = "default-dark", themeIcons = F, search = F)
                       
                       
                ),
