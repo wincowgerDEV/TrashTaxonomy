@@ -101,19 +101,6 @@ ui <- fluidPage(
              
              tags$hr(),
              
-             fluidRow(
-               column(3),
-               column(6,
-                      
-                      shiny::HTML("<br><br><center> <h1>Additional Hierarchy Tool</h1> </center><br>"),
-                      shiny::HTML("<h5>With help visualizing and rearranging the hierarchy sheets available for download on this site, along with any you may create, use the link below.</h5>"),
-                      shiny::actionButton(inputId='ab1', label="Reorganize Hierarchies", 
-                                          icon = icon("th"), 
-                                          onclick ="window.open('https://wincowger.shinyapps.io/RearrangeHierarchies/', '_blank')")
-                      
-               ),
-               column(3)
-             ),
              
              fluidRow(
                
@@ -225,11 +212,11 @@ ui <- fluidPage(
                       shiny::HTML("<br><br><center> <h1>Materials Hierarchy Table</h1> </center><br>"),
                       shiny::HTML("<h5>This table describes how the unique material types relate to one another in a hierarchical structure (ex: foam and rubber are a subset of plastic).</h5>"),
                       #shinyTree(outputId = "materialhierarchy"),
-                      div(style = "background-color: white;",
-                        collapsibleTreeOutput(outputId = "material_tree", width = "100%", height = "500px")
-                      ),
-                      checkboxInput("show2", "Show Table", width = '50%')
                       
+                        #collapsibleTreeOutput(outputId = "material_tree", width = "100%", height = "500px")
+                      checkboxInput("show2", "Show Table", width = '50%'),
+                      shinyTree(outputId = "materialhierarchy", dragAndDrop=F, sort = F, wholerow = T, theme = "default-dark", themeIcons = F, search = F)
+                        
                ),
                column(1)
              ),
@@ -316,10 +303,12 @@ ui <- fluidPage(
                       shiny::HTML("<br><br><center> <h1>Items Hierarchy Table</h1> </center><br>"),
                       shiny::HTML("<h5>This table describes how the unique items relate to one another in a hierarchical structure (ex: forks, knives, and spoons all fall under utensils).</h5>"),
                       #shinyTree(outputId = "itemhierarchy"),
-                      div(style = "background-color: white;",
-                          collapsibleTreeOutput(outputId = "item_tree", width = "100%", height = "500px")
-                      ),
-                      checkboxInput("show4", "Show Table", width = '50%')
+                      #div(style = "background-color: white;",
+                      #    collapsibleTreeOutput(outputId = "item_tree", width = "100%", height = "500px")
+                      #),
+                      checkboxInput("show4", "Show Table", width = '50%'),
+                      shinyTree(outputId = "itemshierarchy", dragAndDrop=F, sort = F, wholerow = T, theme = "default-dark", themeIcons = F, search = F)
+                      
                       
                ),
                column(1)

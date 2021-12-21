@@ -55,6 +55,16 @@ Materials <- as.list(Materials)
 Materials <- Materials[-1]
 Materials <- cleanmaterials(Materials)
 
+Materials_hierarchy <- hierarchy
+Materials_hierarchy[is.na(Materials_hierarchy)] <- ""
+Materials_hierarchy <- mutate_all(Materials_hierarchy, removeslash) %>%
+  mutate(key = "trash") %>%
+  relocate(key) %>%
+  unite(pathString, sep = "/")
+Materials_hierarchy <- as.Node(Materials_hierarchy, pathDelimiter = "/")
+Materials_hierarchy <- as.list(Materials_hierarchy)
+Materials_hierarchy <- Materials_hierarchy[-1]
+
 Items <- hierarchyi
 Items[is.na(Items)] <- ""
 Items <- mutate_all(Items, removeslash)
@@ -63,6 +73,16 @@ Items <- as.Node(Items)
 Items <- as.list(Items)
 Items <- Items[-1]
 Items <- cleanitems(Items)
+
+Items_hierarchy <- hierarchyi
+Items_hierarchy[is.na(Items_hierarchy)] <- ""
+Items_hierarchy <- mutate_all(Items_hierarchy, removeslash) %>%
+  mutate(key = "trash") %>%
+  relocate(key) %>%
+  unite(pathString, sep = "/")
+Items_hierarchy <- as.Node(Items_hierarchy, pathDelimiter = "/")
+Items_hierarchy <- as.list(Items_hierarchy)
+Items_hierarchy <- Items_hierarchy[-1]
 
 
 #Files for display
@@ -286,17 +306,23 @@ server <- function(input,output,session) {
     }
   )
 
-  output$material_tree <- renderCollapsibleTree(collapsibleTree(Materials_Hierarchy,
-                                                                root = "Materials Hierarchy",
-                                                                hierarchy = names(Materials_Hierarchy), 
-                                                                #width = 800,
-                                                                fontSize = 14))
+  #output$material_tree <- renderCollapsibleTree(collapsibleTree(Materials_Hierarchy,
+  #                                                              root = "Materials Hierarchy",
+  #                                                              hierarchy = names(Materials_Hierarchy), 
+  #                                                              #width = 800,
+  #                                                              fontSize = 14))
   
-  output$item_tree <- renderCollapsibleTree(collapsibleTree(Items_Hierarchy,
-                                                                root = "Items Hierarchy",
-                                                                hierarchy = names(Items_Hierarchy), 
-                                                                #width = 800,
-                                                                fontSize = 12))
+  output$materialhierarchy <- renderTree({
+    #shiny::validate(shiny::need(input$file1, "Please upload a dataset to get started")) 
+    Materials_hierarchy
+  }
+  )
+  
+  output$itemshierarchy <- renderTree({
+    #shiny::validate(shiny::need(input$file1, "Please upload a dataset to get started")) 
+    Items_hierarchy
+  }
+  )
   
   output$downloadData3 <- downloadHandler(    
     filename = function() {

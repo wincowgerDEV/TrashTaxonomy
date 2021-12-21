@@ -20,7 +20,7 @@ library(corrplot)
 library(FactoMineR)
 library(Factoshiny)
 library(ggpubr)
-theme_set(theme_pubr())
+#theme_set(theme_pubr())
 
 #Functions ----
 cleantext <- function(x) {
@@ -110,7 +110,6 @@ ItemsAliasClean <- ItemsAlias %>%
   mutate_all(cleantext) %>%
   distinct() %>%
   mutate(RowId = 1:nrow(.))
-
 
 MaterialsAliasClean <- MaterialsAlias %>%
   mutate_all(cleantext) %>%
@@ -219,15 +218,19 @@ AverageForOrganizationsTotal <- AverageForOrganizations %>%
   summarize_all(mean)
 
 #Comparability Metric Plot ----
-ggplot(AverageForOrganizationsTotal, aes(x = ComparabilityItemsEncompassingOthers, y = ComparabilityMaterialsEncompassingOthers)) + 
+plot <- ggplot(AverageForOrganizationsTotal, aes(x = ComparabilityItemsEncompassingOthers, y = ComparabilityMaterialsEncompassingOthers)) + 
   #geom_bin2d(bins = 10)  + 
   geom_point(color = "black", size = 3, alpha = 0.5)  +
   geom_segment(aes(x = 0.6, y = 0.7, xend = 1, yend = 1),
                arrow = arrow(length = unit(0.5, "cm"))) + 
   labs(x = "Items Comparability (mean decimal %)", y = "Materials Comparability (mean decimal %)") + 
   scale_x_continuous(breaks = c(seq(0,1, by = 0.1)), limits = c(0,1)) + scale_y_continuous(breaks = c(seq(0,1, by = 0.1)), limits = c(0,1))+
-  scale_fill_viridis_c(breaks = c(1:10)) + theme_gray() + coord_equal() + 
-  geom_label_repel(label.size = 0.01, size = 3,  data = AverageForOrganizationsTotal[sample(1:nrow(AverageForOrganizationsTotal), 5, replace = F),], aes(label = Organization)) 
+  scale_fill_viridis_c(breaks = c(1:10)) + 
+  theme_gray_etal() + 
+  coord_equal() #+ 
+  #geom_label_repel(label.size = 0.01, size = 3,  data = AverageForOrganizationsTotal[sample(1:nrow(AverageForOrganizationsTotal), 5, replace = F),], aes(label = Organization)) 
+
+  ggMarginal(p = plot, type = "boxplot")
 
 #Stats of the comparability metric ----
 

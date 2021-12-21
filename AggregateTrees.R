@@ -28,8 +28,8 @@ jointohierarchy <- function(DF, Hierarchy, Alias, ColNum) {
     DF$RowID <- unlist(apply(DF, 1, function(x) which(Alias == as.character(x[ColNum]), arr.ind = TRUE)[1]))
     
     DF <- DF %>%
-        left_join(select(Alias, RowID, Key)) %>%
-        select(Key, Count) %>%
+        left_join(dplyr::select(Alias, RowID, Key)) %>%
+        dplyr::select(Key, Count) %>%
         mutate(Key = ifelse(is.na(Key), "other", Key))
     
     list <- apply(DF, 1, function(x) which(Hierarchy == as.character(x[1]), arr.ind = TRUE))
@@ -54,7 +54,7 @@ jointohierarchy <- function(DF, Hierarchy, Alias, ColNum) {
             filter(.[[1]] == Hierarchy[unlist(RowColSum[row, "Row"]),1])
         filter2 <- filter1 %>%
             filter_all(any_vars(. == Hierarchy[unlist(RowColSum[row, "Row"]),unlist(RowColSum[row, "Column"])])) %>%
-            select(where(not_all_na)) %>%
+            dplyr::select(where(not_all_na)) %>%
             mutate(sum = unlist(RowColSum[row, "sum"]))
              
         if(unlist(RowColSum[row, "Column"]) < ncol(filter2)-1) {
@@ -114,7 +114,7 @@ AggregateTrees <- function(DF1, DF2, Alias, Hierarchy, ColNum){
    DFB <- jointohierarchy(DF = DF2, Hierarchy = Hierarchy, Alias = Alias, ColNum = ColNum)
  
    binded <- bind_rows(DFA, DFB) %>%
-    add_row(X1 = "missing", sum = sum(DF1$Count) + sum(DF2$Count) - sum(DFA$sum) - sum(DFB$sum))
+    add_row(Level.1 = "missing", sum = sum(DF1$Count) + sum(DF2$Count) - sum(DFA$sum) - sum(DFB$sum))
    
    bindedtree <- converttotree(binded)
    
@@ -157,6 +157,10 @@ NOAA$Count <- sample(1:10, nrow(NOAA), replace = T)
 #These will output the aggregated trees for the example in the paper. 
 #Output for lumping analysis ----
 AggregateTrees(SMC, NOAA,  Alias = ItemsAlias, Hierarchy = ItemsHierarchy, ColNum = 2)
+
+#DFA <- jointohierarchy(DF = SMC, Hierarchy = ItemsHierarchy, Alias = ItemsAlias, ColNum = 2)
+
+
 AggregateTrees(SMC, NOAA,  Alias = MaterialsAlias, Hierarchy = MaterialsHierarchy, ColNum = 1)
 
 #Figures of the hierarchy trees ----
