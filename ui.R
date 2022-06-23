@@ -89,7 +89,7 @@ ui <- fluidPage(
                       
                       shiny::HTML("<br><br><center> <h1>How To Use</h1> </center><br>"),
                       shiny::HTML("<h5>In order to assist your navigation through both the relational tables and query tool functions of this app, please refer to the video tutorial below.</h5>"),
-                      shiny::HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/BXy8oFJZAnM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
+                      shiny::HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/sqeLaJKyol8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
                       
                ),
                column(3)

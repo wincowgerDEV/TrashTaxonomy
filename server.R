@@ -277,17 +277,52 @@ server <- function(input,output,session) {
     return(input$variable)
   })
   
-  output$contents <- renderDataTable({
+  output$contents <- renderDataTable(server = F,
+    datatable({
     df()[, c("material","items",  input$variable)]
-  }, style="bootstrap")
+  }, 
+  extensions = 'Buttons',
+  options = list(
+    paging = TRUE,
+    searching = TRUE,
+    fixedColumns = TRUE,
+    autoWidth = TRUE,
+    ordering = TRUE,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel', 'pdf')
+  ),
+  class = "display",
+  style="bootstrap"))
   
-  output$contents1 <- renderDataTable({
-    df()[, c("material","PrimeMaterial")] %>% distinct()
-  }, selection=list(mode="single", target="row"), style="bootstrap")
+  output$contents1 <- renderDataTable(server = F,
+  datatable({df()[, c("material","PrimeMaterial")] %>% distinct()},
+    extensions = 'Buttons',
+    options = list(
+      paging = TRUE,
+      searching = TRUE,
+      fixedColumns = TRUE,
+      autoWidth = TRUE,
+      ordering = TRUE,
+      dom = 'Bfrtip',
+      buttons = c('copy', 'csv', 'excel', 'pdf')
+    ),
+    class = "display",
+    style="bootstrap"))
   
-  output$contents2 <- renderDataTable({
-    df()[, c("items","PrimeItem")] %>% distinct()
-  }, selection=list(mode="single", target="row"), style="bootstrap")
+  output$contents2 <- renderDataTable(server = F, 
+    datatable({df()[, c("items","PrimeItem")] %>% distinct()},
+              extensions = 'Buttons',
+              options = list(
+                paging = TRUE,
+                searching = TRUE,
+                fixedColumns = TRUE,
+                autoWidth = TRUE,
+                ordering = TRUE,
+                dom = 'Bfrtip',
+                buttons = c('copy', 'csv', 'excel', 'pdf')
+              ),
+              class = "display",
+              style="bootstrap"))
   
   output$downloadData1 <- downloadHandler(    
     filename = function() {
