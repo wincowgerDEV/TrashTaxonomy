@@ -739,7 +739,7 @@ ui <- fluidPage(
                column(6,
                       
                       tags$div(align = "center", 
-                               downloadButton('downloadmmat', 'Download')
+                               downloadButton('download12', 'Download')
                       )
                       
                ),

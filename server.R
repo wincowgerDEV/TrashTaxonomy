@@ -539,7 +539,7 @@ server <- function(input,output,session) {
   }, style="bootstrap")
   
   output$table10 = DT::renderDataTable({
-    MicroMaterials_hierarchy
+    MicroMaterials_Hierarchy
   }, style="bootstrap")
   
   output$table11 = DT::renderDataTable({
