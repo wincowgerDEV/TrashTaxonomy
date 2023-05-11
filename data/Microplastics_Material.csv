@@ -1,0 +1,90 @@
+﻿Material,Alias
+PEST,PEST
+PEST,Polyester
+PE,PE
+PE,Polyethylene
+PP,PP
+PP,Polypropylene
+PA,PA
+PA,Polyamide
+PA,Nylon
+PA,PA/nylon
+PE+PS,PE+PS
+PE+PS,Polyethylene+Polystyrene
+PS,PS
+PS,Polystyrene
+CA,CA
+CA,Cellulose acetate
+CA,Cellulose
+PVC,PVC
+PVC,Polyvinyl chloride
+ER,ER
+ER,Epoxy resin
+PAM,PAM
+PAM,Polyacrylamide
+PET,PET
+PET,Polyethylene terephthalate
+Plastic additive,Plastic additive
+PBT,PBT
+PBT,Polybutylene terephthalate
+PU,PU
+PU,Polyurethane
+PU,PUR
+PET-PEST,PET-PEST
+PAN,PAN
+PAN,Polyacrylonitrile
+Silicone,Silicone
+Acrylic,Acrylic
+Vinyl,Vinyl
+Vinyon,Vinyon
+Other,Other
+Other,Others
+PA;ER,PA;ER
+PA;ER,PA/Epoxy resin
+PTT,PTT
+PTT,Polytrimethylene terephthalate
+PE+PP,PE+PP
+PE+PP,co PE-PP
+PPS,PPS
+PPS,Polyphenylene sulfide
+Rayon,Rayon
+PAA,PAA
+PAA,Polyacrylic acid
+PMPS,PMPS
+PMPS,Polymethylphenylsiloxane
+PI,PI
+PI,Polyimide
+Olefin,Olefin
+Styrene-butadiene,Styrene-butadiene
+PBA,PBA
+PBA,phenylbutric acid
+PMMA,Polymethyl methacrylate
+Cellophane,Cellophane
+SAN,SAN
+SAN,Styrene acrylonitrile resin
+PC,PC
+PC,Polycarbonate
+PDMS,PDMS
+PDMS,Polydimethylsiloxane
+PLA,PLA
+PLA,picolinic acid
+PTFE,PTFE
+PTFE,Polytetrafluoroethylene
+SBR,SBR
+SBR,Styrene-butadiene rubber
+PET+olefin,PET+olefin
+PES,PES
+PES,PESU
+ABS,ABS
+ABS,Polyethersulfone
+ABS,Acrylonitrile butadiene styrene
+LDPE,LDPE
+LDPE,Low density polyethylene
+PEVA,PEVA
+PEVA,Polyethylene-vinyl acetate
+AR,AR
+PVA,PVA
+PVA,Polyvinyl alcohol
+Organic matter,Organic matter
+Mineral,Mineral
+Other plastic,Other plastic
