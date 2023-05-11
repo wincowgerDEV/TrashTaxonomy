@@ -13,7 +13,7 @@ library(data.tree)
 library(collapsibleTree)
 
 
-#setwd("/Users/hannahhapich/desktop/Trash_Taxonomy/TrashTaxonomy")
+setwd("/Users/hannahhapich/Downloads/TrashTaxonomy-master")
 
 cleantext <- function(x) {
   x <- tolower(gsub("[[:space:]]", "", x))
@@ -42,10 +42,19 @@ alius <- read.csv("data/PrimeMaterials.csv")
 hierarchy <- read.csv("data/MaterialsHierarchyLower.csv")
 aliusi <- read.csv("data/PrimeItems.csv")
 hierarchyi <- read.csv("data/ITEMSHierarchyLower.csv")
+micromat <- read.csv("data/Microplastics_Material.csv")
+micromorph <- read.csv("data/Microplastics_Morphology.csv")
+microcolor <- read.csv("data/Microplastics_Color.csv")
+micromathierarchy <- read.csv("data/Microplastics_Material_Hierarchy.csv")
 aliasclean <- mutate_all(alius, cleantext)
 aliascleani <- mutate_all(aliusi, cleantext)
 hierarchyclean <- mutate_all(hierarchy, cleantext)
 hierarchycleani <- mutate_all(hierarchyi, cleantext)
+micromatclean <- mutate_all(micromat, cleantext)
+micromorphclean <- mutate_all(micromorph, cleantext)
+microcolorclean <- mutate_all(microcolor, cleantext)
+micromathierarchyclean <- mutate_all(micromathierarchy, cleantext)
+
 
 Materials <- hierarchy
 Materials[is.na(Materials)] <- ""
@@ -85,6 +94,27 @@ Items_hierarchy <- as.Node(Items_hierarchy, pathDelimiter = "/")
 Items_hierarchy <- as.list(Items_hierarchy)
 Items_hierarchy <- Items_hierarchy[-1]
 
+#CREATING MICRO TAX HIERARCHY
+MicroMaterials <- micromathierarchy
+MicroMaterials[is.na(MicroMaterials)] <- ""
+MicroMaterials <- mutate_all(MicroMaterials, removeslash)
+MicroMaterials$pathString <- paste("Trash", MicroMaterials$X1, sep = "/")
+MicroMaterials <- as.Node(MicroMaterials[,])
+MicroMaterials <- as.list(MicroMaterials)
+MicroMaterials <- MicroMaterials[-1]
+MicroMaterials <- cleanmaterials(MicroMaterials)
+
+MicroMaterials_hierarchy <- micromathierarchy
+MicroMaterials_hierarchy[is.na(MicroMaterials_hierarchy)] <- ""
+MicroMaterials_hierarchy <- mutate_all(MicroMaterials_hierarchy, removeslash) %>%
+  mutate(key = "trash") %>%
+  relocate(key) %>%
+  unite(pathString, sep = "/")
+MicroMaterials_hierarchy <- as.Node(MicroMaterials_hierarchy, pathDelimiter = "/")
+MicroMaterials_hierarchy <- as.list(MicroMaterials_hierarchy)
+MicroMaterials_hierarchy <- MicroMaterials_hierarchy[-1]
+#END MICRO TAX ADD ON
+
 
 #Files for display
 Materials_Alias <- read.csv("data/PrimeMaterials.csv")
@@ -96,6 +126,10 @@ Brand_Manufacturer_Relation <- read.csv("data/BrandManufacturer.csv")
 Brand_Item_Relation <- read.csv("data/BrandItem.csv")
 NOAA <- read.csv("data/NOAA.csv")
 PrimeUnclassifiable <- read.csv("data/PrimeUnclassifiable.csv")
+Micro_Mat_Display <- read.csv("data/Microplastics_Morphology.csv")
+MicroMaterials_Hierarchy <-read.csv("data/Microplastics_Material_Hierarchy.csv")
+Micro_Morph_Display <-read.csv("data/Microplastics_Morphology.csv")
+Micro_Color_Display <-read.csv("data/Microplastics_Color.csv")
 
 
 server <- function(input,output,session) {
@@ -359,6 +393,11 @@ server <- function(input,output,session) {
     Items_hierarchy
   }
   )
+  output$micromaterialhierarchy <- renderTree({
+    #shiny::validate(shiny::need(input$file1, "Please upload a dataset to get started")) 
+    MicroMaterials_hierarchy
+  }
+  )
   
   output$downloadData3 <- downloadHandler(    
     filename = function() {
@@ -424,6 +463,44 @@ server <- function(input,output,session) {
     }
   )
   
+  #MICROTAX ADD ON
+  output$download9 <- downloadHandler(    
+    filename = function() {
+      paste(deparse(substitute(Micro_Mat_Display)), '.csv', sep='')
+    },
+    content = function(file) {
+      write.csv(Micro_Mat_Display, file, row.names=FALSE)
+    }
+  )
+  
+  output$download10 <- downloadHandler(    
+    filename = function() {
+      paste(deparse(substitute(MicroMaterials_Hierarchy)), '.csv', sep='')
+    },
+    content = function(file) {
+      write.csv(MicroMaterials_hierarchy, file, row.names=FALSE)
+    }
+  )
+  
+  output$download11 <- downloadHandler(    
+    filename = function() {
+      paste(deparse(substitute(Micro_Morph_Display)), '.csv', sep='')
+    },
+    content = function(file) {
+      write.csv(Micro_Morph_Display, file, row.names=FALSE)
+    }
+  )
+  
+  output$download12 <- downloadHandler(    
+    filename = function() {
+      paste(deparse(substitute(Micro_Color_Display)), '.csv', sep='')
+    },
+    content = function(file) {
+      write.csv(Micro_Color_Display, file, row.names=FALSE)
+    }
+  )
+  #END MICROTAX ADD ON
+  
   output$table1 = DT::renderDataTable({
     Materials_Alias
   }, style="bootstrap")
@@ -455,6 +532,24 @@ server <- function(input,output,session) {
   output$table8 = DT::renderDataTable({
     PrimeUnclassifiable
   }, style="bootstrap")
+  
+  #MICRO TAX ADD ON
+  output$table9 = DT::renderDataTable({
+    Micro_Mat_Display
+  }, style="bootstrap")
+  
+  output$table10 = DT::renderDataTable({
+    MicroMaterials_hierarchy
+  }, style="bootstrap")
+  
+  output$table11 = DT::renderDataTable({
+    Micro_Morph_Display
+  }, style="bootstrap")
+  
+  output$table12 = DT::renderDataTable({
+    Micro_Color_Display
+  }, style="bootstrap")
+  #END MICRO TAX ADD ON
   
 }
 
