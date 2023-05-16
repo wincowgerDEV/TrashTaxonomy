@@ -11,12 +11,16 @@ Film,Film
 Film,Films
 Foam,Foam
 Foam,Foams
+Foam,Styrofoam
+Foam,Polystyrene
+Foam,Extruded polystyrene
 Sphere,Sphere
 Sphere,Sphericals
 Sphere,Spherical
 Sphere,Spheres
 Line,Line
 Bead,Bead
+Bead,Beads
 Sheet,Sheet
 Sheet,Flake
 Sheet,Sheets
@@ -25,3 +29,4 @@ Film;Fragment,Films/fragments
 Film;Fragment,Films;fragments
 Rubbery fragment,Rubbery fragment
 Fiber bundle,Fiber bundle
+Other,Other

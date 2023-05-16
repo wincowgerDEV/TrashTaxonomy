@@ -24,15 +24,18 @@ PAM,PAM
 PAM,Polyacrylamide
 PET,PET
 PET,Polyethylene terephthalate
+PET,PETE
 Plastic additive,Plastic additive
 PBT,PBT
 PBT,Polybutylene terephthalate
 PU,PU
 PU,Polyurethane
 PU,PUR
+PU,urethane
 PET-PEST,PET-PEST
 PAN,PAN
 PAN,Polyacrylonitrile
+PAN,Acrylonitrile
 Silicone,Silicone
 Acrylic,Acrylic
 Vinyl,Vinyl
@@ -72,6 +75,7 @@ PTFE,PTFE
 PTFE,Polytetrafluoroethylene
 SBR,SBR
 SBR,Styrene-butadiene rubber
+SBR,butadiene/butyl rubber
 PET+olefin,PET+olefin
 PES,PES
 PES,PESU
@@ -88,3 +92,12 @@ PVA,Polyvinyl alcohol
 Organic matter,Organic matter
 Mineral,Mineral
 Other plastic,Other plastic
+nonpolymeric,nonpolymeric
+semi-synthetic cellulose,semi-synthetic cellulose
+PVDF,PVDF
+PVDF,poly(vinylidene flourine)
+PAI,PAI
+PAI,poly(trimellitamideimide)
+neoprene,neoprene
+cotton,cotton
+wool,wool
