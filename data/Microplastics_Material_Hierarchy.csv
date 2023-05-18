@@ -50,9 +50,251 @@ Not Plastic,Organic matter
 Not Plastic,Mineral
 Other Plastic,Other plastic
 Not Plastic,nonpolymeric
-N/A,semi-synthetic cellulose
+Other Plastic,semi-synthetic cellulose
 Polyhaloolefins (Vinylhalides),PVDF
-N/A,PAI
-N/A,neoprene
+Other Plastic,PAI
+Other Plastic,neoprene
 Not Plastic,cotton
 Not Plastic,wool
+Polyacrylamides,Poly(N-isopropyl acrylamide)
+Polyacrylamides,Poly(N-octyl acrylamide)
+Polyacrylamides,Poly(N-tert-butyl acrylamide)
+Polyacrylamides,Poly(N-phenyl acrylamide)
+Polyacrylamides,Poly(N-sec-butyl acrylamide)
+Polyacrylates (Propenoates),Poly(benzyl acrylate)
+Polyacrylates (Propenoates),Poly(butyl acrylate)
+Polyacrylates (Propenoates),Poly(4-chlorophenyl acrylate)
+Polyacrylates (Propenoates),Poly(2-cyanoethyl acrylate)
+Polyacrylates (Propenoates),Poly(cyanomethyl acrylate)
+Polyacrylates (Propenoates),Poly(cyclohexyl acrylate)
+Polyacrylates (Propenoates),Poly(ethyl acrylate)
+Polyacrylates (Propenoates),Poly(2-ethylhexyl acrylate)
+Polyacrylates (Propenoates),Poly(hexyl acrylate)
+Polyacrylates (Propenoates),Poly(isobutyl acrylate)
+Polyacrylates (Propenoates),Poly(isopropyl acrylate)
+Polyacrylates (Propenoates),Poly(methyl acrylate)
+Polyacrylates (Propenoates),Poly(octyl acrylate)
+Polyacrylates (Propenoates),Poly(propyl acrylate)
+Polyacrylates (Propenoates),Poly(sec-butyl acrylate)
+Polyacrylates (Propenoates),Poly(stearyl acrylate)
+Polyacrylates (Propenoates),Poly(tert-butyl acrylate)
+Polyacrylates (Propenoates),"Poly(2,2,3,3-Tetrafluoropropyl acrylate)"
+Polyacrylonitriles (Nitriles),Poly(methacrylonitrile)
+Polyacrylonitriles (Nitriles),Poly(butylene adipate)
+Polyacrylonitriles (Nitriles),Poly(ethylene adipate)
+Polyacrylonitriles (Nitriles),Poly(propylene adipate)
+Polyolefins (POLYALKENES),Poly(butylene)
+Polyolefins (POLYALKENES),Poly(butyl ethylene)
+Polyolefins (POLYALKENES),Poly(cyclohexylethylene)
+Polyolefins (POLYALKENES),Poly(heptylethylene)
+Polyolefins (POLYALKENES),Poly(hexylethylene)
+Polyolefins (POLYALKENES),Poly(isobutene)
+Polyolefins (POLYALKENES),Poly(isobutylethylene)
+Polyolefins (POLYALKENES),Poly(isopropylethylene)
+Polyolefins (POLYALKENES),Poly(2-methylbutene)
+Polyolefins (POLYALKENES),Poly(octylethylene)
+Polyolefins (POLYALKENES),Poly(pentylethylene)
+Polyolefins (POLYALKENES),Poly(propylethylene)
+Polyolefins (POLYALKENES),Poly(tert-butylethylene)
+Polyamides (POLYLACTAMS),Nylon 3 - Poly(propiolactam)
+Polyamides (POLYLACTAMS),Nylon 6 - Poly(caprolactam)
+Polyamides (POLYLACTAMS),Nylon 8 - Polycapryllactam
+Polyamides (POLYLACTAMS),Nylon 10 - Poly(decano-10-lactam)
+Polyamides (POLYLACTAMS),Nylon 11 - Poly(undecano-11-lactam)
+Polyamides (POLYLACTAMS),Nylon 12 - Poly(dodecano-12-lactam)
+Polyamides (POLYLACTAMS),"Nylon 4,6 - Poly(tetramethylene adipamide)"
+Polyamides (POLYLACTAMS),"Nylon 6,6 - Poly(hexamethylene adipamide)"
+Polyamides (POLYLACTAMS),"Nylon 6,9 - Poly(hexamethylene azelamide)"
+Polyamides (POLYLACTAMS),"Nylon 6,10 - Poly(hexamethylene sebacamide)"
+Polyamides (POLYLACTAMS),"Nylon 6,12 - Poly(hexamethylene dodecanediamide)"
+Polyamides (POLYLACTAMS),"Nylon 10,10 - Poly(decamethylene sebacamide)"
+Polyamides (POLYLACTAMS),"Poly(hexamethylene isophthalamide), PA 6I"
+Polyamides (POLYLACTAMS),"Poly(hexamethylene teraphthalamide), PA 6T"
+Polyamides (POLYLACTAMS),Kevlar - Polyaramide
+Polyamides (POLYLACTAMS),Nomex - Poly(m-phenylene terephthalamide)
+Polyamides (POLYLACTAMS),"Poly(nonanmethylene teraphthalamide), PA 9T"
+Polyanhydrides,Poly(p-pentamethylenedibenzoic anhydride)
+Polyanhydrides,Poly(p-tetramethylenedibenzoic anhydride)
+Polyanhydrides,Poly(sebacic anhydride)
+Polyanhydrides,Poly(azelaic anhydride)
+"Polydienes (Butadienes, Isoprenes)","Poly(1,2-butadiene)"
+"Polydienes (Butadienes, Isoprenes)","Poly(1,4-butadiene)"
+"Polydienes (Butadienes, Isoprenes)","Poly(1-ethyl-1,4-butadiene)"
+"Polydienes (Butadienes, Isoprenes)","1,4-Polyisoprene (cis and trans)(Latex)"
+"Polydienes (Butadienes, Isoprenes)","Poly(1,4-pentadiene)"
+"Polydienes (Butadienes, Isoprenes)",Poly(1-pentenylene)
+Polyfumarates (POLYBUTENEDIOATES),Poly(dimethyl fumarate)
+Polyfumarates (POLYBUTENEDIOATES),Poly(dibutyl fumarate)
+Polyfumarates (POLYBUTENEDIOATES),Poly(diethyl fumarate)
+Polyfumarates (POLYBUTENEDIOATES),Poly(dipropyl fumarate)
+Polycarbonates,Poly(bisphenol A carbonate)
+Polycarbonates,"Poly(4,4'-thiodiphenylene carbonate)"
+Polycarbonates,Poly(bisphenol B carbonate)
+Polycarbonates,Poly(bisphenol F carbonate)
+Polycarbonates,Poly(ethylene carbonate)
+Polycarbonates,Poly(propylene carbonate)
+Polycarbonates,"Poly(2,6,3',5'-tetrachloro bisphenol A carbonate)"
+Polycarbonates,Poly(tetramethyl bisphenol A carbonate)
+Cellulose Derivatives (Ether Cellulose),Rayon
+Cellulose Derivatives (Ether Cellulose),Cellulose Nitrate
+Cellulose Derivatives (Ether Cellulose),Methyl Cellulose
+Cellulose Derivatives (Ether Cellulose),Ethyl Cellulose
+Polyhaloolefins (Vinylhalides),Poly(chlorotrifluoroethylene)
+Polyhaloolefins (Vinylhalides),Poly(vinyl bromide)
+Polyhaloolefins (Vinylhalides),Poly(vinyl fluoride)
+Polyhaloolefins (Vinylhalides),Poly(vinylidene chloride)
+Polycyanoacrylates,Poly(methyl cyanoacrylate)
+Polycyanoacrylates,Poly(ethyl cyanoacrylate)
+Polycyanoacrylates,Poly(butyl cyanoacrylate)
+Polycyanoacrylates,Poly(hexyl cyanoacrylate)
+Polycyanoacrylates,Poly(octyl cyanoacrylate)
+"PolyDiglycidyl Ethers (POLYEPOXIDES, POLYHYDROXYETHERS, Phenoxy)",Bisphenol-A diglycidyl ether epoxy resin
+"PolyDiglycidyl Ethers (POLYEPOXIDES, POLYHYDROXYETHERS, Phenoxy)",Bisphenol-F diglycidyl ether epoxy resin
+"PolyDiglycidyl Ethers (POLYEPOXIDES, POLYHYDROXYETHERS, Phenoxy)",Poly(bis-A diglycidyl ether- alt - ethylenediamine)
+"PolyDiglycidyl Ethers (POLYEPOXIDES, POLYHYDROXYETHERS, Phenoxy)",Poly(bis-A diglycidyl ether- alt - hexamethylenediamine)
+"PolyDiglycidyl Ethers (POLYEPOXIDES, POLYHYDROXYETHERS, Phenoxy)",Poly(bis-A diglycidyl ether- alt - octamethylenediamine)
+Polyesters,Poly(caprolactone)
+Polyesters,Poly(ethylene naphthalate)
+Polyesters,Poly(ethylene phthalate)
+Polyesters,Polyglycolide
+Polyesters,Poly(3-hydroxybutyrate)
+Polyesters,Poly(4-hydroxybutyrate)
+Polyesters,Polylactic acid
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Polyacetal - Polyoxymethylene
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Poly(3-butoxypropylene oxide)
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Poly(epichlorohydrin)
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Poly(ethylene glycol)
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Poly(hexamethylene oxide)
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Poly(3-methoxypropylene oxide)
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Poly[oxy(hexyloxymethyl)ethylene]
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Poly(oxymethylene-oxyethylene)
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Poly(oxymethylene-oxytetramethylene)
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Poly(propylene glycol)
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Poly(tetrahydrofuran)
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)",Poly(trimethylene glycol)
+"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)","Poly[1,1-bis(chloromethyl)trimethylene oxide]"
+Poly(Ether)ketones (POLYKETONES),PEK - Poly(ether ketone)
+Poly(Ether)ketones (POLYKETONES),PEKK - Poly(ether ketone ketone)
+Poly(Ether)ketones (POLYKETONES),PEEK - Poly(ether ether ketone)
+Poly(Ether)ketones (POLYKETONES),Poly(ethyleneketone)
+Poly(Ether)ketones (POLYKETONES),Poly(propyleneketone)
+Polyethersulfones (POLYSULFONE),Poly(ether ether sulfone)
+Polyethersulfones (POLYSULFONE),Poly(ethersulfone)
+Polyethersulfones (POLYSULFONE),Poly(phenylsulfone)
+Polyethersulfones (POLYSULFONE),Bisphenol A Polysulfone
+Polyhalodienes,PoIy(1-chloro-1-butenylene) (Polychloroprene)
+Polyhalodienes,Poly(1-bromo-1-butenylene) (Polybromoprene)
+Polyhalostyrenes,Poly(4-bromostyrene)
+Polyhalostyrenes,Poly(2-chlorostyrene)
+Polyhalostyrenes,Poly(3-chlorostyrene)
+Polyhalostyrenes,Poly(4-chlorostyrene)
+Polyhalostyrenes,"Poly(2,5-difluorostyrene)"
+Polyhalostyrenes,Poly(4-fluorostyrene)
+Polyhydroxy(meth)acrylates,Poly(2-hydroxyethyl acrylate)
+Polyhydroxy(meth)acrylates,Poly(2-hydroxyethyl methacrylate)
+Polyhydroxy(meth)acrylates,Poly(2-hydroxypropyl methacrylate)
+Polyurethanes (isocyanates),"Poly[(diethylene glycol)-alt-(1,6-hexamethylene diisocyanate)]"
+Polyurethanes (isocyanates),"Poly[(tetraethylene glycol)-alt-(1,6-hexamethylene diisocyanate)]"
+Polyurethanes (isocyanates),"Poly[(1,4-butanediol)-alt-(4,4'-diphenylmethane diisocyanate)]"
+Polyurethanes (isocyanates),"Poly[(ethylene glycol)-alt-(4,4'-diphenylmethane diisocyanate)]"
+Polyurethanes (isocyanates),"Poly[(polytetrahydrofuran 1000)-alt-(4,4'-diphenylmethane diisocyanate)]"
+Polyisophthalates,Poly(Bisphenol A isophthalate)
+Polyisophthalates,Poly(butylene isophthalate)
+Polyisophthalates,Poly(ethylene isophthalate)
+POLYITACONATES (POLYMETHYLENE SUCCINATES),Poly[dimethyl itaconate]
+POLYITACONATES (POLYMETHYLENE SUCCINATES),Poly[di(n-propyl) itaconate]
+POLYITACONATES (POLYMETHYLENE SUCCINATES),Poly[di(n-butyl) itaconate]
+POLYITACONATES (POLYMETHYLENE SUCCINATES),Poly[di(n-hexyl) itaconate]
+Polymethacrylamides,Poly(N-acetylmethacrylamide)
+Polymethacrylamides,Poly(N-benzyl methacrylamide)
+Polymethacrylamides,Poly(methacrylamide)
+Polymethacrylamides,Poly(N-tert-butylmethacrylamide)
+Polymethacrylates,Poly(methacrylic acid)
+Polymethacrylates,Poly(benzyl methacrylate)
+Polymethacrylates,Poly(butyl methacrylate)
+Polymethacrylates,Poly(cyclohexyl methacrylate)
+Polymethacrylates,Poly(decylmethacrylate)
+Polymethacrylates,Poly(dodecylmethacrylate)
+Polymethacrylates,Poly(2-ethoxyethyl methacrylate)
+Polymethacrylates,Poly(ethyl methacrylate)
+Polymethacrylates,Poly(hexyl methacrylate)
+Polymethacrylates,Poly(isobutyl methacrylate)
+Polymethacrylates,Poly(isopropyl methacrylate)
+Polymethacrylates,Poly(octadecyl methacrylate)
+Polymethacrylates,Poly(octyl methacrylate)
+Polymethacrylates,Poly(2-phenylethyl methacrylate)
+Polymethacrylates,Poly(phenyl methacrylate)
+Polymethacrylates,Poly(propyl methacrylate)
+Polymethacrylates,Poly(2-chloroethyl methacrylate)
+Polymethacrylates,Poly(sec-butyl methacrylate)
+Polymethacrylates,Poly(4-tert-butylcyclohexyl methacrylate)
+Polymethacrylates,Poly(tert-butyl methacrylate)
+Polymethacrylates,"Poly(2,2,3,3-tetrafluoropropyl methacrylate)"
+"POLYSTYRENES (POLYPHENYLETHYLENES, α-Methylstyrene)",Poly(2-methoxystyrene)
+"POLYSTYRENES (POLYPHENYLETHYLENES, α-Methylstyrene)",Poly(α-methylstyrene)
+"POLYSTYRENES (POLYPHENYLETHYLENES, α-Methylstyrene)",Poly(2-methylstyrene)
+"POLYSTYRENES (POLYPHENYLETHYLENES, α-Methylstyrene)",Poly(3-methylstyrene)
+"POLYSTYRENES (POLYPHENYLETHYLENES, α-Methylstyrene)",Poly(4-methylstyrene)
+"POLYSTYRENES (POLYPHENYLETHYLENES, α-Methylstyrene)",Polystyrene
+"POLYSTYRENES (POLYPHENYLETHYLENES, α-Methylstyrene)",Poly(4-tert-butylstyrene)
+Polyphenylenes (POLYAROMATICS),Poly(p-phenylene)
+Polyphenylenes (POLYAROMATICS),Poly(p-phenylene vinylene)
+Polyphenylenes (POLYAROMATICS),Poly(p-xylene)
+Polyphenylenes (POLYAROMATICS),Poly(2-chloro-p-xylylene)
+Polyphenylethers (POLYPHENYLENEOXIDE),"Poly(2,6-dimethyl-p-phenylene oxide)"
+Polyphenylethers (POLYPHENYLENEOXIDE),"Poly(2,6-diphenyl-p-phenylene oxide)"
+Polyphenylethers (POLYPHENYLENEOXIDE),Poly(p-phenylene oxide)
+Polysebacates,Poly(butylene sebacate)
+Polysebacates,Poly(ethylene sebacate)
+Polysebacates,Poly(hexylene sebacate)
+Polysiloxanes,Poly(diethylsiloxane) (PDES)
+Polysuccinates,"Poly(1,4-butylene succinate)"
+Polysuccinates,Poly(ethylene succinate)
+Polysuccinates,"Poly(1,6-hexylene succinate)"
+Polysuccinates,Poly(trimethylene succinate)
+Polyterephthalates,Poly(Bisphenol A terephthalate)
+Polyterephthalates,Poly(cyclohexylenedimethylene terephthalate)
+Polyterephthalates,Poly(trimethylene terephthalate)
+Polythioethers (Sulfides),"Poly(thio-1,4-phenylene)"
+Polythioethers (Sulfides),Poly(ethylene sulfide)
+Polythioethers (Sulfides),Poly(propylene sulfide)
+Polyvinylalcohols,Poly(4-vinyl phenol)
+Polyvinylalcohols,Poly(vinyl butyral)
+Polyvinylalcohols,Poly(vinyl formal)
+Polyvinylesters,Poly(vinyl acetate)
+Polyvinylesters,Poly(vinyl benzoate)
+Polyvinylesters,Poly(vinyl butyrate)
+Polyvinylesters,Poly(vinyl caproate)
+Polyvinylesters,Poly(vinyl formate)
+Polyvinylesters,Poly(vinyl propionate)
+Polyvinylesters,Poly(vinyl stearate)
+Polyvinylesters,Poly(vinyl valerate)
+Polyvinylethers,Poly(butyl vinyl ether)
+Polyvinylethers,Poly(ethyl vinyl ether)
+Polyvinylethers,Poly(hexyl vinyl ether)
+Polyvinylethers,Poly(isobutyl vinyl ether)
+Polyvinylethers,Poly(isopropyl vinyl ether)
+Polyvinylethers,Poly(methyl vinyl ether)
+Polyvinylethers,Poly(octyl vinyl ether)
+Polyvinylethers,Poly(propyl vinyl ether)
+Polyvinylethers,Poly(sec-butyl vinyl ether)
+Polyvinylketones,Poly(vinyl ethyl ketone)
+Polyvinylketones,Poly(vinyl methyl ketone)
+Polyvinylketones,Poly(methyl isopropenyl ketone)
+Polyvinylketones,Poly(vinyl phenyl ketone)
+Polyvinylketones,Poly(vinyl pyrrolidone)
+Polyvinylsulfides,Poly(vinyl butyl sulfide)
+Polyvinylsulfides,Poly(vinyl ethyl sulfide)
+Polyvinylsulfides,Poly(vinyl methyl sulfide)
+Polyvinylsulfides,Poly(vinyl phenyl sulfide)
+Polyvinylsulfides,Poly(vinyl propyl sulfide)
+Other Plastic,polyhydroxyalkanoate (PHA)
+Other Plastic,Phenol formaldehyde
+Other Plastic,Urea-formaldehyde
+Other Plastic,Melamine-formaldehyde
+Other Plastic,Isobutylene-isoprene
+Other Plastic,Ethylene-propylene
+Other Plastic,Styrene-maleic
+Other Plastic,Styrene-isoprene
+Other Plastic,EPDM rubber (ethylene propylene diene monomer rubber)
+Not Plastic,Other Material
