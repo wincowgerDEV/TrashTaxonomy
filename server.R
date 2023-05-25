@@ -5,16 +5,17 @@ library(DT)
 library(shinythemes)
 library(shinyTree)
 library(tidyr)
-#library(igraph)
-#library(listviewer)
-#library(treemap)
 library(data.tree)
-#library(igraph)
 library(collapsibleTree)
+library(rgpt3)
+library(httr)
+library(caret)
+library(qs)
+library(randomForest)
 
+setwd("/Users/hannahhapich/Documents/R_Scripts/TrashTaxonomy-master")
 
-setwd("/Users/hannahhapich/Downloads/TrashTaxonomy-master")
-
+#Build cleaning functions
 cleantext <- function(x) {
   x <- tolower(gsub("[[:space:]]", "", x))
   ifelse(x == "", NA, x)
@@ -55,7 +56,7 @@ micromorphclean <- mutate_all(micromorph, cleantext)
 microcolorclean <- mutate_all(microcolor, cleantext)
 micromathierarchyclean <- mutate_all(micromathierarchy, cleantext)
 
-
+#Creating materials hierarchy
 Materials <- hierarchy
 Materials[is.na(Materials)] <- ""
 Materials <- mutate_all(Materials, removeslash)
@@ -75,6 +76,7 @@ Materials_hierarchy <- as.Node(Materials_hierarchy, pathDelimiter = "/")
 Materials_hierarchy <- as.list(Materials_hierarchy)
 Materials_hierarchy <- Materials_hierarchy[-1]
 
+#Creating items hierarchy
 Items <- hierarchyi
 Items[is.na(Items)] <- ""
 Items <- mutate_all(Items, removeslash)
@@ -94,7 +96,7 @@ Items_hierarchy <- as.Node(Items_hierarchy, pathDelimiter = "/")
 Items_hierarchy <- as.list(Items_hierarchy)
 Items_hierarchy <- Items_hierarchy[-1]
 
-#CREATING MICRO TAX HIERARCHY
+#Creating microplastic taxonomy hierarchy
 MicroMaterials <- micromathierarchy
 MicroMaterials[is.na(MicroMaterials)] <- ""
 MicroMaterials <- mutate_all(MicroMaterials, removeslash)
@@ -113,8 +115,6 @@ MicroMaterials_hierarchy <- mutate_all(MicroMaterials_hierarchy, removeslash) %>
 MicroMaterials_hierarchy <- as.Node(MicroMaterials_hierarchy, pathDelimiter = "/")
 MicroMaterials_hierarchy <- as.list(MicroMaterials_hierarchy)
 MicroMaterials_hierarchy <- MicroMaterials_hierarchy[-1]
-#END MICRO TAX ADD ON
-
 
 #Files for display
 Materials_Alias <- read.csv("data/PrimeMaterials.csv")
@@ -131,9 +131,19 @@ MicroMaterials_Hierarchy <-read.csv("data/Microplastics_Material_Hierarchy.csv")
 Micro_Morph_Display <-read.csv("data/Microplastics_Morphology.csv")
 Micro_Color_Display <-read.csv("data/Microplastics_Color.csv")
 
+#Load up necessary data to generate embeddings
+api_key <- readLines("data/openai.txt")
+materials_alias_embeddings <- read.csv("data/Materials_Alias_.csv")
+model <- 'text-embedding-ada-002'
+material_embeddings <- read.csv("data/material_embeddings.csv")
+material_dotprod <- data.table::transpose(material_embeddings, make.names = "name")
+
+
+#Start server
 
 server <- function(input,output,session) {
-  
+
+###Find more and less specific items and materials
   df <- reactive({
     req(input$df)
     infile <- input$df
@@ -144,7 +154,7 @@ server <- function(input,output,session) {
     dataframe$items <- as.character(dataframe$items)
     dataframeclean <- mutate_all(dataframe, cleantext) 
     
-    
+  #Material query tool cleaning
     for(row in 1:nrow(dataframeclean)) { 
       
       if(is.na(dataframeclean[row,"material"]) | dataframeclean[row,"material"] == "") {
@@ -156,14 +166,48 @@ server <- function(input,output,session) {
       if(any(PrimeUnclassifiable == dataframeclean[row,"material"])) {
         dataframe[row, "MoreSpecificMaterial"] <- "Unclassifiable"
         dataframe[row, "PrimeMaterial"] <- NA
-        next #Corrects for cases when unclassifiable
+        #next #Corrects for cases when unclassifiable
       }
       
-      #Identify Alias Row and Alias name
+      #Identify Alias Row and Alias name in database
       Primename <- unique(aliasclean[unname(unlist(apply(aliasclean, 2, function(x) which(x == dataframeclean[row,"material"], arr.ind = T)))), "Material"])
       
       if(length(Primename) == 0 ){
-        dataframe[row, "PrimeMaterial"] <- "NO VAL IN DATABASE"
+          #Create new embedding
+          embeddings_new <- lapply(dataframeclean[row,"material"], function(material){
+            input = material
+            
+            parameter_list = list(input = input, model = model)
+            
+            request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
+                                      body = parameter_list, 
+                                      httr::add_headers(Authorization = paste("Bearer", api_key)),
+                                      encode = "json")
+            
+            output_base = httr::content(request_base)
+            embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
+            names(embedding_raw) = 1:1536
+            data.table::as.data.table(as.list(embedding_raw)) %>%
+              mutate(material = input)
+          })
+          
+          #Bind new embeddings generated
+          material_embeddings_new <- rbindlist(embeddings_new)
+          
+          #Make new dot prod
+          material_dotprod_new <- data.table::transpose(material_embeddings_new, make.names = "material")
+          
+          #Take new cross prod
+          cross_product <- crossprod(data.matrix(material_dotprod), material_dotprod_new[[1]])
+          
+          #Top match for alias given cross prod
+          Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
+          
+          #Top key alias match for given alias
+          Primename <- materials_alias_embeddings$Material[materials_alias_embeddings$Alias == Primename_]
+          
+          #Input prime key into dataframe
+          dataframe[row, "PrimeMaterial"] <- Primename
       }
       
       else{
@@ -303,7 +347,7 @@ server <- function(input,output,session) {
       
     }
     
-
+    
     return(dataframe)
   })
   
@@ -312,51 +356,51 @@ server <- function(input,output,session) {
   })
   
   output$contents <- renderDataTable(server = F,
-    datatable({
-    df()[, c("material","items",  input$variable)]
-  }, 
-  extensions = 'Buttons',
-  options = list(
-    paging = TRUE,
-    searching = TRUE,
-    fixedColumns = TRUE,
-    autoWidth = TRUE,
-    ordering = TRUE,
-    dom = 'Bfrtip',
-    buttons = c('copy', 'csv', 'excel', 'pdf')
-  ),
-  class = "display",
-  style="bootstrap"))
+                                     datatable({
+                                       df()[, c("material","items",  input$variable)]
+                                     }, 
+                                     extensions = 'Buttons',
+                                     options = list(
+                                       paging = TRUE,
+                                       searching = TRUE,
+                                       fixedColumns = TRUE,
+                                       autoWidth = TRUE,
+                                       ordering = TRUE,
+                                       dom = 'Bfrtip',
+                                       buttons = c('copy', 'csv', 'excel', 'pdf')
+                                     ),
+                                     class = "display",
+                                     style="bootstrap"))
   
   output$contents1 <- renderDataTable(server = F,
-  datatable({df()[, c("material","PrimeMaterial")] %>% distinct()},
-    extensions = 'Buttons',
-    options = list(
-      paging = TRUE,
-      searching = TRUE,
-      fixedColumns = TRUE,
-      autoWidth = TRUE,
-      ordering = TRUE,
-      dom = 'Bfrtip',
-      buttons = c('copy', 'csv', 'excel', 'pdf')
-    ),
-    class = "display",
-    style="bootstrap"))
+                                      datatable({df()[, c("material","PrimeMaterial")] %>% distinct()},
+                                                extensions = 'Buttons',
+                                                options = list(
+                                                  paging = TRUE,
+                                                  searching = TRUE,
+                                                  fixedColumns = TRUE,
+                                                  autoWidth = TRUE,
+                                                  ordering = TRUE,
+                                                  dom = 'Bfrtip',
+                                                  buttons = c('copy', 'csv', 'excel', 'pdf')
+                                                ),
+                                                class = "display",
+                                                style="bootstrap"))
   
   output$contents2 <- renderDataTable(server = F, 
-    datatable({df()[, c("items","PrimeItem")] %>% distinct()},
-              extensions = 'Buttons',
-              options = list(
-                paging = TRUE,
-                searching = TRUE,
-                fixedColumns = TRUE,
-                autoWidth = TRUE,
-                ordering = TRUE,
-                dom = 'Bfrtip',
-                buttons = c('copy', 'csv', 'excel', 'pdf')
-              ),
-              class = "display",
-              style="bootstrap"))
+                                      datatable({df()[, c("items","PrimeItem")] %>% distinct()},
+                                                extensions = 'Buttons',
+                                                options = list(
+                                                  paging = TRUE,
+                                                  searching = TRUE,
+                                                  fixedColumns = TRUE,
+                                                  autoWidth = TRUE,
+                                                  ordering = TRUE,
+                                                  dom = 'Bfrtip',
+                                                  buttons = c('copy', 'csv', 'excel', 'pdf')
+                                                ),
+                                                class = "display",
+                                                style="bootstrap"))
   
   output$downloadData1 <- downloadHandler(    
     filename = function() {
@@ -375,7 +419,7 @@ server <- function(input,output,session) {
       write.csv(Materials_Hierarchy, file, row.names=FALSE)
     }
   )
-
+  
   #output$material_tree <- renderCollapsibleTree(collapsibleTree(Materials_Hierarchy,
   #                                                              root = "Materials Hierarchy",
   #                                                              hierarchy = names(Materials_Hierarchy), 
@@ -552,7 +596,6 @@ server <- function(input,output,session) {
   #END MICRO TAX ADD ON
   
 }
-
 
 
 
