@@ -134,11 +134,13 @@ Micro_Color_Display <-read.csv("data/Microplastics_Color.csv")
 #Load up necessary data to generate embeddings
 api_key <- readLines("data/openai.txt")
 materials_alias_embeddings <- read.csv("data/Materials_Alias_.csv")
+items_alias_embeddings <- read.csv("data/Items_Alias_.csv")
 model <- 'text-embedding-ada-002'
 material_embeddings <- read.csv("data/material_embeddings.csv")
 material_dotprod <- data.table::transpose(material_embeddings, make.names = "name")
-
-
+item_embeddings <- read.csv("data/item_embeddings.csv")
+item_dotprod <- data.table::transpose(item_embeddings, make.names = "name")
+  
 #Start server
 
 server <- function(input,output,session) {
@@ -287,7 +289,41 @@ server <- function(input,output,session) {
       Primename <- unique(aliascleani[unname(unlist(apply(aliascleani, 2, function(x) which(x == dataframeclean[row,"items"], arr.ind = T)))), "Item"])
       
       if(length(Primename) == 0){
-        dataframe[row, "PrimeItem"] <- "NO VAL IN DATABASE"
+        #Create new embedding
+        embeddings_newi <- lapply(dataframeclean[row,"items"], function(items){
+          input = items
+          
+          parameter_list = list(input = input, model = model)
+          
+          request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
+                                    body = parameter_list, 
+                                    httr::add_headers(Authorization = paste("Bearer", api_key)),
+                                    encode = "json")
+          
+          output_base = httr::content(request_base)
+          embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
+          names(embedding_raw) = 1:1138
+          data.table::as.data.table(as.list(embedding_raw)) %>%
+            mutate(items = input)
+        })
+        
+        #Bind new embeddings generated
+        item_embeddings_new <- rbindlist(embeddings_newi)
+        
+        #Make new dot prod
+        item_dotprod_new <- data.table::transpose(item_embeddings_new, make.names = "items")
+        
+        #Take new cross prod
+        cross_product <- crossprod(data.matrix(item_dotprod), item_dotprod_new[[1]])
+        
+        #Top match for alias given cross prod
+        Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
+        
+        #Top key alias match for given alias
+        Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == Primename_]
+        
+        #Input prime key into dataframe
+        dataframe[row, "PrimeItem"] <- Primename
       }
       
       else{
