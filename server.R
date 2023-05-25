@@ -210,6 +210,9 @@ server <- function(input,output,session) {
           
           #Input prime key into dataframe
           dataframe[row, "PrimeMaterial"] <- Primename
+          
+          #Save new embeddings for future use
+          write.csv(material_embeddings_new,'data/material_embeddings_new.csv')
       }
       
       else{
@@ -324,6 +327,9 @@ server <- function(input,output,session) {
         
         #Input prime key into dataframe
         dataframe[row, "PrimeItem"] <- Primename
+        
+        #Save new embeddings for future use
+        write.csv(item_embeddings_new,'data/item_embeddings_new.csv')
       }
       
       else{
