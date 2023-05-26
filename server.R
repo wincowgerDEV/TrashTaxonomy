@@ -205,8 +205,17 @@ server <- function(input,output,session) {
           #Top match for alias given cross prod
           Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
           
+          #Second and third highest matches
+          colnames(cross_product) <- c("match")
+          cross_product_ <- data.frame(cross_product)
+          cross_product_[order(-cross_product_$match),  ,drop=FALSE]
+          second_alias = row.names(cross_product_)[2]
+          third_alias = row.names(cross_product_)[3]
+          
           #Top key alias match for given alias
           Primename <- materials_alias_embeddings$Material[materials_alias_embeddings$Alias == Primename_]
+          second_Primename <- materials_alias_embeddings$Material[materials_alias_embeddings$Alias == second_alias]
+          third_Primename <- materials_alias_embeddings$Material[materials_alias_embeddings$Alias == third_alias]
           
           #Input prime key into dataframe
           dataframe[row, "PrimeMaterial"] <- Primename
@@ -322,8 +331,17 @@ server <- function(input,output,session) {
         #Top match for alias given cross prod
         Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
         
+        #Second and third highest matches
+        colnames(cross_product) <- c("match")
+        cross_product_ <- data.frame(cross_product)
+        cross_product_[order(-cross_product_$match),  ,drop=FALSE]
+        second_alias = row.names(cross_product_)[2]
+        third_alias = row.names(cross_product_)[3]
+        
         #Top key alias match for given alias
         Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == Primename_]
+        second_Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == second_alias]
+        third_Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == third_alias]
         
         #Input prime key into dataframe
         dataframe[row, "PrimeItem"] <- Primename
