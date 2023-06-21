@@ -515,6 +515,52 @@ ui <- fluidPage(
                column(1)
              ),
              
+             tags$hr(),
+             
+             fluidRow(
+               column(3
+               ),
+               column(6,
+                      shiny::HTML("<br><br><center> <h1>Microplastic Color Alias</h1> </center><br>"),
+                      shiny::HTML("<h5>This table describes the aliases that can be used to describe microplastic colors. Each row represents a unique color and each column is an alias for that color.</h5>"),
+                      checkboxInput("show12", "Show Table", width = '100%')
+                      
+               ),
+               column(3
+               )
+             ),
+             
+             # PAGE BREAK
+             tags$hr(),
+             
+             fluidRow(
+               column(3),
+               column(6,
+                      
+                      tags$div(align = "center", 
+                               downloadButton('download12', 'Download')
+                      )
+                      
+               ),
+               column(3)),
+             
+             
+             fluidRow(
+               column(1),
+               column(10,
+                      
+                      conditionalPanel(condition = "input.show12 == true",
+                                       DT::dataTableOutput('table12')
+                      )
+               ), 
+               column(1)
+             ),
+             
+             
+             fluidRow(
+               
+               style = "height:50px;"),
+             
              fluidRow(
                column(3),
                column(6,
@@ -574,203 +620,45 @@ ui <- fluidPage(
                tags$p("Citation: H. Hapich, W. Cowger, A. Gray, Jambeck Research Group. 2020. Trash Taxonomy. https://trashtaxonomy.shinyapps.io/trashtaxonomy/")
              )
     ),
-    #Microplastic Taxonomy Tables ----
-    tabPanel("Microplastic Taxonomy Tables",
-             titlePanel(tags$h4("View and Download Relational Tables")),
-             
-             ### PAGE BREAK
-             tags$hr(),
+    #Survey Merging Tool ----
+    tabPanel("Survey Merging Tool",
+             titlePanel(tags$h4("Merge two or more exisitng survey sheets into one dataset")),
              
              fluidRow(
-               column(3
-               ),
-               column(6,
-                      shiny::HTML("<br><br><center> <h1>Microplastic Materials Alias</h1> </center><br>"),
-                      shiny::HTML("<h5>This table describes the aliases that can be used to describe material types and links them to a key term. Each row represents a unique material and each column is an alias for that material.</h5>"),
-                      checkboxInput("show9", "Show Table", width = '100%')
-                      
-               ),
-               column(3
+               column(2, 
+                      fileInput('df_', "Choose Survey 1 CSV File", multiple = FALSE, accept = c(".csv"))%>%
+                        helper(type = "inline",
+                               title = "Upload Help",
+                               content = c("To use the tool, upload a csv file to the upload file tab. This file need to be a csv with one column named -material- one named -items- and another named -count-. The material should correspond to the item names in the same row."),
+                               size = "m"),
+                      fileInput('d_f_', "Choose Survey 2 CSV File", multiple = FALSE, accept = c(".csv"))%>%
+                        helper(type = "inline",
+                               title = "Upload Help",
+                               content = c("To use the tool, upload a csv file to the upload file tab. This file need to be a csv with one column named -material- one named -items- and another named -count-. The material should correspond to the item names in the same row."),
+                               size = "m"),
+
+
+
+             )
+               
+             ),
+             
+             fluidRow(
+               column(5, 
+                      dataTableOutput('contents3')
                )
-             ),
-             
-             # PAGE BREAK
-             tags$hr(),
-             
-             fluidRow(
-               column(3),
-               column(6,
-                      
-                      tags$div(align = "center", 
-                               downloadButton('download9', 'Download')
-                      )
-                      
-               ),
-               column(3)),
-             
-             
-             fluidRow(
-               column(1),
-               column(10,
-                      
-                      conditionalPanel(condition = "input.show9 == true",
-                                       DT::dataTableOutput('table9')
-                      )
-               ), 
-               column(1)
-             ),
-             
-             
-             fluidRow(
                
-               style = "height:50px;"),
-             
-             ### PAGE BREAK
-             tags$hr(),
-             
-             fluidRow(
-               column(1),
-               column(10,
-                      shiny::HTML("<br><br><center> <h1>Microplastic Materials Hierarchy</h1> </center><br>"),
-                      shiny::HTML("<h5>This table describes how the unique material types relate to one another in a hierarchical structure (ex: PMPS and PDMS are both polysiloxanes).</h5>"),
-                      #shinyTree(outputId = "materialhierarchy"),
-                      
-                      #collapsibleTreeOutput(outputId = "material_tree", width = "100%", height = "500px")
-                      checkboxInput("show10", "Show Table", width = '50%'),
-                      shinyTree::shinyTree(outputId = "micromaterialhierarchy", dragAndDrop=F, sort = F, wholerow = T, theme = "default-dark", themeIcons = F, search = F)
-                      
-               ),
-               column(1)
              ),
-             
-             # PAGE BREAK
-             tags$hr(),
-             
-             fluidRow(
-               column(3),
-               column(6,
-                      
-                      tags$div(align = "center", 
-                               downloadButton('downloadData10', 'Download')
-                      )
-                      
-               ),
-               column(3)
-             ),
-             
-             fluidRow(
-               column(1),
-               column(10,
-                      
-                      conditionalPanel(condition = "input.show10 == true",
-                                       DT::dataTableOutput('table10')
-                      )
-               ), 
-               column(1)
-             ),
-             
-             fluidRow(
-               
-               style = "height:50px;"),
-             
-             ### PAGE BREAK
-             tags$hr(),
-             
-             fluidRow(
-               column(3),
-               column(6,
-                      shiny::HTML("<br><br><center> <h1>Microplastic Morphology Alias</h1> </center><br>"),
-                      shiny::HTML("<h5>This table describes the aliases that can be used to describe morphology types and links them to a key term. Each row represents a unique morphology and each column is an alias for that morphology.</h5>"),
-                      checkboxInput("show11", "Show Table", width = '50%')
-               ),
-               column(3)
-             ),
-             
-             # PAGE BREAK
-             tags$hr(),
-             
-             fluidRow(
-               column(3),
-               column(6,
-                      
-                      tags$div(align = "center", 
-                               downloadButton('downloadData11', 'Download')
-                      )
-                      
-               ),
-               column(3)
-             ),
-             
-             fluidRow(
-               column(1),
-               column(10,
-                      
-                      conditionalPanel(condition = "input.show11 == true",
-                                       DT::dataTableOutput('table11')
-                      )
-               ), 
-               column(1)
-             ),
-             
-             fluidRow(
-               
-               style = "height:50px;"),
-             
-             tags$hr(),
-             
-             fluidRow(
-               column(3
-               ),
-               column(6,
-                      shiny::HTML("<br><br><center> <h1>Microplastic Color Alias</h1> </center><br>"),
-                      shiny::HTML("<h5>This table describes the aliases that can be used to describe microplastic colors. Each row represents a unique color and each column is an alias for that color.</h5>"),
-                      checkboxInput("show12", "Show Table", width = '100%')
-                      
-               ),
-               column(3
-               )
-             ),
-             
-             # PAGE BREAK
-             tags$hr(),
-             
-             fluidRow(
-               column(3),
-               column(6,
-                      
-                      tags$div(align = "center", 
-                               downloadButton('download12', 'Download')
-                      )
-                      
-               ),
-               column(3)),
-             
-             
-             fluidRow(
-               column(1),
-               column(10,
-                      
-                      conditionalPanel(condition = "input.show12 == true",
-                                       DT::dataTableOutput('table12')
-                      )
-               ), 
-               column(1)
-             ),
-             
-             
-             fluidRow(
-               
-               style = "height:50px;"),
 
              fluidRow(
-               column(3),
-               column(6,
-                      shiny::HTML("<br><br><center> <h1>Citation</h1> </center>
-                                  <br>"),
-                      shiny::HTML("<h5> H. Hapich, W. Cowger, A. Gray, Jambeck Research Group. 2020. Trash Taxonomy. https://trashtaxonomy.shinyapps.io/trashtaxonomy/</h5>")
-               ),
-               column(3)
+               align="center",
+               hr(),
+               tags$p("Citation: H. Hapich, W. Cowger, A. Gray, Jambeck Research Group. 2020. Trash Taxonomy. https://trashtaxonomy.shinyapps.io/trashtaxonomy/")
              )
     ),
+             
+             ###Add data table output for survey merging tool here
+
     )
+    #)
              )

@@ -12,6 +12,7 @@ library(httr)
 library(caret)
 library(qs)
 library(randomForest)
+library(stringr)
 
 setwd("/Users/hannahhapich/Documents/R_Scripts/TrashTaxonomy-master")
 
@@ -140,7 +141,11 @@ material_embeddings <- read.csv("data/material_embeddings.csv")
 material_dotprod <- data.table::transpose(material_embeddings, make.names = "name")
 item_embeddings <- read.csv("data/item_embeddings.csv")
 item_dotprod <- data.table::transpose(item_embeddings, make.names = "name")
-  
+
+#Read in item and material pathstrings for merging tool
+pathstrings_items <- read.csv("data/Items_Pathstrings.csv")
+pathstrings_materials <- read.csv("data/Materials_Pathstrings.csv")
+
 #Start server
 
 server <- function(input,output,session) {
@@ -283,7 +288,7 @@ server <- function(input,output,session) {
     #row = 1
     
     #find all more specific items
-    for(row in 1:nrow(dataframe)) { 
+    for(row in 1:nrow(dataframeclean)) { 
       
       if(is.na(dataframeclean[row,"items"]) | dataframeclean[row,"items"] == "") {
         dataframe[row, "PrimeItem"] <- NA
@@ -415,6 +420,226 @@ server <- function(input,output,session) {
     return(input$variable)
   })
   
+  ###START MERGING TOOL
+  
+  df_ <- reactive({
+    req(input$df_)
+    req(input$d_f_)
+    infile1 <- input$df_
+    infile2 <- input$d_f_
+    file1 <- fread(infile1$datapath)
+    file2 <- fread(infile2$datapath)
+    dataframe1 <- as.data.frame(file1) %>%
+      select(material, items, count)
+    dataframe2 <- as.data.frame(file2) %>%
+      select(material, items, count)
+    dataframe <- rbind(dataframe1, dataframe2)
+    dataframe$material <- as.character(dataframe$material)
+    dataframe$items <- as.character(dataframe$items)
+    dataframe$count <- as.numeric(dataframe$count)
+    dataframeclean <- mutate_all(dataframe, cleantext) 
+    
+    #Material query tool cleaning
+    #Matching material to prime material
+    for(row in 1:nrow(dataframeclean)) { 
+      
+      #Identify Alias Row and Alias name in database
+      Primename <- unique(aliasclean[unname(unlist(apply(aliasclean, 2, function(x) which(x == dataframeclean[row,"material"], arr.ind = T)))), "Material"])
+    
+      if(is.na(length(Primename))){
+        #Create new embedding
+        embeddings_new <- lapply(dataframeclean[row,"material"], function(material){
+          input = material
+          
+          parameter_list = list(input = input, model = model)
+          
+          request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
+                                    body = parameter_list, 
+                                    httr::add_headers(Authorization = paste("Bearer", api_key)),
+                                    encode = "json")
+          
+          output_base = httr::content(request_base)
+          embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
+          names(embedding_raw) = 1:1536
+          data.table::as.data.table(as.list(embedding_raw)) %>%
+            mutate(material = input)
+        })
+        
+        #Bind new embeddings generated
+        material_embeddings_new <- rbindlist(embeddings_new)
+        
+        #Make new dot prod
+        material_dotprod_new <- data.table::transpose(material_embeddings_new, make.names = "material")
+        
+        #Take new cross prod
+        cross_product <- crossprod(data.matrix(material_dotprod), material_dotprod_new[[1]])
+        
+        #Top match for alias given cross prod
+        Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
+        
+        #Top key alias match for given alias
+        Primename <- materials_alias_embeddings$Material[materials_alias_embeddings$Alias == Primename_]
+        
+        #Input prime key into dataframe
+        dataframe[row, "PrimeMaterial"] <- Primename
+        
+        #Save new embeddings for future use
+        write.csv(material_embeddings_new,'data/material_embeddings_new.csv')
+      }
+      
+      else{
+        dataframe[row, "PrimeMaterial"] <- Primename
+      }
+      
+    }
+    
+    #Merge all materials to most specific common denominator
+    
+    #Find all unique materials
+    unique_materials <- as.data.frame(unique(dataframe[,"PrimeMaterial"]))
+    colnames(unique_materials) <- c('materials')
+    unique_materials <- mutate_all(unique_materials, cleantext)
+    unique_materials <- left_join(unique_materials, pathstrings_materials, by="materials")
+    unique_materials <- cbind(unique_materials, merged_material=NA)
+    
+    #If parent term exists, replace pathname with parent pathname
+    for(x in 1:nrow(unique_materials)) {
+      for(y in 1:nrow(unique_materials)){
+        z = grepl(unique_materials$pathString[[y]], unique_materials$pathString[[x]], ignore.case=TRUE)
+        length_x <- str_length(unique_materials$pathString[[x]])
+        length_y <- str_length(unique_materials$pathString[[y]])
+        if(z== TRUE && length_x > length_y) {
+          unique_materials$merged_material[[x]] <- paste(unique_materials$pathString[[y]])
+        }
+      }
+    }
+    
+    #If no parent term exists, new pathname remains the same
+    for(x in 1:nrow(unique_materials)) {
+      if(is.na(unique_materials$merged_material[[x]])){
+        unique_materials$merged_material[[x]] <- paste(unique_materials$pathString[[x]])
+      }
+    }
+    
+    #Link new pathname to new material
+    unique_materials <- unique_materials %>% rename("pathString_unmerged"="pathString",
+                                                    "pathString"="merged_material",
+                                                    "material"="materials")
+    unique_materials <- unique_materials %>% left_join(pathstrings_materials, by="pathString") %>%
+      rename("merged_material"="materials") %>%
+      subset(select= -c(pathString_unmerged, pathString))
+    
+    #Replace old material with merged material
+    dataframe <- dataframe %>% left_join(unique_materials, by="material") %>%
+      subset(select= -c(material)) %>%
+      rename("material"="merged_material")
+    
+    
+
+    #Clean and match items to prime alias
+    for(row in 1:nrow(dataframe)) { 
+
+      Primename <- unique(aliascleani[unname(unlist(apply(aliascleani, 2, function(x) which(x == dataframeclean[row,"items"], arr.ind = T)))), "Item"])
+      
+      if(length(Primename) == 0){
+        #Create new embedding
+        embeddings_newi <- lapply(dataframeclean[row,"items"], function(items){
+          input = items
+          
+          parameter_list = list(input = input, model = model)
+          
+          request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
+                                    body = parameter_list, 
+                                    httr::add_headers(Authorization = paste("Bearer", api_key)),
+                                    encode = "json")
+          
+          output_base = httr::content(request_base)
+          embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
+          names(embedding_raw) = 1:1138
+          data.table::as.data.table(as.list(embedding_raw)) %>%
+            mutate(items = input)
+        })
+        
+        #Bind new embeddings generated
+        item_embeddings_new <- rbindlist(embeddings_newi)
+        
+        #Make new dot prod
+        item_dotprod_new <- data.table::transpose(item_embeddings_new, make.names = "items")
+        
+        #Take new cross prod
+        cross_product <- crossprod(data.matrix(item_dotprod), item_dotprod_new[[1]])
+        
+        #Top match for alias given cross prod
+        Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
+        
+        #Top key alias match for given alias
+        Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == Primename_]
+        
+        #Input prime key into dataframe
+        dataframe[row, "PrimeItem"] <- Primename
+        
+        #Save new embeddings for future use
+        write.csv(item_embeddings_new,'data/item_embeddings_new.csv')
+      }
+      
+      else{
+        dataframe[row, "PrimeItem"] <- Primename
+      }
+      
+    }
+    
+    #Merge all items to most specific common denominator
+    
+    #Find all unique items
+    unique_items <- as.data.frame(unique(dataframe[,"PrimeItem"]))
+    colnames(unique_items) <- c('items')
+    unique_items <- mutate_all(unique_items, cleantext)
+    unique_items <- left_join(unique_items, pathstrings_items, by="items")
+    unique_items <- cbind(unique_items, merged_items=NA)
+    
+    #If parent term exists, replace pathname with parent pathname
+    for(x in 1:nrow(unique_items)) {
+      for(y in 1:nrow(unique_items)){
+        z = grepl(unique_items$pathString[[y]], unique_items$pathString[[x]], ignore.case=TRUE)
+        length_x <- str_length(unique_items$pathString[[x]])
+        length_y <- str_length(unique_items$pathString[[y]])
+        if(z== TRUE && length_x > length_y) {
+          unique_items$merged_items[[x]] <- paste(unique_items$pathString[[y]])
+        }
+      }
+    }
+    
+    #If no parent term exists, new pathname remains the same
+    for(x in 1:nrow(unique_items)) {
+      if(is.na(unique_items$merged_items[[x]])){
+        unique_items$merged_items[[x]] <- paste(unique_items$pathString[[x]])
+      }
+    }
+    
+    #Link new pathname to new item
+    unique_items <- unique_items %>% rename("pathString_unmerged"="pathString",
+                                            "pathString"="merged_items",
+                                            "unmerged_items"="items")
+    unique_items <- unique_items %>% left_join(pathstrings_items, by="pathString") %>%
+      rename("merged_items"="items",
+             "items"="unmerged_items") %>%
+      subset(select= -c(pathString_unmerged, pathString))
+    
+    #Replace old items with merged items
+    dataframe <- dataframe %>% left_join(unique_items, by="items") %>%
+      subset(select= -c(items)) %>%
+      rename("items"="merged_items")
+    
+    #Combine any new identical terms
+    dataframe <- dataframe %>%
+      group_by(material, items) %>%
+      summarise(across(count, sum))
+    
+    return(dataframe)
+  })
+  
+  ###END MERGING TOOL
+  
   output$contents <- renderDataTable(server = F,
                                      datatable({
                                        df()[, c("material","items",  input$variable)]
@@ -461,6 +686,23 @@ server <- function(input,output,session) {
                                                 ),
                                                 class = "display",
                                                 style="bootstrap"))
+  
+  output$contents3 <- renderDataTable(server = F, 
+                                      datatable({
+                                        df_()[, c("material", "items", "count")]
+                                      }, 
+                                      extensions = 'Buttons',
+                                      options = list(
+                                        paging = TRUE,
+                                        searching = TRUE,
+                                        fixedColumns = TRUE,
+                                        autoWidth = TRUE,
+                                        ordering = TRUE,
+                                        dom = 'Bfrtip',
+                                        buttons = c('copy', 'csv', 'excel', 'pdf')
+                                      ),
+                                      class = "display",
+                                      style="bootstrap"))
   
   output$downloadData1 <- downloadHandler(    
     filename = function() {
