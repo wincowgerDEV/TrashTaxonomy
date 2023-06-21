@@ -1,7 +1,7 @@
 Item,Alias
-4/6packyokes,"4/6-packyokes,six-packrings"
-4/6packyokes,4/6-packyokes
-4/6packyokes,4/6packyokes
+4 OR 6 pack yokes,"4/6-packyokes,six-packrings"
+4 OR 6 pack yokes,4/6-packyokes
+4 OR 6 pack yokes,4/6packyokes
 "advertisements,signs","advertisements,signs"
 aerosolcans,aerosol/spraycans
 aerosolcans,aerosolcans
@@ -452,7 +452,7 @@ fishingline(anglers),fishingline(anglers)
 fishingline(anglers),fishingline/monofilament(angling)
 fishingline(anglers),monofilament/fishingline
 fishingline(entangled),fishingline(entangled)
-fishingline/net,fishingline/net
+fishinglineORnet,fishinglineORnet
 fishinglures,fishinglure
 fishinglures,fishinglures
 fishinglures&line,fishingluresandlines
@@ -736,7 +736,7 @@ magazines,magazines
 maskingtape,maskingtape
 matches(&fireworks),matches&fireworks
 matches(&fireworks),matches(&fireworks)
-mattress/foam,mattress/foam
+mattressorfoam,mattressorfoam
 medical/pharmaceuticalscontainers/tubes,medical/pharmeciducalcontainers/tubes
 mediumplastics,mediumplastics
 meshvegetablebags,meshvegetablebags
@@ -1137,3 +1137,42 @@ wrappers,wrappers
 wrappers,wrappers(foil/metal)
 wrappers,mylar(non-recyclable)filmfoodwrappers
 wrappers,"foilwrapper,aluminiumfoil"
+Fragment,Fragment
+Fragment,Fragments
+Fiber,Fiber
+Fiber,Fibres
+Fiber,Fibers
+Nurdle,Nurdle
+Film,Film
+Film,Films
+Foam,Foam
+Foam,Foams
+Foam,Styrofoam
+Foam,Polystyrene
+Foam,Extruded polystyrene
+Sphere,Sphere
+Sphere,Sphericals
+Sphere,Spherical
+Sphere,Spheres
+Line,Line
+Bead,Bead
+Bead,Beads
+Sheet,Sheet
+Sheet,Flake
+Sheet,Sheets
+Film;Fragment,Film;Fragment
+Film;Fragment,Films/fragments
+Film;Fragment,Films;fragments
+Rubbery fragment,Rubbery fragment
+Fiber bundle,Fiber bundle
+Other,Other
+microplastic,microplastic
+Nurdle,Pellets
+Film,films <5mm
+Nurdle,cylindrical pellets <5mm
+Nurdle,disks pellets <5mm
+Nurdle,flat pellets <5mm
+Fragment,granules <5mm
+Nurdle,ovoid pellets <5mm
+Sphere,small industrial spheres (<5mm)
+Sphere,spheruloids pellets <5mm
