@@ -208,31 +208,36 @@ server <- function(input,output,session) {
           cross_product <- crossprod(data.matrix(material_dotprod), material_dotprod_new[[1]])
           
           #Top match for alias given cross prod
-          Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
-          
-          #Second and third highest matches
           colnames(cross_product) <- c("match")
           cross_product_ <- data.frame(cross_product)
-          cross_product_[order(-cross_product_$match),  ,drop=FALSE]
-          second_alias = row.names(cross_product_)[2]
-          third_alias = row.names(cross_product_)[3]
+          cross_product_ <- cross_product_[order(-cross_product_$match),  ,drop=FALSE]
+          cross_product_$Alias <- row.names(cross_product_)
+          cross_product_ <- left_join(cross_product_, materials_alias_embeddings, by= "Alias")
+          top_five <- head(unique(cross_product_$Material), n=5)
+          match1 <- top_five[[1]]
+          match2 <- top_five[[2]]
+          match3 <- top_five[[3]]
+          match4 <- top_five[[4]]
+          match5 <- top_five[[5]]
           
-          #Top key alias match for given alias
-          Primename <- materials_alias_embeddings$Material[materials_alias_embeddings$Alias == Primename_]
-          second_Primename <- materials_alias_embeddings$Material[materials_alias_embeddings$Alias == second_alias]
-          third_Primename <- materials_alias_embeddings$Material[materials_alias_embeddings$Alias == third_alias]
           
-          #Input prime key into dataframe
-          dataframe[row, "PrimeMaterial"] <- Primename
+          dataframe[row, "PrimeMaterial"] <- as.character(selectInput(paste("sel", row, sep = ""), "", choices = c(match1, match2, match3, match4, match5), width = "100px"))
           
+          #top_five <- head(unique(cross_product_$Material), n=5)
+          
+          #dataframe[row, "PrimeMaterial"] <- sprintf(
+           # '<input type="container" name="%s" value="%s"/>',
+           # "str(top_five)", dataframe[row, "PrimeMaterial"]
+          #)
           #Save new embeddings for future use
-          write.csv(material_embeddings_new,'data/material_embeddings_new.csv')
+          colnames(material_embeddings_new) = colnames(material_embeddings)
+          material_embeddings_new_ <- rbind(material_embeddings, material_embeddings_new)
+          write.csv(material_embeddings_new_,'data/material_embeddings_new.csv')
       }
       
       else{
         dataframe[row, "PrimeMaterial"] <- Primename
       }
-      
       
       #Identify Column Name in Hierarchy
       hierarchycolumnnum <- as.numeric(gsub("[[:alpha:]]", "", unique(names(unlist(apply(hierarchyclean, 1, function(x) which(x == dataframe[row, "PrimeMaterial"], arr.ind = T)))))))
@@ -339,9 +344,11 @@ server <- function(input,output,session) {
         #Second and third highest matches
         colnames(cross_product) <- c("match")
         cross_product_ <- data.frame(cross_product)
-        cross_product_[order(-cross_product_$match),  ,drop=FALSE]
+        cross_product_ <- cross_product_[order(-cross_product_$match),  ,drop=FALSE]
         second_alias = row.names(cross_product_)[2]
         third_alias = row.names(cross_product_)[3]
+        fourth_alias = row.names(cross_product_)[4]
+        fifth_alias = row.names(cross_product_)[5]
         
         #Top key alias match for given alias
         Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == Primename_]
@@ -352,7 +359,9 @@ server <- function(input,output,session) {
         dataframe[row, "PrimeItem"] <- Primename
         
         #Save new embeddings for future use
-        write.csv(item_embeddings_new,'data/item_embeddings_new.csv')
+        colnames(item_embeddings_new) = colnames(item_embeddings)
+        item_embeddings_new_ <- rbind(item_embeddings, item_embeddings_new)
+        write.csv(item_embeddings_new_,'data/item_embeddings_new.csv')
       }
       
       else{
@@ -468,6 +477,10 @@ server <- function(input,output,session) {
         #Bind new embeddings generated
         material_embeddings_new <- rbindlist(embeddings_new)
         
+        colnames(material_embeddings_new) = colnames(material_embeddings)
+        
+        material_embeddings_new_ <- rbind(material_embeddings, material_embeddings_new)
+        
         #Make new dot prod
         material_dotprod_new <- data.table::transpose(material_embeddings_new, make.names = "material")
         
@@ -484,7 +497,7 @@ server <- function(input,output,session) {
         dataframe[row, "PrimeMaterial"] <- Primename
         
         #Save new embeddings for future use
-        write.csv(material_embeddings_new,'data/material_embeddings_new.csv')
+        write.csv(material_embeddings_new_,'data/material_embeddings_new.csv')
       }
       
       else{
@@ -563,6 +576,10 @@ server <- function(input,output,session) {
         #Bind new embeddings generated
         item_embeddings_new <- rbindlist(embeddings_newi)
         
+        colnames(item_embeddings_new) = colnames(item_embeddings)
+        
+        item_embeddings_new_ <- rbind(item_embeddings, item_embeddings_new)
+        
         #Make new dot prod
         item_dotprod_new <- data.table::transpose(item_embeddings_new, make.names = "items")
         
@@ -579,7 +596,7 @@ server <- function(input,output,session) {
         dataframe[row, "PrimeItem"] <- Primename
         
         #Save new embeddings for future use
-        write.csv(item_embeddings_new,'data/item_embeddings_new.csv')
+        write.csv(item_embeddings_new_,'data/item_embeddings_new.csv')
       }
       
       else{
@@ -635,10 +652,71 @@ server <- function(input,output,session) {
       group_by(material, items) %>%
       summarise(across(count, sum))
     
+    #Save input data
+    legacy_data <- read.csv("data/legacy_count_data.csv")
+    legacy_data <- rbind(legacy_data, dataframe)
+    legacy_data <- legacy_data %>%
+      group_by(material, items) %>%
+      summarise(across(count, sum))
+    write.csv(legacy_data,"data/legacy_count_data.csv")
+    
     return(dataframe)
   })
   
   ###END MERGING TOOL
+  
+  #Output correct survey sheet
+  MicroOnly <- read.csv("data/PremadeSurveys/Most_Specific_Microplastics.csv")
+  MacroMarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Marine.csv")
+  MacroMarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Marine.csv")
+  MarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Marine_All.csv")
+  MarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Marine_All.csv")
+  MacroRiverineMore <- read.csv("data/PremadeSurveys/Most_Specific_Riverine.csv")
+  MacroRiverineLess <- read.csv("data/PremadeSurveys/Least_Specific_Riverine.csv")
+  RiverineMore <- read.csv("data/PremadeSurveys/Most_Specific_Riverine_All.csv")
+  RiverineLess <- read.csv("data/PremadeSurveys/Least_Specific_Riverine_All.csv")
+  MacroEstuarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Estuarine.csv")
+  MacroEstuarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Estuarine.csv")
+  EstuarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Estuarine_All.csv")
+  EstuarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Estuarine_All.csv")
+  MacroTerrestrialMore <- read.csv("data/PremadeSurveys/Most_Specific_Terrestrial.csv")
+  MacroTerrestrialLess <- read.csv("data/PremadeSurveys/Least_Specific_Terrestrial.csv")
+  TerrestrialMore <- read.csv("data/PremadeSurveys/Most_Specific_Terrestrial_All.csv")
+  TerrestrialLess <- read.csv("data/PremadeSurveys/Least_Specific_Terrestrial_All.csv")
+  MacroAllMore <- read.csv("data/PremadeSurveys/Most_Specific_Macro.csv")
+  MacroAllLess <- read.csv("data/PremadeSurveys/Least_Specific_Macro.csv")
+  AllMore <- read.csv("data/PremadeSurveys/Most_Specific_All.csv")
+  AllLess <- read.csv("data/PremadeSurveys/Least_Specific_All.csv")
+  
+  selectSurvey <- reactive({
+    if(input$sizeRange == "Micro"){return (MicroOnly)}
+    if(input$sizeRange == "Macro" && input$environments == "Marine" && input$specificity == "More Specific"){data = MacroMarineMore}
+    if(input$sizeRange == "Macro" && input$environments == "Marine" && input$specificity == "Less Specific"){data = MacroMarineLess}
+    if(input$sizeRange == "All" && input$environments == "Marine" && input$specificity == "More Specific"){data = MarineMore}
+    if(input$sizeRange == "All" && input$environments == "Marine" && input$specificity == "Less Specific"){data = MarineLess}
+    if(input$sizeRange == "Macro" && input$environments == "Riverine" && input$specificity == "More Specific"){data = MacroRiverineMore}
+    if(input$sizeRange == "Macro" && input$environments == "Riverine" && input$specificity == "Less Specific"){data = MacroRiverineLess}
+    if(input$sizeRange == "All" && input$environments == "Riverine" && input$specificity == "More Specific"){data = RiverineMore}
+    if(input$sizeRange == "All" && input$environments == "Riverine" && input$specificity == "Less Specific"){data = RiverineLess}
+    if(input$sizeRange == "Macro" && input$environments == "Estuarine" && input$specificity == "More Specific"){data = MacroEstuarineMore}
+    if(input$sizeRange == "Macro" && input$environments == "Estuarine" && input$specificity == "Less Specific"){data = MacroEstuarineLess}
+    if(input$sizeRange == "All" && input$environments == "Estuarine" && input$specificity == "More Specific"){data = EstuarineMore}
+    if(input$sizeRange == "All" && input$environments == "Estuarine" && input$specificity == "Less Specific"){data = EstuarineLess}
+    if(input$sizeRange == "Macro" && input$environments == "Terrestrial" && input$specificity == "More Specific"){data = MacroTerrestrialMore}
+    if(input$sizeRange == "Macro" && input$environments == "Terrestrial" && input$specificity == "Less Specific"){data = MacroTerrestrialLess}
+    if(input$sizeRange == "All" && input$environments == "Terrestrial" && input$specificity == "More Specific"){data = TerrestrialMore}
+    if(input$sizeRange == "All" && input$environments == "Terrestrial" && input$specificity == "Less Specific"){data = TerrestrialLess}
+    if(input$sizeRange == "Macro" && input$environments == "All" && input$specificity == "More Specific"){data = MacroAllMore}
+    if(input$sizeRange == "Macro" && input$environments == "All" && input$specificity == "Less Specific"){data = MacroAllLess}
+    if(input$sizeRange == "All" && input$environments == "All" && input$specificity == "More Specific"){data = AllMore}
+    if(input$sizeRange == "All" && input$environments == "All" && input$specificity == "Less Specific"){data = AllLess}
+    if(input$sizeRange == "" && input$environments == "" && input$specificity == ""){return(NULL)}
+
+    data = as.data.frame(data)
+    colnames(data) = c("material","items","count")
+    return(data)
+  })
+  
   
   output$contents <- renderDataTable(server = F,
                                      datatable({
@@ -657,20 +735,23 @@ server <- function(input,output,session) {
                                      class = "display",
                                      style="bootstrap"))
   
-  output$contents1 <- renderDataTable(server = F,
+  output$contents1 <- DT :: renderDataTable(
                                       datatable({df()[, c("material","PrimeMaterial")] %>% distinct()},
                                                 extensions = 'Buttons',
-                                                options = list(
-                                                  paging = TRUE,
-                                                  searching = TRUE,
-                                                  fixedColumns = TRUE,
-                                                  autoWidth = TRUE,
-                                                  ordering = TRUE,
-                                                  dom = 'Bfrtip',
-                                                  buttons = c('copy', 'csv', 'excel', 'pdf')
-                                                ),
                                                 class = "display",
-                                                style="bootstrap"))
+                                                style="bootstrap",
+                                                escape = FALSE,
+                                                options = list(server = FALSE, dom="Bfrtip", paging=TRUE, ordering=TRUE, buttons=c('copy', 'csv', 'excel', 'pdf')),
+                                                callback = JS("table.rows().every(function(row, tab, row) {
+                                              var $this = $(this.node());
+                                              $this.attr('id', this.data()[0]);
+                                              $this.addClass('shiny-input-container');
+                                            });
+                                            Shiny.unbindAll(table.table().node());
+                                            Shiny.bindAll(table.table().node());"))
+                                      
+                                      )
+                                      
   
   output$contents2 <- renderDataTable(server = F, 
                                       datatable({df()[, c("items","PrimeItem")] %>% distinct()},
@@ -690,6 +771,23 @@ server <- function(input,output,session) {
   output$contents3 <- renderDataTable(server = F, 
                                       datatable({
                                         df_()[, c("material", "items", "count")]
+                                      }, 
+                                      extensions = 'Buttons',
+                                      options = list(
+                                        paging = TRUE,
+                                        searching = TRUE,
+                                        fixedColumns = TRUE,
+                                        autoWidth = TRUE,
+                                        ordering = TRUE,
+                                        dom = 'Bfrtip',
+                                        buttons = c('copy', 'csv', 'excel', 'pdf')
+                                      ),
+                                      class = "display",
+                                      style="bootstrap"))
+  
+  output$contents4 <- renderDataTable(server = F, 
+                                      datatable({
+                                        selectSurvey()[, c("material", "items", "count")]
                                       }, 
                                       extensions = 'Buttons',
                                       options = list(

@@ -25,6 +25,7 @@ ui <- fluidPage(
       }
                     "))
   ),
+  
   #About ----
   tabsetPanel(
     tabPanel("About",
@@ -639,14 +640,11 @@ ui <- fluidPage(
 
 
 
-             )
-               
              ),
              
-             fluidRow(
-               column(5, 
-                      dataTableOutput('contents3')
-               )
+             column(10, 
+                    dataTableOutput('contents3')
+             )
                
              ),
 
@@ -656,8 +654,44 @@ ui <- fluidPage(
                tags$p("Citation: H. Hapich, W. Cowger, A. Gray, Jambeck Research Group. 2020. Trash Taxonomy. https://trashtaxonomy.shinyapps.io/trashtaxonomy/")
              )
     ),
+    
+    tabPanel("Pre-made Surveys",
+             titlePanel(tags$h4("Select a scientifically-informed trash survey to fit your specific study needs.")),
              
-             ###Add data table output for survey merging tool here
+             fluidRow(
+               column(2, 
+                      selectInput('sizeRange', "Choose size range", c("", "Micro","Macro","All")) %>%
+                        helper(type = "inline",
+                               title = "Selection Help",
+                               content = c("Select if your study will include microplastics, macro-debris, or both."),
+                               size = "m"),
+                      selectInput('environments', "Choose environment", c("", "Marine","Terrestrial","Riverine", "Estuarine", "All")) %>%
+                        helper(type = "inline",
+                               title = "Selection Help",
+                               content = c("Select the environment your study will be conducted in, or include all."),
+                               size = "m"),
+                      selectInput('specificity', "Choose specificity", c("", "More Specific","Less Specific")) %>%
+                        helper(type = "inline",
+                               title = "Selection Help",
+                               content = c("Select how specific descriptor terms will be. More specific terms reccomended for scientific studies to increase comparability; less specific terms reccomended for volunteer groups to increase speed of surveying."),
+                               size = "m"),
+                      
+               ),
+               
+               column(10, 
+                      dataTableOutput('contents4')
+               )
+               
+             ),
+             
+             fluidRow(
+               align="center",
+               hr(),
+               tags$p("Citation: H. Hapich, W. Cowger, A. Gray, Jambeck Research Group. 2020. Trash Taxonomy. https://trashtaxonomy.shinyapps.io/trashtaxonomy/")
+             )
+    ),
+             
+             
 
     )
     #)
