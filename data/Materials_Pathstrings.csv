@@ -1,43 +1,43 @@
 materials,pathString
-glass OR ceramic,Trash/glassORceramic
+glassORceramic,Trash/glassORceramic
 glass,Trash/glassORceramic/glass
 fibreglass,Trash/glassORceramic/glass/fibreglass
 ceramic,Trash/glassORceramic/ceramic
 plastic,Trash/plastic
 foam,Trash/plastic/foam
 rubber,Trash/plastic/rubber
-soft plastics,Trash/plastic/softplastics
-hard plastics,Trash/plastic/hardplastics
+softplastics,Trash/plastic/softplastics
+hardplastics,Trash/plastic/hardplastics
 vinyl,Trash/plastic/vinyl
 biohazard,Trash/biohazard
-sanitary waste,Trash/biohazard/sanitarywaste
+sanitarywaste,Trash/biohazard/sanitarywaste
 faeces,Trash/biohazard/faeces
 organic,Trash/organic
 leather,Trash/organic/leather
 food,Trash/organic/food
-wood and paper,Trash/organic/woodandpaper
+woodandpaper,Trash/organic/woodandpaper
 wood,Trash/organic/woodandpaper/wood
-processed wood,Trash/organic/woodandpaper/wood/processedwood
-paper OR cardboard,Trash/organic/woodandpaper/paperORcardboard
+processedwood,Trash/organic/woodandpaper/wood/processedwood
+paperORcardboard,Trash/organic/woodandpaper/paperORcardboard
 paper,Trash/organic/woodandpaper/paperORcardboard/paper
 cloth,Trash/organic/cloth
 wool,Trash/organic/cloth/wool
 cotton,Trash/organic/cloth/cotton
 metal,Trash/metal
 other,Trash/other
-concrete OR asphalt,Trash/concreteORasphalt
+concreteORasphalt,Trash/concreteORasphalt
 nonpolymeric,Trash/nonpolymeric
 mineral,Trash/mineral
-Cellulose Derivatives (Ether Cellulose),Trash/plastic/CelluloseDerivatives(EtherCellulose)
+CelluloseDerivatives(EtherCellulose),Trash/plastic/CelluloseDerivatives(EtherCellulose)
 CA,Trash/plastic/CelluloseDerivatives(EtherCellulose)/CA
 Rayon,Trash/plastic/CelluloseDerivatives(EtherCellulose)/Rayon
 Rayon,Trash/plastic/CelluloseDerivatives(EtherCellulose)/Rayon
-Cellulose Nitrate,Trash/plastic/CelluloseDerivatives(EtherCellulose)/CelluloseNitrate
-Methyl Cellulose,Trash/plastic/CelluloseDerivatives(EtherCellulose)/MethylCellulose
-Ethyl Cellulose,Trash/plastic/CelluloseDerivatives(EtherCellulose)/EthylCellulose
-Other Plastic,Trash/plastic/OtherPlastic
+CelluloseNitrate,Trash/plastic/CelluloseDerivatives(EtherCellulose)/CelluloseNitrate
+MethylCellulose,Trash/plastic/CelluloseDerivatives(EtherCellulose)/MethylCellulose
+EthylCellulose,Trash/plastic/CelluloseDerivatives(EtherCellulose)/EthylCellulose
+OtherPlastic,Trash/plastic/OtherPlastic
 PE+PS,Trash/plastic/OtherPlastic/PE+PS
-Plastic additive,Trash/plastic/OtherPlastic/Plasticadditive
+Plasticadditive,Trash/plastic/OtherPlastic/Plasticadditive
 PET-PEST,Trash/plastic/OtherPlastic/PET-PEST
 Vinyl,Trash/plastic/OtherPlastic/Vinyl
 Vinyon,Trash/plastic/OtherPlastic/Vinyon
@@ -58,157 +58,157 @@ ABS,Trash/plastic/OtherPlastic/ABS
 LDPE,Trash/plastic/OtherPlastic/LDPE
 PEVA,Trash/plastic/OtherPlastic/PEVA
 AR,Trash/plastic/OtherPlastic/AR
-Other plastic,Trash/plastic/OtherPlastic/Otherplastic
-semi-synthetic cellulose,Trash/plastic/OtherPlastic/semi-syntheticcellulose
+Otherplastic,Trash/plastic/OtherPlastic/Otherplastic
+semi-syntheticcellulose,Trash/plastic/OtherPlastic/semi-syntheticcellulose
 PAI,Trash/plastic/OtherPlastic/PAI
 neoprene,Trash/plastic/OtherPlastic/neoprene
-polyhydroxyalkanoate (PHA),Trash/plastic/OtherPlastic/polyhydroxyalkanoate(PHA)
-Phenol formaldehyde,Trash/plastic/OtherPlastic/Phenolformaldehyde
+polyhydroxyalkanoate(PHA),Trash/plastic/OtherPlastic/polyhydroxyalkanoate(PHA)
+Phenolformaldehyde,Trash/plastic/OtherPlastic/Phenolformaldehyde
 Urea-formaldehyde,Trash/plastic/OtherPlastic/Urea-formaldehyde
 Melamine-formaldehyde,Trash/plastic/OtherPlastic/Melamine-formaldehyde
 Isobutylene-isoprene,Trash/plastic/OtherPlastic/Isobutylene-isoprene
 Ethylene-propylene,Trash/plastic/OtherPlastic/Ethylene-propylene
 Styrene-maleic,Trash/plastic/OtherPlastic/Styrene-maleic
 Styrene-isoprene,Trash/plastic/OtherPlastic/Styrene-isoprene
-EPDM rubber (ethylene propylene diene monomer rubber),Trash/plastic/OtherPlastic/EPDMrubber(ethylenepropylenedienemonomerrubber)
-Poly(Ether)ketones (POLYKETONES),Trash/plastic/Poly(Ether)ketones(POLYKETONES)
-PEK - Poly(ether ketone),Trash/plastic/Poly(Ether)ketones(POLYKETONES)/PEK-Poly(etherketone)
-PEKK - Poly(ether ketone ketone),Trash/plastic/Poly(Ether)ketones(POLYKETONES)/PEKK-Poly(etherketoneketone)
-PEEK - Poly(ether ether ketone),Trash/plastic/Poly(Ether)ketones(POLYKETONES)/PEEK-Poly(etheretherketone)
+EPDMrubber(ethylenepropylenedienemonomerrubber),Trash/plastic/OtherPlastic/EPDMrubber(ethylenepropylenedienemonomerrubber)
+Poly(Ether)ketones(POLYKETONES),Trash/plastic/Poly(Ether)ketones(POLYKETONES)
+PEK-Poly(etherketone),Trash/plastic/Poly(Ether)ketones(POLYKETONES)/PEK-Poly(etherketone)
+PEKK-Poly(etherketoneketone),Trash/plastic/Poly(Ether)ketones(POLYKETONES)/PEKK-Poly(etherketoneketone)
+PEEK-Poly(etheretherketone),Trash/plastic/Poly(Ether)ketones(POLYKETONES)/PEEK-Poly(etheretherketone)
 Poly(ethyleneketone),Trash/plastic/Poly(Ether)ketones(POLYKETONES)/Poly(ethyleneketone)
 Poly(propyleneketone),Trash/plastic/Poly(Ether)ketones(POLYKETONES)/Poly(propyleneketone)
 Polyacrylamides,Trash/plastic/Polyacrylamides
 PAM,Trash/plastic/Polyacrylamides/PAM
-Poly(N-isopropyl acrylamide),Trash/plastic/Polyacrylamides/Poly(N-isopropylacrylamide)
-Poly(N-octyl acrylamide),Trash/plastic/Polyacrylamides/Poly(N-octylacrylamide)
-Poly(N-tert-butyl acrylamide),Trash/plastic/Polyacrylamides/Poly(N-tert-butylacrylamide)
-Poly(N-phenyl acrylamide),Trash/plastic/Polyacrylamides/Poly(N-phenylacrylamide)
-Poly(N-sec-butyl acrylamide),Trash/plastic/Polyacrylamides/Poly(N-sec-butylacrylamide)
-Polyacrylates (Propenoates),Trash/plastic/Polyacrylates(Propenoates)
+Poly(N-isopropylacrylamide),Trash/plastic/Polyacrylamides/Poly(N-isopropylacrylamide)
+Poly(N-octylacrylamide),Trash/plastic/Polyacrylamides/Poly(N-octylacrylamide)
+Poly(N-tert-butylacrylamide),Trash/plastic/Polyacrylamides/Poly(N-tert-butylacrylamide)
+Poly(N-phenylacrylamide),Trash/plastic/Polyacrylamides/Poly(N-phenylacrylamide)
+Poly(N-sec-butylacrylamide),Trash/plastic/Polyacrylamides/Poly(N-sec-butylacrylamide)
+Polyacrylates(Propenoates),Trash/plastic/Polyacrylates(Propenoates)
 Acrylic,Trash/plastic/Polyacrylates(Propenoates)/Acrylic
 PAA,Trash/plastic/Polyacrylates(Propenoates)/PAA
-Poly(benzyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(benzylacrylate)
-Poly(butyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(butylacrylate)
-Poly(4-chlorophenyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(4-chlorophenylacrylate)
-Poly(2-cyanoethyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(2-cyanoethylacrylate)
-Poly(cyanomethyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(cyanomethylacrylate)
-Poly(cyclohexyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(cyclohexylacrylate)
-Poly(ethyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(ethylacrylate)
-Poly(2-ethylhexyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(2-ethylhexylacrylate)
-Poly(hexyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(hexylacrylate)
-Poly(isobutyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(isobutylacrylate)
-Poly(isopropyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(isopropylacrylate)
-Poly(methyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(methylacrylate)
-Poly(octyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(octylacrylate)
-Poly(propyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(propylacrylate)
-Poly(sec-butyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(sec-butylacrylate)
-Poly(stearyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(stearylacrylate)
-Poly(tert-butyl acrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(tert-butylacrylate)
-"Poly(2,2,3,3-Tetrafluoropropyl acrylate)","Trash/plastic/Polyacrylates(Propenoates)/Poly(2,2,3,3-Tetrafluoropropylacrylate)"
-Polyacrylonitriles (Nitriles),Trash/plastic/Polyacrylonitriles(Nitriles)
+Poly(benzylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(benzylacrylate)
+Poly(butylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(butylacrylate)
+Poly(4-chlorophenylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(4-chlorophenylacrylate)
+Poly(2-cyanoethylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(2-cyanoethylacrylate)
+Poly(cyanomethylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(cyanomethylacrylate)
+Poly(cyclohexylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(cyclohexylacrylate)
+Poly(ethylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(ethylacrylate)
+Poly(2-ethylhexylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(2-ethylhexylacrylate)
+Poly(hexylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(hexylacrylate)
+Poly(isobutylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(isobutylacrylate)
+Poly(isopropylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(isopropylacrylate)
+Poly(methylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(methylacrylate)
+Poly(octylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(octylacrylate)
+Poly(propylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(propylacrylate)
+Poly(sec-butylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(sec-butylacrylate)
+Poly(stearylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(stearylacrylate)
+Poly(tert-butylacrylate),Trash/plastic/Polyacrylates(Propenoates)/Poly(tert-butylacrylate)
+"Poly(2,2,3,3-Tetrafluoropropylacrylate)","Trash/plastic/Polyacrylates(Propenoates)/Poly(2,2,3,3-Tetrafluoropropylacrylate)"
+Polyacrylonitriles(Nitriles),Trash/plastic/Polyacrylonitriles(Nitriles)
 PAN,Trash/plastic/Polyacrylonitriles(Nitriles)/PAN
 Poly(methacrylonitrile),Trash/plastic/Polyacrylonitriles(Nitriles)/Poly(methacrylonitrile)
-Poly(butylene adipate),Trash/plastic/Polyacrylonitriles(Nitriles)/Poly(butyleneadipate)
-Poly(ethylene adipate),Trash/plastic/Polyacrylonitriles(Nitriles)/Poly(ethyleneadipate)
-Poly(propylene adipate),Trash/plastic/Polyacrylonitriles(Nitriles)/Poly(propyleneadipate)
-Polyamides (POLYLACTAMS),Trash/plastic/Polyamides(POLYLACTAMS)
+Poly(butyleneadipate),Trash/plastic/Polyacrylonitriles(Nitriles)/Poly(butyleneadipate)
+Poly(ethyleneadipate),Trash/plastic/Polyacrylonitriles(Nitriles)/Poly(ethyleneadipate)
+Poly(propyleneadipate),Trash/plastic/Polyacrylonitriles(Nitriles)/Poly(propyleneadipate)
+Polyamides(POLYLACTAMS),Trash/plastic/Polyamides(POLYLACTAMS)
 PA,Trash/plastic/Polyamides(POLYLACTAMS)/PA
-Nylon 3 - Poly(propiolactam),Trash/plastic/Polyamides(POLYLACTAMS)/Nylon3-Poly(propiolactam)
-Nylon 6 - Poly(caprolactam),Trash/plastic/Polyamides(POLYLACTAMS)/Nylon6-Poly(caprolactam)
-Nylon 8 - Polycapryllactam,Trash/plastic/Polyamides(POLYLACTAMS)/Nylon8-Polycapryllactam
-Nylon 10 - Poly(decano-10-lactam),Trash/plastic/Polyamides(POLYLACTAMS)/Nylon10-Poly(decano-10-lactam)
-Nylon 11 - Poly(undecano-11-lactam),Trash/plastic/Polyamides(POLYLACTAMS)/Nylon11-Poly(undecano-11-lactam)
-Nylon 12 - Poly(dodecano-12-lactam),Trash/plastic/Polyamides(POLYLACTAMS)/Nylon12-Poly(dodecano-12-lactam)
-"Nylon 4,6 - Poly(tetramethylene adipamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon4,6-Poly(tetramethyleneadipamide)"
-"Nylon 6,6 - Poly(hexamethylene adipamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon6,6-Poly(hexamethyleneadipamide)"
-"Nylon 6,9 - Poly(hexamethylene azelamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon6,9-Poly(hexamethyleneazelamide)"
-"Nylon 6,10 - Poly(hexamethylene sebacamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon6,10-Poly(hexamethylenesebacamide)"
-"Nylon 6,12 - Poly(hexamethylene dodecanediamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon6,12-Poly(hexamethylenedodecanediamide)"
-"Nylon 10,10 - Poly(decamethylene sebacamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon10,10-Poly(decamethylenesebacamide)"
-"Poly(hexamethylene isophthalamide), PA 6I","Trash/plastic/Polyamides(POLYLACTAMS)/Poly(hexamethyleneisophthalamide),PA6I"
-"Poly(hexamethylene teraphthalamide), PA 6T","Trash/plastic/Polyamides(POLYLACTAMS)/Poly(hexamethyleneteraphthalamide),PA6T"
-Kevlar - Polyaramide,Trash/plastic/Polyamides(POLYLACTAMS)/Kevlar-Polyaramide
-Nomex - Poly(m-phenylene terephthalamide),Trash/plastic/Polyamides(POLYLACTAMS)/Nomex-Poly(m-phenyleneterephthalamide)
-"Poly(nonanmethylene teraphthalamide), PA 9T","Trash/plastic/Polyamides(POLYLACTAMS)/Poly(nonanmethyleneteraphthalamide),PA9T"
+Nylon3-Poly(propiolactam),Trash/plastic/Polyamides(POLYLACTAMS)/Nylon3-Poly(propiolactam)
+Nylon6-Poly(caprolactam),Trash/plastic/Polyamides(POLYLACTAMS)/Nylon6-Poly(caprolactam)
+Nylon8-Polycapryllactam,Trash/plastic/Polyamides(POLYLACTAMS)/Nylon8-Polycapryllactam
+Nylon10-Poly(decano-10-lactam),Trash/plastic/Polyamides(POLYLACTAMS)/Nylon10-Poly(decano-10-lactam)
+Nylon11-Poly(undecano-11-lactam),Trash/plastic/Polyamides(POLYLACTAMS)/Nylon11-Poly(undecano-11-lactam)
+Nylon12-Poly(dodecano-12-lactam),Trash/plastic/Polyamides(POLYLACTAMS)/Nylon12-Poly(dodecano-12-lactam)
+"Nylon4,6-Poly(tetramethyleneadipamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon4,6-Poly(tetramethyleneadipamide)"
+"Nylon6,6-Poly(hexamethyleneadipamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon6,6-Poly(hexamethyleneadipamide)"
+"Nylon6,9-Poly(hexamethyleneazelamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon6,9-Poly(hexamethyleneazelamide)"
+"Nylon6,10-Poly(hexamethylenesebacamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon6,10-Poly(hexamethylenesebacamide)"
+"Nylon6,12-Poly(hexamethylenedodecanediamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon6,12-Poly(hexamethylenedodecanediamide)"
+"Nylon10,10-Poly(decamethylenesebacamide)","Trash/plastic/Polyamides(POLYLACTAMS)/Nylon10,10-Poly(decamethylenesebacamide)"
+"Poly(hexamethyleneisophthalamide),PA6I","Trash/plastic/Polyamides(POLYLACTAMS)/Poly(hexamethyleneisophthalamide),PA6I"
+"Poly(hexamethyleneteraphthalamide),PA6T","Trash/plastic/Polyamides(POLYLACTAMS)/Poly(hexamethyleneteraphthalamide),PA6T"
+Kevlar-Polyaramide,Trash/plastic/Polyamides(POLYLACTAMS)/Kevlar-Polyaramide
+Nomex-Poly(m-phenyleneterephthalamide),Trash/plastic/Polyamides(POLYLACTAMS)/Nomex-Poly(m-phenyleneterephthalamide)
+"Poly(nonanmethyleneteraphthalamide),PA9T","Trash/plastic/Polyamides(POLYLACTAMS)/Poly(nonanmethyleneteraphthalamide),PA9T"
 Polyanhydrides,Trash/plastic/Polyanhydrides
-Poly(p-pentamethylenedibenzoic anhydride),Trash/plastic/Polyanhydrides/Poly(p-pentamethylenedibenzoicanhydride)
-Poly(p-tetramethylenedibenzoic anhydride),Trash/plastic/Polyanhydrides/Poly(p-tetramethylenedibenzoicanhydride)
-Poly(sebacic anhydride),Trash/plastic/Polyanhydrides/Poly(sebacicanhydride)
-Poly(azelaic anhydride),Trash/plastic/Polyanhydrides/Poly(azelaicanhydride)
+Poly(p-pentamethylenedibenzoicanhydride),Trash/plastic/Polyanhydrides/Poly(p-pentamethylenedibenzoicanhydride)
+Poly(p-tetramethylenedibenzoicanhydride),Trash/plastic/Polyanhydrides/Poly(p-tetramethylenedibenzoicanhydride)
+Poly(sebacicanhydride),Trash/plastic/Polyanhydrides/Poly(sebacicanhydride)
+Poly(azelaicanhydride),Trash/plastic/Polyanhydrides/Poly(azelaicanhydride)
 Polycarbontes,Trash/plastic/Polycarbontes
 PC,Trash/plastic/Polycarbontes/PC
-Poly(bisphenol A carbonate),Trash/plastic/Polycarbonates/Poly(bisphenolAcarbonate)
-"Poly(4,4'-thiodiphenylene carbonate)","Trash/plastic/Polycarbonates/Poly(4,4'-thiodiphenylenecarbonate)"
-Poly(bisphenol B carbonate),Trash/plastic/Polycarbonates/Poly(bisphenolBcarbonate)
-Poly(bisphenol F carbonate),Trash/plastic/Polycarbonates/Poly(bisphenolFcarbonate)
-Poly(ethylene carbonate),Trash/plastic/Polycarbonates/Poly(ethylenecarbonate)
-Poly(propylene carbonate),Trash/plastic/Polycarbonates/Poly(propylenecarbonate)
-"Poly(2,6,3',5'-tetrachloro bisphenol A carbonate)","Trash/plastic/Polycarbonates/Poly(2,6,3',5'-tetrachlorobisphenolAcarbonate)"
-Poly(tetramethyl bisphenol A carbonate),Trash/plastic/Polycarbonates/Poly(tetramethylbisphenolAcarbonate)
+Poly(bisphenolAcarbonate),Trash/plastic/Polycarbonates/Poly(bisphenolAcarbonate)
+"Poly(4,4'-thiodiphenylenecarbonate)","Trash/plastic/Polycarbonates/Poly(4,4'-thiodiphenylenecarbonate)"
+Poly(bisphenolBcarbonate),Trash/plastic/Polycarbonates/Poly(bisphenolBcarbonate)
+Poly(bisphenolFcarbonate),Trash/plastic/Polycarbonates/Poly(bisphenolFcarbonate)
+Poly(ethylenecarbonate),Trash/plastic/Polycarbonates/Poly(ethylenecarbonate)
+Poly(propylenecarbonate),Trash/plastic/Polycarbonates/Poly(propylenecarbonate)
+"Poly(2,6,3',5'-tetrachlorobisphenolAcarbonate)","Trash/plastic/Polycarbonates/Poly(2,6,3',5'-tetrachlorobisphenolAcarbonate)"
+Poly(tetramethylbisphenolAcarbonate),Trash/plastic/Polycarbonates/Poly(tetramethylbisphenolAcarbonate)
 Polycyanoacrylates,Trash/plastic/Polycyanoacrylates
-Poly(methyl cyanoacrylate),Trash/plastic/Polycyanoacrylates/Poly(methylcyanoacrylate)
-Poly(ethyl cyanoacrylate),Trash/plastic/Polycyanoacrylates/Poly(ethylcyanoacrylate)
-Poly(butyl cyanoacrylate),Trash/plastic/Polycyanoacrylates/Poly(butylcyanoacrylate)
-Poly(hexyl cyanoacrylate),Trash/plastic/Polycyanoacrylates/Poly(hexylcyanoacrylate)
-Poly(octyl cyanoacrylate),Trash/plastic/Polycyanoacrylates/Poly(octylcyanoacrylate)
-"Polydienes (Butadienes, Isoprenes)","Trash/plastic/Polydienes(Butadienes,Isoprenes)"
+Poly(methylcyanoacrylate),Trash/plastic/Polycyanoacrylates/Poly(methylcyanoacrylate)
+Poly(ethylcyanoacrylate),Trash/plastic/Polycyanoacrylates/Poly(ethylcyanoacrylate)
+Poly(butylcyanoacrylate),Trash/plastic/Polycyanoacrylates/Poly(butylcyanoacrylate)
+Poly(hexylcyanoacrylate),Trash/plastic/Polycyanoacrylates/Poly(hexylcyanoacrylate)
+Poly(octylcyanoacrylate),Trash/plastic/Polycyanoacrylates/Poly(octylcyanoacrylate)
+"Polydienes(Butadienes,Isoprenes)","Trash/plastic/Polydienes(Butadienes,Isoprenes)"
 "Poly(1,2-butadiene)","Trash/plastic/Polydienes(Butadienes,Isoprenes)/Poly(1,2-butadiene)"
 "Poly(1,4-butadiene)","Trash/plastic/Polydienes(Butadienes,Isoprenes)/Poly(1,4-butadiene)"
 "Poly(1-ethyl-1,4-butadiene)","Trash/plastic/Polydienes(Butadienes,Isoprenes)/Poly(1-ethyl-1,4-butadiene)"
-"1,4-Polyisoprene (cis and trans)(Latex)","Trash/plastic/Polydienes(Butadienes,Isoprenes)/1,4-Polyisoprene(cisandtrans)(Latex)"
+"1,4-Polyisoprene(cisandtrans)(Latex)","Trash/plastic/Polydienes(Butadienes,Isoprenes)/1,4-Polyisoprene(cisandtrans)(Latex)"
 "Poly(1,4-pentadiene)","Trash/plastic/Polydienes(Butadienes,Isoprenes)/Poly(1,4-pentadiene)"
 Poly(1-pentenylene),"Trash/plastic/Polydienes(Butadienes,Isoprenes)/Poly(1-pentenylene)"
-"PolyDiglycidyl Ethers (POLYEPOXIDES, POLYHYDROXYETHERS, Phenoxy)","Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)"
+"PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)","Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)"
 ER,"Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)/ER"
-Bisphenol-A diglycidyl ether epoxy resin,"Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)/Bisphenol-Adiglycidyletherepoxyresin"
-Bisphenol-F diglycidyl ether epoxy resin,"Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)/Bisphenol-Fdiglycidyletherepoxyresin"
-Poly(bis-A diglycidyl ether- alt - ethylenediamine),"Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)/Poly(bis-Adiglycidylether-alt-ethylenediamine)"
-Poly(bis-A diglycidyl ether- alt - hexamethylenediamine),"Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)/Poly(bis-Adiglycidylether-alt-hexamethylenediamine)"
-Poly(bis-A diglycidyl ether- alt - octamethylenediamine),"Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)/Poly(bis-Adiglycidylether-alt-octamethylenediamine)"
+Bisphenol-Adiglycidyletherepoxyresin,"Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)/Bisphenol-Adiglycidyletherepoxyresin"
+Bisphenol-Fdiglycidyletherepoxyresin,"Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)/Bisphenol-Fdiglycidyletherepoxyresin"
+Poly(bis-Adiglycidylether-alt-ethylenediamine),"Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)/Poly(bis-Adiglycidylether-alt-ethylenediamine)"
+Poly(bis-Adiglycidylether-alt-hexamethylenediamine),"Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)/Poly(bis-Adiglycidylether-alt-hexamethylenediamine)"
+Poly(bis-Adiglycidylether-alt-octamethylenediamine),"Trash/plastic/PolyDiglycidylEthers(POLYEPOXIDES,POLYHYDROXYETHERS,Phenoxy)/Poly(bis-Adiglycidylether-alt-octamethylenediamine)"
 Polyesters,Trash/plastic/Polyesters
 PEST,Trash/plastic/Polyesters/PEST
 Poly(caprolactone),Trash/plastic/Polyesters/Poly(caprolactone)
-Poly(ethylene naphthalate),Trash/plastic/Polyesters/Poly(ethylenenaphthalate)
-Poly(ethylene phthalate),Trash/plastic/Polyesters/Poly(ethylenephthalate)
+Poly(ethylenenaphthalate),Trash/plastic/Polyesters/Poly(ethylenenaphthalate)
+Poly(ethylenephthalate),Trash/plastic/Polyesters/Poly(ethylenephthalate)
 Polyglycolide,Trash/plastic/Polyesters/Polyglycolide
 Poly(3-hydroxybutyrate),Trash/plastic/Polyesters/Poly(3-hydroxybutyrate)
 Poly(4-hydroxybutyrate),Trash/plastic/Polyesters/Poly(4-hydroxybutyrate)
-Polylactic acid,Trash/plastic/Polyesters/Polylacticacid
-"Polyethers (POLYGLYCOLS, Oxyalkylenes, GLYCIDYL ETHERS & CYCLIC ETHERS)","Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)"
-Polyacetal - Polyoxymethylene,"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Polyacetal-Polyoxymethylene"
-Poly(3-butoxypropylene oxide),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(3-butoxypropyleneoxide)"
+Polylacticacid,Trash/plastic/Polyesters/Polylacticacid
+"Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)","Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)"
+Polyacetal-Polyoxymethylene,"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Polyacetal-Polyoxymethylene"
+Poly(3-butoxypropyleneoxide),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(3-butoxypropyleneoxide)"
 Poly(epichlorohydrin),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(epichlorohydrin)"
-Poly(ethylene glycol),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(ethyleneglycol)"
-Poly(hexamethylene oxide),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(hexamethyleneoxide)"
-Poly(3-methoxypropylene oxide),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(3-methoxypropyleneoxide)"
+Poly(ethyleneglycol),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(ethyleneglycol)"
+Poly(hexamethyleneoxide),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(hexamethyleneoxide)"
+Poly(3-methoxypropyleneoxide),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(3-methoxypropyleneoxide)"
 Poly[oxy(hexyloxymethyl)ethylene],"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly[oxy(hexyloxymethyl)ethylene]"
 Poly(oxymethylene-oxyethylene),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(oxymethylene-oxyethylene)"
 Poly(oxymethylene-oxytetramethylene),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(oxymethylene-oxytetramethylene)"
-Poly(propylene glycol),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(propyleneglycol)"
+Poly(propyleneglycol),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(propyleneglycol)"
 Poly(tetrahydrofuran),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(tetrahydrofuran)"
-Poly(trimethylene glycol),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(trimethyleneglycol)"
-"Poly[1,1-bis(chloromethyl)trimethylene oxide]","Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly[1,1-bis(chloromethyl)trimethyleneoxide]"
-Polyethersulfones (POLYSULFONE),Trash/plastic/Polyethersulfones(POLYSULFONE)
-Poly(ether ether sulfone),Trash/plastic/Polyethersulfones(POLYSULFONE)/Poly(etherethersulfone)
+Poly(trimethyleneglycol),"Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly(trimethyleneglycol)"
+"Poly[1,1-bis(chloromethyl)trimethyleneoxide]","Trash/plastic/Polyethers(POLYGLYCOLS,Oxyalkylenes,GLYCIDYLETHERS&CYCLICETHERS)/Poly[1,1-bis(chloromethyl)trimethyleneoxide]"
+Polyethersulfones(POLYSULFONE),Trash/plastic/Polyethersulfones(POLYSULFONE)
+Poly(etherethersulfone),Trash/plastic/Polyethersulfones(POLYSULFONE)/Poly(etherethersulfone)
 Poly(ethersulfone),Trash/plastic/Polyethersulfones(POLYSULFONE)/Poly(ethersulfone)
 Poly(phenylsulfone),Trash/plastic/Polyethersulfones(POLYSULFONE)/Poly(phenylsulfone)
-Bisphenol A Polysulfone,Trash/plastic/Polyethersulfones(POLYSULFONE)/BisphenolAPolysulfone
-Polyfumarates (POLYBUTENEDIOATES),Trash/plastic/Polyfumarates(POLYBUTENEDIOATES)
-Poly(dimethyl fumarate),Trash/plastic/Polyfumarates(POLYBUTENEDIOATES)/Poly(dimethylfumarate)
-Poly(dibutyl fumarate),Trash/plastic/Polyfumarates(POLYBUTENEDIOATES)/Poly(dibutylfumarate)
-Poly(diethyl fumarate),Trash/plastic/Polyfumarates(POLYBUTENEDIOATES)/Poly(diethylfumarate)
-Poly(dipropyl fumarate),Trash/plastic/Polyfumarates(POLYBUTENEDIOATES)/Poly(dipropylfumarate)
+BisphenolAPolysulfone,Trash/plastic/Polyethersulfones(POLYSULFONE)/BisphenolAPolysulfone
+Polyfumarates(POLYBUTENEDIOATES),Trash/plastic/Polyfumarates(POLYBUTENEDIOATES)
+Poly(dimethylfumarate),Trash/plastic/Polyfumarates(POLYBUTENEDIOATES)/Poly(dimethylfumarate)
+Poly(dibutylfumarate),Trash/plastic/Polyfumarates(POLYBUTENEDIOATES)/Poly(dibutylfumarate)
+Poly(diethylfumarate),Trash/plastic/Polyfumarates(POLYBUTENEDIOATES)/Poly(diethylfumarate)
+Poly(dipropylfumarate),Trash/plastic/Polyfumarates(POLYBUTENEDIOATES)/Poly(dipropylfumarate)
 Polyhalodienes,Trash/plastic/Polyhalodienes
-PoIy(1-chloro-1-butenylene) (Polychloroprene),Trash/plastic/Polyhalodienes/PoIy(1-chloro-1-butenylene)(Polychloroprene)
-Poly(1-bromo-1-butenylene) (Polybromoprene),Trash/plastic/Polyhalodienes/Poly(1-bromo-1-butenylene)(Polybromoprene)
-Polyhaloolefins (Vinylhalides),Trash/plastic/Polyhaloolefins(Vinylhalides)
+PoIy(1-chloro-1-butenylene)(Polychloroprene),Trash/plastic/Polyhalodienes/PoIy(1-chloro-1-butenylene)(Polychloroprene)
+Poly(1-bromo-1-butenylene)(Polybromoprene),Trash/plastic/Polyhalodienes/Poly(1-bromo-1-butenylene)(Polybromoprene)
+Polyhaloolefins(Vinylhalides),Trash/plastic/Polyhaloolefins(Vinylhalides)
 PVC,Trash/plastic/Polyhaloolefins(Vinylhalides)/PVC
 PTFE,Trash/plastic/Polyhaloolefins(Vinylhalides)/PTFE
 PVDF,Trash/plastic/Polyhaloolefins(Vinylhalides)/PVDF
 Poly(chlorotrifluoroethylene),Trash/plastic/Polyhaloolefins(Vinylhalides)/Poly(chlorotrifluoroethylene)
-Poly(vinyl bromide),Trash/plastic/Polyhaloolefins(Vinylhalides)/Poly(vinylbromide)
-Poly(vinyl fluoride),Trash/plastic/Polyhaloolefins(Vinylhalides)/Poly(vinylfluoride)
-Poly(vinylidene chloride),Trash/plastic/Polyhaloolefins(Vinylhalides)/Poly(vinylidenechloride)
+Poly(vinylbromide),Trash/plastic/Polyhaloolefins(Vinylhalides)/Poly(vinylbromide)
+Poly(vinylfluoride),Trash/plastic/Polyhaloolefins(Vinylhalides)/Poly(vinylfluoride)
+Poly(vinylidenechloride),Trash/plastic/Polyhaloolefins(Vinylhalides)/Poly(vinylidenechloride)
 Polyhalostyrenes,Trash/plastic/Polyhalostyrenes
 Poly(4-bromostyrene),Trash/plastic/Polyhalostyrenes/Poly(4-bromostyrene)
 Poly(2-chlorostyrene),Trash/plastic/Polyhalostyrenes/Poly(2-chlorostyrene)
@@ -217,51 +217,51 @@ Poly(4-chlorostyrene),Trash/plastic/Polyhalostyrenes/Poly(4-chlorostyrene)
 "Poly(2,5-difluorostyrene)","Trash/plastic/Polyhalostyrenes/Poly(2,5-difluorostyrene)"
 Poly(4-fluorostyrene),Trash/plastic/Polyhalostyrenes/Poly(4-fluorostyrene)
 Polyhydroxy(meth)acrylates,Trash/plastic/Polyhydroxy(meth)acrylates
-Poly(2-hydroxyethyl acrylate),Trash/plastic/Polyhydroxy(meth)acrylates/Poly(2-hydroxyethylacrylate)
-Poly(2-hydroxyethyl methacrylate),Trash/plastic/Polyhydroxy(meth)acrylates/Poly(2-hydroxyethylmethacrylate)
-Poly(2-hydroxypropyl methacrylate),Trash/plastic/Polyhydroxy(meth)acrylates/Poly(2-hydroxypropylmethacrylate)
+Poly(2-hydroxyethylacrylate),Trash/plastic/Polyhydroxy(meth)acrylates/Poly(2-hydroxyethylacrylate)
+Poly(2-hydroxyethylmethacrylate),Trash/plastic/Polyhydroxy(meth)acrylates/Poly(2-hydroxyethylmethacrylate)
+Poly(2-hydroxypropylmethacrylate),Trash/plastic/Polyhydroxy(meth)acrylates/Poly(2-hydroxypropylmethacrylate)
 Polyisophthalates,Trash/plastic/Polyisophthalates
-Poly(Bisphenol A isophthalate),Trash/plastic/Polyisophthalates/Poly(BisphenolAisophthalate)
-Poly(butylene isophthalate),Trash/plastic/Polyisophthalates/Poly(butyleneisophthalate)
-Poly(ethylene isophthalate),Trash/plastic/Polyisophthalates/Poly(ethyleneisophthalate)
-POLYITACONATES (POLYMETHYLENE SUCCINATES),Trash/plastic/POLYITACONATES(POLYMETHYLENESUCCINATES)
-Poly[dimethyl itaconate],Trash/plastic/POLYITACONATES(POLYMETHYLENESUCCINATES)/Poly[dimethylitaconate]
-Poly[di(n-propyl) itaconate],Trash/plastic/POLYITACONATES(POLYMETHYLENESUCCINATES)/Poly[di(n-propyl)itaconate]
-Poly[di(n-butyl) itaconate],Trash/plastic/POLYITACONATES(POLYMETHYLENESUCCINATES)/Poly[di(n-butyl)itaconate]
-Poly[di(n-hexyl) itaconate],Trash/plastic/POLYITACONATES(POLYMETHYLENESUCCINATES)/Poly[di(n-hexyl)itaconate]
+Poly(BisphenolAisophthalate),Trash/plastic/Polyisophthalates/Poly(BisphenolAisophthalate)
+Poly(butyleneisophthalate),Trash/plastic/Polyisophthalates/Poly(butyleneisophthalate)
+Poly(ethyleneisophthalate),Trash/plastic/Polyisophthalates/Poly(ethyleneisophthalate)
+POLYITACONATES(POLYMETHYLENESUCCINATES),Trash/plastic/POLYITACONATES(POLYMETHYLENESUCCINATES)
+Poly[dimethylitaconate],Trash/plastic/POLYITACONATES(POLYMETHYLENESUCCINATES)/Poly[dimethylitaconate]
+Poly[di(n-propyl)itaconate],Trash/plastic/POLYITACONATES(POLYMETHYLENESUCCINATES)/Poly[di(n-propyl)itaconate]
+Poly[di(n-butyl)itaconate],Trash/plastic/POLYITACONATES(POLYMETHYLENESUCCINATES)/Poly[di(n-butyl)itaconate]
+Poly[di(n-hexyl)itaconate],Trash/plastic/POLYITACONATES(POLYMETHYLENESUCCINATES)/Poly[di(n-hexyl)itaconate]
 Polymethacrylamides,Trash/plastic/Polymethacrylamides
 Poly(N-acetylmethacrylamide),Trash/plastic/Polymethacrylamides/Poly(N-acetylmethacrylamide)
-Poly(N-benzyl methacrylamide),Trash/plastic/Polymethacrylamides/Poly(N-benzylmethacrylamide)
+Poly(N-benzylmethacrylamide),Trash/plastic/Polymethacrylamides/Poly(N-benzylmethacrylamide)
 Poly(methacrylamide),Trash/plastic/Polymethacrylamides/Poly(methacrylamide)
 Poly(N-tert-butylmethacrylamide),Trash/plastic/Polymethacrylamides/Poly(N-tert-butylmethacrylamide)
 Polymethacrylates,Trash/plastic/Polymethacrylates
 PMMA,Trash/plastic/Polymethacrylates/PMMA
-Poly(methacrylic acid),Trash/plastic/Polymethacrylates/Poly(methacrylicacid)
-Poly(benzyl methacrylate),Trash/plastic/Polymethacrylates/Poly(benzylmethacrylate)
-Poly(butyl methacrylate),Trash/plastic/Polymethacrylates/Poly(butylmethacrylate)
-Poly(cyclohexyl methacrylate),Trash/plastic/Polymethacrylates/Poly(cyclohexylmethacrylate)
+Poly(methacrylicacid),Trash/plastic/Polymethacrylates/Poly(methacrylicacid)
+Poly(benzylmethacrylate),Trash/plastic/Polymethacrylates/Poly(benzylmethacrylate)
+Poly(butylmethacrylate),Trash/plastic/Polymethacrylates/Poly(butylmethacrylate)
+Poly(cyclohexylmethacrylate),Trash/plastic/Polymethacrylates/Poly(cyclohexylmethacrylate)
 Poly(decylmethacrylate),Trash/plastic/Polymethacrylates/Poly(decylmethacrylate)
 Poly(dodecylmethacrylate),Trash/plastic/Polymethacrylates/Poly(dodecylmethacrylate)
-Poly(2-ethoxyethyl methacrylate),Trash/plastic/Polymethacrylates/Poly(2-ethoxyethylmethacrylate)
-Poly(ethyl methacrylate),Trash/plastic/Polymethacrylates/Poly(ethylmethacrylate)
-Poly(hexyl methacrylate),Trash/plastic/Polymethacrylates/Poly(hexylmethacrylate)
-Poly(isobutyl methacrylate),Trash/plastic/Polymethacrylates/Poly(isobutylmethacrylate)
-Poly(isopropyl methacrylate),Trash/plastic/Polymethacrylates/Poly(isopropylmethacrylate)
-Poly(octadecyl methacrylate),Trash/plastic/Polymethacrylates/Poly(octadecylmethacrylate)
-Poly(octyl methacrylate),Trash/plastic/Polymethacrylates/Poly(octylmethacrylate)
-Poly(2-phenylethyl methacrylate),Trash/plastic/Polymethacrylates/Poly(2-phenylethylmethacrylate)
-Poly(phenyl methacrylate),Trash/plastic/Polymethacrylates/Poly(phenylmethacrylate)
-Poly(propyl methacrylate),Trash/plastic/Polymethacrylates/Poly(propylmethacrylate)
-Poly(2-chloroethyl methacrylate),Trash/plastic/Polymethacrylates/Poly(2-chloroethylmethacrylate)
-Poly(sec-butyl methacrylate),Trash/plastic/Polymethacrylates/Poly(sec-butylmethacrylate)
-Poly(4-tert-butylcyclohexyl methacrylate),Trash/plastic/Polymethacrylates/Poly(4-tert-butylcyclohexylmethacrylate)
-Poly(tert-butyl methacrylate),Trash/plastic/Polymethacrylates/Poly(tert-butylmethacrylate)
-"Poly(2,2,3,3-tetrafluoropropyl methacrylate)","Trash/plastic/Polymethacrylates/Poly(2,2,3,3-tetrafluoropropylmethacrylate)"
+Poly(2-ethoxyethylmethacrylate),Trash/plastic/Polymethacrylates/Poly(2-ethoxyethylmethacrylate)
+Poly(ethylmethacrylate),Trash/plastic/Polymethacrylates/Poly(ethylmethacrylate)
+Poly(hexylmethacrylate),Trash/plastic/Polymethacrylates/Poly(hexylmethacrylate)
+Poly(isobutylmethacrylate),Trash/plastic/Polymethacrylates/Poly(isobutylmethacrylate)
+Poly(isopropylmethacrylate),Trash/plastic/Polymethacrylates/Poly(isopropylmethacrylate)
+Poly(octadecylmethacrylate),Trash/plastic/Polymethacrylates/Poly(octadecylmethacrylate)
+Poly(octylmethacrylate),Trash/plastic/Polymethacrylates/Poly(octylmethacrylate)
+Poly(2-phenylethylmethacrylate),Trash/plastic/Polymethacrylates/Poly(2-phenylethylmethacrylate)
+Poly(phenylmethacrylate),Trash/plastic/Polymethacrylates/Poly(phenylmethacrylate)
+Poly(propylmethacrylate),Trash/plastic/Polymethacrylates/Poly(propylmethacrylate)
+Poly(2-chloroethylmethacrylate),Trash/plastic/Polymethacrylates/Poly(2-chloroethylmethacrylate)
+Poly(sec-butylmethacrylate),Trash/plastic/Polymethacrylates/Poly(sec-butylmethacrylate)
+Poly(4-tert-butylcyclohexylmethacrylate),Trash/plastic/Polymethacrylates/Poly(4-tert-butylcyclohexylmethacrylate)
+Poly(tert-butylmethacrylate),Trash/plastic/Polymethacrylates/Poly(tert-butylmethacrylate)
+"Poly(2,2,3,3-tetrafluoropropylmethacrylate)","Trash/plastic/Polymethacrylates/Poly(2,2,3,3-tetrafluoropropylmethacrylate)"
 Polyolefins,Trash/plastic/Polyolefins
 Olefin,Trash/plastic/Polyolefins/Olefin
-Polyolefins (POLYALKENES),Trash/plastic/Polyolefins(POLYALKENES)
+Polyolefins(POLYALKENES),Trash/plastic/Polyolefins(POLYALKENES)
 Poly(butylene),Trash/plastic/Polyolefins(POLYALKENES)/Poly(butylene)
-Poly(butyl ethylene),Trash/plastic/Polyolefins(POLYALKENES)/Poly(butylethylene)
+Poly(butylethylene),Trash/plastic/Polyolefins(POLYALKENES)/Poly(butylethylene)
 Poly(cyclohexylethylene),Trash/plastic/Polyolefins(POLYALKENES)/Poly(cyclohexylethylene)
 Poly(heptylethylene),Trash/plastic/Polyolefins(POLYALKENES)/Poly(heptylethylene)
 Poly(hexylethylene),Trash/plastic/Polyolefins(POLYALKENES)/Poly(hexylethylene)
@@ -275,25 +275,25 @@ Poly(propylethylene),Trash/plastic/Polyolefins(POLYALKENES)/Poly(propylethylene)
 Poly(tert-butylethylene),Trash/plastic/Polyolefins(POLYALKENES)/Poly(tert-butylethylene)
 PE,Trash/plastic/Polyolefins(POLYALKENES)/PE
 PP,Trash/plastic/Polyolefins(POLYALKENES)/PP
-Polyphenylenes (POLYAROMATICS),Trash/plastic/Polyphenylenes(POLYAROMATICS)
+Polyphenylenes(POLYAROMATICS),Trash/plastic/Polyphenylenes(POLYAROMATICS)
 Poly(p-phenylene),Trash/plastic/Polyphenylenes(POLYAROMATICS)/Poly(p-phenylene)
-Poly(p-phenylene vinylene),Trash/plastic/Polyphenylenes(POLYAROMATICS)/Poly(p-phenylenevinylene)
+Poly(p-phenylenevinylene),Trash/plastic/Polyphenylenes(POLYAROMATICS)/Poly(p-phenylenevinylene)
 Poly(p-xylene),Trash/plastic/Polyphenylenes(POLYAROMATICS)/Poly(p-xylene)
 Poly(2-chloro-p-xylylene),Trash/plastic/Polyphenylenes(POLYAROMATICS)/Poly(2-chloro-p-xylylene)
-Polyphenylethers (POLYPHENYLENEOXIDE),Trash/plastic/Polyphenylethers(POLYPHENYLENEOXIDE)
-"Poly(2,6-dimethyl-p-phenylene oxide)","Trash/plastic/Polyphenylethers(POLYPHENYLENEOXIDE)/Poly(2,6-dimethyl-p-phenyleneoxide)"
-"Poly(2,6-diphenyl-p-phenylene oxide)","Trash/plastic/Polyphenylethers(POLYPHENYLENEOXIDE)/Poly(2,6-diphenyl-p-phenyleneoxide)"
-Poly(p-phenylene oxide),Trash/plastic/Polyphenylethers(POLYPHENYLENEOXIDE)/Poly(p-phenyleneoxide)
+Polyphenylethers(POLYPHENYLENEOXIDE),Trash/plastic/Polyphenylethers(POLYPHENYLENEOXIDE)
+"Poly(2,6-dimethyl-p-phenyleneoxide)","Trash/plastic/Polyphenylethers(POLYPHENYLENEOXIDE)/Poly(2,6-dimethyl-p-phenyleneoxide)"
+"Poly(2,6-diphenyl-p-phenyleneoxide)","Trash/plastic/Polyphenylethers(POLYPHENYLENEOXIDE)/Poly(2,6-diphenyl-p-phenyleneoxide)"
+Poly(p-phenyleneoxide),Trash/plastic/Polyphenylethers(POLYPHENYLENEOXIDE)/Poly(p-phenyleneoxide)
 Polysebacates,Trash/plastic/Polysebacates
-Poly(butylene sebacate),Trash/plastic/Polysebacates/Poly(butylenesebacate)
-Poly(ethylene sebacate),Trash/plastic/Polysebacates/Poly(ethylenesebacate)
-Poly(hexylene sebacate),Trash/plastic/Polysebacates/Poly(hexylenesebacate)
+Poly(butylenesebacate),Trash/plastic/Polysebacates/Poly(butylenesebacate)
+Poly(ethylenesebacate),Trash/plastic/Polysebacates/Poly(ethylenesebacate)
+Poly(hexylenesebacate),Trash/plastic/Polysebacates/Poly(hexylenesebacate)
 Polysiloxanes,Trash/plastic/Polysiloxanes
 Silicone,Trash/plastic/Polysiloxanes/Silicone
 PMPS,Trash/plastic/Polysiloxanes/PMPS
 PDMS,Trash/plastic/Polysiloxanes/PDMS
-Poly(diethylsiloxane) (PDES),Trash/plastic/Polysiloxanes/Poly(diethylsiloxane)(PDES)
-"POLYSTYRENES (POLYPHENYLETHYLENES, _-Methylstyrene)","Trash/plastic/POLYSTYRENES(POLYPHENYLETHYLENES,_-Methylstyrene)"
+Poly(diethylsiloxane)(PDES),Trash/plastic/Polysiloxanes/Poly(diethylsiloxane)(PDES)
+"POLYSTYRENES(POLYPHENYLETHYLENES,_-Methylstyrene)","Trash/plastic/POLYSTYRENES(POLYPHENYLETHYLENES,_-Methylstyrene)"
 Poly(2-methoxystyrene),"Trash/plastic/POLYSTYRENES(POLYPHENYLETHYLENES,_-Methylstyrene)/Poly(2-methoxystyrene)"
 Poly(_-methylstyrene),"Trash/plastic/POLYSTYRENES(POLYPHENYLETHYLENES,_-Methylstyrene)/Poly(_-methylstyrene)"
 Poly(2-methylstyrene),"Trash/plastic/POLYSTYRENES(POLYPHENYLETHYLENES,_-Methylstyrene)/Poly(2-methylstyrene)"
@@ -301,63 +301,63 @@ Poly(3-methylstyrene),"Trash/plastic/POLYSTYRENES(POLYPHENYLETHYLENES,_-Methylst
 Poly(4-methylstyrene),"Trash/plastic/POLYSTYRENES(POLYPHENYLETHYLENES,_-Methylstyrene)/Poly(4-methylstyrene)"
 Polystyrene,"Trash/plastic/POLYSTYRENES(POLYPHENYLETHYLENES,_-Methylstyrene)/Polystyrene"
 Poly(4-tert-butylstyrene),"Trash/plastic/POLYSTYRENES(POLYPHENYLETHYLENES,_-Methylstyrene)/Poly(4-tert-butylstyrene)"
-Polystyrenes (POLYPHENYLETHYLENES),Trash/plastic/Polystyrenes(POLYPHENYLETHYLENES)
+Polystyrenes(POLYPHENYLETHYLENES),Trash/plastic/Polystyrenes(POLYPHENYLETHYLENES)
 PS,Trash/plastic/Polystyrenes(POLYPHENYLETHYLENES)/PS
 Polysuccinates,Trash/plastic/Polysuccinates
-"Poly(1,4-butylene succinate)","Trash/plastic/Polysuccinates/Poly(1,4-butylenesuccinate)"
-Poly(ethylene succinate),Trash/plastic/Polysuccinates/Poly(ethylenesuccinate)
-"Poly(1,6-hexylene succinate)","Trash/plastic/Polysuccinates/Poly(1,6-hexylenesuccinate)"
-Poly(trimethylene succinate),Trash/plastic/Polysuccinates/Poly(trimethylenesuccinate)
+"Poly(1,4-butylenesuccinate)","Trash/plastic/Polysuccinates/Poly(1,4-butylenesuccinate)"
+Poly(ethylenesuccinate),Trash/plastic/Polysuccinates/Poly(ethylenesuccinate)
+"Poly(1,6-hexylenesuccinate)","Trash/plastic/Polysuccinates/Poly(1,6-hexylenesuccinate)"
+Poly(trimethylenesuccinate),Trash/plastic/Polysuccinates/Poly(trimethylenesuccinate)
 Polyterephthalates,Trash/plastic/Polyterephthalates
 PET,Trash/plastic/Polyterephthalates/PET
 PBT,Trash/plastic/Polyterephthalates/PBT
 PTT,Trash/plastic/Polyterephthalates/PTT
-Poly(Bisphenol A terephthalate),Trash/plastic/Polyterephthalates/Poly(BisphenolAterephthalate)
-Poly(cyclohexylenedimethylene terephthalate),Trash/plastic/Polyterephthalates/Poly(cyclohexylenedimethyleneterephthalate)
-Poly(trimethylene terephthalate),Trash/plastic/Polyterephthalates/Poly(trimethyleneterephthalate)
-Polythioethers (Sulfides),Trash/plastic/Polythioethers(Sulfides)
+Poly(BisphenolAterephthalate),Trash/plastic/Polyterephthalates/Poly(BisphenolAterephthalate)
+Poly(cyclohexylenedimethyleneterephthalate),Trash/plastic/Polyterephthalates/Poly(cyclohexylenedimethyleneterephthalate)
+Poly(trimethyleneterephthalate),Trash/plastic/Polyterephthalates/Poly(trimethyleneterephthalate)
+Polythioethers(Sulfides),Trash/plastic/Polythioethers(Sulfides)
 "Poly(thio-1,4-phenylene)","Trash/plastic/Polythioethers(Sulfides)/Poly(thio-1,4-phenylene)"
-Poly(ethylene sulfide),Trash/plastic/Polythioethers(Sulfides)/Poly(ethylenesulfide)
-Poly(propylene sulfide),Trash/plastic/Polythioethers(Sulfides)/Poly(propylenesulfide)
-Polyurethanes (isocyanates),Trash/plastic/Polyurethanes(isocyanates)
+Poly(ethylenesulfide),Trash/plastic/Polythioethers(Sulfides)/Poly(ethylenesulfide)
+Poly(propylenesulfide),Trash/plastic/Polythioethers(Sulfides)/Poly(propylenesulfide)
+Polyurethanes(isocyanates),Trash/plastic/Polyurethanes(isocyanates)
 PU,Trash/plastic/Polyurethanes(isocyanates)/PU
-"Poly[(diethylene glycol)-alt-(1,6-hexamethylene diisocyanate)]","Trash/plastic/Polyurethanes(isocyanates)/Poly[(diethyleneglycol)-alt-(1,6-hexamethylenediisocyanate)]"
-"Poly[(tetraethylene glycol)-alt-(1,6-hexamethylene diisocyanate)]","Trash/plastic/Polyurethanes(isocyanates)/Poly[(tetraethyleneglycol)-alt-(1,6-hexamethylenediisocyanate)]"
-"Poly[(1,4-butanediol)-alt-(4,4'-diphenylmethane diisocyanate)]","Trash/plastic/Polyurethanes(isocyanates)/Poly[(1,4-butanediol)-alt-(4,4'-diphenylmethanediisocyanate)]"
-"Poly[(ethylene glycol)-alt-(4,4'-diphenylmethane diisocyanate)]","Trash/plastic/Polyurethanes(isocyanates)/Poly[(ethyleneglycol)-alt-(4,4'-diphenylmethanediisocyanate)]"
-"Poly[(polytetrahydrofuran 1000)-alt-(4,4'-diphenylmethane diisocyanate)]","Trash/plastic/Polyurethanes(isocyanates)/Poly[(polytetrahydrofuran1000)-alt-(4,4'-diphenylmethanediisocyanate)]"
+"Poly[(diethyleneglycol)-alt-(1,6-hexamethylenediisocyanate)]","Trash/plastic/Polyurethanes(isocyanates)/Poly[(diethyleneglycol)-alt-(1,6-hexamethylenediisocyanate)]"
+"Poly[(tetraethyleneglycol)-alt-(1,6-hexamethylenediisocyanate)]","Trash/plastic/Polyurethanes(isocyanates)/Poly[(tetraethyleneglycol)-alt-(1,6-hexamethylenediisocyanate)]"
+"Poly[(1,4-butanediol)-alt-(4,4'-diphenylmethanediisocyanate)]","Trash/plastic/Polyurethanes(isocyanates)/Poly[(1,4-butanediol)-alt-(4,4'-diphenylmethanediisocyanate)]"
+"Poly[(ethyleneglycol)-alt-(4,4'-diphenylmethanediisocyanate)]","Trash/plastic/Polyurethanes(isocyanates)/Poly[(ethyleneglycol)-alt-(4,4'-diphenylmethanediisocyanate)]"
+"Poly[(polytetrahydrofuran1000)-alt-(4,4'-diphenylmethanediisocyanate)]","Trash/plastic/Polyurethanes(isocyanates)/Poly[(polytetrahydrofuran1000)-alt-(4,4'-diphenylmethanediisocyanate)]"
 Polyvinylalcohols,Trash/plastic/Polyvinylalcohols
 PVA,Trash/plastic/Polyvinylalcohols/PVA
-Poly(4-vinyl phenol),Trash/plastic/Polyvinylalcohols/Poly(4-vinylphenol)
-Poly(vinyl butyral),Trash/plastic/Polyvinylalcohols/Poly(vinylbutyral)
-Poly(vinyl formal),Trash/plastic/Polyvinylalcohols/Poly(vinylformal)
+Poly(4-vinylphenol),Trash/plastic/Polyvinylalcohols/Poly(4-vinylphenol)
+Poly(vinylbutyral),Trash/plastic/Polyvinylalcohols/Poly(vinylbutyral)
+Poly(vinylformal),Trash/plastic/Polyvinylalcohols/Poly(vinylformal)
 Polyvinylesters,Trash/plastic/Polyvinylesters
-Poly(vinyl acetate),Trash/plastic/Polyvinylesters/Poly(vinylacetate)
-Poly(vinyl benzoate),Trash/plastic/Polyvinylesters/Poly(vinylbenzoate)
-Poly(vinyl butyrate),Trash/plastic/Polyvinylesters/Poly(vinylbutyrate)
-Poly(vinyl caproate),Trash/plastic/Polyvinylesters/Poly(vinylcaproate)
-Poly(vinyl formate),Trash/plastic/Polyvinylesters/Poly(vinylformate)
-Poly(vinyl propionate),Trash/plastic/Polyvinylesters/Poly(vinylpropionate)
-Poly(vinyl stearate),Trash/plastic/Polyvinylesters/Poly(vinylstearate)
-Poly(vinyl valerate),Trash/plastic/Polyvinylesters/Poly(vinylvalerate)
-Poly(butyl vinyl ether),Trash/plastic/Polyvinylethers/Poly(butylvinylether)
-Poly(ethyl vinyl ether),Trash/plastic/Polyvinylethers/Poly(ethylvinylether)
-Poly(hexyl vinyl ether),Trash/plastic/Polyvinylethers/Poly(hexylvinylether)
-Poly(isobutyl vinyl ether),Trash/plastic/Polyvinylethers/Poly(isobutylvinylether)
-Poly(isopropyl vinyl ether),Trash/plastic/Polyvinylethers/Poly(isopropylvinylether)
-Poly(methyl vinyl ether),Trash/plastic/Polyvinylethers/Poly(methylvinylether)
-Poly(octyl vinyl ether),Trash/plastic/Polyvinylethers/Poly(octylvinylether)
-Poly(propyl vinyl ether),Trash/plastic/Polyvinylethers/Poly(propylvinylether)
-Poly(sec-butyl vinyl ether),Trash/plastic/Polyvinylethers/Poly(sec-butylvinylether)
+Poly(vinylacetate),Trash/plastic/Polyvinylesters/Poly(vinylacetate)
+Poly(vinylbenzoate),Trash/plastic/Polyvinylesters/Poly(vinylbenzoate)
+Poly(vinylbutyrate),Trash/plastic/Polyvinylesters/Poly(vinylbutyrate)
+Poly(vinylcaproate),Trash/plastic/Polyvinylesters/Poly(vinylcaproate)
+Poly(vinylformate),Trash/plastic/Polyvinylesters/Poly(vinylformate)
+Poly(vinylpropionate),Trash/plastic/Polyvinylesters/Poly(vinylpropionate)
+Poly(vinylstearate),Trash/plastic/Polyvinylesters/Poly(vinylstearate)
+Poly(vinylvalerate),Trash/plastic/Polyvinylesters/Poly(vinylvalerate)
+Poly(butylvinylether),Trash/plastic/Polyvinylethers/Poly(butylvinylether)
+Poly(ethylvinylether),Trash/plastic/Polyvinylethers/Poly(ethylvinylether)
+Poly(hexylvinylether),Trash/plastic/Polyvinylethers/Poly(hexylvinylether)
+Poly(isobutylvinylether),Trash/plastic/Polyvinylethers/Poly(isobutylvinylether)
+Poly(isopropylvinylether),Trash/plastic/Polyvinylethers/Poly(isopropylvinylether)
+Poly(methylvinylether),Trash/plastic/Polyvinylethers/Poly(methylvinylether)
+Poly(octylvinylether),Trash/plastic/Polyvinylethers/Poly(octylvinylether)
+Poly(propylvinylether),Trash/plastic/Polyvinylethers/Poly(propylvinylether)
+Poly(sec-butylvinylether),Trash/plastic/Polyvinylethers/Poly(sec-butylvinylether)
 Polyvinylketones,Trash/plastic/Polyvinylketones
-Poly(vinyl ethyl ketone),Trash/plastic/Polyvinylketones/Poly(vinylethylketone)
-Poly(vinyl methyl ketone),Trash/plastic/Polyvinylketones/Poly(vinylmethylketone)
-Poly(methyl isopropenyl ketone),Trash/plastic/Polyvinylketones/Poly(methylisopropenylketone)
-Poly(vinyl phenyl ketone),Trash/plastic/Polyvinylketones/Poly(vinylphenylketone)
-Poly(vinyl pyrrolidone),Trash/plastic/Polyvinylketones/Poly(vinylpyrrolidone)
+Poly(vinylethylketone),Trash/plastic/Polyvinylketones/Poly(vinylethylketone)
+Poly(vinylmethylketone),Trash/plastic/Polyvinylketones/Poly(vinylmethylketone)
+Poly(methylisopropenylketone),Trash/plastic/Polyvinylketones/Poly(methylisopropenylketone)
+Poly(vinylphenylketone),Trash/plastic/Polyvinylketones/Poly(vinylphenylketone)
+Poly(vinylpyrrolidone),Trash/plastic/Polyvinylketones/Poly(vinylpyrrolidone)
 Polyvinylsulfides,Trash/plastic/Polyvinylsulfides
-Poly(vinyl butyl sulfide),Trash/plastic/Polyvinylsulfides/Poly(vinylbutylsulfide)
-Poly(vinyl ethyl sulfide),Trash/plastic/Polyvinylsulfides/Poly(vinylethylsulfide)
-Poly(vinyl methyl sulfide),Trash/plastic/Polyvinylsulfides/Poly(vinylmethylsulfide)
-Poly(vinyl phenyl sulfide),Trash/plastic/Polyvinylsulfides/Poly(vinylphenylsulfide)
-Poly(vinyl propyl sulfide),Trash/plastic/Polyvinylsulfides/Poly(vinylpropylsulfide)
+Poly(vinylbutylsulfide),Trash/plastic/Polyvinylsulfides/Poly(vinylbutylsulfide)
+Poly(vinylethylsulfide),Trash/plastic/Polyvinylsulfides/Poly(vinylethylsulfide)
+Poly(vinylmethylsulfide),Trash/plastic/Polyvinylsulfides/Poly(vinylmethylsulfide)
+Poly(vinylphenylsulfide),Trash/plastic/Polyvinylsulfides/Poly(vinylphenylsulfide)
+Poly(vinylpropylsulfide),Trash/plastic/Polyvinylsulfides/Poly(vinylpropylsulfide)
