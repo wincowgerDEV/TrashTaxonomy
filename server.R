@@ -25,8 +25,6 @@ library(ggforce)
 library(skimr)
 library(ggdark)
 
-setwd("/Users/hannahhapich/Documents/R_Scripts/TrashTaxonomy-master")
-
 #Build cleaning functions
 cleantext <- function(x) {
   x <- tolower(gsub("[[:space:]]", "", x))

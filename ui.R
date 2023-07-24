@@ -26,6 +26,21 @@ ui <- fluidPage(
       }
                     "))
   ),
+  tags$head(tags$style(HTML("
+  .form-group.shiny-input-container select {
+    background-color: #000000;  /* Black background color */
+    color: #ffffff;             /* White font color */
+    margin: 0;                  /* Remove margins */
+    padding: 0;                 /* Remove padding */
+    display: inline-block;      /* Add this to allow vertical-align to take effect */
+    vertical-align: middle;     /* Align the dropdown vertically in the middle */
+    width: 100%;                /* Set width to 100% of containing element */
+  }
+  table.dataTable tbody td { 
+    vertical-align: middle;     /* Align the content of the cells vertically in the middle */
+    text-align: center;
+  }
+"))),
   
   #About ----
   tabsetPanel(
