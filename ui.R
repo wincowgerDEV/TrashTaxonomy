@@ -12,10 +12,11 @@ library(shinyTree)
 #library(treemap)
 library(data.tree)
 library(collapsibleTree)
+library(plotly)
 
 ui <- fluidPage(
   theme=shinytheme("cyborg"),
-  titlePanel("Trash Taxonomy"),
+  titlePanel("Microplastics and Trash Taxonomy"),
   tags$head(
     # Note the wrapping of the string in HTML()
     tags$style(HTML("
@@ -622,7 +623,7 @@ ui <- fluidPage(
              )
     ),
     #Survey Merging Tool ----
-    tabPanel("Survey Merging Tool",
+    tabPanel("Survey Merging and Visualization",
              titlePanel(tags$h4("Merge two or more exisitng survey sheets into one dataset")),
              
              fluidRow(
@@ -647,6 +648,25 @@ ui <- fluidPage(
              )
                
              ),
+             
+             hr(),
+             fluidRow(
+               column(3), 
+               column(6,shiny::HTML("<br><br><center> <h4>Hierarchical Data Visualization</h4> </center><br>")
+               ),
+               column(3)
+               
+             ),
+             fluidRow(
+               column(1),
+               column(5, 
+                      plotlyOutput('plot1')
+               ),
+               column(5, 
+                      plotlyOutput('plot2')
+               ), 
+               column(1)
+             ),
 
              fluidRow(
                align="center",
@@ -655,8 +675,107 @@ ui <- fluidPage(
              )
     ),
     
-    tabPanel("Pre-made Surveys",
-             titlePanel(tags$h4("Select a scientifically-informed trash survey to fit your specific study needs.")),
+    #Concentration Conversion Tool ----
+    tabPanel("Particle Mass Calculator",
+             titlePanel(tags$h4("Convert between count, mass, and volume of particle level microplastic data")),
+             
+             fluidRow(
+               column(2, 
+                      fileInput('particleData', "Choose CSV File", multiple = FALSE, accept = c(".csv"))%>%
+                        helper(type = "inline",
+                               title = "Upload Help",
+                               content = c("To use the tool, upload a csv file to the upload file tab. This file need to be a csv with one column named -length_um- one named -morphology- and another named -polymer-. Data should be reported at the particle level."),
+                               size = "m"),
+                      
+                      
+               ),
+               
+               column(10, 
+                      dataTableOutput('contents5')
+               ),
+               
+               fluidRow(
+                 column(1),
+                 column(5, 
+                        plotOutput('plot3', width = "500px", height = "500px"),
+                        
+                        downloadButton('downloadPlot3', 'Download Plot')
+                 ),
+                 column(5, 
+                        plotOutput('plot4', width = "500px", height = "500px"),
+                        
+                        downloadButton('downloadPlot4', 'Download Plot')
+                 ), 
+                 column(1)
+               ),
+               
+             ),
+             
+             fluidRow(
+               align="center",
+               hr(),
+               tags$p("Citation: H. Hapich, W. Cowger, A. Gray, Jambeck Research Group. 2020. Trash Taxonomy. https://trashtaxonomy.shinyapps.io/trashtaxonomy/")
+             )
+    ),
+    
+    #Data Correction Tool ----
+    tabPanel("Microplastic Concentration Allignment",
+             titlePanel(tags$h4("Correct your microplastic concentration data to fit the full distribution of microplastic sizes")),
+             
+             fluidRow(
+               column(2, 
+                      
+                      selectInput('study_environment', "Choose study media", c("", "Marine Surface","Freshwater Surface","Marine Sediment","Freshwater Sediment","Effluent","Biota")) %>%
+                        helper(type = "inline",
+                               title = "Selection Help",
+                               content = c("Select the media your study was conducted in"),
+                               size = "m"),
+                      
+                      selectInput('concentration_type', "Known Particle Characteristic", c("", "length (um)","mass (ug)","volume (um3)","surface area (um2)","specific surface area (g/m2)")) %>%
+                        helper(type = "inline",
+                               title = "Selection Help",
+                               content = c("Select the measured characteristic of your particles over which to normalize"),
+                               size = "m"),
+                      
+                      textInput('concentration_value', "Particle Concentration"),
+                      
+                      textInput('concentration_units', "Units"),
+                      
+                      sliderInput(
+                        inputId = "slider1",
+                        label = "Studied Particle Range",
+                        min = 1,
+                        max = 5000,
+                        value = c(20,3000),
+                        step = 1
+                      ),
+                      
+                      sliderInput(
+                        inputId = "slider2",
+                        label = "Corrected Particle Range",
+                        min = 1,
+                        max = 5000,
+                        value = c(1,5000),
+                        step = 1
+                      ),
+                      
+                      actionButton("calculate_distribution", "Calculate")
+                      
+               ),
+               
+             ),
+             
+             
+             fluidRow(
+               align="center",
+               hr(),
+               tags$p("Citation: H. Hapich, W. Cowger, A. Gray, Jambeck Research Group. 2020. Trash Taxonomy. https://trashtaxonomy.shinyapps.io/trashtaxonomy/")
+             )
+    ),
+    
+    #Surveys for Download ----
+    tabPanel("Surveys for Download",
+             titlePanel(tags$h4("View and download suggested trash surveys to fit your study needs")),
              
              fluidRow(
                column(2, 

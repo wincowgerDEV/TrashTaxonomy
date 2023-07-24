@@ -13,6 +13,17 @@ library(caret)
 library(qs)
 library(randomForest)
 library(stringr)
+library(gridExtra)
+library(ggplot2)
+library(readr)
+library(Hmisc)
+library(ggrepel)
+library(swfscMisc)
+library(circular)
+library(plotly)
+library(ggforce)
+library(skimr)
+library(ggdark)
 
 setwd("/Users/hannahhapich/Documents/R_Scripts/TrashTaxonomy-master")
 
@@ -26,36 +37,133 @@ removeslash <- function(x){
   gsub("/", " OR ", x)
 }
 
-
 cleanmaterials <- function(x) {
   x <- x[!names(x) %in% c("X1", "X2", "X3", "X4")]
   if(is.list(x)) lapply(x, cleanmaterials)
 }
-
 
 cleanitems <- function(x) {
   x <- x[!names(x) %in% c("X1", "X2", "X3", "X4", "X5", "X6")]
   if(is.list(x)) lapply(x, cleanitems)
 }
 
+#Build bootstrapping functions
+
+BootMean <- function(data) {
+  B <- 10000
+  mean <- numeric(B)
+  n = length(data)
+  
+  set.seed(34347)
+  for (i in 1:B) {
+    boot <- sample(1:n, size=n, replace = TRUE)
+    mean[i] <- mean(data[boot], na.rm = T)
+  }
+  return(quantile(mean, c(0.025, 0.5, 0.975), na.rm = T))
+}
+
+AggregateTrees <- function(DF, Alias, Hierarchy){
+  
+  DF <- mutate_all(DF, cleantext) %>%
+    mutate(Count = as.numeric(Count))
+  
+  colnames(DF) <- c("Alias", "Count")
+  
+  Hierarchy <- mutate_all(Hierarchy, cleantext)
+  
+  colnames(Hierarchy) <- c("from", "Key")
+  
+  Alias <- mutate_all(Alias, cleantext) 
+  
+  DF_v2 <- DF %>%
+    left_join(Alias) %>%
+    dplyr::select(Key, Count) %>%
+    mutate(Key = ifelse(is.na(Key), "other", Key)) %>%
+    right_join(Hierarchy) %>%
+    select(from, Key, Count) %>%
+    add_row(from = "trash", Key = "missing", Count = sum(DF$Count, na.rm = T) - sum(.$Count, na.rm = T))%>%
+    mutate(Count = Count/sum(Count, na.rm = T))
+  
+  
+  DF_network <- FromDataFrameNetwork(DF_v2)
+  
+  DF_network$Do(function(x) x$totalsum <- ifelse(is.null(x$Count), 0, x$Count) + sum(Get(x$children, "totalsum")), traversal = "post-order")
+  
+  Treedf <- ToDataFrameNetwork(DF_network, "totalsum") 
+  
+  Treedf %>%
+    add_row(from = "trash", to = "", totalsum = sum(Treedf %>%
+                                                      filter(from == "trash") %>% 
+                                                      pull(totalsum)))
+  
+  
+}
+
+grouped_uncertainty <- function(DF_group, Group_Alias, Group_Hierarchy, type){
+  
+  groups <- DF_group
+  
+  df_join = data.frame(from = character(), 
+                       to = character(), 
+                       count = numeric())
+  
+  for(row in 1:nrow(groups)){
+    df_subset <- DF_group %>%
+      inner_join(groups[row,]) %>%
+      select(Class, Count)
+    
+    df_join <- AggregateTrees(DF = df_subset, Alias = Group_Alias, Hierarchy = Group_Hierarchy) %>%
+      mutate(from = ifelse(from == "trash", type, from)) %>%
+      bind_rows(df_join)
+  }
+  
+  df_join_boot <- df_join %>%
+    #mutate(node_num = rep(1:27, times = nrow(groups))) %>%
+    group_by(from, to) %>%
+    summarise(mean_prop = mean(totalsum, na.rm = T), 
+              min_prop = BootMean(totalsum)[1], 
+              max_prop = BootMean(totalsum)[3])
+  
+}
+
+sunburstplot <-function(df_join_boot){
+  
+  values <- paste(df_join_boot$to, 
+                  "<br>", 
+                  round(df_join_boot$mean_prop, 2) * 100, 
+                  " (", 
+                  round(df_join_boot$min_prop, 2) * 100, 
+                  "-", 
+                  round(df_join_boot$max_prop, 2) * 100, 
+                  ")%", 
+                  sep = "")
+  
+  values[df_join_boot$mean_prop < 0.1] <- NA
+  
+  plot_ly() %>%
+    add_trace(
+      labels = df_join_boot$to,
+      parents = df_join_boot$from,
+      type = "sunburst",
+      maxdepth = 6,
+      domain = list(column = 1), 
+      branchvalues = 'total',
+      texttemplate = values,
+      values = df_join_boot$mean_prop) 
+}
 
 #Files for tool
 alius <- read.csv("data/PrimeMaterials.csv")
 hierarchy <- read.csv("data/MaterialsHierarchyLower.csv")
 aliusi <- read.csv("data/PrimeItems.csv")
 hierarchyi <- read.csv("data/ITEMSHierarchyLower.csv")
-micromat <- read.csv("data/Microplastics_Material.csv")
-micromorph <- read.csv("data/Microplastics_Morphology.csv")
 microcolor <- read.csv("data/Microplastics_Color.csv")
 micromathierarchy <- read.csv("data/Microplastics_Material_Hierarchy.csv")
 aliasclean <- mutate_all(alius, cleantext)
 aliascleani <- mutate_all(aliusi, cleantext)
 hierarchyclean <- mutate_all(hierarchy, cleantext)
 hierarchycleani <- mutate_all(hierarchyi, cleantext)
-micromatclean <- mutate_all(micromat, cleantext)
-micromorphclean <- mutate_all(micromorph, cleantext)
 microcolorclean <- mutate_all(microcolor, cleantext)
-micromathierarchyclean <- mutate_all(micromathierarchy, cleantext)
 
 #Creating materials hierarchy
 Materials <- hierarchy
@@ -97,26 +205,6 @@ Items_hierarchy <- as.Node(Items_hierarchy, pathDelimiter = "/")
 Items_hierarchy <- as.list(Items_hierarchy)
 Items_hierarchy <- Items_hierarchy[-1]
 
-#Creating microplastic taxonomy hierarchy
-MicroMaterials <- micromathierarchy
-MicroMaterials[is.na(MicroMaterials)] <- ""
-MicroMaterials <- mutate_all(MicroMaterials, removeslash)
-MicroMaterials$pathString <- paste("Trash", MicroMaterials$X1, sep = "/")
-MicroMaterials <- as.Node(MicroMaterials[,])
-MicroMaterials <- as.list(MicroMaterials)
-MicroMaterials <- MicroMaterials[-1]
-MicroMaterials <- cleanmaterials(MicroMaterials)
-
-MicroMaterials_hierarchy <- micromathierarchy
-MicroMaterials_hierarchy[is.na(MicroMaterials_hierarchy)] <- ""
-MicroMaterials_hierarchy <- mutate_all(MicroMaterials_hierarchy, removeslash) %>%
-  mutate(key = "trash") %>%
-  relocate(key) %>%
-  unite(pathString, sep = "/")
-MicroMaterials_hierarchy <- as.Node(MicroMaterials_hierarchy, pathDelimiter = "/")
-MicroMaterials_hierarchy <- as.list(MicroMaterials_hierarchy)
-MicroMaterials_hierarchy <- MicroMaterials_hierarchy[-1]
-
 #Files for display
 Materials_Alias <- read.csv("data/PrimeMaterials.csv")
 Materials_Hierarchy <- read.csv("data/MaterialsHierarchyLower.csv")
@@ -127,9 +215,6 @@ Brand_Manufacturer_Relation <- read.csv("data/BrandManufacturer.csv")
 Brand_Item_Relation <- read.csv("data/BrandItem.csv")
 NOAA <- read.csv("data/NOAA.csv")
 PrimeUnclassifiable <- read.csv("data/PrimeUnclassifiable.csv")
-Micro_Mat_Display <- read.csv("data/Microplastics_Morphology.csv")
-MicroMaterials_Hierarchy <-read.csv("data/Microplastics_Material_Hierarchy.csv")
-Micro_Morph_Display <-read.csv("data/Microplastics_Morphology.csv")
 Micro_Color_Display <-read.csv("data/Microplastics_Color.csv")
 
 #Load up necessary data to generate embeddings
@@ -431,6 +516,14 @@ server <- function(input,output,session) {
   
   ###START MERGING TOOL
   
+  #Files for bootstrapping routine and sunburst plots
+  ItemsHierarchy_sunburst <- read.csv("data/Items_Hierarchy_sunburstPlot.csv")
+  MaterialsHierarchy_sunburst <- read.csv("data/Materials_Hierarchy_sunburstPlot.csv") 
+  ItemsAlias_sunburst <- read.csv("data/PrimeItems.csv")%>%
+    rename(Key = Item)
+  MaterialsAlias_sunburst <- read.csv("data/PrimeMaterials.csv") %>%
+    rename(Key = Material)
+  
   df_ <- reactive({
     req(input$df_)
     req(input$d_f_)
@@ -653,15 +746,80 @@ server <- function(input,output,session) {
       summarise(across(count, sum))
     
     #Save input data
-    legacy_data <- read.csv("data/legacy_count_data.csv")
-    legacy_data <- rbind(legacy_data, dataframe)
-    legacy_data <- legacy_data %>%
-      group_by(material, items) %>%
-      summarise(across(count, sum))
-    write.csv(legacy_data,"data/legacy_count_data.csv")
-    
+    #legacy_data <- read.csv("data/legacy_count_data.csv")
+    #legacy_data <- rbind(legacy_data, dataframe)
+    #legacy_data <- legacy_data %>%
+    #  group_by(material, items) %>%
+    #  summarise(across(count, sum))
+    #write.csv(legacy_data,"data/legacy_count_data.csv")
     return(dataframe)
+    
+    
   })
+  
+  #Plot new merged data as sunburst plots
+  ##Material Sunburst Plot ----
+  
+  plot_materials <- reactive({
+    req(input$df_)
+    req(input$d_f_)
+    
+    Material_DF <- dataframe %>%
+      rename(Count = count) %>%
+      group_by(material) %>%
+      summarise(Count = n()) %>%
+      ungroup()
+    
+    Material_DF_group <- dataframe %>%
+      rename(Count = count) %>%
+      group_by(material) %>%
+      summarise(Count = n()) %>%
+      ungroup() %>%
+      rename(Class = material)
+    
+    MaterialTreeDF <- AggregateTrees(DF = Material_DF, Alias = MaterialsAlias, Hierarchy = MaterialsHierarchy) %>%
+      mutate(from = ifelse(from == "trash", "material", from))
+    
+    material_grouped <- grouped_uncertainty(DF_group = Material_DF_group, Group_Alias = MaterialsAlias, Group_Hierarchy = MaterialsHierarchy, type = "material")
+    
+    Materials_Plot <- sunburstplot(df_join_boot = material_grouped)
+    
+    output$plot1 <- renderPlotly(Materials_Plot)
+  })
+  
+  
+  
+  ##Item Sunburst Plot ----
+  plot_items <- reactive({
+    req(input$df_)
+    req(input$d_f_)
+    
+    Item_DF <- dataframe %>%
+      rename(Count = count) %>%
+      group_by(items) %>%
+      summarise(Count = n()) %>%
+      ungroup() 
+    
+    
+    Item_DF_group <- dataframe %>%
+      rename(Count = count) %>%
+      group_by(items) %>%
+      summarise(Count = n()) %>%
+      ungroup() %>%
+      rename(Class = items)
+    
+    ItemTreeDF <- AggregateTrees(DF = Item_DF, Alias = ItemsAlias, Hierarchy = ItemsHierarchy) %>%
+      mutate(from = ifelse(from == "trash", "items", from))
+    
+    #Item prop uncertainty
+    item_grouped <- grouped_uncertainty(DF_group = Item_DF_group, Group_Alias = ItemsAlias, Group_Hierarchy = ItemsHierarchy, type = "items")
+    
+    Items_Plot <- sunburstplot(df_join_boot = plot_items)
+    
+    output$plot2 <- renderPlotly(Items_Plot)
+  })
+  
+  
   
   ###END MERGING TOOL
   
@@ -715,6 +873,132 @@ server <- function(input,output,session) {
     data = as.data.frame(data)
     colnames(data) = c("material","items","count")
     return(data)
+  })
+  
+  convertedParticles <- reactive({
+    req(input$particleData)
+    infile <- input$particleData
+    file <- fread(infile$datapath)
+    dataframe <- as.data.frame(file) %>%
+      select(length_um, morphology, polymer)
+    dataframe$length_um <- as.numeric(dataframe$length_um)
+    dataframe$morphology <- as.character(dataframe$morphology)
+    dataframe$polymer <- as.character(dataframe$polymer)
+    dataframeclean <- mutate_all(dataframe, cleantext) 
+    
+    #Make polymer-density dataframe
+    polymer <- c("polyethylene high-density", "polyethylene","polyethylene-oxidized","polyethylene-chlorinated","polypropylene","polystyrene","polycarbonate","polyamide","polyvinylchloride","cellophane",
+                 "cellulose chemical modified","nitrile rubber","polyester","acrylates/polyurethanes/varnish","ethylene methacrylic acid","polymethyl methacylate","polysulfone","polyetheretherketone",
+                 "polychloroprene","polyisoprene-chlorinated","polyactic acid","polycaprolactone","ethylene-vinyl-acetate","polyimide","polyoxymethylene","acrylonitrile-butadiene","rubber type 1","rubber type 2",
+                 "rubber type 3","polyphenylene ether","polytetrafluorethylene","urea-formaldehyde")
+    polymer <- cleantext(polymer)
+    density_g_cm3 <- c(0.91,0.91,0.91,0.91,0.92,1.04,1.21,1.22,1.38,1.2,1.2,1,1.35,1.2,1.2,1.2,1.24,1.32,1.23,0.91,1.3,1.15,0.94,1.6,1.41,1.2,1.03,1.03,1.1,1.1,2.2,1.5)
+    density_mg_um_3 <- density_g_cm3 * 1e-9
+    polymer_density <- data.frame(polymer=polymer,
+                                  density_mg_um_3=density_mg_um_3)
+    
+    #Make CSF-morphology dataframe
+    morphology <- c("fragment","sphere","fiber","film","foam")
+    L <- c(1,1,1,1,1)
+    W_min <- c(0.1,0.60,0.001,0.1,0.1)
+    W_max <- c(1,1,0.5,1,1)
+    H_min <- c(0.01,0.36,0.001,0.001,0.01)
+    H_max <- c(1,1,0.5,0.1,1)
+    morphology_shape <- data.frame(morphology=morphology,
+                                   L=L,
+                                   W_min=W_min,
+                                   W_max=W_max,
+                                   H_min=H_min,
+                                   H_max=H_max
+    )
+    
+    dataframeclean <- left_join(dataframeclean, morphology_shape, by = "morphology", copy = F)
+    dataframeclean <- left_join(dataframeclean, polymer_density, by = "polymer", copy = F)
+    dataframeclean <- data.frame(dataframeclean) %>%
+      mutate(L = as.numeric(L) * as.numeric(length_um),
+             W_min = as.numeric(W_min) * as.numeric(length_um),
+             W_mean = (as.numeric(W_min) + as.numeric(W_max))/2 ,
+             W_max = as.numeric(W_max) * as.numeric(length_um),
+             H_min = as.numeric(H_min) * as.numeric(length_um),
+             H_mean = (as.numeric(H_min) + as.numeric(H_max))/2 ,
+             H_max = as.numeric(H_max) * as.numeric(length_um))
+    
+    dataframeclean <- data.frame(dataframeclean) %>%
+      mutate(volume_min_um_3 = L * W_min* H_min,
+             volume_mean_um_3 = L * W_mean* H_mean,
+             volume_max_um_3 = L * W_max * H_max) 
+    dataframeclean_particles <- data.frame(dataframeclean) %>%
+      mutate(min_mass_mg = dataframeclean$density_mg_um_3 * dataframeclean$volume_min_um,
+             mean_mass_mg = dataframeclean$density_mg_um_3 * dataframeclean$volume_mean_um,
+             max_mass_mg = dataframeclean$density_mg_um_3 * dataframeclean$volume_max_um)
+    return(dataframeclean_particles)
+    })
+  
+  
+  correctedDistribution <- reactive({
+    req(input$calculate_distribution)
+    req(input$study_environment)
+    req(input$concentration_type)
+    
+    if(input$study_environment == "Marine Surface" && input$concentration_type == "length (um)"){a = 2.07}
+    if(input$study_environment == "Marine Surface" && input$concentration_type == "mass (ug)"){a = 1.32}
+    if(input$study_environment == "Marine Surface" && input$concentration_type == "volume (um3)"){a = 1.48}
+    if(input$study_environment == "Marine Surface" && input$concentration_type == "surface area (um2)"){a = 1.50}
+    if(input$study_environment == "Marine Surface" && input$concentration_type == "specific surface area (g/m2)"){a = 1.98}
+    
+    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "length (um)"){a = 2.64}
+    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "mass (ug)"){a = 1.65}
+    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "volume (um3)"){a = 1.68}
+    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "surface area (um2)"){a = 2.00}
+    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "specific surface area (g/m2)"){a = 2.71}
+    
+    if(input$study_environment == "Marine Sediment" && input$concentration_type == "length (um)"){a = 2.57}
+    if(input$study_environment == "Marine Sediment" && input$concentration_type == "mass (ug)"){a = 1.50}
+    if(input$study_environment == "Marine Sediment" && input$concentration_type == "volume (um3)"){a = 1.50}
+    if(input$study_environment == "Marine Sediment" && input$concentration_type == "surface area (um2)"){a = 1.75}
+    if(input$study_environment == "Marine Sediment" && input$concentration_type == "specific surface area (g/m2)"){a = 2.54}
+    
+    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "length (um)"){a = 3.25}
+    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "mass (ug)"){a = 1.56}
+    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "volume (um3)"){a = 1.53}
+    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "surface area (um2)"){a = 1.89}
+    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "specific surface area (g/m2)"){a = 2.82}
+    
+    if(input$study_environment == "Effluent" && input$concentration_type == "length (um)"){a = 2.54}
+    if(input$study_environment == "Effluent" && input$concentration_type == "mass (ug)"){a = 1.40}
+    if(input$study_environment == "Effluent" && input$concentration_type == "volume (um3)"){a = 1.45}
+    if(input$study_environment == "Effluent" && input$concentration_type == "surface area (um2)"){a = 1.73}
+    if(input$study_environment == "Effluent" && input$concentration_type == "specific surface area (g/m2)"){a = 2.58}
+    
+    if(input$study_environment == "Biota" && input$concentration_type == "length (um)"){a = 2.59}
+    if(input$study_environment == "Biota" && input$concentration_type == "mass (ug)"){a = 1.41}
+    if(input$study_environment == "Biota" && input$concentration_type == "volume (um3)"){a = 1.40}
+    if(input$study_environment == "Biota" && input$concentration_type == "surface area (um2)"){a = 1.69}
+    if(input$study_environment == "Biota" && input$concentration_type == "specific surface area (g/m2)"){a = 2.46}
+    
+    #Sample parameters
+    x1D_set = input$slider2[1] #lower limit default extrapolated range is 1 um
+    x2D_set = input$slider2[2] #upper limit default extrapolated range is 5 mm
+    
+    x1M_set = input$slider1[1] #sample data, 20 um
+    x2M_set = input$slider1[2] #sample data, 3 mm
+    
+    ###create function to derive correction factor (CF) from Koelmans et al (equation 2)
+    CFfnx = function(a, #default alpha from Koelmans et al (2020)
+                     x2D, #set detault values to convert ranges to (1-5,000 um) #5mm is upper defuault 
+                     x1D, #1 um is lower default size
+                     x2M, x1M){
+      CF = (x2D^(1-a)-x1D^(1-a))/(x2M^(1-a)-x1M^(1-a)) 
+      return(CF)}
+    
+    ##run sample data to find correction factor
+    CF_count = CFfnx(x1M = x1M_set,#lower measured length
+                     x2M = x2M_set, #upper measured length
+                     x1D = x1D_set, #default lower size range
+                     x2D = x2D_set,  #default upper size range
+                     a = alpha #alpha for count
+                
+    )
   })
   
   
@@ -802,6 +1086,65 @@ server <- function(input,output,session) {
                                       class = "display",
                                       style="bootstrap"))
   
+  output$contents5 <- renderDataTable(server = F, 
+                                      datatable({
+                                        convertedParticles()[, c("length_um", "morphology", "polymer", "L", "W_mean", "H_mean", "volume_mean_um_3", "mean_mass_mg")]
+                                      }, 
+                                      extensions = 'Buttons',
+                                      options = list(
+                                        paging = TRUE,
+                                        searching = TRUE,
+                                        fixedColumns = TRUE,
+                                        autoWidth = TRUE,
+                                        ordering = TRUE,
+                                        dom = 'Bfrtip',
+                                        buttons = c('copy', 'csv', 'excel', 'pdf')
+                                      ),
+                                      class = "display",
+                                      style="bootstrap"))
+  
+  #particle_Data <- datatable({convertedParticles()[, c("length_um", "morphology", "polymer", "L", "W_mean", "H_mean", "volume_min_um_3", "volume_mean_um_3", "volume_max_um_3", "min_mass_mg", "mean_mass_mg", "max_mass_mg",)]})
+  
+  #theme_set(dark_theme_gray())
+  
+  output$plot3 <- renderPlot({req(convertedParticles())
+    ggplot(convertedParticles(), aes(volume_mean_um_3)) + scale_fill_brewer(palette = "Spectral") +
+                      geom_histogram(aes(fill = morphology),
+                                     bins = 12,
+                                     col = "black",
+                                     size = 0.1) +
+                      labs(title = "Particle Volume by Morphology") +
+                      dark_theme_gray()
+  }, res = 96)
+  
+  output$plot4 <- renderPlot({req(convertedParticles())
+    ggplot(convertedParticles(), aes(mean_mass_mg)) + scale_fill_brewer(palette = "Spectral") +
+    geom_histogram(aes(fill = polymer),
+                   bins = 12,
+                   col = "black",
+                   size = 0.1) +
+    labs(title = "Particle Mass by Polymer") +
+      dark_theme_gray()
+  }, res = 96)
+  
+  output$downloadPlot3 <- downloadHandler(
+    filename = function() { "particle_volume_plot.pdf" },
+    content = function(file) {
+      pdf(file, paper = "default")
+      plot(plot3())
+      dev.off()
+    }
+  )
+  
+  output$downloadPlot4 <- downloadHandler(
+    filename = function() { "particle_mass_plot.pdf" },
+    content = function(file) {
+      pdf(file, paper = "default")
+      plot(plot4())
+      dev.off()
+    }
+  )
+  
   output$downloadData1 <- downloadHandler(    
     filename = function() {
       paste(deparse(substitute(Materials_Alias)), '.csv', sep='')
@@ -820,26 +1163,13 @@ server <- function(input,output,session) {
     }
   )
   
-  #output$material_tree <- renderCollapsibleTree(collapsibleTree(Materials_Hierarchy,
-  #                                                              root = "Materials Hierarchy",
-  #                                                              hierarchy = names(Materials_Hierarchy), 
-  #                                                              #width = 800,
-  #                                                              fontSize = 14))
-  
   output$materialhierarchy <- renderTree({
-    #shiny::validate(shiny::need(input$file1, "Please upload a dataset to get started")) 
     Materials_hierarchy
   }
   )
   
   output$itemshierarchy <- renderTree({
-    #shiny::validate(shiny::need(input$file1, "Please upload a dataset to get started")) 
     Items_hierarchy
-  }
-  )
-  output$micromaterialhierarchy <- renderTree({
-    #shiny::validate(shiny::need(input$file1, "Please upload a dataset to get started")) 
-    MicroMaterials_hierarchy
   }
   )
   
@@ -907,44 +1237,6 @@ server <- function(input,output,session) {
     }
   )
   
-  #MICROTAX ADD ON
-  output$download9 <- downloadHandler(    
-    filename = function() {
-      paste(deparse(substitute(Micro_Mat_Display)), '.csv', sep='')
-    },
-    content = function(file) {
-      write.csv(Micro_Mat_Display, file, row.names=FALSE)
-    }
-  )
-  
-  output$download10 <- downloadHandler(    
-    filename = function() {
-      paste(deparse(substitute(MicroMaterials_Hierarchy)), '.csv', sep='')
-    },
-    content = function(file) {
-      write.csv(MicroMaterials_hierarchy, file, row.names=FALSE)
-    }
-  )
-  
-  output$download11 <- downloadHandler(    
-    filename = function() {
-      paste(deparse(substitute(Micro_Morph_Display)), '.csv', sep='')
-    },
-    content = function(file) {
-      write.csv(Micro_Morph_Display, file, row.names=FALSE)
-    }
-  )
-  
-  output$download12 <- downloadHandler(    
-    filename = function() {
-      paste(deparse(substitute(Micro_Color_Display)), '.csv', sep='')
-    },
-    content = function(file) {
-      write.csv(Micro_Color_Display, file, row.names=FALSE)
-    }
-  )
-  #END MICROTAX ADD ON
-  
   output$table1 = DT::renderDataTable({
     Materials_Alias
   }, style="bootstrap")
@@ -977,23 +1269,6 @@ server <- function(input,output,session) {
     PrimeUnclassifiable
   }, style="bootstrap")
   
-  #MICRO TAX ADD ON
-  output$table9 = DT::renderDataTable({
-    Micro_Mat_Display
-  }, style="bootstrap")
-  
-  output$table10 = DT::renderDataTable({
-    MicroMaterials_Hierarchy
-  }, style="bootstrap")
-  
-  output$table11 = DT::renderDataTable({
-    Micro_Morph_Display
-  }, style="bootstrap")
-  
-  output$table12 = DT::renderDataTable({
-    Micro_Color_Display
-  }, style="bootstrap")
-  #END MICRO TAX ADD ON
   
 }
 
