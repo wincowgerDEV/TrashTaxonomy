@@ -25,8 +25,6 @@ library(ggforce)
 library(skimr)
 library(ggdark)
 
-setwd("/Users/hannahhapich/Documents/R_Scripts/TrashTaxonomy-master")
-
 #Build cleaning functions
 cleantext <- function(x) {
   x <- tolower(gsub("[[:space:]]", "", x))
@@ -759,12 +757,11 @@ server <- function(input,output,session) {
   
   #Plot new merged data as sunburst plots
   ##Material Sunburst Plot ----
-  
-  plot_materials <- reactive({
+  output$plot1 <- renderPlotly({
     req(input$df_)
     req(input$d_f_)
     
-    Material_DF <- dataframe %>%
+    Material_DF <- dataframe() %>%
       rename(Count = count) %>%
       group_by(material) %>%
       summarise(Count = n()) %>%
@@ -782,9 +779,8 @@ server <- function(input,output,session) {
     
     material_grouped <- grouped_uncertainty(DF_group = Material_DF_group, Group_Alias = MaterialsAlias, Group_Hierarchy = MaterialsHierarchy, type = "material")
     
-    Materials_Plot <- sunburstplot(df_join_boot = material_grouped)
-    
-    output$plot1 <- renderPlotly(Materials_Plot)
+    sunburstplot(df_join_boot = material_grouped)
+  
   })
   
   
