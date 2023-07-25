@@ -772,9 +772,11 @@ server <- function(input,output,session) {
   #Plot new merged data as sunburst plots
   ##Material Sunburst Plot ----
   
-  plot_materials <- reactive({
+  output$plot1 <- renderPlotly({
     req(input$df_)
     req(input$d_f_)
+    
+    dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
     
     Material_DF <- dataframe %>%
       rename(Count = count) %>%
@@ -789,22 +791,24 @@ server <- function(input,output,session) {
       ungroup() %>%
       rename(Class = material)
     
-    MaterialTreeDF <- AggregateTrees(DF = Material_DF, Alias = MaterialsAlias, Hierarchy = MaterialsHierarchy) %>%
+    MaterialTreeDF <- AggregateTrees(DF = Material_DF, Alias = MaterialsAlias_sunburst, Hierarchy = MaterialsHierarchy_sunburst) %>%
       mutate(from = ifelse(from == "trash", "material", from))
     
-    material_grouped <- grouped_uncertainty(DF_group = Material_DF_group, Group_Alias = MaterialsAlias, Group_Hierarchy = MaterialsHierarchy, type = "material")
+    material_grouped <- grouped_uncertainty(DF_group = Material_DF_group, Group_Alias = MaterialsAlias_sunburst, Group_Hierarchy = MaterialsHierarchy_sunburst, type = "material")
     
     Materials_Plot <- sunburstplot(df_join_boot = material_grouped)
     
-    output$plot1 <- renderPlotly(Materials_Plot)
+    return(Materials_Plot)
   })
   
   
   
   ##Item Sunburst Plot ----
-  plot_items <- reactive({
+  output$plot2 <- renderPlotly({
     req(input$df_)
     req(input$d_f_)
+    
+    dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
     
     Item_DF <- dataframe %>%
       rename(Count = count) %>%
@@ -820,16 +824,18 @@ server <- function(input,output,session) {
       ungroup() %>%
       rename(Class = items)
     
-    ItemTreeDF <- AggregateTrees(DF = Item_DF, Alias = ItemsAlias, Hierarchy = ItemsHierarchy) %>%
+    ItemTreeDF <- AggregateTrees(DF = Item_DF, Alias = ItemsAlias_sunburst, Hierarchy = ItemsHierarchy_sunburst) %>%
       mutate(from = ifelse(from == "trash", "items", from))
     
     #Item prop uncertainty
-    item_grouped <- grouped_uncertainty(DF_group = Item_DF_group, Group_Alias = ItemsAlias, Group_Hierarchy = ItemsHierarchy, type = "items")
+    item_grouped <- grouped_uncertainty(DF_group = Item_DF_group, Group_Alias = ItemsAlias_sunburst, Group_Hierarchy = ItemsHierarchy_sunburst, type = "items")
     
-    Items_Plot <- sunburstplot(df_join_boot = plot_items)
+    Items_Plot <- sunburstplot(df_join_boot = item_grouped)
     
-    output$plot2 <- renderPlotly(Items_Plot)
+    return(Items_Plot)
   })
+  
+  
   
   
   
