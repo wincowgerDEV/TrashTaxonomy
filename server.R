@@ -24,6 +24,12 @@ library(plotly)
 library(ggforce)
 library(skimr)
 library(ggdark)
+library(ggdist)
+library(ggthemes)
+
+
+
+setwd("/Users/hannahhapich/Documents/R_Scripts/TrashTaxonomy-master")
 
 #Build cleaning functions
 cleantext <- function(x) {
@@ -149,6 +155,14 @@ sunburstplot <-function(df_join_boot){
       texttemplate = values,
       values = df_join_boot$mean_prop) 
 }
+
+###create function to derive correction factor (CF) from Koelmans et al (equation 2)
+CFfnx = function(a, #default alpha from Koelmans et al (2020)
+                 x2D, #set detault values to convert ranges to (1-5,000 um) #5mm is upper defuault 
+                 x1D, #1 um is lower default size
+                 x2M, x1M){
+  CF = (x2D^(1-a)-x1D^(1-a))/(x2M^(1-a)-x1M^(1-a)) 
+  return(CF)}
 
 #Files for tool
 alius <- read.csv("data/PrimeMaterials.csv")
@@ -757,11 +771,12 @@ server <- function(input,output,session) {
   
   #Plot new merged data as sunburst plots
   ##Material Sunburst Plot ----
-  output$plot1 <- renderPlotly({
+  
+  plot_materials <- reactive({
     req(input$df_)
     req(input$d_f_)
     
-    Material_DF <- dataframe() %>%
+    Material_DF <- dataframe %>%
       rename(Count = count) %>%
       group_by(material) %>%
       summarise(Count = n()) %>%
@@ -779,8 +794,9 @@ server <- function(input,output,session) {
     
     material_grouped <- grouped_uncertainty(DF_group = Material_DF_group, Group_Alias = MaterialsAlias, Group_Hierarchy = MaterialsHierarchy, type = "material")
     
-    sunburstplot(df_join_boot = material_grouped)
-  
+    Materials_Plot <- sunburstplot(df_join_boot = material_grouped)
+    
+    output$plot1 <- renderPlotly(Materials_Plot)
   })
   
   
@@ -931,10 +947,12 @@ server <- function(input,output,session) {
     })
   
   
-  correctedDistribution <- reactive({
+  
+  correctionFactor <- reactive({
     req(input$calculate_distribution)
     req(input$study_environment)
     req(input$concentration_type)
+    req(input$concentration_units)
     
     if(input$study_environment == "Marine Surface" && input$concentration_type == "length (um)"){a = 2.07}
     if(input$study_environment == "Marine Surface" && input$concentration_type == "mass (ug)"){a = 1.32}
@@ -979,13 +997,7 @@ server <- function(input,output,session) {
     x1M_set = input$slider1[1] #sample data, 20 um
     x2M_set = input$slider1[2] #sample data, 3 mm
     
-    ###create function to derive correction factor (CF) from Koelmans et al (equation 2)
-    CFfnx = function(a, #default alpha from Koelmans et al (2020)
-                     x2D, #set detault values to convert ranges to (1-5,000 um) #5mm is upper defuault 
-                     x1D, #1 um is lower default size
-                     x2M, x1M){
-      CF = (x2D^(1-a)-x1D^(1-a))/(x2M^(1-a)-x1M^(1-a)) 
-      return(CF)}
+    
     
     ##run sample data to find correction factor
     CF_count = CFfnx(x1M = x1M_set,#lower measured length
@@ -995,8 +1007,15 @@ server <- function(input,output,session) {
                      a = alpha #alpha for count
                 
     )
+    
+    CF_count <- format(round(CF_count, 2), nsmall = 2)
+    
+    return(CF_count)
   })
   
+  output$CF <- renderText(paste("Correction Factor:", correctionFactor()))
+  
+  output$corrected_conc <- renderText(paste("Corrected Concentration:", (as.numeric(input$concentration_value) * as.numeric(correctionFactor())), input$concentration_units))
   
   output$contents <- renderDataTable(server = F,
                                      datatable({
@@ -1099,29 +1118,89 @@ server <- function(input,output,session) {
                                       class = "display",
                                       style="bootstrap"))
   
-  #particle_Data <- datatable({convertedParticles()[, c("length_um", "morphology", "polymer", "L", "W_mean", "H_mean", "volume_min_um_3", "volume_mean_um_3", "volume_max_um_3", "min_mass_mg", "mean_mass_mg", "max_mass_mg",)]})
+  output$plot3 <- renderPlot({
+    req(convertedParticles())
+    ggplot(convertedParticles(), aes(x = morphology, y = volume_mean_um_3, fill = factor(morphology))) +
+      geom_flat_violin(
+        position = position_nudge(x = 0.1),
+        alpha = 0.5,
+        scale = "width",
+        trim = FALSE,
+        width = 0.8,
+        lwd = 1,
+      ) +
+      geom_boxplot(
+        width = 0.12,
+        outlier.shape = 8,
+        outlier.color = "navy",
+        alpha = 1
+      ) +
+      stat_dots(
+        position = position_jitterdodge(jitter.width = 1, dodge.width = 0.4, jitter.height = 10),
+        dotsize = 15,
+        side = "left",
+        justification = 1.1,
+        binwidth = 0.08,
+        alpha = 1.0
+      ) +
+      scale_fill_brewer(palette = "Spectral") +
+      labs(
+        title = "Particle Volume by Morphology Type",
+        x = "Morphology",
+        y = "Volume (um3)",
+        fill = "Morphology"
+      ) +
+      coord_flip() +
+      dark_theme_gray() +
+      theme(
+        axis.text = element_text(size = 15),
+        axis.title = element_text(size = 18),
+        plot.title = element_text(size = 18)
+      )
+  })
+
+  output$plot4 <- renderPlot({
+    req(convertedParticles())
+    ggplot(convertedParticles(), aes(x = polymer, y = mean_mass_mg, fill = factor(polymer))) +
+      geom_flat_violin(
+        position = position_nudge(x = 0.1),
+        alpha = 0.5,
+        scale = "width",
+        trim = FALSE,
+        width = 0.8,
+        lwd = 1,
+      ) +
+      geom_boxplot(
+        width = 0.12,
+        outlier.shape = 8,
+        outlier.color = "navy",
+        alpha = 1
+      ) +
+      stat_dots(
+        position = position_jitterdodge(jitter.width = 1, dodge.width = 0.4, jitter.height = 10),
+        dotsize = 15,
+        side = "left",
+        justification = 1.1,
+        binwidth = 0.08,
+        alpha = 1.0
+      ) +
+      scale_fill_brewer(palette = "Spectral") +
+      labs(
+        title = "Particle Mass by Polymer Type",
+        x = "Polymer",
+        y = "Mass (mg)",
+        fill = "Polymer"
+      ) +
+      coord_flip() +
+      dark_theme_gray() +
+      theme(
+        axis.text = element_text(size = 15),
+        axis.title = element_text(size = 18),
+        plot.title = element_text(size = 18)
+      )
+  })
   
-  #theme_set(dark_theme_gray())
   
-  output$plot3 <- renderPlot({req(convertedParticles())
-    ggplot(convertedParticles(), aes(volume_mean_um_3)) + scale_fill_brewer(palette = "Spectral") +
-                      geom_histogram(aes(fill = morphology),
-                                     bins = 12,
-                                     col = "black",
-                                     size = 0.1) +
-                      labs(title = "Particle Volume by Morphology") +
-                      dark_theme_gray()
-  }, res = 96)
-  
-  output$plot4 <- renderPlot({req(convertedParticles())
-    ggplot(convertedParticles(), aes(mean_mass_mg)) + scale_fill_brewer(palette = "Spectral") +
-    geom_histogram(aes(fill = polymer),
-                   bins = 12,
-                   col = "black",
-                   size = 0.1) +
-    labs(title = "Particle Mass by Polymer") +
-      dark_theme_gray()
-  }, res = 96)
   
   output$downloadPlot3 <- downloadHandler(
     filename = function() { "particle_volume_plot.pdf" },
