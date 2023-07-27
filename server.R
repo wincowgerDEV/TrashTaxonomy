@@ -953,75 +953,92 @@ server <- function(input,output,session) {
     })
   
   
-  
   correctionFactor <- reactive({
     req(input$calculate_distribution)
-    req(input$study_environment)
+    req(input$concentrationData)
     req(input$concentration_type)
-    req(input$concentration_units)
+    req(input$corrected_min)
+    req(input$corrected_max)
     
-    if(input$study_environment == "Marine Surface" && input$concentration_type == "length (um)"){a = 2.07}
-    if(input$study_environment == "Marine Surface" && input$concentration_type == "mass (ug)"){a = 1.32}
-    if(input$study_environment == "Marine Surface" && input$concentration_type == "volume (um3)"){a = 1.48}
-    if(input$study_environment == "Marine Surface" && input$concentration_type == "surface area (um2)"){a = 1.50}
-    if(input$study_environment == "Marine Surface" && input$concentration_type == "specific surface area (g/m2)"){a = 1.98}
+    #clean incoming data
+    infile <- input$concentrationData
+    file <- fread(infile$datapath)
+    dataframe <- as.data.frame(file) %>%
+      select(study_media, concentration, size_min, size_max, concentration_units)
+    dataframe$concentration <- as.numeric(dataframe$concentration)
+    dataframe$size_min <- as.numeric(dataframe$size_min)
+    dataframe$size_max <- as.numeric(dataframe$size_max)
+    dataframe$study_media <- as.character(dataframe$study_media)
+    dataframe$concentration_units <- as.character(dataframe$concentration_units)
+    dataframeclean <- mutate_all(dataframe, cleantext) 
     
-    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "length (um)"){a = 2.64}
-    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "mass (ug)"){a = 1.65}
-    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "volume (um3)"){a = 1.68}
-    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "surface area (um2)"){a = 2.00}
-    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "specific surface area (g/m2)"){a = 2.71}
+    #Make df for alpha values
+    study_media <- c("marinesurface","freshwatersurface","marinesediment","freshwatersediment","effluent", "biota")
+    length <- c(2.07, 2.64, 2.57, 3.25, 2.54, 2.59)
+    mass <- c(1.32, 1.65, 1.50, 1.56, 1.40, 1.41)
+    volume <- c(1.48, 1.68, 1.50, 1.53, 1.45, 1.40)
+    surface_area <- c(1.50, 2.00, 1.75, 1.89, 1.73, 1.69)
+    specific_surface_area <- c(1.98, 2.71, 2.54, 2.82, 2.58, 2.46)
     
-    if(input$study_environment == "Marine Sediment" && input$concentration_type == "length (um)"){a = 2.57}
-    if(input$study_environment == "Marine Sediment" && input$concentration_type == "mass (ug)"){a = 1.50}
-    if(input$study_environment == "Marine Sediment" && input$concentration_type == "volume (um3)"){a = 1.50}
-    if(input$study_environment == "Marine Sediment" && input$concentration_type == "surface area (um2)"){a = 1.75}
-    if(input$study_environment == "Marine Sediment" && input$concentration_type == "specific surface area (g/m2)"){a = 2.54}
-    
-    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "length (um)"){a = 3.25}
-    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "mass (ug)"){a = 1.56}
-    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "volume (um3)"){a = 1.53}
-    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "surface area (um2)"){a = 1.89}
-    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "specific surface area (g/m2)"){a = 2.82}
-    
-    if(input$study_environment == "Effluent" && input$concentration_type == "length (um)"){a = 2.54}
-    if(input$study_environment == "Effluent" && input$concentration_type == "mass (ug)"){a = 1.40}
-    if(input$study_environment == "Effluent" && input$concentration_type == "volume (um3)"){a = 1.45}
-    if(input$study_environment == "Effluent" && input$concentration_type == "surface area (um2)"){a = 1.73}
-    if(input$study_environment == "Effluent" && input$concentration_type == "specific surface area (g/m2)"){a = 2.58}
-    
-    if(input$study_environment == "Biota" && input$concentration_type == "length (um)"){a = 2.59}
-    if(input$study_environment == "Biota" && input$concentration_type == "mass (ug)"){a = 1.41}
-    if(input$study_environment == "Biota" && input$concentration_type == "volume (um3)"){a = 1.40}
-    if(input$study_environment == "Biota" && input$concentration_type == "surface area (um2)"){a = 1.69}
-    if(input$study_environment == "Biota" && input$concentration_type == "specific surface area (g/m2)"){a = 2.46}
-    
-    #Sample parameters
-    x1D_set = input$slider2[1] #lower limit default extrapolated range is 1 um
-    x2D_set = input$slider2[2] #upper limit default extrapolated range is 5 mm
-    
-    x1M_set = input$slider1[1] #sample data, 20 um
-    x2M_set = input$slider1[2] #sample data, 3 mm
-    
-    
-    
-    ##run sample data to find correction factor
-    CF_count = CFfnx(x1M = x1M_set,#lower measured length
-                     x2M = x2M_set, #upper measured length
-                     x1D = x1D_set, #default lower size range
-                     x2D = x2D_set,  #default upper size range
-                     a = alpha #alpha for count
-                
+    alpha_vals <- data.frame(study_media=study_media,
+                             length=length,
+                             mass=mass,
+                             volume=volume,
+                             surface_area=surface_area,
+                             specific_surface_area=specific_surface_area
     )
     
-    CF_count <- format(round(CF_count, 2), nsmall = 2)
+    if(input$concentration_type == "length (um)"){dataframeclean <- merge(x = dataframeclean, y = alpha_vals[ , c("study_media", "length")], by = "study_media", all.x=TRUE)
+                                                    dataframeclean <- dataframeclean %>%
+                                                      rename("alpha" = "length")}
+    if(input$concentration_type == "mass (ug)"){dataframeclean <- merge(x = dataframeclean, y = alpha_vals[ , c("study_media", "mass")], by = "study_media", all.x=TRUE)
+                                                  dataframeclean <- dataframeclean %>%
+                                                    rename("alpha" = "mass")}
+    if(input$concentration_type == "volume (um3)"){dataframeclean <- merge(x = dataframeclean, y = alpha_vals[ , c("study_media", "volume")], by = "study_media", all.x=TRUE)
+                                                    dataframeclean <- dataframeclean %>%
+                                                      rename("alpha" = "volume")}
+    if(input$concentration_type == "surface area (um2)"){dataframeclean <- merge(x = dataframeclean, y = alpha_vals[ , c("study_media", "surface_area")], by = "study_media", all.x=TRUE)
+                                                          dataframeclean <- dataframeclean %>%
+                                                            rename("alpha" = "surface_area")}
+    if(input$concentration_type == "specific surface area (g/m2)"){dataframeclean <- merge(x = dataframeclean, y = alpha_vals[ , c("study_media", "specific_surface_area")], by = "study_media", all.x=TRUE)
+                                                                    dataframeclean <- dataframeclean %>%
+                                                                      rename("alpha" = "specific_surface_area")}
     
-    return(CF_count)
+    dataframeclean <- dataframeclean %>%
+      add_column(correction_factor = NA,
+                 corrected_concentration = NA)
+    
+    
+    #Extrapolated parameters
+    x1D_set = as.numeric(input$corrected_min) #lower limit default extrapolated range is 1 um
+    x2D_set = as.numeric(input$corrected_max) #upper limit default extrapolated range is 5 mm
+    
+    for(x in 1:nrow(dataframeclean)) {
+      x1M_set = as.numeric(dataframeclean$size_min[[x]])
+      x2M_set = as.numeric(dataframeclean$size_max[[x]])
+      alpha = as.numeric(dataframeclean$alpha[[x]])
+      
+       CF <- CFfnx(x1M = x1M_set,#lower measured length
+                   x2M = x2M_set, #upper measured length
+                   x1D = x1D_set, #default lower size range
+                   x2D = x2D_set,  #default upper size range
+                   a = alpha #alpha for count 
+                                                     
+      )
+       
+       CF <- as.numeric(CF)
+       
+       CF <- format(round(CF, 2), nsmall = 2)
+         
+      
+      dataframeclean$correction_factor[[x]] <- CF
+      
+      dataframeclean$corrected_concentration[[x]] <- as.numeric(dataframeclean$correction_factor[[x]]) * as.numeric(dataframeclean$concentration[[x]])
+      
+    }
+    
+    return(dataframeclean)
   })
-  
-  output$CF <- renderText(paste("Correction Factor:", correctionFactor()))
-  
-  output$corrected_conc <- renderText(paste("Corrected Concentration:", (as.numeric(input$concentration_value) * as.numeric(correctionFactor())), input$concentration_units))
   
   output$contents <- renderDataTable(server = F,
                                      datatable({
@@ -1110,6 +1127,23 @@ server <- function(input,output,session) {
   output$contents5 <- renderDataTable(server = F, 
                                       datatable({
                                         convertedParticles()[, c("length_um", "morphology", "polymer", "L", "W_mean", "H_mean", "volume_mean_um_3", "mean_mass_mg")]
+                                      }, 
+                                      extensions = 'Buttons',
+                                      options = list(
+                                        paging = TRUE,
+                                        searching = TRUE,
+                                        fixedColumns = TRUE,
+                                        autoWidth = TRUE,
+                                        ordering = TRUE,
+                                        dom = 'Bfrtip',
+                                        buttons = c('copy', 'csv', 'excel', 'pdf')
+                                      ),
+                                      class = "display",
+                                      style="bootstrap"))
+  
+  output$contents6 <- renderDataTable(server = F, 
+                                      datatable({
+                                        correctionFactor()[, c("study_media", "concentration", "concentration_units", "size_min", "size_max",  "alpha", "correction_factor", "corrected_concentration")]
                                       }, 
                                       extensions = 'Buttons',
                                       options = list(

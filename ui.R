@@ -740,10 +740,10 @@ ui <- fluidPage(
              fluidRow(
                column(2, 
                       
-                      selectInput('study_environment', "Choose study media", c("", "Marine Surface","Freshwater Surface","Marine Sediment","Freshwater Sediment","Effluent","Biota")) %>%
+                      fileInput('concentrationData', "Choose CSV File", multiple = FALSE, accept = c(".csv"))%>%
                         helper(type = "inline",
-                               title = "Selection Help",
-                               content = c("Select the media your study was conducted in"),
+                               title = "Upload Help",
+                               content = c("To use the tool, upload a csv file to the upload file tab. This file need to be a csv with columna named -study_media-, -concentration-, -concentration_units-, -size_min- and -size_max-. Columns -size_min- and -size_max- should be the actual size range studied for that sample."),
                                size = "m"),
                       
                       selectInput('concentration_type', "Known Particle Characteristic", c("", "length (um)","mass (ug)","volume (um3)","surface area (um2)","specific surface area (g/m2)")) %>%
@@ -752,32 +752,20 @@ ui <- fluidPage(
                                content = c("Select the measured characteristic of your particles over which to normalize"),
                                size = "m"),
                       
-                      textInput('concentration_value', "Particle Concentration"),
+                      numericInput('corrected_min', "Corrected Particle Range Minimum", 1, min = 1),
                       
-                      textInput('concentration_units', "Units"),
                       
-                      sliderInput(
-                        inputId = "slider1",
-                        label = "Studied Particle Range",
-                        min = 1,
-                        max = 5000,
-                        value = c(20,3000),
-                        step = 1
-                      ),
+                      numericInput('corrected_max', "Corrected Particle Range Maximum", 5000, min = 1),
                       
-                      sliderInput(
-                        inputId = "slider2",
-                        label = "Corrected Particle Range",
-                        min = 1,
-                        max = 5000,
-                        value = c(1,5000),
-                        step = 1
-                      ),
                       
                       actionButton("calculate_distribution", "Calculate")
                       
                ),
                
+               column(10, 
+                      dataTableOutput('contents6'),
+             ),
+             
              ),
              
              
