@@ -26,6 +26,7 @@ library(skimr)
 library(ggdark)
 library(ggdist)
 library(ggthemes)
+library(chRoma)
 
 
 
@@ -905,15 +906,15 @@ server <- function(input,output,session) {
     dataframeclean <- mutate_all(dataframe, cleantext) 
     
     #Make polymer-density dataframe
-    polymer <- c("polyethylene high-density", "polyethylene","polyethylene-oxidized","polyethylene-chlorinated","polypropylene","polystyrene","polycarbonate","polyamide","polyvinylchloride","cellophane",
-                 "cellulose chemical modified","nitrile rubber","polyester","acrylates/polyurethanes/varnish","ethylene methacrylic acid","polymethyl methacylate","polysulfone","polyetheretherketone",
-                 "polychloroprene","polyisoprene-chlorinated","polyactic acid","polycaprolactone","ethylene-vinyl-acetate","polyimide","polyoxymethylene","acrylonitrile-butadiene","rubber type 1","rubber type 2",
-                 "rubber type 3","polyphenylene ether","polytetrafluorethylene","urea-formaldehyde")
-    polymer <- cleantext(polymer)
-    density_g_cm3 <- c(0.91,0.91,0.91,0.91,0.92,1.04,1.21,1.22,1.38,1.2,1.2,1,1.35,1.2,1.2,1.2,1.24,1.32,1.23,0.91,1.3,1.15,0.94,1.6,1.41,1.2,1.03,1.03,1.1,1.1,2.2,1.5)
-    density_mg_um_3 <- density_g_cm3 * 1e-9
-    polymer_density <- data.frame(polymer=polymer,
-                                  density_mg_um_3=density_mg_um_3)
+    polymer_db <- read.csv("data/all_polymer_densities.csv")
+    polymer_db <- data.frame(polymer_db)
+    polymer_db$polymer <- cleantext(polymer_db$polymer)
+    polymer_db$density <- as.numeric(polymer_db$density)
+    density_mg_um_3 <- polymer_db$density * 1e-9
+    polymer_db <- polymer_db %>%
+      mutate(density_mg_um_3 = density_mg_um_3)
+    polymer_density <- polymer_db %>%
+      select(polymer, density_mg_um_3)
     
     #Make CSF-morphology dataframe
     morphology <- c("fragment","sphere","fiber","film","foam")
