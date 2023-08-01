@@ -844,53 +844,68 @@ server <- function(input,output,session) {
   
   #Output correct survey sheet
   MicroOnly <- read.csv("data/PremadeSurveys/Most_Specific_Microplastics.csv")
-  MacroMarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Marine.csv")
-  MacroMarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Marine.csv")
-  MarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Marine_All.csv")
-  MarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Marine_All.csv")
-  MacroRiverineMore <- read.csv("data/PremadeSurveys/Most_Specific_Riverine.csv")
-  MacroRiverineLess <- read.csv("data/PremadeSurveys/Least_Specific_Riverine.csv")
-  RiverineMore <- read.csv("data/PremadeSurveys/Most_Specific_Riverine_All.csv")
-  RiverineLess <- read.csv("data/PremadeSurveys/Least_Specific_Riverine_All.csv")
-  MacroEstuarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Estuarine.csv")
-  MacroEstuarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Estuarine.csv")
-  EstuarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Estuarine_All.csv")
-  EstuarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Estuarine_All.csv")
-  MacroTerrestrialMore <- read.csv("data/PremadeSurveys/Most_Specific_Terrestrial.csv")
-  MacroTerrestrialLess <- read.csv("data/PremadeSurveys/Least_Specific_Terrestrial.csv")
-  TerrestrialMore <- read.csv("data/PremadeSurveys/Most_Specific_Terrestrial_All.csv")
-  TerrestrialLess <- read.csv("data/PremadeSurveys/Least_Specific_Terrestrial_All.csv")
-  MacroAllMore <- read.csv("data/PremadeSurveys/Most_Specific_Macro.csv")
-  MacroAllLess <- read.csv("data/PremadeSurveys/Least_Specific_Macro.csv")
   AllMore <- read.csv("data/PremadeSurveys/Most_Specific_All.csv")
   AllLess <- read.csv("data/PremadeSurveys/Least_Specific_All.csv")
   
   selectSurvey <- reactive({
-    if(input$sizeRange == "Micro"){return (MicroOnly)}
-    if(input$sizeRange == "Macro" && input$environments == "Marine" && input$specificity == "More Specific"){data = MacroMarineMore}
-    if(input$sizeRange == "Macro" && input$environments == "Marine" && input$specificity == "Less Specific"){data = MacroMarineLess}
-    if(input$sizeRange == "All" && input$environments == "Marine" && input$specificity == "More Specific"){data = MarineMore}
-    if(input$sizeRange == "All" && input$environments == "Marine" && input$specificity == "Less Specific"){data = MarineLess}
-    if(input$sizeRange == "Macro" && input$environments == "Riverine" && input$specificity == "More Specific"){data = MacroRiverineMore}
-    if(input$sizeRange == "Macro" && input$environments == "Riverine" && input$specificity == "Less Specific"){data = MacroRiverineLess}
-    if(input$sizeRange == "All" && input$environments == "Riverine" && input$specificity == "More Specific"){data = RiverineMore}
-    if(input$sizeRange == "All" && input$environments == "Riverine" && input$specificity == "Less Specific"){data = RiverineLess}
-    if(input$sizeRange == "Macro" && input$environments == "Estuarine" && input$specificity == "More Specific"){data = MacroEstuarineMore}
-    if(input$sizeRange == "Macro" && input$environments == "Estuarine" && input$specificity == "Less Specific"){data = MacroEstuarineLess}
-    if(input$sizeRange == "All" && input$environments == "Estuarine" && input$specificity == "More Specific"){data = EstuarineMore}
-    if(input$sizeRange == "All" && input$environments == "Estuarine" && input$specificity == "Less Specific"){data = EstuarineLess}
-    if(input$sizeRange == "Macro" && input$environments == "Terrestrial" && input$specificity == "More Specific"){data = MacroTerrestrialMore}
-    if(input$sizeRange == "Macro" && input$environments == "Terrestrial" && input$specificity == "Less Specific"){data = MacroTerrestrialLess}
-    if(input$sizeRange == "All" && input$environments == "Terrestrial" && input$specificity == "More Specific"){data = TerrestrialMore}
-    if(input$sizeRange == "All" && input$environments == "Terrestrial" && input$specificity == "Less Specific"){data = TerrestrialLess}
-    if(input$sizeRange == "Macro" && input$environments == "All" && input$specificity == "More Specific"){data = MacroAllMore}
-    if(input$sizeRange == "Macro" && input$environments == "All" && input$specificity == "Less Specific"){data = MacroAllLess}
-    if(input$sizeRange == "All" && input$environments == "All" && input$specificity == "More Specific"){data = AllMore}
-    if(input$sizeRange == "All" && input$environments == "All" && input$specificity == "Less Specific"){data = AllLess}
-    if(input$sizeRange == "" && input$environments == "" && input$specificity == ""){return(NULL)}
-
+    data = data.frame()
+    if(input$sizeRange == "Micro"){data = MicroOnly
     data = as.data.frame(data)
-    colnames(data) = c("material","items","count")
+    survey_columns <- c("material","items","color","size")
+    colnames(data) = c("material","items","color","size")
+    return(data)}
+    if(input$specificity == "More Specific"){data = AllMore
+    data = as.data.frame(data)
+    survey_columns <- c("use", "material","items","count")
+    colnames(data) = c("use", "material","items","count")}
+    if(input$specificity == "Less Specific"){data = AllLess
+    data = as.data.frame(data)
+    survey_columns <- c("use", "material","items","count")
+    colnames(data) = c("use", "material","items","count")}
+    
+    if(input$media == "Surface Water"){
+      req(input$specificity)
+      data <- data %>% filter(!use == "large",
+                              !use == "vehicledebris")
+      if(input$specificity == "More Specific"){
+        data <- data %>% filter(!items == "bricks, cinderblocks, chunks of cement",
+                                !items == "piping",
+                                !items == "traffic cones",
+                                !items == "appliances",
+                                !items == "anchor")
+      }
+    }
+    
+    if(input$sizeRange == "Macro"){
+      req(input$specificity)
+      data <- data %>% filter(!use == "microplastics")
+    }
+    
+    if(input$environments == "Marine/Estuarine"){
+      req(input$specificity)
+      data <- data %>% filter(!use == "gardening&farmingrelated",
+                              !use == "officesupplies",
+                              !use == "safetyrelated",
+                              !use == "constructionmaterials")
+    }
+    
+    if(input$environments == "Riverine"){
+      req(input$specificity)
+      data <- data %>% filter(!use == "ocean/waterwayactivities",
+                              !use == "scuba&snorkelgear,masks,snorkels,fins")
+    }
+    
+    if(input$environments == "Terrestrial"){
+      req(input$specificity)
+      data <- data %>% filter(!use == "fishinggear",
+                              !use == "scuba&snorkelgear,masks,snorkels,fins",
+                              !use == "shorelineandrecreationalactivites",
+                              !use == "ocean/waterwayactivities")
+    }
+    
+    
+
+    
     return(data)
   })
   
@@ -904,6 +919,17 @@ server <- function(input,output,session) {
     dataframe$morphology <- as.character(dataframe$morphology)
     dataframe$polymer <- as.character(dataframe$polymer)
     dataframeclean <- mutate_all(dataframe, cleantext) 
+    
+    #convert morphologies in TT to morphologies with defined dimensions
+    morphology <- c("fiber", "nurdle", "foam", "sphere", "line", "bead", "sheet", "film", "fragment", "rubberyfragment", "fiberbundle")
+    morph_dimension <- c("fiber", "sphere", "foam", "sphere", "fiber", "sphere", "film", "film", "fragment", "fragment", "film")
+    morph_conversion <- data.frame(morphology = morphology,
+                                   morph_dimension = morph_dimension)
+    dataframeclean <- left_join(dataframeclean, morph_conversion, by = "morphology", copy = FALSE)
+    dataframeclean <- dataframeclean %>%
+      select(-morphology)
+    dataframeclean <- dataframeclean %>%
+      rename(morphology = morph_dimension)
     
     #Make polymer-density dataframe
     polymer_db <- read.csv("data/all_polymer_densities.csv")
@@ -1110,7 +1136,7 @@ server <- function(input,output,session) {
   
   output$contents4 <- renderDataTable(server = F, 
                                       datatable({
-                                        selectSurvey()[, c("material", "items", "count")]
+                                        selectSurvey()
                                       }, 
                                       extensions = 'Buttons',
                                       options = list(

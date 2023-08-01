@@ -787,10 +787,15 @@ ui <- fluidPage(
                                title = "Selection Help",
                                content = c("Select if your study will include microplastics, macro-debris, or both."),
                                size = "m"),
-                      selectInput('environments', "Choose environment", c("", "Marine","Terrestrial","Riverine", "Estuarine", "All")) %>%
+                      selectInput('environments', "Choose environment", c("", "Marine/Estuarine", "Riverine", "Terrestrial", "All")) %>%
                         helper(type = "inline",
                                title = "Selection Help",
                                content = c("Select the environment your study will be conducted in, or include all."),
+                               size = "m"),
+                      selectInput('media', "Choose media", c("", "Surface Water","Sediment")) %>%
+                        helper(type = "inline",
+                               title = "Selection Help",
+                               content = c("Select the media your study will be conducted in."),
                                size = "m"),
                       selectInput('specificity', "Choose specificity", c("", "More Specific","Less Specific")) %>%
                         helper(type = "inline",
