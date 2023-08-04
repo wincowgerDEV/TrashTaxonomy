@@ -230,15 +230,14 @@ NOAA <- read.csv("data/NOAA.csv")
 PrimeUnclassifiable <- read.csv("data/PrimeUnclassifiable.csv")
 Micro_Color_Display <-read.csv("data/Microplastics_Color.csv")
 
-#Load up necessary data to generate embeddings
-api_key <- readLines("data/openai.txt")
-materials_alias_embeddings <- read.csv("data/Materials_Alias_.csv")
-items_alias_embeddings <- read.csv("data/Items_Alias_.csv")
-model <- 'text-embedding-ada-002'
-material_embeddings <- read.csv("data/material_embeddings.csv")
-material_dotprod <- data.table::transpose(material_embeddings, make.names = "name")
-item_embeddings <- read.csv("data/item_embeddings.csv")
-item_dotprod <- data.table::transpose(item_embeddings, make.names = "name")
+
+
+#Data for embeddings generation via chRoma
+items_vectorDB <- readRDS(file = "data/items_vectorDB.rda")
+materials_vectorDB <- readRDS(file = "data/materials_vectorDB.rda")
+Sys.setenv(OPENAI_API_KEY = readLines("data/openai.txt"))
+primeItems <- read.csv("data/PrimeItems.csv")
+primeMaterials <- read.csv("data/PrimeMaterials.csv")
 
 #Read in item and material pathstrings for merging tool
 pathstrings_items <- read.csv("data/Items_Pathstrings.csv")
@@ -279,58 +278,22 @@ server <- function(input,output,session) {
       
       if(length(Primename) == 0 ){
           #Create new embedding
-          embeddings_new <- lapply(dataframeclean[row,"material"], function(material){
-            input = material
-            
-            parameter_list = list(input = input, model = model)
-            
-            request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
-                                      body = parameter_list, 
-                                      httr::add_headers(Authorization = paste("Bearer", api_key)),
-                                      encode = "json")
-            
-            output_base = httr::content(request_base)
-            embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
-            names(embedding_raw) = 1:1536
-            data.table::as.data.table(as.list(embedding_raw)) %>%
-              mutate(material = input)
-          })
-          
-          #Bind new embeddings generated
-          material_embeddings_new <- rbindlist(embeddings_new)
-          
-          #Make new dot prod
-          material_dotprod_new <- data.table::transpose(material_embeddings_new, make.names = "material")
-          
-          #Take new cross prod
-          cross_product <- crossprod(data.matrix(material_dotprod), material_dotprod_new[[1]])
-          
-          #Top match for alias given cross prod
-          colnames(cross_product) <- c("match")
-          cross_product_ <- data.frame(cross_product)
-          cross_product_ <- cross_product_[order(-cross_product_$match),  ,drop=FALSE]
-          cross_product_$Alias <- row.names(cross_product_)
-          cross_product_ <- left_join(cross_product_, materials_alias_embeddings, by= "Alias")
-          top_five <- head(unique(cross_product_$Material), n=5)
+        new_material <- data.table(text = dataframeclean[row,"material"])
+        new_material <- data.table(text = "glass/metal")
+        new_material_vDB <- add_collection(metadata = new_material)
+        similarity <- query_collection(db = materials_vectorDB, query_embeddings = new_material_vDB, top_n = 15, type = "dotproduct") %>%
+          left_join(materials_vectorDB$metadata, by = c("db_id" = "id")) %>%
+          rename(Alias = text)
+        similarity <-  left_join(similarity, primeMaterials, by = "Alias", relationship = "many-to-many")
+        top_five <- head(unique(similarity$Material), n=5)
           match1 <- top_five[[1]]
           match2 <- top_five[[2]]
           match3 <- top_five[[3]]
           match4 <- top_five[[4]]
           match5 <- top_five[[5]]
           
-          
           dataframe[row, "PrimeMaterial"] <- as.character(selectInput(paste("sel", row, sep = ""), "", choices = c(match1, match2, match3, match4, match5), width = "100px"))
-          
-          #top_five <- head(unique(cross_product_$Material), n=5)
-          
-          #dataframe[row, "PrimeMaterial"] <- sprintf(
-           # '<input type="container" name="%s" value="%s"/>',
-           # "str(top_five)", dataframe[row, "PrimeMaterial"]
-          #)
-          #Save new embeddings for future use
-          colnames(material_embeddings_new) = colnames(material_embeddings)
-          material_embeddings_new_ <- rbind(material_embeddings, material_embeddings_new)
-          write.csv(material_embeddings_new_,'data/material_embeddings_new.csv')
+
       }
       
       else{
@@ -410,56 +373,21 @@ server <- function(input,output,session) {
       
       if(length(Primename) == 0){
         #Create new embedding
-        embeddings_newi <- lapply(dataframeclean[row,"items"], function(items){
-          input = items
-          
-          parameter_list = list(input = input, model = model)
-          
-          request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
-                                    body = parameter_list, 
-                                    httr::add_headers(Authorization = paste("Bearer", api_key)),
-                                    encode = "json")
-          
-          output_base = httr::content(request_base)
-          embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
-          names(embedding_raw) = 1:1138
-          data.table::as.data.table(as.list(embedding_raw)) %>%
-            mutate(items = input)
-        })
+        new_item <- data.table(text = dataframeclean[row,"items"])
+        new_item_vDB <- add_collection(metadata = new_item)
+        similarity <- query_collection(db = items_vectorDB, query_embeddings = new_item_vDB, top_n = 15, type = "dotproduct") %>%
+          left_join(items_vectorDB$metadata, by = c("db_id" = "id")) %>%
+          rename(Alias = text)
+        similarity <-  left_join(similarity, primeItems, by = "Alias", relationship = "many-to-many")
+        top_five <- head(unique(similarity$Item), n=5)
+        match1 <- top_five[[1]]
+        match2 <- top_five[[2]]
+        match3 <- top_five[[3]]
+        match4 <- top_five[[4]]
+        match5 <- top_five[[5]]
+       
+        dataframe[row, "PrimeItem"] <- as.character(selectInput(paste("sel", row, sep = ""), "", choices = c(match1, match2, match3, match4, match5), width = "100px"))
         
-        #Bind new embeddings generated
-        item_embeddings_new <- rbindlist(embeddings_newi)
-        
-        #Make new dot prod
-        item_dotprod_new <- data.table::transpose(item_embeddings_new, make.names = "items")
-        
-        #Take new cross prod
-        cross_product <- crossprod(data.matrix(item_dotprod), item_dotprod_new[[1]])
-        
-        #Top match for alias given cross prod
-        Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
-        
-        #Second and third highest matches
-        colnames(cross_product) <- c("match")
-        cross_product_ <- data.frame(cross_product)
-        cross_product_ <- cross_product_[order(-cross_product_$match),  ,drop=FALSE]
-        second_alias = row.names(cross_product_)[2]
-        third_alias = row.names(cross_product_)[3]
-        fourth_alias = row.names(cross_product_)[4]
-        fifth_alias = row.names(cross_product_)[5]
-        
-        #Top key alias match for given alias
-        Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == Primename_]
-        second_Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == second_alias]
-        third_Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == third_alias]
-        
-        #Input prime key into dataframe
-        dataframe[row, "PrimeItem"] <- Primename
-        
-        #Save new embeddings for future use
-        colnames(item_embeddings_new) = colnames(item_embeddings)
-        item_embeddings_new_ <- rbind(item_embeddings, item_embeddings_new)
-        write.csv(item_embeddings_new_,'data/item_embeddings_new.csv')
       }
       
       else{
@@ -537,6 +465,8 @@ server <- function(input,output,session) {
   MaterialsAlias_sunburst <- read.csv("data/PrimeMaterials.csv") %>%
     rename(Key = Material)
   
+  use_cases <- read.csv("data/Item_Use_Case.csv")
+  
   df_ <- reactive({
     req(input$df_)
     req(input$d_f_)
@@ -563,47 +493,22 @@ server <- function(input,output,session) {
     
       if(is.na(length(Primename))){
         #Create new embedding
-        embeddings_new <- lapply(dataframeclean[row,"material"], function(material){
-          input = material
-          
-          parameter_list = list(input = input, model = model)
-          
-          request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
-                                    body = parameter_list, 
-                                    httr::add_headers(Authorization = paste("Bearer", api_key)),
-                                    encode = "json")
-          
-          output_base = httr::content(request_base)
-          embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
-          names(embedding_raw) = 1:1536
-          data.table::as.data.table(as.list(embedding_raw)) %>%
-            mutate(material = input)
-        })
+        new_material <- data.table(text = dataframeclean[row,"material"])
+        new_material <- data.table(text = "glass/metal")
+        new_material_vDB <- add_collection(metadata = new_material)
+        similarity <- query_collection(db = materials_vectorDB, query_embeddings = new_material_vDB, top_n = 15, type = "dotproduct") %>%
+          left_join(materials_vectorDB$metadata, by = c("db_id" = "id")) %>%
+          rename(Alias = text)
+        similarity <-  left_join(similarity, primeMaterials, by = "Alias", relationship = "many-to-many")
+        top_five <- head(unique(similarity$Material), n=5)
+        match1 <- top_five[[1]]
+        match2 <- top_five[[2]]
+        match3 <- top_five[[3]]
+        match4 <- top_five[[4]]
+        match5 <- top_five[[5]]
         
-        #Bind new embeddings generated
-        material_embeddings_new <- rbindlist(embeddings_new)
+        dataframe[row, "PrimeMaterial"] <- as.character(selectInput(paste("sel", row, sep = ""), "", choices = c(match1, match2, match3, match4, match5), width = "100px"))
         
-        colnames(material_embeddings_new) = colnames(material_embeddings)
-        
-        material_embeddings_new_ <- rbind(material_embeddings, material_embeddings_new)
-        
-        #Make new dot prod
-        material_dotprod_new <- data.table::transpose(material_embeddings_new, make.names = "material")
-        
-        #Take new cross prod
-        cross_product <- crossprod(data.matrix(material_dotprod), material_dotprod_new[[1]])
-        
-        #Top match for alias given cross prod
-        Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
-        
-        #Top key alias match for given alias
-        Primename <- materials_alias_embeddings$Material[materials_alias_embeddings$Alias == Primename_]
-        
-        #Input prime key into dataframe
-        dataframe[row, "PrimeMaterial"] <- Primename
-        
-        #Save new embeddings for future use
-        write.csv(material_embeddings_new_,'data/material_embeddings_new.csv')
       }
       
       else{
@@ -662,47 +567,21 @@ server <- function(input,output,session) {
       
       if(length(Primename) == 0){
         #Create new embedding
-        embeddings_newi <- lapply(dataframeclean[row,"items"], function(items){
-          input = items
-          
-          parameter_list = list(input = input, model = model)
-          
-          request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
-                                    body = parameter_list, 
-                                    httr::add_headers(Authorization = paste("Bearer", api_key)),
-                                    encode = "json")
-          
-          output_base = httr::content(request_base)
-          embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
-          names(embedding_raw) = 1:1138
-          data.table::as.data.table(as.list(embedding_raw)) %>%
-            mutate(items = input)
-        })
+        new_item <- data.table(text = dataframeclean[row,"items"])
+        new_item_vDB <- add_collection(metadata = new_item)
+        similarity <- query_collection(db = items_vectorDB, query_embeddings = new_item_vDB, top_n = 15, type = "dotproduct") %>%
+          left_join(items_vectorDB$metadata, by = c("db_id" = "id")) %>%
+          rename(Alias = text)
+        similarity <-  left_join(similarity, primeItems, by = "Alias", relationship = "many-to-many")
+        top_five <- head(unique(similarity$Item), n=5)
+        match1 <- top_five[[1]]
+        match2 <- top_five[[2]]
+        match3 <- top_five[[3]]
+        match4 <- top_five[[4]]
+        match5 <- top_five[[5]]
         
-        #Bind new embeddings generated
-        item_embeddings_new <- rbindlist(embeddings_newi)
+        dataframe[row, "PrimeItem"] <- as.character(selectInput(paste("sel", row, sep = ""), "", choices = c(match1, match2, match3, match4, match5), width = "100px"))
         
-        colnames(item_embeddings_new) = colnames(item_embeddings)
-        
-        item_embeddings_new_ <- rbind(item_embeddings, item_embeddings_new)
-        
-        #Make new dot prod
-        item_dotprod_new <- data.table::transpose(item_embeddings_new, make.names = "items")
-        
-        #Take new cross prod
-        cross_product <- crossprod(data.matrix(item_dotprod), item_dotprod_new[[1]])
-        
-        #Top match for alias given cross prod
-        Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
-        
-        #Top key alias match for given alias
-        Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == Primename_]
-        
-        #Input prime key into dataframe
-        dataframe[row, "PrimeItem"] <- Primename
-        
-        #Save new embeddings for future use
-        write.csv(item_embeddings_new_,'data/item_embeddings_new.csv')
       }
       
       else{
@@ -758,13 +637,10 @@ server <- function(input,output,session) {
       group_by(material, items) %>%
       summarise(across(count, sum))
     
-    #Save input data
-    #legacy_data <- read.csv("data/legacy_count_data.csv")
-    #legacy_data <- rbind(legacy_data, dataframe)
-    #legacy_data <- legacy_data %>%
-    #  group_by(material, items) %>%
-    #  summarise(across(count, sum))
-    #write.csv(legacy_data,"data/legacy_count_data.csv")
+    #Add use cases
+    dataframe <- dataframe %>% left_join(use_cases, by = "items", keep = NULL) %>%
+      relocate(use, .before = items)
+
     return(dataframe)
     
     
@@ -1105,21 +981,22 @@ server <- function(input,output,session) {
   output$contents2 <- renderDataTable(server = F, 
                                       datatable({df()[, c("items","PrimeItem")] %>% distinct()},
                                                 extensions = 'Buttons',
-                                                options = list(
-                                                  paging = TRUE,
-                                                  searching = TRUE,
-                                                  fixedColumns = TRUE,
-                                                  autoWidth = TRUE,
-                                                  ordering = TRUE,
-                                                  dom = 'Bfrtip',
-                                                  buttons = c('copy', 'csv', 'excel', 'pdf')
-                                                ),
                                                 class = "display",
-                                                style="bootstrap"))
+                                                style="bootstrap",
+                                                escape = FALSE,
+                                                options = list(server = FALSE, dom="Bfrtip", paging=TRUE, ordering=TRUE, buttons=c('copy', 'csv', 'excel', 'pdf')),
+                                                callback = JS("table.rows().every(function(row, tab, row) {
+                                              var $this = $(this.node());
+                                              $this.attr('id', this.data()[0]);
+                                              $this.addClass('shiny-input-container');
+                                            });
+                                            Shiny.unbindAll(table.table().node());
+                                            Shiny.bindAll(table.table().node());"))
+  )
   
   output$contents3 <- renderDataTable(server = F, 
                                       datatable({
-                                        df_()[, c("material", "items", "count")]
+                                        df_()[, c("use", "material", "items", "count")]
                                       }, 
                                       extensions = 'Buttons',
                                       options = list(
