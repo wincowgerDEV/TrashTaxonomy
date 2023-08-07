@@ -67,6 +67,13 @@ BootMean <- function(data) {
   return(quantile(mean, c(0.025, 0.5, 0.975), na.rm = T))
 }
 
+confidence_interval_width <- function(data){
+  proportion = 0.95
+  sample_size = length(data)
+  population_size = 100000
+  1.96*sqrt((1/sample_size)*proportion * (1-proportion) * (population_size-sample_size)/(population_size-1))
+}
+
 AggregateTrees <- function(DF, Alias, Hierarchy){
   
   DF <- mutate_all(DF, cleantext) %>%
@@ -123,11 +130,10 @@ grouped_uncertainty <- function(DF_group, Group_Alias, Group_Hierarchy, type){
   }
   
   df_join_boot <- df_join %>%
-    #mutate(node_num = rep(1:27, times = nrow(groups))) %>%
     group_by(from, to) %>%
     summarise(mean_prop = mean(totalsum, na.rm = T), 
-              min_prop = BootMean(totalsum)[1], 
-              max_prop = BootMean(totalsum)[3])
+              min_prop = confidence_interval_width(totalsum) - mean(totalsum, na.rm = T), 
+              max_prop = confidence_interval_width(totalsum) + mean(totalsum, na.rm = T))
   
 }
 
@@ -242,6 +248,8 @@ primeMaterials <- read.csv("data/PrimeMaterials.csv")
 #Read in item and material pathstrings for merging tool
 pathstrings_items <- read.csv("data/Items_Pathstrings.csv")
 pathstrings_materials <- read.csv("data/Materials_Pathstrings.csv")
+pathstrings_materials$materials <- cleantext(pathstrings_materials$materials)
+pathstrings_items$items <- cleantext(pathstrings_items$items)
 
 #Start server
 
@@ -279,7 +287,6 @@ server <- function(input,output,session) {
       if(length(Primename) == 0 ){
           #Create new embedding
         new_material <- data.table(text = dataframeclean[row,"material"])
-        new_material <- data.table(text = "glass/metal")
         new_material_vDB <- add_collection(metadata = new_material)
         similarity <- query_collection(db = materials_vectorDB, query_embeddings = new_material_vDB, top_n = 15, type = "dotproduct") %>%
           left_join(materials_vectorDB$metadata, by = c("db_id" = "id")) %>%
@@ -465,6 +472,7 @@ server <- function(input,output,session) {
   MaterialsAlias_sunburst <- read.csv("data/PrimeMaterials.csv") %>%
     rename(Key = Material)
   
+  
   use_cases <- read.csv("data/Item_Use_Case.csv")
   
   df_ <- reactive({
@@ -478,11 +486,12 @@ server <- function(input,output,session) {
       select(material, items, count)
     dataframe2 <- as.data.frame(file2) %>%
       select(material, items, count)
-    dataframe <- rbind(dataframe1, dataframe2)
+    dataframe <- as.data.frame(rbind(dataframe1, dataframe2))
     dataframe$material <- as.character(dataframe$material)
     dataframe$items <- as.character(dataframe$items)
     dataframe$count <- as.numeric(dataframe$count)
     dataframeclean <- mutate_all(dataframe, cleantext) 
+    
     
     #Material query tool cleaning
     #Matching material to prime material
@@ -490,24 +499,19 @@ server <- function(input,output,session) {
       
       #Identify Alias Row and Alias name in database
       Primename <- unique(aliasclean[unname(unlist(apply(aliasclean, 2, function(x) which(x == dataframeclean[row,"material"], arr.ind = T)))), "Material"])
-    
-      if(is.na(length(Primename))){
+      
+      if(length(Primename) == 0){
         #Create new embedding
         new_material <- data.table(text = dataframeclean[row,"material"])
-        new_material <- data.table(text = "glass/metal")
         new_material_vDB <- add_collection(metadata = new_material)
         similarity <- query_collection(db = materials_vectorDB, query_embeddings = new_material_vDB, top_n = 15, type = "dotproduct") %>%
           left_join(materials_vectorDB$metadata, by = c("db_id" = "id")) %>%
           rename(Alias = text)
         similarity <-  left_join(similarity, primeMaterials, by = "Alias", relationship = "many-to-many")
-        top_five <- head(unique(similarity$Material), n=5)
+        top_five <- head(unique(similarity$Material), n=1)
         match1 <- top_five[[1]]
-        match2 <- top_five[[2]]
-        match3 <- top_five[[3]]
-        match4 <- top_five[[4]]
-        match5 <- top_five[[5]]
         
-        dataframe[row, "PrimeMaterial"] <- as.character(selectInput(paste("sel", row, sep = ""), "", choices = c(match1, match2, match3, match4, match5), width = "100px"))
+        dataframe[row, "PrimeMaterial"] <- paste(match1)
         
       }
       
@@ -521,6 +525,7 @@ server <- function(input,output,session) {
     
     #Find all unique materials
     unique_materials <- as.data.frame(unique(dataframe[,"PrimeMaterial"]))
+    dataframe[,"PrimeMaterial"] <- cleantext(dataframe[,"PrimeMaterial"])
     colnames(unique_materials) <- c('materials')
     unique_materials <- mutate_all(unique_materials, cleantext)
     unique_materials <- left_join(unique_materials, pathstrings_materials, by="materials")
@@ -532,7 +537,7 @@ server <- function(input,output,session) {
         z = grepl(unique_materials$pathString[[y]], unique_materials$pathString[[x]], ignore.case=TRUE)
         length_x <- str_length(unique_materials$pathString[[x]])
         length_y <- str_length(unique_materials$pathString[[y]])
-        if(z== TRUE && length_x > length_y) {
+        if(z == TRUE && length_x > length_y) {
           unique_materials$merged_material[[x]] <- paste(unique_materials$pathString[[y]])
         }
       }
@@ -569,18 +574,14 @@ server <- function(input,output,session) {
         #Create new embedding
         new_item <- data.table(text = dataframeclean[row,"items"])
         new_item_vDB <- add_collection(metadata = new_item)
-        similarity <- query_collection(db = items_vectorDB, query_embeddings = new_item_vDB, top_n = 15, type = "dotproduct") %>%
+        similarity <- query_collection(db = items_vectorDB, query_embeddings = new_item_vDB, top_n = 1, type = "dotproduct") %>%
           left_join(items_vectorDB$metadata, by = c("db_id" = "id")) %>%
           rename(Alias = text)
         similarity <-  left_join(similarity, primeItems, by = "Alias", relationship = "many-to-many")
-        top_five <- head(unique(similarity$Item), n=5)
+        top_five <- head(unique(similarity$Item), n=1)
         match1 <- top_five[[1]]
-        match2 <- top_five[[2]]
-        match3 <- top_five[[3]]
-        match4 <- top_five[[4]]
-        match5 <- top_five[[5]]
         
-        dataframe[row, "PrimeItem"] <- as.character(selectInput(paste("sel", row, sep = ""), "", choices = c(match1, match2, match3, match4, match5), width = "100px"))
+        dataframe[row, "PrimeItem"] <- match1
         
       }
       
@@ -647,70 +648,70 @@ server <- function(input,output,session) {
   })
   
   #Plot new merged data as sunburst plots
-  ##Material Sunburst Plot ----
-  
+  #Material Sunburst Plot ----
+
   output$plot1 <- renderPlotly({
-    req(input$df_)
-    req(input$d_f_)
-    
-    dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
-    
-    Material_DF <- dataframe %>%
-      rename(Count = count) %>%
-      group_by(material) %>%
-      summarise(Count = n()) %>%
-      ungroup()
-    
-    Material_DF_group <- dataframe %>%
-      rename(Count = count) %>%
-      group_by(material) %>%
-      summarise(Count = n()) %>%
-      ungroup() %>%
-      rename(Class = material)
-    
-    MaterialTreeDF <- AggregateTrees(DF = Material_DF, Alias = MaterialsAlias_sunburst, Hierarchy = MaterialsHierarchy_sunburst) %>%
-      mutate(from = ifelse(from == "trash", "material", from))
-    
-    material_grouped <- grouped_uncertainty(DF_group = Material_DF_group, Group_Alias = MaterialsAlias_sunburst, Group_Hierarchy = MaterialsHierarchy_sunburst, type = "material")
-    
-    Materials_Plot <- sunburstplot(df_join_boot = material_grouped)
-    
-    return(Materials_Plot)
+   req(input$df_)
+   req(input$d_f_)
+
+   dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
+
+   Material_DF <- dataframe %>%
+     rename(Count = count) %>%
+     group_by(material) %>%
+     summarise(Count = n()) %>%
+     ungroup()
+
+   Material_DF_group <- dataframe %>%
+     rename(Count = count) %>%
+     group_by(material) %>%
+     summarise(Count = n()) %>%
+    ungroup() %>%
+     rename(Class = material)
+
+   MaterialTreeDF <- AggregateTrees(DF = Material_DF, Alias = MaterialsAlias_sunburst, Hierarchy = MaterialsHierarchy_sunburst) %>%
+     mutate(from = ifelse(from == "trash", "material", from))
+
+   material_grouped <- grouped_uncertainty(DF_group = Material_DF_group, Group_Alias = MaterialsAlias_sunburst, Group_Hierarchy = MaterialsHierarchy_sunburst, type = "material")
+
+   Materials_Plot <- sunburstplot(df_join_boot = material_grouped)
+
+   return(Materials_Plot)
   })
-  
-  
-  
-  ##Item Sunburst Plot ----
+
+
+
+  #Item Sunburst Plot ----
   output$plot2 <- renderPlotly({
     req(input$df_)
     req(input$d_f_)
-    
+
     dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
-    
+
     Item_DF <- dataframe %>%
       rename(Count = count) %>%
       group_by(items) %>%
       summarise(Count = n()) %>%
-      ungroup() 
-    
-    
+      ungroup()
+
+
     Item_DF_group <- dataframe %>%
       rename(Count = count) %>%
       group_by(items) %>%
       summarise(Count = n()) %>%
       ungroup() %>%
-      rename(Class = items)
-    
-    ItemTreeDF <- AggregateTrees(DF = Item_DF, Alias = ItemsAlias_sunburst, Hierarchy = ItemsHierarchy_sunburst) %>%
-      mutate(from = ifelse(from == "trash", "items", from))
-    
-    #Item prop uncertainty
-    item_grouped <- grouped_uncertainty(DF_group = Item_DF_group, Group_Alias = ItemsAlias_sunburst, Group_Hierarchy = ItemsHierarchy_sunburst, type = "items")
-    
-    Items_Plot <- sunburstplot(df_join_boot = item_grouped)
-    
-    return(Items_Plot)
-  })
+       rename(Class = items)
+  
+     ItemTreeDF <- AggregateTrees(DF = Item_DF, Alias = ItemsAlias_sunburst, Hierarchy = ItemsHierarchy_sunburst) %>%
+       mutate(from = ifelse(from == "trash", "items", from))
+  
+     #Item prop uncertainty
+     item_grouped <- grouped_uncertainty(DF_group = Item_DF_group, Group_Alias = ItemsAlias_sunburst, Group_Hierarchy = ItemsHierarchy_sunburst, type = "items")
+  
+     Items_Plot <- sunburstplot(df_join_boot = item_grouped)
+  
+     return(Items_Plot)
+   })
   
   
   
@@ -1009,7 +1010,8 @@ server <- function(input,output,session) {
                                         buttons = c('copy', 'csv', 'excel', 'pdf')
                                       ),
                                       class = "display",
-                                      style="bootstrap"))
+                                      style="bootstrap")
+  )
   
   output$contents4 <- renderDataTable(server = F, 
                                       datatable({
@@ -1061,6 +1063,8 @@ server <- function(input,output,session) {
                                       ),
                                       class = "display",
                                       style="bootstrap"))
+  
+
   
   output$plot3 <- renderPlot({
     req(convertedParticles())

@@ -674,12 +674,12 @@ ui <- fluidPage(
              ),
              fluidRow(
                column(1),
-               column(5, 
+               column(5,
                       plotlyOutput('plot1')
                ),
-               column(5, 
+               column(5,
                       plotlyOutput('plot2')
-               ), 
+               ),
                column(1)
              ),
 
