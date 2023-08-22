@@ -2,9 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
-
 #Desktop files
 *desktop.ini
-
 #rsconnect folder for shinyapps
 *rsconnect/
+s3_cred.csv
