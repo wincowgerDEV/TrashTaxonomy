@@ -233,6 +233,21 @@ Brand_Item_Relation <- read.csv("data/BrandItem.csv")
 NOAA <- read.csv("data/NOAA.csv")
 PrimeUnclassifiable <- read.csv("data/PrimeUnclassifiable.csv")
 Micro_Color_Display <-read.csv("data/Microplastics_Color.csv")
+#Files for bootstrapping routine and sunburst plots
+ItemsHierarchy_sunburst <- read.csv("data/Items_Hierarchy_sunburstPlot.csv")
+MaterialsHierarchy_sunburst <- read.csv("data/Materials_Hierarchy_sunburstPlot.csv") 
+ItemsAlias_sunburst <- read.csv("data/PrimeItems.csv")%>%
+  rename(Key = Item)
+MaterialsAlias_sunburst <- read.csv("data/PrimeMaterials.csv") %>%
+  rename(Key = Material)
+
+
+use_cases <- read.csv("data/Item_Use_Case.csv")
+
+MicroOnly <- read.csv("data/PremadeSurveys/Most_Specific_Microplastics.csv")
+AllMore <- read.csv("data/PremadeSurveys/Most_Specific_All.csv")
+AllLess <- read.csv("data/PremadeSurveys/Least_Specific_All.csv")
+polymer_db <- read.csv("data/all_polymer_densities.csv")
 
 #Data for embeddings generation via chRoma
 items_vectorDB <- readRDS(file = "data/items_vectorDB.rda")
@@ -465,17 +480,6 @@ server <- function(input,output,session) {
   })
   
   ###START MERGING TOOL
-  
-  #Files for bootstrapping routine and sunburst plots
-  ItemsHierarchy_sunburst <- read.csv("data/Items_Hierarchy_sunburstPlot.csv")
-  MaterialsHierarchy_sunburst <- read.csv("data/Materials_Hierarchy_sunburstPlot.csv") 
-  ItemsAlias_sunburst <- read.csv("data/PrimeItems.csv")%>%
-    rename(Key = Item)
-  MaterialsAlias_sunburst <- read.csv("data/PrimeMaterials.csv") %>%
-    rename(Key = Material)
-  
-  
-  use_cases <- read.csv("data/Item_Use_Case.csv")
 
   df_ <- reactive({
     req(input$df_)
@@ -727,17 +731,7 @@ server <- function(input,output,session) {
     return(Items_Plot)
   })
   
-  
-  
-  
-  
-  
   ###END MERGING TOOL
-  
-  #Output correct survey sheet
-  MicroOnly <- read.csv("data/PremadeSurveys/Most_Specific_Microplastics.csv")
-  AllMore <- read.csv("data/PremadeSurveys/Most_Specific_All.csv")
-  AllLess <- read.csv("data/PremadeSurveys/Least_Specific_All.csv")
   
   selectSurvey <- reactive({
     data = data.frame()
@@ -831,7 +825,7 @@ server <- function(input,output,session) {
       rename(morphology = morph_dimension)
     
     #Make polymer-density dataframe
-    polymer_db <- read.csv("data/all_polymer_densities.csv")
+    #Output correct survey sheet
     polymer_db <- data.frame(polymer_db)
     polymer_db$polymer <- cleantext(polymer_db$polymer)
     polymer_db$density <- as.numeric(polymer_db$density)
