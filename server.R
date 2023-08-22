@@ -793,7 +793,6 @@ server <- function(input,output,session) {
     infile <- input$particleData
     file <- fread(infile$datapath)
     dataframe <- as.data.frame(file)
-    dataframe <- read.csv("Sample_Dist_Data.csv")
     if("width_um" %in% colnames(dataframe) == TRUE){dataframe <- dataframe %>%
       select(length_um, width_um, morphology, polymer)
     dataframe$width_um <- as.numeric(dataframe$width_um)
