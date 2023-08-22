@@ -24,6 +24,15 @@ library(plotly)
 library(ggforce)
 library(skimr)
 library(ggdark)
+library(ggdist)
+library(ggthemes)
+library(chRoma)
+library(mongolite)
+library(tibble)
+
+
+
+setwd("/Users/hannahhapich/Documents/R_Scripts/TrashTaxonomy-master")
 
 #Build cleaning functions
 cleantext <- function(x) {
@@ -58,6 +67,13 @@ BootMean <- function(data) {
     mean[i] <- mean(data[boot], na.rm = T)
   }
   return(quantile(mean, c(0.025, 0.5, 0.975), na.rm = T))
+}
+
+confidence_interval_width <- function(data){
+  proportion = 0.95
+  sample_size = length(data)
+  population_size = 100000
+  1.96*sqrt((1/sample_size)*proportion * (1-proportion) * (population_size-sample_size)/(population_size-1))
 }
 
 AggregateTrees <- function(DF, Alias, Hierarchy){
@@ -116,11 +132,10 @@ grouped_uncertainty <- function(DF_group, Group_Alias, Group_Hierarchy, type){
   }
   
   df_join_boot <- df_join %>%
-    #mutate(node_num = rep(1:27, times = nrow(groups))) %>%
     group_by(from, to) %>%
     summarise(mean_prop = mean(totalsum, na.rm = T), 
-              min_prop = BootMean(totalsum)[1], 
-              max_prop = BootMean(totalsum)[3])
+              min_prop = confidence_interval_width(totalsum) - mean(totalsum, na.rm = T), 
+              max_prop = confidence_interval_width(totalsum) + mean(totalsum, na.rm = T))
   
 }
 
@@ -150,13 +165,20 @@ sunburstplot <-function(df_join_boot){
       values = df_join_boot$mean_prop) 
 }
 
+###create function to derive correction factor (CF) from Koelmans et al (equation 2)
+CFfnx = function(a, #default alpha from Koelmans et al (2020)
+                 x2D, #set detault values to convert ranges to (1-5,000 um) #5mm is upper defuault 
+                 x1D, #1 um is lower default size
+                 x2M, x1M){
+  CF = (x2D^(1-a)-x1D^(1-a))/(x2M^(1-a)-x1M^(1-a)) 
+  return(CF)}
+
 #Files for tool
 alius <- read.csv("data/PrimeMaterials.csv")
 hierarchy <- read.csv("data/MaterialsHierarchyLower.csv")
 aliusi <- read.csv("data/PrimeItems.csv")
 hierarchyi <- read.csv("data/ITEMSHierarchyLower.csv")
 microcolor <- read.csv("data/Microplastics_Color.csv")
-micromathierarchy <- read.csv("data/Microplastics_Material_Hierarchy.csv")
 aliasclean <- mutate_all(alius, cleantext)
 aliascleani <- mutate_all(aliusi, cleantext)
 hierarchyclean <- mutate_all(hierarchy, cleantext)
@@ -215,19 +237,20 @@ NOAA <- read.csv("data/NOAA.csv")
 PrimeUnclassifiable <- read.csv("data/PrimeUnclassifiable.csv")
 Micro_Color_Display <-read.csv("data/Microplastics_Color.csv")
 
-#Load up necessary data to generate embeddings
-api_key <- readLines("data/openai.txt")
-materials_alias_embeddings <- read.csv("data/Materials_Alias_.csv")
-items_alias_embeddings <- read.csv("data/Items_Alias_.csv")
-model <- 'text-embedding-ada-002'
-material_embeddings <- read.csv("data/material_embeddings.csv")
-material_dotprod <- data.table::transpose(material_embeddings, make.names = "name")
-item_embeddings <- read.csv("data/item_embeddings.csv")
-item_dotprod <- data.table::transpose(item_embeddings, make.names = "name")
+
+
+#Data for embeddings generation via chRoma
+items_vectorDB <- readRDS(file = "data/items_vectorDB.rda")
+materials_vectorDB <- readRDS(file = "data/materials_vectorDB.rda")
+Sys.setenv(OPENAI_API_KEY = readLines("data/openai.txt"))
+primeItems <- read.csv("data/PrimeItems.csv")
+primeMaterials <- read.csv("data/PrimeMaterials.csv")
 
 #Read in item and material pathstrings for merging tool
 pathstrings_items <- read.csv("data/Items_Pathstrings.csv")
 pathstrings_materials <- read.csv("data/Materials_Pathstrings.csv")
+pathstrings_materials$materials <- cleantext(pathstrings_materials$materials)
+pathstrings_items$items <- cleantext(pathstrings_items$items)
 
 #Start server
 
@@ -264,58 +287,21 @@ server <- function(input,output,session) {
       
       if(length(Primename) == 0 ){
           #Create new embedding
-          embeddings_new <- lapply(dataframeclean[row,"material"], function(material){
-            input = material
-            
-            parameter_list = list(input = input, model = model)
-            
-            request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
-                                      body = parameter_list, 
-                                      httr::add_headers(Authorization = paste("Bearer", api_key)),
-                                      encode = "json")
-            
-            output_base = httr::content(request_base)
-            embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
-            names(embedding_raw) = 1:1536
-            data.table::as.data.table(as.list(embedding_raw)) %>%
-              mutate(material = input)
-          })
-          
-          #Bind new embeddings generated
-          material_embeddings_new <- rbindlist(embeddings_new)
-          
-          #Make new dot prod
-          material_dotprod_new <- data.table::transpose(material_embeddings_new, make.names = "material")
-          
-          #Take new cross prod
-          cross_product <- crossprod(data.matrix(material_dotprod), material_dotprod_new[[1]])
-          
-          #Top match for alias given cross prod
-          colnames(cross_product) <- c("match")
-          cross_product_ <- data.frame(cross_product)
-          cross_product_ <- cross_product_[order(-cross_product_$match),  ,drop=FALSE]
-          cross_product_$Alias <- row.names(cross_product_)
-          cross_product_ <- left_join(cross_product_, materials_alias_embeddings, by= "Alias")
-          top_five <- head(unique(cross_product_$Material), n=5)
+        new_material <- data.table(text = dataframeclean[row,"material"])
+        new_material_vDB <- add_collection(metadata = new_material)
+        similarity <- query_collection(db = materials_vectorDB, query_embeddings = new_material_vDB, top_n = 15, type = "dotproduct") %>%
+          left_join(materials_vectorDB$metadata, by = c("db_id" = "id")) %>%
+          rename(Alias = text)
+        similarity <-  left_join(similarity, primeMaterials, by = "Alias", relationship = "many-to-many")
+        top_five <- head(unique(similarity$Material), n=5)
           match1 <- top_five[[1]]
           match2 <- top_five[[2]]
           match3 <- top_five[[3]]
           match4 <- top_five[[4]]
           match5 <- top_five[[5]]
           
-          
           dataframe[row, "PrimeMaterial"] <- as.character(selectInput(paste("sel", row, sep = ""), "", choices = c(match1, match2, match3, match4, match5), width = "100px"))
-          
-          #top_five <- head(unique(cross_product_$Material), n=5)
-          
-          #dataframe[row, "PrimeMaterial"] <- sprintf(
-           # '<input type="container" name="%s" value="%s"/>',
-           # "str(top_five)", dataframe[row, "PrimeMaterial"]
-          #)
-          #Save new embeddings for future use
-          colnames(material_embeddings_new) = colnames(material_embeddings)
-          material_embeddings_new_ <- rbind(material_embeddings, material_embeddings_new)
-          write.csv(material_embeddings_new_,'data/material_embeddings_new.csv')
+
       }
       
       else{
@@ -395,56 +381,21 @@ server <- function(input,output,session) {
       
       if(length(Primename) == 0){
         #Create new embedding
-        embeddings_newi <- lapply(dataframeclean[row,"items"], function(items){
-          input = items
-          
-          parameter_list = list(input = input, model = model)
-          
-          request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
-                                    body = parameter_list, 
-                                    httr::add_headers(Authorization = paste("Bearer", api_key)),
-                                    encode = "json")
-          
-          output_base = httr::content(request_base)
-          embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
-          names(embedding_raw) = 1:1138
-          data.table::as.data.table(as.list(embedding_raw)) %>%
-            mutate(items = input)
-        })
+        new_item <- data.table(text = dataframeclean[row,"items"])
+        new_item_vDB <- add_collection(metadata = new_item)
+        similarity <- query_collection(db = items_vectorDB, query_embeddings = new_item_vDB, top_n = 15, type = "dotproduct") %>%
+          left_join(items_vectorDB$metadata, by = c("db_id" = "id")) %>%
+          rename(Alias = text)
+        similarity <-  left_join(similarity, primeItems, by = "Alias", relationship = "many-to-many")
+        top_five <- head(unique(similarity$Item), n=5)
+        match1 <- top_five[[1]]
+        match2 <- top_five[[2]]
+        match3 <- top_five[[3]]
+        match4 <- top_five[[4]]
+        match5 <- top_five[[5]]
+       
+        dataframe[row, "PrimeItem"] <- as.character(selectInput(paste("sel", row, sep = ""), "", choices = c(match1, match2, match3, match4, match5), width = "100px"))
         
-        #Bind new embeddings generated
-        item_embeddings_new <- rbindlist(embeddings_newi)
-        
-        #Make new dot prod
-        item_dotprod_new <- data.table::transpose(item_embeddings_new, make.names = "items")
-        
-        #Take new cross prod
-        cross_product <- crossprod(data.matrix(item_dotprod), item_dotprod_new[[1]])
-        
-        #Top match for alias given cross prod
-        Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
-        
-        #Second and third highest matches
-        colnames(cross_product) <- c("match")
-        cross_product_ <- data.frame(cross_product)
-        cross_product_ <- cross_product_[order(-cross_product_$match),  ,drop=FALSE]
-        second_alias = row.names(cross_product_)[2]
-        third_alias = row.names(cross_product_)[3]
-        fourth_alias = row.names(cross_product_)[4]
-        fifth_alias = row.names(cross_product_)[5]
-        
-        #Top key alias match for given alias
-        Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == Primename_]
-        second_Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == second_alias]
-        third_Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == third_alias]
-        
-        #Input prime key into dataframe
-        dataframe[row, "PrimeItem"] <- Primename
-        
-        #Save new embeddings for future use
-        colnames(item_embeddings_new) = colnames(item_embeddings)
-        item_embeddings_new_ <- rbind(item_embeddings, item_embeddings_new)
-        write.csv(item_embeddings_new_,'data/item_embeddings_new.csv')
       }
       
       else{
@@ -522,9 +473,13 @@ server <- function(input,output,session) {
   MaterialsAlias_sunburst <- read.csv("data/PrimeMaterials.csv") %>%
     rename(Key = Material)
   
+  
+  use_cases <- read.csv("data/Item_Use_Case.csv")
+
   df_ <- reactive({
     req(input$df_)
     req(input$d_f_)
+    
     infile1 <- input$df_
     infile2 <- input$d_f_
     file1 <- fread(infile1$datapath)
@@ -533,11 +488,12 @@ server <- function(input,output,session) {
       select(material, items, count)
     dataframe2 <- as.data.frame(file2) %>%
       select(material, items, count)
-    dataframe <- rbind(dataframe1, dataframe2)
+    dataframe <- as.data.frame(rbind(dataframe1, dataframe2))
     dataframe$material <- as.character(dataframe$material)
     dataframe$items <- as.character(dataframe$items)
     dataframe$count <- as.numeric(dataframe$count)
     dataframeclean <- mutate_all(dataframe, cleantext) 
+    
     
     #Material query tool cleaning
     #Matching material to prime material
@@ -545,50 +501,20 @@ server <- function(input,output,session) {
       
       #Identify Alias Row and Alias name in database
       Primename <- unique(aliasclean[unname(unlist(apply(aliasclean, 2, function(x) which(x == dataframeclean[row,"material"], arr.ind = T)))), "Material"])
-    
-      if(is.na(length(Primename))){
+      
+      if(length(Primename) == 0){
         #Create new embedding
-        embeddings_new <- lapply(dataframeclean[row,"material"], function(material){
-          input = material
-          
-          parameter_list = list(input = input, model = model)
-          
-          request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
-                                    body = parameter_list, 
-                                    httr::add_headers(Authorization = paste("Bearer", api_key)),
-                                    encode = "json")
-          
-          output_base = httr::content(request_base)
-          embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
-          names(embedding_raw) = 1:1536
-          data.table::as.data.table(as.list(embedding_raw)) %>%
-            mutate(material = input)
-        })
+        new_material <- data.table(text = dataframeclean[row,"material"])
+        new_material_vDB <- add_collection(metadata = new_material)
+        similarity <- query_collection(db = materials_vectorDB, query_embeddings = new_material_vDB, top_n = 15, type = "dotproduct") %>%
+          left_join(materials_vectorDB$metadata, by = c("db_id" = "id")) %>%
+          rename(Alias = text)
+        similarity <-  left_join(similarity, primeMaterials, by = "Alias", relationship = "many-to-many")
+        top_five <- head(unique(similarity$Material), n=1)
+        match1 <- top_five[[1]]
         
-        #Bind new embeddings generated
-        material_embeddings_new <- rbindlist(embeddings_new)
+        dataframe[row, "PrimeMaterial"] <- paste(match1)
         
-        colnames(material_embeddings_new) = colnames(material_embeddings)
-        
-        material_embeddings_new_ <- rbind(material_embeddings, material_embeddings_new)
-        
-        #Make new dot prod
-        material_dotprod_new <- data.table::transpose(material_embeddings_new, make.names = "material")
-        
-        #Take new cross prod
-        cross_product <- crossprod(data.matrix(material_dotprod), material_dotprod_new[[1]])
-        
-        #Top match for alias given cross prod
-        Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
-        
-        #Top key alias match for given alias
-        Primename <- materials_alias_embeddings$Material[materials_alias_embeddings$Alias == Primename_]
-        
-        #Input prime key into dataframe
-        dataframe[row, "PrimeMaterial"] <- Primename
-        
-        #Save new embeddings for future use
-        write.csv(material_embeddings_new_,'data/material_embeddings_new.csv')
       }
       
       else{
@@ -601,6 +527,7 @@ server <- function(input,output,session) {
     
     #Find all unique materials
     unique_materials <- as.data.frame(unique(dataframe[,"PrimeMaterial"]))
+    dataframe[,"PrimeMaterial"] <- cleantext(dataframe[,"PrimeMaterial"])
     colnames(unique_materials) <- c('materials')
     unique_materials <- mutate_all(unique_materials, cleantext)
     unique_materials <- left_join(unique_materials, pathstrings_materials, by="materials")
@@ -612,7 +539,7 @@ server <- function(input,output,session) {
         z = grepl(unique_materials$pathString[[y]], unique_materials$pathString[[x]], ignore.case=TRUE)
         length_x <- str_length(unique_materials$pathString[[x]])
         length_y <- str_length(unique_materials$pathString[[y]])
-        if(z== TRUE && length_x > length_y) {
+        if(z == TRUE && length_x > length_y) {
           unique_materials$merged_material[[x]] <- paste(unique_materials$pathString[[y]])
         }
       }
@@ -639,55 +566,25 @@ server <- function(input,output,session) {
       rename("material"="merged_material")
     
     
-
+    
     #Clean and match items to prime alias
     for(row in 1:nrow(dataframe)) { 
-
+      
       Primename <- unique(aliascleani[unname(unlist(apply(aliascleani, 2, function(x) which(x == dataframeclean[row,"items"], arr.ind = T)))), "Item"])
       
       if(length(Primename) == 0){
         #Create new embedding
-        embeddings_newi <- lapply(dataframeclean[row,"items"], function(items){
-          input = items
-          
-          parameter_list = list(input = input, model = model)
-          
-          request_base = httr::POST(url = "https://api.openai.com/v1/embeddings", 
-                                    body = parameter_list, 
-                                    httr::add_headers(Authorization = paste("Bearer", api_key)),
-                                    encode = "json")
-          
-          output_base = httr::content(request_base)
-          embedding_raw = to_numeric(unlist(output_base$data[[1]]$embedding))
-          names(embedding_raw) = 1:1138
-          data.table::as.data.table(as.list(embedding_raw)) %>%
-            mutate(items = input)
-        })
+        new_item <- data.table(text = dataframeclean[row,"items"])
+        new_item_vDB <- add_collection(metadata = new_item)
+        similarity <- query_collection(db = items_vectorDB, query_embeddings = new_item_vDB, top_n = 1, type = "dotproduct") %>%
+          left_join(items_vectorDB$metadata, by = c("db_id" = "id")) %>%
+          rename(Alias = text)
+        similarity <-  left_join(similarity, primeItems, by = "Alias", relationship = "many-to-many")
+        top_five <- head(unique(similarity$Item), n=1)
+        match1 <- top_five[[1]]
         
-        #Bind new embeddings generated
-        item_embeddings_new <- rbindlist(embeddings_newi)
+        dataframe[row, "PrimeItem"] <- match1
         
-        colnames(item_embeddings_new) = colnames(item_embeddings)
-        
-        item_embeddings_new_ <- rbind(item_embeddings, item_embeddings_new)
-        
-        #Make new dot prod
-        item_dotprod_new <- data.table::transpose(item_embeddings_new, make.names = "items")
-        
-        #Take new cross prod
-        cross_product <- crossprod(data.matrix(item_dotprod), item_dotprod_new[[1]])
-        
-        #Top match for alias given cross prod
-        Primename_ <- row.names(cross_product)[apply(cross_product, MARGIN = 2,  FUN = which.max)]
-        
-        #Top key alias match for given alias
-        Primename <- items_alias_embeddings$Item[items_alias_embeddings$Alias == Primename_]
-        
-        #Input prime key into dataframe
-        dataframe[row, "PrimeItem"] <- Primename
-        
-        #Save new embeddings for future use
-        write.csv(item_embeddings_new_,'data/item_embeddings_new.csv')
       }
       
       else{
@@ -743,25 +640,25 @@ server <- function(input,output,session) {
       group_by(material, items) %>%
       summarise(across(count, sum))
     
-    #Save input data
-    #legacy_data <- read.csv("data/legacy_count_data.csv")
-    #legacy_data <- rbind(legacy_data, dataframe)
-    #legacy_data <- legacy_data %>%
-    #  group_by(material, items) %>%
-    #  summarise(across(count, sum))
-    #write.csv(legacy_data,"data/legacy_count_data.csv")
+    #Add use cases
+    dataframe <- dataframe %>% left_join(use_cases, by = "items", keep = NULL) %>%
+      relocate(use, .before = items)
+    
     return(dataframe)
     
     
   })
   
   #Plot new merged data as sunburst plots
-  ##Material Sunburst Plot ----
+  #Material Sunburst Plot ----
+  
   output$plot1 <- renderPlotly({
     req(input$df_)
     req(input$d_f_)
     
-    Material_DF <- dataframe() %>%
+    dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
+    
+    Material_DF <- dataframe %>%
       rename(Count = count) %>%
       group_by(material) %>%
       summarise(Count = n()) %>%
@@ -774,27 +671,30 @@ server <- function(input,output,session) {
       ungroup() %>%
       rename(Class = material)
     
-    MaterialTreeDF <- AggregateTrees(DF = Material_DF, Alias = MaterialsAlias, Hierarchy = MaterialsHierarchy) %>%
+    MaterialTreeDF <- AggregateTrees(DF = Material_DF, Alias = MaterialsAlias_sunburst, Hierarchy = MaterialsHierarchy_sunburst) %>%
       mutate(from = ifelse(from == "trash", "material", from))
     
-    material_grouped <- grouped_uncertainty(DF_group = Material_DF_group, Group_Alias = MaterialsAlias, Group_Hierarchy = MaterialsHierarchy, type = "material")
+    material_grouped <- grouped_uncertainty(DF_group = Material_DF_group, Group_Alias = MaterialsAlias_sunburst, Group_Hierarchy = MaterialsHierarchy_sunburst, type = "material")
     
-    sunburstplot(df_join_boot = material_grouped)
-  
+    Materials_Plot <- sunburstplot(df_join_boot = material_grouped)
+    
+    return(Materials_Plot)
   })
   
   
   
-  ##Item Sunburst Plot ----
-  plot_items <- reactive({
+  #Item Sunburst Plot ----
+  output$plot2 <- renderPlotly({
     req(input$df_)
     req(input$d_f_)
+    
+    dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
     
     Item_DF <- dataframe %>%
       rename(Count = count) %>%
       group_by(items) %>%
       summarise(Count = n()) %>%
-      ungroup() 
+      ungroup()
     
     
     Item_DF_group <- dataframe %>%
@@ -804,16 +704,19 @@ server <- function(input,output,session) {
       ungroup() %>%
       rename(Class = items)
     
-    ItemTreeDF <- AggregateTrees(DF = Item_DF, Alias = ItemsAlias, Hierarchy = ItemsHierarchy) %>%
+    ItemTreeDF <- AggregateTrees(DF = Item_DF, Alias = ItemsAlias_sunburst, Hierarchy = ItemsHierarchy_sunburst) %>%
       mutate(from = ifelse(from == "trash", "items", from))
     
     #Item prop uncertainty
-    item_grouped <- grouped_uncertainty(DF_group = Item_DF_group, Group_Alias = ItemsAlias, Group_Hierarchy = ItemsHierarchy, type = "items")
+    item_grouped <- grouped_uncertainty(DF_group = Item_DF_group, Group_Alias = ItemsAlias_sunburst, Group_Hierarchy = ItemsHierarchy_sunburst, type = "items")
     
-    Items_Plot <- sunburstplot(df_join_boot = plot_items)
-    
-    output$plot2 <- renderPlotly(Items_Plot)
+    Items_Plot <- sunburstplot(df_join_boot = item_grouped)
+    print(Items_Plot)
+    return(Items_Plot)
   })
+  
+  
+  
   
   
   
@@ -821,77 +724,111 @@ server <- function(input,output,session) {
   
   #Output correct survey sheet
   MicroOnly <- read.csv("data/PremadeSurveys/Most_Specific_Microplastics.csv")
-  MacroMarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Marine.csv")
-  MacroMarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Marine.csv")
-  MarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Marine_All.csv")
-  MarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Marine_All.csv")
-  MacroRiverineMore <- read.csv("data/PremadeSurveys/Most_Specific_Riverine.csv")
-  MacroRiverineLess <- read.csv("data/PremadeSurveys/Least_Specific_Riverine.csv")
-  RiverineMore <- read.csv("data/PremadeSurveys/Most_Specific_Riverine_All.csv")
-  RiverineLess <- read.csv("data/PremadeSurveys/Least_Specific_Riverine_All.csv")
-  MacroEstuarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Estuarine.csv")
-  MacroEstuarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Estuarine.csv")
-  EstuarineMore <- read.csv("data/PremadeSurveys/Most_Specific_Estuarine_All.csv")
-  EstuarineLess <- read.csv("data/PremadeSurveys/Least_Specific_Estuarine_All.csv")
-  MacroTerrestrialMore <- read.csv("data/PremadeSurveys/Most_Specific_Terrestrial.csv")
-  MacroTerrestrialLess <- read.csv("data/PremadeSurveys/Least_Specific_Terrestrial.csv")
-  TerrestrialMore <- read.csv("data/PremadeSurveys/Most_Specific_Terrestrial_All.csv")
-  TerrestrialLess <- read.csv("data/PremadeSurveys/Least_Specific_Terrestrial_All.csv")
-  MacroAllMore <- read.csv("data/PremadeSurveys/Most_Specific_Macro.csv")
-  MacroAllLess <- read.csv("data/PremadeSurveys/Least_Specific_Macro.csv")
   AllMore <- read.csv("data/PremadeSurveys/Most_Specific_All.csv")
   AllLess <- read.csv("data/PremadeSurveys/Least_Specific_All.csv")
   
   selectSurvey <- reactive({
-    if(input$sizeRange == "Micro"){return (MicroOnly)}
-    if(input$sizeRange == "Macro" && input$environments == "Marine" && input$specificity == "More Specific"){data = MacroMarineMore}
-    if(input$sizeRange == "Macro" && input$environments == "Marine" && input$specificity == "Less Specific"){data = MacroMarineLess}
-    if(input$sizeRange == "All" && input$environments == "Marine" && input$specificity == "More Specific"){data = MarineMore}
-    if(input$sizeRange == "All" && input$environments == "Marine" && input$specificity == "Less Specific"){data = MarineLess}
-    if(input$sizeRange == "Macro" && input$environments == "Riverine" && input$specificity == "More Specific"){data = MacroRiverineMore}
-    if(input$sizeRange == "Macro" && input$environments == "Riverine" && input$specificity == "Less Specific"){data = MacroRiverineLess}
-    if(input$sizeRange == "All" && input$environments == "Riverine" && input$specificity == "More Specific"){data = RiverineMore}
-    if(input$sizeRange == "All" && input$environments == "Riverine" && input$specificity == "Less Specific"){data = RiverineLess}
-    if(input$sizeRange == "Macro" && input$environments == "Estuarine" && input$specificity == "More Specific"){data = MacroEstuarineMore}
-    if(input$sizeRange == "Macro" && input$environments == "Estuarine" && input$specificity == "Less Specific"){data = MacroEstuarineLess}
-    if(input$sizeRange == "All" && input$environments == "Estuarine" && input$specificity == "More Specific"){data = EstuarineMore}
-    if(input$sizeRange == "All" && input$environments == "Estuarine" && input$specificity == "Less Specific"){data = EstuarineLess}
-    if(input$sizeRange == "Macro" && input$environments == "Terrestrial" && input$specificity == "More Specific"){data = MacroTerrestrialMore}
-    if(input$sizeRange == "Macro" && input$environments == "Terrestrial" && input$specificity == "Less Specific"){data = MacroTerrestrialLess}
-    if(input$sizeRange == "All" && input$environments == "Terrestrial" && input$specificity == "More Specific"){data = TerrestrialMore}
-    if(input$sizeRange == "All" && input$environments == "Terrestrial" && input$specificity == "Less Specific"){data = TerrestrialLess}
-    if(input$sizeRange == "Macro" && input$environments == "All" && input$specificity == "More Specific"){data = MacroAllMore}
-    if(input$sizeRange == "Macro" && input$environments == "All" && input$specificity == "Less Specific"){data = MacroAllLess}
-    if(input$sizeRange == "All" && input$environments == "All" && input$specificity == "More Specific"){data = AllMore}
-    if(input$sizeRange == "All" && input$environments == "All" && input$specificity == "Less Specific"){data = AllLess}
-    if(input$sizeRange == "" && input$environments == "" && input$specificity == ""){return(NULL)}
-
+    data = data.frame()
+    if(input$sizeRange == "Micro"){data = MicroOnly
     data = as.data.frame(data)
-    colnames(data) = c("material","items","count")
+    survey_columns <- c("material","items","color","size")
+    colnames(data) = c("material","items","color","size")
+    return(data)}
+    if(input$specificity == "More Specific"){data = AllMore
+    data = as.data.frame(data)
+    survey_columns <- c("use", "material","items","count")
+    colnames(data) = c("use", "material","items","count")}
+    if(input$specificity == "Less Specific"){data = AllLess
+    data = as.data.frame(data)
+    survey_columns <- c("use", "material","items","count")
+    colnames(data) = c("use", "material","items","count")}
+    
+    if(input$media == "Surface Water"){
+      req(input$specificity)
+      data <- data %>% filter(!use == "large",
+                              !use == "vehicledebris")
+      if(input$specificity == "More Specific"){
+        data <- data %>% filter(!items == "bricks, cinderblocks, chunks of cement",
+                                !items == "piping",
+                                !items == "traffic cones",
+                                !items == "appliances",
+                                !items == "anchor")
+      }
+    }
+    
+    if(input$sizeRange == "Macro"){
+      req(input$specificity)
+      data <- data %>% filter(!use == "microplastics")
+    }
+    
+    if(input$environments == "Marine/Estuarine"){
+      req(input$specificity)
+      data <- data %>% filter(!use == "gardening&farmingrelated",
+                              !use == "officesupplies",
+                              !use == "safetyrelated",
+                              !use == "constructionmaterials")
+    }
+    
+    if(input$environments == "Riverine"){
+      req(input$specificity)
+      data <- data %>% filter(!use == "ocean/waterwayactivities",
+                              !use == "scuba&snorkelgear,masks,snorkels,fins")
+    }
+    
+    if(input$environments == "Terrestrial"){
+      req(input$specificity)
+      data <- data %>% filter(!use == "fishinggear",
+                              !use == "scuba&snorkelgear,masks,snorkels,fins",
+                              !use == "shorelineandrecreationalactivites",
+                              !use == "ocean/waterwayactivities")
+    }
+    
+    
+
+    
     return(data)
   })
+  
+  #particle count-volume-mass converter
   
   convertedParticles <- reactive({
     req(input$particleData)
     infile <- input$particleData
     file <- fread(infile$datapath)
-    dataframe <- as.data.frame(file) %>%
-      select(length_um, morphology, polymer)
+    dataframe <- as.data.frame(file)
+    dataframe <- read.csv("Sample_Dist_Data.csv")
+    if("width_um" %in% colnames(dataframe) == TRUE){dataframe <- dataframe %>%
+      select(length_um, width_um, morphology, polymer)
+    dataframe$width_um <- as.numeric(dataframe$width_um)
+    }else{dataframe <- dataframe %>%
+      select(length_um, morphology, polymer)}
+    
     dataframe$length_um <- as.numeric(dataframe$length_um)
     dataframe$morphology <- as.character(dataframe$morphology)
     dataframe$polymer <- as.character(dataframe$polymer)
     dataframeclean <- mutate_all(dataframe, cleantext) 
     
+    #convert morphologies in TT to morphologies with defined dimensions
+    morphology <- c("fiber", "nurdle", "foam", "sphere", "line", "bead", "sheet", "film", "fragment", "rubberyfragment", "fiberbundle")
+    morph_dimension <- c("fiber", "sphere", "foam", "sphere", "fiber", "sphere", "film", "film", "fragment", "fragment", "film")
+    morph_conversion <- data.frame(morphology = morphology,
+                                   morph_dimension = morph_dimension)
+    dataframeclean <- left_join(dataframeclean, morph_conversion, by = "morphology", copy = FALSE)
+    dataframeclean <- dataframeclean %>%
+      select(-morphology)
+    dataframeclean <- dataframeclean %>%
+      rename(morphology = morph_dimension)
+    
     #Make polymer-density dataframe
-    polymer <- c("polyethylene high-density", "polyethylene","polyethylene-oxidized","polyethylene-chlorinated","polypropylene","polystyrene","polycarbonate","polyamide","polyvinylchloride","cellophane",
-                 "cellulose chemical modified","nitrile rubber","polyester","acrylates/polyurethanes/varnish","ethylene methacrylic acid","polymethyl methacylate","polysulfone","polyetheretherketone",
-                 "polychloroprene","polyisoprene-chlorinated","polyactic acid","polycaprolactone","ethylene-vinyl-acetate","polyimide","polyoxymethylene","acrylonitrile-butadiene","rubber type 1","rubber type 2",
-                 "rubber type 3","polyphenylene ether","polytetrafluorethylene","urea-formaldehyde")
-    polymer <- cleantext(polymer)
-    density_g_cm3 <- c(0.91,0.91,0.91,0.91,0.92,1.04,1.21,1.22,1.38,1.2,1.2,1,1.35,1.2,1.2,1.2,1.24,1.32,1.23,0.91,1.3,1.15,0.94,1.6,1.41,1.2,1.03,1.03,1.1,1.1,2.2,1.5)
-    density_mg_um_3 <- density_g_cm3 * 1e-9
-    polymer_density <- data.frame(polymer=polymer,
-                                  density_mg_um_3=density_mg_um_3)
+    polymer_db <- read.csv("data/all_polymer_densities.csv")
+    polymer_db <- data.frame(polymer_db)
+    polymer_db$polymer <- cleantext(polymer_db$polymer)
+    polymer_db$density <- as.numeric(polymer_db$density)
+    density_mg_um_3 <- polymer_db$density * 1e-9
+    polymer_db <- polymer_db %>%
+      mutate(density_mg_um_3 = density_mg_um_3)
+    polymer_density <- polymer_db %>%
+      select(polymer, density_mg_um_3)
     
     #Make CSF-morphology dataframe
     morphology <- c("fragment","sphere","fiber","film","foam")
@@ -910,7 +847,18 @@ server <- function(input,output,session) {
     
     dataframeclean <- left_join(dataframeclean, morphology_shape, by = "morphology", copy = F)
     dataframeclean <- left_join(dataframeclean, polymer_density, by = "polymer", copy = F)
-    dataframeclean <- data.frame(dataframeclean) %>%
+    if("width_um" %in% colnames(dataframeclean) == TRUE) {
+      dataframeclean <- data.frame(dataframeclean) %>%
+        mutate(L = as.numeric(length_um),
+               W = as.numeric(width_um),
+               H_min = as.numeric(H_min) * as.numeric(length_um),
+               H_mean = (as.numeric(H_min) + as.numeric(H_max))/2 ,
+               H_max = as.numeric(H_max) * as.numeric(length_um))
+      dataframeclean <- data.frame(dataframeclean) %>%
+        mutate(volume_min_um_3 = L * W* H_min,
+               volume_mean_um_3 = L * W* H_mean,
+               volume_max_um_3 = L * W * H_max) 
+    }else{dataframeclean <- data.frame(dataframeclean) %>%
       mutate(L = as.numeric(L) * as.numeric(length_um),
              W_min = as.numeric(W_min) * as.numeric(length_um),
              W_mean = (as.numeric(W_min) + as.numeric(W_max))/2 ,
@@ -918,87 +866,110 @@ server <- function(input,output,session) {
              H_min = as.numeric(H_min) * as.numeric(length_um),
              H_mean = (as.numeric(H_min) + as.numeric(H_max))/2 ,
              H_max = as.numeric(H_max) * as.numeric(length_um))
-    
     dataframeclean <- data.frame(dataframeclean) %>%
       mutate(volume_min_um_3 = L * W_min* H_min,
              volume_mean_um_3 = L * W_mean* H_mean,
              volume_max_um_3 = L * W_max * H_max) 
+    }
+    
     dataframeclean_particles <- data.frame(dataframeclean) %>%
       mutate(min_mass_mg = dataframeclean$density_mg_um_3 * dataframeclean$volume_min_um,
              mean_mass_mg = dataframeclean$density_mg_um_3 * dataframeclean$volume_mean_um,
              max_mass_mg = dataframeclean$density_mg_um_3 * dataframeclean$volume_max_um)
+    
     return(dataframeclean_particles)
+    
     })
   
   
-  correctedDistribution <- reactive({
+  correctionFactor <- reactive({
     req(input$calculate_distribution)
-    req(input$study_environment)
+    req(input$concentrationData)
     req(input$concentration_type)
+    req(input$corrected_min)
+    req(input$corrected_max)
     
-    if(input$study_environment == "Marine Surface" && input$concentration_type == "length (um)"){a = 2.07}
-    if(input$study_environment == "Marine Surface" && input$concentration_type == "mass (ug)"){a = 1.32}
-    if(input$study_environment == "Marine Surface" && input$concentration_type == "volume (um3)"){a = 1.48}
-    if(input$study_environment == "Marine Surface" && input$concentration_type == "surface area (um2)"){a = 1.50}
-    if(input$study_environment == "Marine Surface" && input$concentration_type == "specific surface area (g/m2)"){a = 1.98}
+    #clean incoming data
+    infile <- input$concentrationData
+    file <- fread(infile$datapath)
+    dataframe <- as.data.frame(file) %>%
+      select(study_media, concentration, size_min, size_max, concentration_units)
+    dataframe$concentration <- as.numeric(dataframe$concentration)
+    dataframe$size_min <- as.numeric(dataframe$size_min)
+    dataframe$size_max <- as.numeric(dataframe$size_max)
+    dataframe$study_media <- as.character(dataframe$study_media)
+    dataframe$concentration_units <- as.character(dataframe$concentration_units)
+    dataframeclean <- mutate_all(dataframe, cleantext) 
     
-    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "length (um)"){a = 2.64}
-    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "mass (ug)"){a = 1.65}
-    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "volume (um3)"){a = 1.68}
-    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "surface area (um2)"){a = 2.00}
-    if(input$study_environment == "Freshwater Surface" && input$concentration_type == "specific surface area (g/m2)"){a = 2.71}
+    #Make df for alpha values
+    study_media <- c("marinesurface","freshwatersurface","marinesediment","freshwatersediment","effluent", "biota")
+    length <- c(2.07, 2.64, 2.57, 3.25, 2.54, 2.59)
+    mass <- c(1.32, 1.65, 1.50, 1.56, 1.40, 1.41)
+    volume <- c(1.48, 1.68, 1.50, 1.53, 1.45, 1.40)
+    surface_area <- c(1.50, 2.00, 1.75, 1.89, 1.73, 1.69)
+    specific_surface_area <- c(1.98, 2.71, 2.54, 2.82, 2.58, 2.46)
     
-    if(input$study_environment == "Marine Sediment" && input$concentration_type == "length (um)"){a = 2.57}
-    if(input$study_environment == "Marine Sediment" && input$concentration_type == "mass (ug)"){a = 1.50}
-    if(input$study_environment == "Marine Sediment" && input$concentration_type == "volume (um3)"){a = 1.50}
-    if(input$study_environment == "Marine Sediment" && input$concentration_type == "surface area (um2)"){a = 1.75}
-    if(input$study_environment == "Marine Sediment" && input$concentration_type == "specific surface area (g/m2)"){a = 2.54}
-    
-    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "length (um)"){a = 3.25}
-    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "mass (ug)"){a = 1.56}
-    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "volume (um3)"){a = 1.53}
-    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "surface area (um2)"){a = 1.89}
-    if(input$study_environment == "Freshwater Sediment" && input$concentration_type == "specific surface area (g/m2)"){a = 2.82}
-    
-    if(input$study_environment == "Effluent" && input$concentration_type == "length (um)"){a = 2.54}
-    if(input$study_environment == "Effluent" && input$concentration_type == "mass (ug)"){a = 1.40}
-    if(input$study_environment == "Effluent" && input$concentration_type == "volume (um3)"){a = 1.45}
-    if(input$study_environment == "Effluent" && input$concentration_type == "surface area (um2)"){a = 1.73}
-    if(input$study_environment == "Effluent" && input$concentration_type == "specific surface area (g/m2)"){a = 2.58}
-    
-    if(input$study_environment == "Biota" && input$concentration_type == "length (um)"){a = 2.59}
-    if(input$study_environment == "Biota" && input$concentration_type == "mass (ug)"){a = 1.41}
-    if(input$study_environment == "Biota" && input$concentration_type == "volume (um3)"){a = 1.40}
-    if(input$study_environment == "Biota" && input$concentration_type == "surface area (um2)"){a = 1.69}
-    if(input$study_environment == "Biota" && input$concentration_type == "specific surface area (g/m2)"){a = 2.46}
-    
-    #Sample parameters
-    x1D_set = input$slider2[1] #lower limit default extrapolated range is 1 um
-    x2D_set = input$slider2[2] #upper limit default extrapolated range is 5 mm
-    
-    x1M_set = input$slider1[1] #sample data, 20 um
-    x2M_set = input$slider1[2] #sample data, 3 mm
-    
-    ###create function to derive correction factor (CF) from Koelmans et al (equation 2)
-    CFfnx = function(a, #default alpha from Koelmans et al (2020)
-                     x2D, #set detault values to convert ranges to (1-5,000 um) #5mm is upper defuault 
-                     x1D, #1 um is lower default size
-                     x2M, x1M){
-      CF = (x2D^(1-a)-x1D^(1-a))/(x2M^(1-a)-x1M^(1-a)) 
-      return(CF)}
-    
-    ##run sample data to find correction factor
-    CF_count = CFfnx(x1M = x1M_set,#lower measured length
-                     x2M = x2M_set, #upper measured length
-                     x1D = x1D_set, #default lower size range
-                     x2D = x2D_set,  #default upper size range
-                     a = alpha #alpha for count
-                
+    alpha_vals <- data.frame(study_media=study_media,
+                             length=length,
+                             mass=mass,
+                             volume=volume,
+                             surface_area=surface_area,
+                             specific_surface_area=specific_surface_area
     )
+    
+    if(input$concentration_type == "length (um)"){dataframeclean <- merge(x = dataframeclean, y = alpha_vals[ , c("study_media", "length")], by = "study_media", all.x=TRUE)
+                                                    dataframeclean <- dataframeclean %>%
+                                                      rename("alpha" = "length")}
+    if(input$concentration_type == "mass (ug)"){dataframeclean <- merge(x = dataframeclean, y = alpha_vals[ , c("study_media", "mass")], by = "study_media", all.x=TRUE)
+                                                  dataframeclean <- dataframeclean %>%
+                                                    rename("alpha" = "mass")}
+    if(input$concentration_type == "volume (um3)"){dataframeclean <- merge(x = dataframeclean, y = alpha_vals[ , c("study_media", "volume")], by = "study_media", all.x=TRUE)
+                                                    dataframeclean <- dataframeclean %>%
+                                                      rename("alpha" = "volume")}
+    if(input$concentration_type == "surface area (um2)"){dataframeclean <- merge(x = dataframeclean, y = alpha_vals[ , c("study_media", "surface_area")], by = "study_media", all.x=TRUE)
+                                                          dataframeclean <- dataframeclean %>%
+                                                            rename("alpha" = "surface_area")}
+    if(input$concentration_type == "specific surface area (g/m2)"){dataframeclean <- merge(x = dataframeclean, y = alpha_vals[ , c("study_media", "specific_surface_area")], by = "study_media", all.x=TRUE)
+                                                                    dataframeclean <- dataframeclean %>%
+                                                                      rename("alpha" = "specific_surface_area")}
+    
+    dataframeclean <- dataframeclean %>%
+      add_column(correction_factor = NA,
+                 corrected_concentration = NA)
+    
+    
+    #Extrapolated parameters
+    x1D_set = as.numeric(input$corrected_min) #lower limit default extrapolated range is 1 um
+    x2D_set = as.numeric(input$corrected_max) #upper limit default extrapolated range is 5 mm
+    
+    for(x in 1:nrow(dataframeclean)) {
+      x1M_set = as.numeric(dataframeclean$size_min[[x]])
+      x2M_set = as.numeric(dataframeclean$size_max[[x]])
+      alpha = as.numeric(dataframeclean$alpha[[x]])
+      
+       CF <- CFfnx(x1M = x1M_set,#lower measured length
+                   x2M = x2M_set, #upper measured length
+                   x1D = x1D_set, #default lower size range
+                   x2D = x2D_set,  #default upper size range
+                   a = alpha #alpha for count 
+                                                     
+      )
+       
+       CF <- as.numeric(CF)
+       
+       CF <- format(round(CF, 2), nsmall = 2)
+         
+      
+      dataframeclean$correction_factor[[x]] <- CF
+      
+      dataframeclean$corrected_concentration[[x]] <- as.numeric(dataframeclean$correction_factor[[x]]) * as.numeric(dataframeclean$concentration[[x]])
+      
+    }
+    
+    return(dataframeclean)
   })
   
-  
-  output$contents <- renderDataTable(server = F,
+  output$contents <- renderDataTable(#server = F,
                                      datatable({
                                        df()[, c("material","items",  input$variable)]
                                      }, 
@@ -1033,113 +1004,194 @@ server <- function(input,output,session) {
                                       )
                                       
   
-  output$contents2 <- renderDataTable(server = F, 
+  output$contents2 <- renderDataTable(#server = F, 
                                       datatable({df()[, c("items","PrimeItem")] %>% distinct()},
                                                 extensions = 'Buttons',
-                                                options = list(
-                                                  paging = TRUE,
-                                                  searching = TRUE,
-                                                  fixedColumns = TRUE,
-                                                  autoWidth = TRUE,
-                                                  ordering = TRUE,
-                                                  dom = 'Bfrtip',
-                                                  buttons = c('copy', 'csv', 'excel', 'pdf')
-                                                ),
                                                 class = "display",
-                                                style="bootstrap"))
-  
-  output$contents3 <- renderDataTable(server = F, 
-                                      datatable({
-                                        df_()[, c("material", "items", "count")]
-                                      }, 
-                                      extensions = 'Buttons',
-                                      options = list(
-                                        paging = TRUE,
-                                        searching = TRUE,
-                                        fixedColumns = TRUE,
-                                        autoWidth = TRUE,
-                                        ordering = TRUE,
-                                        dom = 'Bfrtip',
-                                        buttons = c('copy', 'csv', 'excel', 'pdf')
-                                      ),
-                                      class = "display",
-                                      style="bootstrap"))
-  
-  output$contents4 <- renderDataTable(server = F, 
-                                      datatable({
-                                        selectSurvey()[, c("material", "items", "count")]
-                                      }, 
-                                      extensions = 'Buttons',
-                                      options = list(
-                                        paging = TRUE,
-                                        searching = TRUE,
-                                        fixedColumns = TRUE,
-                                        autoWidth = TRUE,
-                                        ordering = TRUE,
-                                        dom = 'Bfrtip',
-                                        buttons = c('copy', 'csv', 'excel', 'pdf')
-                                      ),
-                                      class = "display",
-                                      style="bootstrap"))
-  
-  output$contents5 <- renderDataTable(server = F, 
-                                      datatable({
-                                        convertedParticles()[, c("length_um", "morphology", "polymer", "L", "W_mean", "H_mean", "volume_mean_um_3", "mean_mass_mg")]
-                                      }, 
-                                      extensions = 'Buttons',
-                                      options = list(
-                                        paging = TRUE,
-                                        searching = TRUE,
-                                        fixedColumns = TRUE,
-                                        autoWidth = TRUE,
-                                        ordering = TRUE,
-                                        dom = 'Bfrtip',
-                                        buttons = c('copy', 'csv', 'excel', 'pdf')
-                                      ),
-                                      class = "display",
-                                      style="bootstrap"))
-  
-  #particle_Data <- datatable({convertedParticles()[, c("length_um", "morphology", "polymer", "L", "W_mean", "H_mean", "volume_min_um_3", "volume_mean_um_3", "volume_max_um_3", "min_mass_mg", "mean_mass_mg", "max_mass_mg",)]})
-  
-  #theme_set(dark_theme_gray())
-  
-  output$plot3 <- renderPlot({req(convertedParticles())
-    ggplot(convertedParticles(), aes(volume_mean_um_3)) + scale_fill_brewer(palette = "Spectral") +
-                      geom_histogram(aes(fill = morphology),
-                                     bins = 12,
-                                     col = "black",
-                                     size = 0.1) +
-                      labs(title = "Particle Volume by Morphology") +
-                      dark_theme_gray()
-  }, res = 96)
-  
-  output$plot4 <- renderPlot({req(convertedParticles())
-    ggplot(convertedParticles(), aes(mean_mass_mg)) + scale_fill_brewer(palette = "Spectral") +
-    geom_histogram(aes(fill = polymer),
-                   bins = 12,
-                   col = "black",
-                   size = 0.1) +
-    labs(title = "Particle Mass by Polymer") +
-      dark_theme_gray()
-  }, res = 96)
-  
-  output$downloadPlot3 <- downloadHandler(
-    filename = function() { "particle_volume_plot.pdf" },
-    content = function(file) {
-      pdf(file, paper = "default")
-      plot(plot3())
-      dev.off()
-    }
+                                                style="bootstrap",
+                                                escape = FALSE,
+                                                options = list(server = FALSE, dom="Bfrtip", paging=TRUE, ordering=TRUE, buttons=c('copy', 'csv', 'excel', 'pdf')),
+                                                callback = JS("table.rows().every(function(row, tab, row) {
+                                              var $this = $(this.node());
+                                              $this.attr('id', this.data()[0]);
+                                              $this.addClass('shiny-input-container');
+                                            });
+                                            Shiny.unbindAll(table.table().node());
+                                            Shiny.bindAll(table.table().node());"))
   )
   
-  output$downloadPlot4 <- downloadHandler(
-    filename = function() { "particle_mass_plot.pdf" },
-    content = function(file) {
-      pdf(file, paper = "default")
-      plot(plot4())
-      dev.off()
-    }
+  output$contents3 <- renderDataTable(#server = F, 
+                                      datatable({
+                                        df_()[, c("use", "material", "items", "count")]
+                                      }, 
+                                      extensions = 'Buttons',
+                                      options = list(
+                                        paging = TRUE,
+                                        searching = TRUE,
+                                        fixedColumns = TRUE,
+                                        autoWidth = TRUE,
+                                        ordering = TRUE,
+                                        server = F, 
+                                        dom = 'Bfrtip',
+                                        buttons = c('copy', 'csv', 'excel', 'pdf')
+                                      ),
+                                      class = "display",
+                                      style="bootstrap")
   )
+  
+  output$contents4 <- renderDataTable(datatable({
+                                        selectSurvey()
+                                      }, 
+                                      extensions = 'Buttons',
+                                      options = list(
+                                        paging = TRUE,
+                                        searching = TRUE,
+                                        fixedColumns = TRUE,
+                                        autoWidth = TRUE,
+                                        ordering = TRUE,
+                                        server = F, 
+                                        dom = 'Bfrtip',
+                                        buttons = c('copy', 'csv', 'excel', 'pdf')
+                                      ),
+                                      class = "display",
+                                      style="bootstrap"))
+  
+  output$contents5 <- renderDataTable(datatable({
+                                        convertedParticles()[, c("length_um", "morphology", "polymer", "L", "H_mean", "volume_mean_um_3", "mean_mass_mg")]
+                                      }, 
+                                      extensions = 'Buttons',
+                                      options = list(
+                                        paging = TRUE,
+                                        searching = TRUE,
+                                        fixedColumns = TRUE,
+                                        autoWidth = TRUE,
+                                        ordering = TRUE,
+                                        dom = 'Bfrtip',
+                                        buttons = c('copy', 'csv', 'excel', 'pdf')
+                                      ),
+                                      class = "display",
+                                      style="bootstrap"))
+  
+  output$contents6 <- renderDataTable(#server = F, 
+                                      datatable({
+                                        correctionFactor()[, c("study_media", "concentration", "concentration_units", "size_min", "size_max",  "alpha", "correction_factor", "corrected_concentration")]
+                                      }, 
+                                      extensions = 'Buttons',
+                                      options = list(
+                                        paging = TRUE,
+                                        searching = TRUE,
+                                        fixedColumns = TRUE,
+                                        autoWidth = TRUE,
+                                        ordering = TRUE,
+                                        dom = 'Bfrtip',
+                                        buttons = c('copy', 'csv', 'excel', 'pdf')
+                                      ),
+                                      class = "display",
+                                      style="bootstrap"))
+  
+
+  
+  # output$plot3 <- renderPlot({
+  #   req(convertedParticles())
+  #   ggplot(convertedParticles(), aes(x = morphology, y = volume_mean_um_3, fill = factor(morphology))) +
+  #     geom_flat_violin(
+  #       position = position_nudge(x = 0.1),
+  #       alpha = 0.5,
+  #       scale = "width",
+  #       trim = FALSE,
+  #       width = 0.8,
+  #       lwd = 1,
+  #     ) +
+  #     geom_boxplot(
+  #       width = 0.12,
+  #       outlier.shape = 8,
+  #       outlier.color = "navy",
+  #       alpha = 1
+  #     ) +
+  #     stat_dots(
+  #       position = position_jitterdodge(jitter.width = 1, dodge.width = 0.4, jitter.height = 10),
+  #       dotsize = 15,
+  #       side = "left",
+  #       justification = 1.1,
+  #       binwidth = 0.08,
+  #       alpha = 1.0
+  #     ) +
+  #     scale_fill_brewer(palette = "Spectral") +
+  #     labs(
+  #       title = "Particle Volume by Morphology Type",
+  #       x = "Morphology",
+  #       y = "Volume (um3)",
+  #       fill = "Morphology"
+  #     ) +
+  #     coord_flip() +
+  #     dark_theme_gray() +
+  #     theme(
+  #       axis.text = element_text(size = 15),
+  #       axis.title = element_text(size = 18),
+  #       plot.title = element_text(size = 18)
+  #     )
+  # })
+  # 
+  # output$plot4 <- renderPlot({
+  #   req(convertedParticles())
+  #   ggplot(convertedParticles(), aes(x = polymer, y = mean_mass_mg, fill = factor(polymer))) +
+  #     geom_flat_violin(
+  #       position = position_nudge(x = 0.1),
+  #       alpha = 0.5,
+  #       scale = "width",
+  #       trim = FALSE,
+  #       width = 0.8,
+  #       lwd = 1,
+  #     ) +
+  #     geom_boxplot(
+  #       width = 0.12,
+  #       outlier.shape = 8,
+  #       outlier.color = "navy",
+  #       alpha = 1
+  #     ) +
+  #     stat_dots(
+  #       position = position_jitterdodge(jitter.width = 1, dodge.width = 0.4, jitter.height = 10),
+  #       dotsize = 15,
+  #       side = "left",
+  #       justification = 1.1,
+  #       binwidth = 0.08,
+  #       alpha = 1.0
+  #     ) +
+  #     scale_fill_brewer(palette = "Spectral") +
+  #     labs(
+  #       title = "Particle Mass by Polymer Type",
+  #       x = "Polymer",
+  #       y = "Mass (mg)",
+  #       fill = "Polymer"
+  #     ) +
+  #     coord_flip() +
+  #     dark_theme_gray() +
+  #     theme(
+  #       axis.text = element_text(size = 15),
+  #       axis.title = element_text(size = 18),
+  #       plot.title = element_text(size = 18)
+  #     )
+  # })
+  # 
+  # 
+  # 
+  # output$downloadPlot3 <- downloadHandler(
+  #   filename = function() { "particle_volume_plot.pdf" },
+  #   content = function(file) {
+  #     pdf(file, paper = "default")
+  #     plot(plot3())
+  #     dev.off()
+  #   }
+  # )
+  # 
+  # output$downloadPlot4 <- downloadHandler(
+  #   filename = function() { "particle_mass_plot.pdf" },
+  #   content = function(file) {
+  #     pdf(file, paper = "default")
+  #     plot(plot4())
+  #     dev.off()
+  #   }
+  # )
   
   output$downloadData1 <- downloadHandler(    
     filename = function() {
@@ -1264,6 +1316,9 @@ server <- function(input,output,session) {
   output$table8 = DT::renderDataTable({
     PrimeUnclassifiable
   }, style="bootstrap")
+  
+  #embeddings <- mongo(url = readLines("data/embeddings_mdb.rtf", warn = FALSE))
+  
   
   
 }

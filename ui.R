@@ -1,18 +1,16 @@
 library(shiny)
 library(dplyr)
 library(data.table)
-#library(crosstalk)
 library(shinyjs)
 library(shinythemes)
 library(DT)
 library(shinyhelper)
 library(shinyTree)
-#library(igraph)
-#library(listviewer)
-#library(treemap)
 library(data.tree)
 library(collapsibleTree)
 library(plotly)
+library(shinyWidgets)
+library(shinyBS)
 
 ui <- fluidPage(
   theme=shinytheme("cyborg"),
@@ -643,6 +641,12 @@ ui <- fluidPage(
              
              fluidRow(
                column(2, 
+                      prettySwitch("share_decision",
+                                   label = "Share Your Data?",
+                                   inline = T,
+                                   value = T,
+                                   status = "success",
+                                   fill = T),
                       fileInput('df_', "Choose Survey 1 CSV File", multiple = FALSE, accept = c(".csv"))%>%
                         helper(type = "inline",
                                title = "Upload Help",
@@ -674,12 +678,12 @@ ui <- fluidPage(
              ),
              fluidRow(
                column(1),
-               column(5, 
+               column(5,
                       plotlyOutput('plot1')
                ),
-               column(5, 
+               column(5,
                       plotlyOutput('plot2')
-               ), 
+               ),
                column(1)
              ),
 
@@ -696,6 +700,12 @@ ui <- fluidPage(
              
              fluidRow(
                column(2, 
+                      prettySwitch("share_decision1",
+                                   label = "Share Your Data?",
+                                   inline = T,
+                                   value = T,
+                                   status = "success",
+                                   fill = T),
                       fileInput('particleData', "Choose CSV File", multiple = FALSE, accept = c(".csv"))%>%
                         helper(type = "inline",
                                title = "Upload Help",
@@ -711,19 +721,19 @@ ui <- fluidPage(
                
                fluidRow(
                  column(1),
-                 column(5, 
+                 column(5,
                         plotOutput('plot3', width = "500px", height = "500px"),
-                        
+
                         downloadButton('downloadPlot3', 'Download Plot')
                  ),
-                 column(5, 
+                 column(5,
                         plotOutput('plot4', width = "500px", height = "500px"),
-                        
+
                         downloadButton('downloadPlot4', 'Download Plot')
-                 ), 
+                 ),
                  column(1)
                ),
-               
+
              ),
              
              fluidRow(
@@ -739,11 +749,16 @@ ui <- fluidPage(
              
              fluidRow(
                column(2, 
-                      
-                      selectInput('study_environment', "Choose study media", c("", "Marine Surface","Freshwater Surface","Marine Sediment","Freshwater Sediment","Effluent","Biota")) %>%
+                      prettySwitch("share_decision2",
+                                   label = "Share Your Data?",
+                                   inline = T,
+                                   value = T,
+                                   status = "success",
+                                   fill = T),
+                      fileInput('concentrationData', "Choose CSV File", multiple = FALSE, accept = c(".csv"))%>%
                         helper(type = "inline",
-                               title = "Selection Help",
-                               content = c("Select the media your study was conducted in"),
+                               title = "Upload Help",
+                               content = c("To use the tool, upload a csv file to the upload file tab. This file need to be a csv with columna named -study_media-, -concentration-, -concentration_units-, -size_min- and -size_max-. Columns -size_min- and -size_max- should be the actual size range studied for that sample."),
                                size = "m"),
                       
                       selectInput('concentration_type', "Known Particle Characteristic", c("", "length (um)","mass (ug)","volume (um3)","surface area (um2)","specific surface area (g/m2)")) %>%
@@ -752,32 +767,20 @@ ui <- fluidPage(
                                content = c("Select the measured characteristic of your particles over which to normalize"),
                                size = "m"),
                       
-                      textInput('concentration_value', "Particle Concentration"),
+                      numericInput('corrected_min', "Corrected Particle Range Minimum", 1, min = 1),
                       
-                      textInput('concentration_units', "Units"),
                       
-                      sliderInput(
-                        inputId = "slider1",
-                        label = "Studied Particle Range",
-                        min = 1,
-                        max = 5000,
-                        value = c(20,3000),
-                        step = 1
-                      ),
+                      numericInput('corrected_max', "Corrected Particle Range Maximum", 5000, min = 1),
                       
-                      sliderInput(
-                        inputId = "slider2",
-                        label = "Corrected Particle Range",
-                        min = 1,
-                        max = 5000,
-                        value = c(1,5000),
-                        step = 1
-                      ),
                       
                       actionButton("calculate_distribution", "Calculate")
                       
                ),
                
+               column(10, 
+                      dataTableOutput('contents6'),
+             ),
+             
              ),
              
              
@@ -799,10 +802,15 @@ ui <- fluidPage(
                                title = "Selection Help",
                                content = c("Select if your study will include microplastics, macro-debris, or both."),
                                size = "m"),
-                      selectInput('environments', "Choose environment", c("", "Marine","Terrestrial","Riverine", "Estuarine", "All")) %>%
+                      selectInput('environments', "Choose environment", c("", "Marine/Estuarine", "Riverine", "Terrestrial", "All")) %>%
                         helper(type = "inline",
                                title = "Selection Help",
                                content = c("Select the environment your study will be conducted in, or include all."),
+                               size = "m"),
+                      selectInput('media', "Choose media", c("", "Surface Water","Sediment")) %>%
+                        helper(type = "inline",
+                               title = "Selection Help",
+                               content = c("Select the media your study will be conducted in."),
                                size = "m"),
                       selectInput('specificity', "Choose specificity", c("", "More Specific","Less Specific")) %>%
                         helper(type = "inline",
