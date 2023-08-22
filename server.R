@@ -27,9 +27,9 @@ library(ggdark)
 library(ggdist)
 library(ggthemes)
 library(chRoma)
-library(mongolite)
 library(tibble)
-
+library(aws.s3)
+library(digest)
 
 #Build cleaning functions
 cleantext <- function(x) {
@@ -234,12 +234,16 @@ NOAA <- read.csv("data/NOAA.csv")
 PrimeUnclassifiable <- read.csv("data/PrimeUnclassifiable.csv")
 Micro_Color_Display <-read.csv("data/Microplastics_Color.csv")
 
-
-
 #Data for embeddings generation via chRoma
 items_vectorDB <- readRDS(file = "data/items_vectorDB.rda")
 materials_vectorDB <- readRDS(file = "data/materials_vectorDB.rda")
 Sys.setenv(OPENAI_API_KEY = readLines("data/openai.txt"))
+creds <- read.csv("s3_cred.csv")
+Sys.setenv(
+  "AWS_ACCESS_KEY_ID" = creds$Access.key.ID,
+  "AWS_SECRET_ACCESS_KEY" = creds$Secret.access.key,
+  "AWS_DEFAULT_REGION" = "us-east-2"
+)
 primeItems <- read.csv("data/PrimeItems.csv")
 primeMaterials <- read.csv("data/PrimeMaterials.csv")
 
@@ -298,7 +302,7 @@ server <- function(input,output,session) {
           match5 <- top_five[[5]]
           
           dataframe[row, "PrimeMaterial"] <- as.character(selectInput(paste("sel", row, sep = ""), "", choices = c(match1, match2, match3, match4, match5), width = "100px"))
-
+          
       }
       
       else{
@@ -645,6 +649,17 @@ server <- function(input,output,session) {
     
     
   })
+  
+  #Share data ----
+  observeEvent(input$df, {
+    req(input$share_decision0)
+    put_object(
+      file = file.path(as.character(input$df$datapath)),
+      object = paste0(digest(input$df$datapath), "_", gsub(".*/", "", as.character(input$df$name))),
+      bucket = "trashtaxonomy"
+    )
+  })
+
   
   #Plot new merged data as sunburst plots
   #Material Sunburst Plot ----

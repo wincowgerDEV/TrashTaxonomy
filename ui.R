@@ -593,6 +593,12 @@ ui <- fluidPage(
              titlePanel(tags$h4("Query the Relational Tables with Trash Survey Sheets")),
              fluidRow(
                column(2, 
+                      prettySwitch("share_decision0",
+                                   label = "Share Your Data?",
+                                   inline = T,
+                                   value = T,
+                                   status = "success",
+                                   fill = T),
                       fileInput('df', "Choose CSV File", multiple = FALSE, accept = c(".csv"))%>%
                         helper(type = "inline",
                                title = "Upload Help",
