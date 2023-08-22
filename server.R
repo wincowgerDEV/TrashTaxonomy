@@ -615,9 +615,11 @@ server <- function(input,output,session) {
   #Item Sunburst Plot ----
   output$plot2 <- renderPlotly({
     req(input$df_)
-    req(input$d_f_)
     
-    dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
+    dataframe <- as.data.frame(df_() %>% 
+                                 rename(material = Material, 
+                                        items = Item) %>%
+                                 select(material, items, count))
     
     Item_DF <- dataframe %>%
       rename(Count = count) %>%
