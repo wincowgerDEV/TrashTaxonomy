@@ -580,9 +580,12 @@ server <- function(input,output,session) {
   
   output$plot1 <- renderPlotly({
     req(input$df_)
-    req(input$d_f_)
+    #req(input$d_f_)
     
-    dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
+    dataframe <- as.data.frame(df_() %>% 
+                                 rename(material = Material, 
+                                        items = Item) %>%
+                                 select(material, items, count))
     
     Material_DF <- dataframe %>%
       rename(Count = count) %>%
