@@ -1,18 +1,16 @@
 library(shiny)
 library(dplyr)
 library(data.table)
-#library(crosstalk)
 library(shinyjs)
 library(shinythemes)
 library(DT)
 library(shinyhelper)
 library(shinyTree)
-#library(igraph)
-#library(listviewer)
-#library(treemap)
 library(data.tree)
 library(collapsibleTree)
 library(plotly)
+library(shinyWidgets)
+library(shinyBS)
 
 ui <- fluidPage(
   theme=shinytheme("cyborg"),
@@ -643,6 +641,12 @@ ui <- fluidPage(
              
              fluidRow(
                column(2, 
+                      prettySwitch("share_decision",
+                                   label = "Share Your Data?",
+                                   inline = T,
+                                   value = T,
+                                   status = "success",
+                                   fill = T),
                       fileInput('df_', "Choose Survey 1 CSV File", multiple = FALSE, accept = c(".csv"))%>%
                         helper(type = "inline",
                                title = "Upload Help",
@@ -696,6 +700,12 @@ ui <- fluidPage(
              
              fluidRow(
                column(2, 
+                      prettySwitch("share_decision1",
+                                   label = "Share Your Data?",
+                                   inline = T,
+                                   value = T,
+                                   status = "success",
+                                   fill = T),
                       fileInput('particleData', "Choose CSV File", multiple = FALSE, accept = c(".csv"))%>%
                         helper(type = "inline",
                                title = "Upload Help",
@@ -711,19 +721,19 @@ ui <- fluidPage(
                
                fluidRow(
                  column(1),
-                 column(5, 
+                 column(5,
                         plotOutput('plot3', width = "500px", height = "500px"),
-                        
+
                         downloadButton('downloadPlot3', 'Download Plot')
                  ),
-                 column(5, 
+                 column(5,
                         plotOutput('plot4', width = "500px", height = "500px"),
-                        
+
                         downloadButton('downloadPlot4', 'Download Plot')
-                 ), 
+                 ),
                  column(1)
                ),
-               
+
              ),
              
              fluidRow(
@@ -739,7 +749,12 @@ ui <- fluidPage(
              
              fluidRow(
                column(2, 
-                      
+                      prettySwitch("share_decision2",
+                                   label = "Share Your Data?",
+                                   inline = T,
+                                   value = T,
+                                   status = "success",
+                                   fill = T),
                       fileInput('concentrationData', "Choose CSV File", multiple = FALSE, accept = c(".csv"))%>%
                         helper(type = "inline",
                                title = "Upload Help",

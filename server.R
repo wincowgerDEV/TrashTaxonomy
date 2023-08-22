@@ -27,6 +27,8 @@ library(ggdark)
 library(ggdist)
 library(ggthemes)
 library(chRoma)
+library(mongolite)
+library(tibble)
 
 
 
@@ -177,7 +179,6 @@ hierarchy <- read.csv("data/MaterialsHierarchyLower.csv")
 aliusi <- read.csv("data/PrimeItems.csv")
 hierarchyi <- read.csv("data/ITEMSHierarchyLower.csv")
 microcolor <- read.csv("data/Microplastics_Color.csv")
-micromathierarchy <- read.csv("data/Microplastics_Material_Hierarchy.csv")
 aliasclean <- mutate_all(alius, cleantext)
 aliascleani <- mutate_all(aliusi, cleantext)
 hierarchyclean <- mutate_all(hierarchy, cleantext)
@@ -474,10 +475,11 @@ server <- function(input,output,session) {
   
   
   use_cases <- read.csv("data/Item_Use_Case.csv")
-  
+
   df_ <- reactive({
     req(input$df_)
     req(input$d_f_)
+    
     infile1 <- input$df_
     infile2 <- input$d_f_
     file1 <- fread(infile1$datapath)
@@ -564,10 +566,10 @@ server <- function(input,output,session) {
       rename("material"="merged_material")
     
     
-
+    
     #Clean and match items to prime alias
     for(row in 1:nrow(dataframe)) { 
-
+      
       Primename <- unique(aliascleani[unname(unlist(apply(aliascleani, 2, function(x) which(x == dataframeclean[row,"items"], arr.ind = T)))), "Item"])
       
       if(length(Primename) == 0){
@@ -641,7 +643,7 @@ server <- function(input,output,session) {
     #Add use cases
     dataframe <- dataframe %>% left_join(use_cases, by = "items", keep = NULL) %>%
       relocate(use, .before = items)
-
+    
     return(dataframe)
     
     
@@ -649,69 +651,70 @@ server <- function(input,output,session) {
   
   #Plot new merged data as sunburst plots
   #Material Sunburst Plot ----
-
+  
   output$plot1 <- renderPlotly({
-   req(input$df_)
-   req(input$d_f_)
-
-   dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
-
-   Material_DF <- dataframe %>%
-     rename(Count = count) %>%
-     group_by(material) %>%
-     summarise(Count = n()) %>%
-     ungroup()
-
-   Material_DF_group <- dataframe %>%
-     rename(Count = count) %>%
-     group_by(material) %>%
-     summarise(Count = n()) %>%
-    ungroup() %>%
-     rename(Class = material)
-
-   MaterialTreeDF <- AggregateTrees(DF = Material_DF, Alias = MaterialsAlias_sunburst, Hierarchy = MaterialsHierarchy_sunburst) %>%
-     mutate(from = ifelse(from == "trash", "material", from))
-
-   material_grouped <- grouped_uncertainty(DF_group = Material_DF_group, Group_Alias = MaterialsAlias_sunburst, Group_Hierarchy = MaterialsHierarchy_sunburst, type = "material")
-
-   Materials_Plot <- sunburstplot(df_join_boot = material_grouped)
-
-   return(Materials_Plot)
+    req(input$df_)
+    req(input$d_f_)
+    
+    dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
+    
+    Material_DF <- dataframe %>%
+      rename(Count = count) %>%
+      group_by(material) %>%
+      summarise(Count = n()) %>%
+      ungroup()
+    
+    Material_DF_group <- dataframe %>%
+      rename(Count = count) %>%
+      group_by(material) %>%
+      summarise(Count = n()) %>%
+      ungroup() %>%
+      rename(Class = material)
+    
+    MaterialTreeDF <- AggregateTrees(DF = Material_DF, Alias = MaterialsAlias_sunburst, Hierarchy = MaterialsHierarchy_sunburst) %>%
+      mutate(from = ifelse(from == "trash", "material", from))
+    
+    material_grouped <- grouped_uncertainty(DF_group = Material_DF_group, Group_Alias = MaterialsAlias_sunburst, Group_Hierarchy = MaterialsHierarchy_sunburst, type = "material")
+    
+    Materials_Plot <- sunburstplot(df_join_boot = material_grouped)
+    
+    return(Materials_Plot)
   })
-
-
-
+  
+  
+  
   #Item Sunburst Plot ----
   output$plot2 <- renderPlotly({
     req(input$df_)
     req(input$d_f_)
-
+    
     dataframe <- as.data.frame(df_()[, c("material", "items", "count")])
-
+    
     Item_DF <- dataframe %>%
       rename(Count = count) %>%
       group_by(items) %>%
       summarise(Count = n()) %>%
       ungroup()
-
-
+    
+    
     Item_DF_group <- dataframe %>%
       rename(Count = count) %>%
       group_by(items) %>%
       summarise(Count = n()) %>%
       ungroup() %>%
-       rename(Class = items)
+      rename(Class = items)
+    
+    ItemTreeDF <- AggregateTrees(DF = Item_DF, Alias = ItemsAlias_sunburst, Hierarchy = ItemsHierarchy_sunburst) %>%
+      mutate(from = ifelse(from == "trash", "items", from))
+    
+    #Item prop uncertainty
+    item_grouped <- grouped_uncertainty(DF_group = Item_DF_group, Group_Alias = ItemsAlias_sunburst, Group_Hierarchy = ItemsHierarchy_sunburst, type = "items")
+    
+    Items_Plot <- sunburstplot(df_join_boot = item_grouped)
+    print(Items_Plot)
+    return(Items_Plot)
+  })
   
-     ItemTreeDF <- AggregateTrees(DF = Item_DF, Alias = ItemsAlias_sunburst, Hierarchy = ItemsHierarchy_sunburst) %>%
-       mutate(from = ifelse(from == "trash", "items", from))
-  
-     #Item prop uncertainty
-     item_grouped <- grouped_uncertainty(DF_group = Item_DF_group, Group_Alias = ItemsAlias_sunburst, Group_Hierarchy = ItemsHierarchy_sunburst, type = "items")
-  
-     Items_Plot <- sunburstplot(df_join_boot = item_grouped)
-  
-     return(Items_Plot)
-   })
   
   
   
@@ -786,12 +789,20 @@ server <- function(input,output,session) {
     return(data)
   })
   
+  #particle count-volume-mass converter
+  
   convertedParticles <- reactive({
     req(input$particleData)
     infile <- input$particleData
     file <- fread(infile$datapath)
-    dataframe <- as.data.frame(file) %>%
-      select(length_um, morphology, polymer)
+    dataframe <- as.data.frame(file)
+    dataframe <- read.csv("Sample_Dist_Data.csv")
+    if("width_um" %in% colnames(dataframe) == TRUE){dataframe <- dataframe %>%
+      select(length_um, width_um, morphology, polymer)
+    dataframe$width_um <- as.numeric(dataframe$width_um)
+    }else{dataframe <- dataframe %>%
+      select(length_um, morphology, polymer)}
+    
     dataframe$length_um <- as.numeric(dataframe$length_um)
     dataframe$morphology <- as.character(dataframe$morphology)
     dataframe$polymer <- as.character(dataframe$polymer)
@@ -836,7 +847,18 @@ server <- function(input,output,session) {
     
     dataframeclean <- left_join(dataframeclean, morphology_shape, by = "morphology", copy = F)
     dataframeclean <- left_join(dataframeclean, polymer_density, by = "polymer", copy = F)
-    dataframeclean <- data.frame(dataframeclean) %>%
+    if("width_um" %in% colnames(dataframeclean) == TRUE) {
+      dataframeclean <- data.frame(dataframeclean) %>%
+        mutate(L = as.numeric(length_um),
+               W = as.numeric(width_um),
+               H_min = as.numeric(H_min) * as.numeric(length_um),
+               H_mean = (as.numeric(H_min) + as.numeric(H_max))/2 ,
+               H_max = as.numeric(H_max) * as.numeric(length_um))
+      dataframeclean <- data.frame(dataframeclean) %>%
+        mutate(volume_min_um_3 = L * W* H_min,
+               volume_mean_um_3 = L * W* H_mean,
+               volume_max_um_3 = L * W * H_max) 
+    }else{dataframeclean <- data.frame(dataframeclean) %>%
       mutate(L = as.numeric(L) * as.numeric(length_um),
              W_min = as.numeric(W_min) * as.numeric(length_um),
              W_mean = (as.numeric(W_min) + as.numeric(W_max))/2 ,
@@ -844,16 +866,19 @@ server <- function(input,output,session) {
              H_min = as.numeric(H_min) * as.numeric(length_um),
              H_mean = (as.numeric(H_min) + as.numeric(H_max))/2 ,
              H_max = as.numeric(H_max) * as.numeric(length_um))
-    
     dataframeclean <- data.frame(dataframeclean) %>%
       mutate(volume_min_um_3 = L * W_min* H_min,
              volume_mean_um_3 = L * W_mean* H_mean,
              volume_max_um_3 = L * W_max * H_max) 
+    }
+    
     dataframeclean_particles <- data.frame(dataframeclean) %>%
       mutate(min_mass_mg = dataframeclean$density_mg_um_3 * dataframeclean$volume_min_um,
              mean_mass_mg = dataframeclean$density_mg_um_3 * dataframeclean$volume_mean_um,
              max_mass_mg = dataframeclean$density_mg_um_3 * dataframeclean$volume_max_um)
+    
     return(dataframeclean_particles)
+    
     })
   
   
@@ -944,7 +969,7 @@ server <- function(input,output,session) {
     return(dataframeclean)
   })
   
-  output$contents <- renderDataTable(server = F,
+  output$contents <- renderDataTable(#server = F,
                                      datatable({
                                        df()[, c("material","items",  input$variable)]
                                      }, 
@@ -979,7 +1004,7 @@ server <- function(input,output,session) {
                                       )
                                       
   
-  output$contents2 <- renderDataTable(server = F, 
+  output$contents2 <- renderDataTable(#server = F, 
                                       datatable({df()[, c("items","PrimeItem")] %>% distinct()},
                                                 extensions = 'Buttons',
                                                 class = "display",
@@ -995,7 +1020,7 @@ server <- function(input,output,session) {
                                             Shiny.bindAll(table.table().node());"))
   )
   
-  output$contents3 <- renderDataTable(server = F, 
+  output$contents3 <- renderDataTable(#server = F, 
                                       datatable({
                                         df_()[, c("use", "material", "items", "count")]
                                       }, 
@@ -1006,6 +1031,7 @@ server <- function(input,output,session) {
                                         fixedColumns = TRUE,
                                         autoWidth = TRUE,
                                         ordering = TRUE,
+                                        server = F, 
                                         dom = 'Bfrtip',
                                         buttons = c('copy', 'csv', 'excel', 'pdf')
                                       ),
@@ -1013,8 +1039,7 @@ server <- function(input,output,session) {
                                       style="bootstrap")
   )
   
-  output$contents4 <- renderDataTable(server = F, 
-                                      datatable({
+  output$contents4 <- renderDataTable(datatable({
                                         selectSurvey()
                                       }, 
                                       extensions = 'Buttons',
@@ -1024,15 +1049,15 @@ server <- function(input,output,session) {
                                         fixedColumns = TRUE,
                                         autoWidth = TRUE,
                                         ordering = TRUE,
+                                        server = F, 
                                         dom = 'Bfrtip',
                                         buttons = c('copy', 'csv', 'excel', 'pdf')
                                       ),
                                       class = "display",
                                       style="bootstrap"))
   
-  output$contents5 <- renderDataTable(server = F, 
-                                      datatable({
-                                        convertedParticles()[, c("length_um", "morphology", "polymer", "L", "W_mean", "H_mean", "volume_mean_um_3", "mean_mass_mg")]
+  output$contents5 <- renderDataTable(datatable({
+                                        convertedParticles()[, c("length_um", "morphology", "polymer", "L", "H_mean", "volume_mean_um_3", "mean_mass_mg")]
                                       }, 
                                       extensions = 'Buttons',
                                       options = list(
@@ -1047,7 +1072,7 @@ server <- function(input,output,session) {
                                       class = "display",
                                       style="bootstrap"))
   
-  output$contents6 <- renderDataTable(server = F, 
+  output$contents6 <- renderDataTable(#server = F, 
                                       datatable({
                                         correctionFactor()[, c("study_media", "concentration", "concentration_units", "size_min", "size_max",  "alpha", "correction_factor", "corrected_concentration")]
                                       }, 
@@ -1066,107 +1091,107 @@ server <- function(input,output,session) {
   
 
   
-  output$plot3 <- renderPlot({
-    req(convertedParticles())
-    ggplot(convertedParticles(), aes(x = morphology, y = volume_mean_um_3, fill = factor(morphology))) +
-      geom_flat_violin(
-        position = position_nudge(x = 0.1),
-        alpha = 0.5,
-        scale = "width",
-        trim = FALSE,
-        width = 0.8,
-        lwd = 1,
-      ) +
-      geom_boxplot(
-        width = 0.12,
-        outlier.shape = 8,
-        outlier.color = "navy",
-        alpha = 1
-      ) +
-      stat_dots(
-        position = position_jitterdodge(jitter.width = 1, dodge.width = 0.4, jitter.height = 10),
-        dotsize = 15,
-        side = "left",
-        justification = 1.1,
-        binwidth = 0.08,
-        alpha = 1.0
-      ) +
-      scale_fill_brewer(palette = "Spectral") +
-      labs(
-        title = "Particle Volume by Morphology Type",
-        x = "Morphology",
-        y = "Volume (um3)",
-        fill = "Morphology"
-      ) +
-      coord_flip() +
-      dark_theme_gray() +
-      theme(
-        axis.text = element_text(size = 15),
-        axis.title = element_text(size = 18),
-        plot.title = element_text(size = 18)
-      )
-  })
-
-  output$plot4 <- renderPlot({
-    req(convertedParticles())
-    ggplot(convertedParticles(), aes(x = polymer, y = mean_mass_mg, fill = factor(polymer))) +
-      geom_flat_violin(
-        position = position_nudge(x = 0.1),
-        alpha = 0.5,
-        scale = "width",
-        trim = FALSE,
-        width = 0.8,
-        lwd = 1,
-      ) +
-      geom_boxplot(
-        width = 0.12,
-        outlier.shape = 8,
-        outlier.color = "navy",
-        alpha = 1
-      ) +
-      stat_dots(
-        position = position_jitterdodge(jitter.width = 1, dodge.width = 0.4, jitter.height = 10),
-        dotsize = 15,
-        side = "left",
-        justification = 1.1,
-        binwidth = 0.08,
-        alpha = 1.0
-      ) +
-      scale_fill_brewer(palette = "Spectral") +
-      labs(
-        title = "Particle Mass by Polymer Type",
-        x = "Polymer",
-        y = "Mass (mg)",
-        fill = "Polymer"
-      ) +
-      coord_flip() +
-      dark_theme_gray() +
-      theme(
-        axis.text = element_text(size = 15),
-        axis.title = element_text(size = 18),
-        plot.title = element_text(size = 18)
-      )
-  })
-  
-  
-  
-  output$downloadPlot3 <- downloadHandler(
-    filename = function() { "particle_volume_plot.pdf" },
-    content = function(file) {
-      pdf(file, paper = "default")
-      plot(plot3())
-      dev.off()
-    }
-  )
-  
-  output$downloadPlot4 <- downloadHandler(
-    filename = function() { "particle_mass_plot.pdf" },
-    content = function(file) {
-      pdf(file, paper = "default")
-      plot(plot4())
-      dev.off()
-    }
-  )
+  # output$plot3 <- renderPlot({
+  #   req(convertedParticles())
+  #   ggplot(convertedParticles(), aes(x = morphology, y = volume_mean_um_3, fill = factor(morphology))) +
+  #     geom_flat_violin(
+  #       position = position_nudge(x = 0.1),
+  #       alpha = 0.5,
+  #       scale = "width",
+  #       trim = FALSE,
+  #       width = 0.8,
+  #       lwd = 1,
+  #     ) +
+  #     geom_boxplot(
+  #       width = 0.12,
+  #       outlier.shape = 8,
+  #       outlier.color = "navy",
+  #       alpha = 1
+  #     ) +
+  #     stat_dots(
+  #       position = position_jitterdodge(jitter.width = 1, dodge.width = 0.4, jitter.height = 10),
+  #       dotsize = 15,
+  #       side = "left",
+  #       justification = 1.1,
+  #       binwidth = 0.08,
+  #       alpha = 1.0
+  #     ) +
+  #     scale_fill_brewer(palette = "Spectral") +
+  #     labs(
+  #       title = "Particle Volume by Morphology Type",
+  #       x = "Morphology",
+  #       y = "Volume (um3)",
+  #       fill = "Morphology"
+  #     ) +
+  #     coord_flip() +
+  #     dark_theme_gray() +
+  #     theme(
+  #       axis.text = element_text(size = 15),
+  #       axis.title = element_text(size = 18),
+  #       plot.title = element_text(size = 18)
+  #     )
+  # })
+  # 
+  # output$plot4 <- renderPlot({
+  #   req(convertedParticles())
+  #   ggplot(convertedParticles(), aes(x = polymer, y = mean_mass_mg, fill = factor(polymer))) +
+  #     geom_flat_violin(
+  #       position = position_nudge(x = 0.1),
+  #       alpha = 0.5,
+  #       scale = "width",
+  #       trim = FALSE,
+  #       width = 0.8,
+  #       lwd = 1,
+  #     ) +
+  #     geom_boxplot(
+  #       width = 0.12,
+  #       outlier.shape = 8,
+  #       outlier.color = "navy",
+  #       alpha = 1
+  #     ) +
+  #     stat_dots(
+  #       position = position_jitterdodge(jitter.width = 1, dodge.width = 0.4, jitter.height = 10),
+  #       dotsize = 15,
+  #       side = "left",
+  #       justification = 1.1,
+  #       binwidth = 0.08,
+  #       alpha = 1.0
+  #     ) +
+  #     scale_fill_brewer(palette = "Spectral") +
+  #     labs(
+  #       title = "Particle Mass by Polymer Type",
+  #       x = "Polymer",
+  #       y = "Mass (mg)",
+  #       fill = "Polymer"
+  #     ) +
+  #     coord_flip() +
+  #     dark_theme_gray() +
+  #     theme(
+  #       axis.text = element_text(size = 15),
+  #       axis.title = element_text(size = 18),
+  #       plot.title = element_text(size = 18)
+  #     )
+  # })
+  # 
+  # 
+  # 
+  # output$downloadPlot3 <- downloadHandler(
+  #   filename = function() { "particle_volume_plot.pdf" },
+  #   content = function(file) {
+  #     pdf(file, paper = "default")
+  #     plot(plot3())
+  #     dev.off()
+  #   }
+  # )
+  # 
+  # output$downloadPlot4 <- downloadHandler(
+  #   filename = function() { "particle_mass_plot.pdf" },
+  #   content = function(file) {
+  #     pdf(file, paper = "default")
+  #     plot(plot4())
+  #     dev.off()
+  #   }
+  # )
   
   output$downloadData1 <- downloadHandler(    
     filename = function() {
@@ -1291,6 +1316,9 @@ server <- function(input,output,session) {
   output$table8 = DT::renderDataTable({
     PrimeUnclassifiable
   }, style="bootstrap")
+  
+  #embeddings <- mongo(url = readLines("data/embeddings_mdb.rtf", warn = FALSE))
+  
   
   
 }
