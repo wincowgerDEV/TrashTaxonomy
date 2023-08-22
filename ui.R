@@ -647,12 +647,6 @@ ui <- fluidPage(
              
              fluidRow(
                column(2, 
-                      prettySwitch("share_decision",
-                                   label = "Share Your Data?",
-                                   inline = T,
-                                   value = T,
-                                   status = "success",
-                                   fill = T),
                       fileInput('df_', "Choose CSV Files", multiple = TRUE, accept = c(".csv"))%>%
                         helper(type = "inline",
                                title = "Upload Help",
