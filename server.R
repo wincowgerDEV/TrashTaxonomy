@@ -31,9 +31,6 @@ library(mongolite)
 library(tibble)
 
 
-
-setwd("/Users/hannahhapich/Documents/R_Scripts/TrashTaxonomy-master")
-
 #Build cleaning functions
 cleantext <- function(x) {
   x <- tolower(gsub("[[:space:]]", "", x))
